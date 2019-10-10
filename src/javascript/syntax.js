@@ -8,7 +8,7 @@ const syntaxFunctions = {
     // number
         // a simple function that identifies only numbers.
         // "num" doesn't have to be assigned to a variable but is in this case in order to demonstrate an understanding of variables.
-        // this is also true for other functions below.
+        // this is also true for many other functions below.
 
     xNumber: (num) => {
         let myNumber = num
@@ -88,7 +88,7 @@ const syntaxFunctions = {
 
 // functions
     // parameters
-        // a simple addition function that demonstrates an understanding of simple logic and using parameters to generate a new variable.
+        // a simple addition function that demonstrates an understanding of logic and using parameters to generate a new variable.
 
     functionParameters: (p1, p2) => {
         if (p1 !== Number(p1) || p2 !== Number (p2)) return "Please enter a number.";
@@ -104,7 +104,7 @@ const syntaxFunctions = {
         let place = p2;
         let thing = p3;
         return "Hello, my name is " + person + " and I am going to " + place + " to get a " + thing + ".";
-        return "If a return comes after a return in a function, does it really exist?"
+        return "If a return comes after a return that's already happened in a function, does it really exist?"
     },
 
 // arrays
@@ -129,7 +129,7 @@ const syntaxFunctions = {
     },
 
     // update values
-        // a simple function that demonstrates how to update values in an array
+        // an even simpler function that demonstrates how to update values in an array
 
     arrayUpdateValues: (a1) => {
         let updateValueArray = [1, 2, 3, 4, 5];
@@ -137,30 +137,61 @@ const syntaxFunctions = {
         return updateValueArray[4];
     },
 
-// // loops 
-//     // for
+// loops 
+    // for
+        // a for loop that adds values to a parameter until the loop no longer runs, then returns the updated paramater
 
-//     loopsFor: () => {
+    loopsFor: (lf) => {
+        if (Number(lf)) {
+            for (let i = 0; i < 5; i++) { 
+                lf++;
+            } return lf + " ---> Your number plus 5!";
+        } else return "Enter a number!";
+    },
 
-//     }
+    // for/in
+        // shows an understanding of for / in loops by returning a string combination of all object property values with a space in between.
 
-//     // for/in
+    loopsForIn: () => {
+        const hobbit = {
 
-//     loopsForIn: () => {
+            name: "bilbo baggins",
+            neededtransitionalfiller: "lives in the",
+            residence: "shire",
+            neededitagain: "and is",
+            age: 111,
+            andonemoretime: "years old"
 
-//     },
+        }
+        let baggins = "";
+        let x;
+        for (x in hobbit) {
+          baggins += hobbit[x] + " ";
+        } return baggins;
+    },
 
-    // // while
+    // while
+        // showing how a while loop works by returning a certain number generated from a while loop, depending on what number is entered as a parameter.
 
-    // loopsWhile: () => {
+    loopsWhile: (lw) => {
+        if (Number(lw) < 0) {
+            let i = 0;
+            while (i < 10) i++;
+            return i;
+        } else if (Number(lw) === 0) {
+            return 0;
+        } else if (Number(lw) > 0) {
+            let i = 100;
+            while (i > 90) i--;
+            return i;
+        } return "Enter a number!";
+    },
 
-    // }
+    // do while
 
-//     // do while
+    // loopsDoWhile: () => {
 
-//     loopsDoWhile: () => {
-
-//     },
+    // } 
 
 //     // forEach (with array and function)
 

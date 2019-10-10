@@ -4,7 +4,6 @@ import syntaxFunctions from './syntax.js'
 
 // define attributes / variables
     // number
-        //Testing a variety of a data types to ensure only numbers are returned.
 
     test('Check if parameter is a number', () => {
         expect(syntaxFunctions.xNumber(1)).toBe(1 + " is a number.");
@@ -50,7 +49,7 @@ import syntaxFunctions from './syntax.js'
 
     // dictionary / objects
 
-    test('Check object properties are return correct values', () => {
+    test('Check object properties return correct values', () => {
         expect(syntaxFunctions.objectDictionary("sam")).toBe("loyal friend");
         expect(syntaxFunctions.objectDictionary(7)).toBe("Enter the first name of a member of the fellowship!");
         expect(syntaxFunctions.objectDictionary("pippin")).toBe("fool of a took");
@@ -102,7 +101,7 @@ import syntaxFunctions from './syntax.js'
 // arrays
     // add to the front
 
-    test('Check if something has been added to front of array', () => {
+    test('Check if parameter added to front of array', () => {
         expect(syntaxFunctions.arrayAddToFront("test")).toBe("Item added to front of array.");
         expect(syntaxFunctions.arrayAddToFront(3)).toBe("Item added to front of array.");
         expect(syntaxFunctions.arrayAddToFront("")).toBe("Item added to front of array.");
@@ -112,7 +111,7 @@ import syntaxFunctions from './syntax.js'
 
     // add to the end
 
-    test('Check if something has been added to end of array', () => {
+    test('Check if parameter added to end of array', () => {
         expect(syntaxFunctions.arrayAddToEnd("test")).toBe("Item added to end of array! Hooray!");
         expect(syntaxFunctions.arrayAddToEnd("creativity is taking a hit now...")).toBe("Item added to end of array! Hooray!");
         expect(syntaxFunctions.arrayAddToEnd(100)).toBe("Item added to end of array! Hooray!");
@@ -121,7 +120,7 @@ import syntaxFunctions from './syntax.js'
 
     // update values
 
-    test('Check if array value has been updated', () => {
+    test('Check if array value updated', () => {
         expect(syntaxFunctions.arrayUpdateValues(17)).toBe(17);
         expect(syntaxFunctions.arrayUpdateValues(-2)).toBe(-2);
         expect(syntaxFunctions.arrayUpdateValues(1)).toBe(1);
@@ -132,23 +131,36 @@ import syntaxFunctions from './syntax.js'
 // loops 
     // for
 
-    // test('Check if array values have been updated', () => {
-    //     expect(syntaxFunctions.arrayUpdateValues(17)).toBe(17);
-    //     expect(syntaxFunctions.arrayUpdateValues(-2)).toBe(-2);
-    //     expect(syntaxFunctions.arrayUpdateValues(1)).toBe(1);
-    //     expect(syntaxFunctions.arrayUpdateValues("not a number")).toBe("not a number");
-    //     expect(syntaxFunctions.arrayUpdateValues(2000000)).toBe(2000000);
-    // });
+    test('Check for loop', () => {
+        expect(syntaxFunctions.loopsFor(1)).toBe(6 + " ---> Your number plus 5!");
+        expect(syntaxFunctions.loopsFor(10)).toBe(15 + " ---> Your number plus 5!");
+        expect(syntaxFunctions.loopsFor("hi")).toBe("Enter a number!");
+        expect(syntaxFunctions.loopsFor(false)).toBe("Enter a number!");
+    });
 
     // for/in
+        //Only one test as no parameters entered for this function. 
 
-    // // while
+    test('Check for / in loop', () => {
+        expect(syntaxFunctions.loopsForIn()).toBe("bilbo baggins lives in the shire and is " + 111 + " years old ");
+    });
 
-    // test('Check if while loop is working', () => {
-    //     expect(syntaxFunctions.loopsWhile(17)).toBe(2);
-    // });
+
+    // while
+
+    test('Check while loop', () => {
+        expect(syntaxFunctions.loopsWhile(-2000)).toBe(10);
+        expect(syntaxFunctions.loopsWhile(-1)).toBe(10);
+        expect(syntaxFunctions.loopsWhile(123)).toBe(90);
+        expect(syntaxFunctions.loopsWhile(10000)).toBe(90);
+        expect(syntaxFunctions.loopsWhile("not a number")).toBe("Enter a number!");
+    });
 
     // do while
+
+    // test('Check do / while loop', () => {
+    //     expect(syntaxFunctions.loopsDoWhile()).toBe();
+    // });
 
     // forEach (with array and function)
 
