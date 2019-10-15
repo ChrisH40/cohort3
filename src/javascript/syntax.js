@@ -1,40 +1,38 @@
-import { numberLiteralTypeAnnotation } from "@babel/types";
-
 // --------------- Copy this section into your code syntax.js as comments --------
 
 const syntaxFunctions = {
 
-// define attributes / variables
+    // define attributes / variables
     // number
-        // a simple function that identifies only numbers.
-        // "num" doesn't have to be assigned to a variable but is in this case in order to demonstrate an understanding of variables.
-        // this is also true for many other functions below.
+        // identifies only numbers.
+        // "num" doesn't have to be assigned to a variable but is here to demonstrate an understanding of variables.
+        // this is also true for other functions below.
 
     xNumber: (num) => {
         let myNumber = num
         if (myNumber === Number(myNumber)) return myNumber + " is a number.";
         return "Please enter a number!";
-    }, 
+    },
 
     // string
-        // a simple function that identifies only strings.
+        // identifies only strings.
 
     xString: (str) => {
         let myString = str;
         if (myString === String(myString)) return myString + " <-- this is a string.";
         return "Please enter a string!";
-   },
+    },
 
     // boolean
-        // a function that compares the equality of two parameters in order to return a true or false. 
-    
+        // compares the equality of two parameters in order to return a true or false. 
+
     xBoolean: (b, c) => {
         let equalityCheck = (b === c);
         return equalityCheck;
     },
 
     // array
-        // a function that tests if a number entered will return the corresponding string value found in an array, in order to show an understanding of arrays and how to access items within them.
+        // tests if a number entered will return the corresponding string value found in an array, in order to show an understanding of arrays and how to access items within them.
 
     xArray: (v) => {
         let myArray = ["one", "two", ["three", "four", ["five", "six"]]];
@@ -48,11 +46,11 @@ const syntaxFunctions = {
     },
 
     // dictionary / objects
-        // a function that returns the value of a property if the property entered exists within the object, in order to show an understanding of objects and how to access property values.  
+        // returns the value of a property if the property entered exists within the object, in order to show an understanding of objects and how to access property values.  
 
     objectDictionary: (f) => {
         let fellowship = {
-            
+
             frodo: "the ringbearer",
             sam: "loyal friend",
             pippin: "fool of a took",
@@ -68,15 +66,15 @@ const syntaxFunctions = {
         return "Enter the first name of a member of the fellowship!";
     },
 
-     // undefined
-        // a function that always returns undefined, no matter the parameter entered.
+    // undefined
+        // always returns undefined, no matter the parameter entered.
 
     xUndefined: (u) => {
         console.log(u);
     },
 
     // sample if / else
-        // an if / else statement that assigns e to a variable, ensures it is a number, and compares it to 0 in order to demonstrate an understanding of if / else and if else statements.
+        // assigns e to a variable, ensures it is a number, and compares it to 0 in order to demonstrate an understanding of if / else and if else statements.
 
     sampleIfElse: (e) => {
         let myNewNumber = e;
@@ -86,12 +84,12 @@ const syntaxFunctions = {
         else return myNewNumber + " is " + 0;
     },
 
-// functions
+    // functions
     // parameters
-        // a simple addition function that demonstrates an understanding of logic and using parameters to generate a new variable.
+        // demonstrates an understanding of logic and using parameters to generate a new variable.
 
     functionParameters: (p1, p2) => {
-        if (p1 !== Number(p1) || p2 !== Number (p2)) return "Please enter a number.";
+        if (p1 !== Number(p1) || p2 !== Number(p2)) return "Please enter a number.";
         let sum = p1 + p2;
         return sum;
     },
@@ -107,9 +105,9 @@ const syntaxFunctions = {
         return "If a return comes after a return that's already happened in a function, does it really exist?"
     },
 
-// arrays
+    // arrays
     // add to the front
-        // a simple function that demonstrates how to add a value onto the start of an array
+        // demonstrates how to add a value onto the start of an array
 
     arrayAddToFront: (add) => {
         let anotherArray = ["2nd item", "3rd item", "4th item"];
@@ -119,7 +117,7 @@ const syntaxFunctions = {
     },
 
     // add to the end
-        // a simple function that demonstrates how to add a value onto the end of an array
+        // demonstrates how to add a value onto the end of an array
 
     arrayAddToEnd: (end) => {
         let yetAnotherArray = [1, 2, 3, 4];
@@ -129,7 +127,7 @@ const syntaxFunctions = {
     },
 
     // update values
-        // an even simpler function that demonstrates how to update values in an array
+        // demonstrates how to update values in an array
 
     arrayUpdateValues: (a1) => {
         let updateValueArray = [1, 2, 3, 4, 5];
@@ -137,13 +135,14 @@ const syntaxFunctions = {
         return updateValueArray[4];
     },
 
-// loops 
+    // loops 
+        // Need to work on these....
     // for
         // a for loop that adds values to a parameter until the loop no longer runs, then returns the updated paramater
 
     loopsFor: (lf) => {
         if (Number(lf)) {
-            for (let i = 0; i < 5; i++) { 
+            for (let i = 0; i < 5; i++) {
                 lf++;
             } return lf + " ---> Your number plus 5!";
         } else return "Enter a number!";
@@ -166,7 +165,7 @@ const syntaxFunctions = {
         let baggins = "";
         let x;
         for (x in hobbit) {
-          baggins += hobbit[x] + " ";
+            baggins += hobbit[x] + " ";
         } return baggins;
     },
 
@@ -189,30 +188,62 @@ const syntaxFunctions = {
 
     // do while
 
-    // loopsDoWhile: () => {
+    loopsDoWhile: () => {
+        let i = 0;
+        do {
+            i++;
+        }
+        while (i < 4);
+        return i;
+    },
 
-    // } 
+    // forEach (with array and function)
 
-//     // forEach (with array and function)
+    loopsForEach: () => {
+        let myArray = [1, 2, 3, 4, 5];
+        let myNextArray = [];
+        myArray.forEach(num => {
+            let obj = num * 2;
+            myNextArray.push(obj);
+        }); return myNextArray;
+    },
 
-//     loopsForEach: () => {
+    // Objects / Dictionaries
+    // declare object
+        //creating a new object using two entered parameters
 
-//     },
+    objectDeclare: (prop1, prop2) => {
+        let newObject = {firstprop: prop1, secondprop: prop2};
+        return "The first property in your new object is " + newObject.firstprop + ", and the second property is " + newObject.secondprop + ".";
+    },
 
-// // Objects / Dictionaries
-//     // declare object
+    // lookup key to retrieve value
+        // similar to dictionary / objects above
 
-//     objectDeclare: () => {
+    objectLookupKeyRetrieveValue: (n) => {
 
-//     },
+        let numberText = {
 
-//     // lookup key to retrieve value
+            1: "one",
+            2: "two",
+            3: "three",
+            4: "four",
+            5: "five",
+            6: "six",
+            7: "seven",
+            8: "eight",
+            9: "nine",
+            10: "ten"
 
-//     objectLookupKeyRetrieveValue: () => {
+        };
+        
+        n = Number(n);
+        if (numberText.hasOwnProperty(n)) 
+            return numberText[n];
+            else return "Enter a number between 1 and 10";
+    }
 
-//     },
-
-// --------------- Copy ends here --------
+    // --------------- Copy ends here --------
 
 };
 
