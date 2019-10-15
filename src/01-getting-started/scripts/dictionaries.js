@@ -1,6 +1,3 @@
-const objectInput = document.getElementById("idObjectInput");
-const objectMessage = document.getElementById("idObjectMsg");
-
 const dictionaryFunctions = {
 
     myDictionary: {
@@ -21,11 +18,11 @@ const dictionaryFunctions = {
 
     },
 
-    objectLookup: () => {
-        let prop = (objectInput.value).toUpperCase();
+    objectLookupFunction: (prop) => {
+        prop = prop.toUpperCase();
         if (dictionaryFunctions.myDictionary.hasOwnProperty(prop)) {
-            return objectMessage.textContent = dictionaryFunctions.myDictionary[prop];
-        } else return objectMessage.textContent = "Please enter a valid provincial/territorial abbreviation.";
+            return dictionaryFunctions.myDictionary[prop];
+        } else return "Please enter a valid provincial/territorial abbreviation.";
     }
 };
 

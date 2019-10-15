@@ -1,32 +1,26 @@
-const arrayInput = document.getElementById("idArrayInput");
-const arrayMessage = document.getElementById("idArrayMsg");
-
 let myArray = [];
 
 const arrayFunctions = {
 
-    arrayAdd: () => {
-        if (arrayInput.value == Number(arrayInput.value)) {
-            myArray.push(Number(arrayInput.value));
-            arrayMessage.textContent = "Number added to array.";
-        } else return arrayMessage.textContent = "Input is not a valid number.";
+    arrayAddFunction: (num) => {
+        return myArray.push(Number(num));
     },
 
-    arrayShow: () => {
-        arrayMessage.textContent = "Current Array Values: " + myArray.toString();
+    arrayShowFunction: () => {
+        return "Current Array Values: " + myArray.toString();
     },
 
-    arrayTotal: () => {
+    arrayTotalFunction: () => {
         let arraySum = 0;
         for (var i = 0; i < myArray.length; i++) {
             arraySum = arraySum + myArray[i];
         };
-        return arrayMessage.textContent = "Total Array Sum: " + arraySum;
+        return "Total Array Sum: " + arraySum;
     },
 
-    arrayClear: () => {
+    arrayClearFunction: () => {
         myArray = [];
-        return arrayMessage.textContent = "Array cleared!";
+        return "Array cleared!";
     }
 
 };

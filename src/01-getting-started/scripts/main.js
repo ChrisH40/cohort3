@@ -15,40 +15,24 @@ idNumber.addEventListener('change', (() => {
 
 // --- Calculator ---
 
-const clearButton = document.getElementById("idClearButton");
-const addButton = document.getElementById("idAddButton");
-const subtractButton = document.getElementById("idSubtractButton");
-const multiplyButton = document.getElementById("idMultiplyButton");
-const divideButton = document.getElementById("idDivideButton");
-const equalsButton = document.getElementById("idEqualsButton");
-
-addButton.addEventListener("click", calculatorFunctions.addButton);
-subtractButton.addEventListener("click", calculatorFunctions.subtractButton);
-multiplyButton.addEventListener("click", calculatorFunctions.multiplyButton);
-divideButton.addEventListener("click", calculatorFunctions.divideButton);
-clearButton.addEventListener("click", calculatorFunctions.clearDisplay);
-equalsButton.addEventListener("click", calculatorFunctions.equalsButton);
+idAddButton.addEventListener("click", functions.addButton);
+idSubtractButton.addEventListener("click", functions.subtractButton);
+idMultiplyButton.addEventListener("click", functions.multiplyButton);
+idDivideButton.addEventListener("click", functions.divideButton);
+idClearButton.addEventListener("click", functions.clearDisplay);
+idEqualsButton.addEventListener("click", functions.equalsButton);
 
 // --- Tax Calculator ---
 
-const incomeButton = document.getElementById("idIncomeInputButton");
-
-incomeButton.addEventListener("click", taxCalculatorFunctions.bracketEstablisher);
+idIncomeInputButton.addEventListener("click", functions.bracketEstablisher);
 
 // --- Arrays ---
 
-const arrayAddButton = document.getElementById("idArrayAddButton");
-const arrayShowButton = document.getElementById("idArrayShowButton");
-const arrayTotalButton = document.getElementById("idArrayTotalButton");
-const arrayClearButton = document.getElementById("idArrayClearButton");
-
-arrayAddButton.addEventListener("click", arrayFunctions.arrayAdd);
-arrayShowButton.addEventListener("click", arrayFunctions.arrayShow);
-arrayTotalButton.addEventListener("click", arrayFunctions.arrayTotal);
-arrayClearButton.addEventListener("click", arrayFunctions.arrayClear);
+idArrayAddButton.addEventListener("click", functions.arrayAdd);
+idArrayShowButton.addEventListener("click", functions.arrayShow);
+idArrayTotalButton.addEventListener("click", functions.arrayTotal);
+idArrayClearButton.addEventListener("click", functions.arrayClear);
 
 // --- Objects / Dictionaries ---
 
-const objectLookupButton = document.getElementById("idObjectLookupButton");
-
-objectLookupButton.addEventListener("click", dictionaryFunctions.objectLookup);
+idObjectLookupButton.addEventListener("click", functions.objectLookup);

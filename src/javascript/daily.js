@@ -1,5 +1,3 @@
-import { stringLiteral } from "@babel/types";
-
 const functions = {
 
     // --- begin daily 1 ---
@@ -21,17 +19,17 @@ const functions = {
     // Write the function after this comment ---
 
     assertEquals: (p1, p2) => {
-        if (p1 === p2) 
+        if (p1 === p2)
             return true;
         else console.log("***the two values are not the same:\n   p1--> " + p1 + "\n   p2--> " + p2);
-            return false;
+        return false;
     },
 
     // and before this comment ---
 
     // --- end daily 1 ---
     // --- begin daily 2 ---
-        //Write a function to format an email based on an array.
+    //Write a function to format an email based on an array.
 
 
     makeEmailArr: (name) => {
@@ -40,13 +38,35 @@ const functions = {
 
     // --- end daily 2 ---
     // --- begin daily 3 ---
-        // Write a function to format an email based on an object / map
+    // Write a function to format an email based on an object / map
 
     makeEmailObj: (name) => {
         return String(name.fname.toLowerCase() + "." + name.lname.toLowerCase() + "@evolveu.ca");
-    }
+    },
 
     // --- end daily 3 ---
+    // --- begin daily 4 ---
+
+    // for
+
+    forLoop: (array) => {
+        let myNewArray = [];
+        for (var i = 0; i < array.length; i++) {
+            myNewArray += array[i] * 2;
+        } return myNewArray;
+    },
+
+
+    // while
+
+
+    // do while
+
+
+    //for in
+
+
+    //for of
 
 };
 
