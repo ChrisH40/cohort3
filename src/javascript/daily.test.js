@@ -1,17 +1,57 @@
 import functions from './daily.js'
 
-// daily 1 test
+// --- Daily 4 Tests - 16 OCT 2019 ---
+// for
 
-test('Checking if the parameters are equal', () => {
-    expect(functions.assertEquals("a", "b")).toBe(false);
-    expect(functions.assertEquals("a", "a")).toBe(true);
-    expect(functions.assertEquals(1, 2)).toBe(false);
-    expect(functions.assertEquals(2, 2)).toBe(true);
-    expect(functions.assertEquals("2", 2)).toBe(false);
-    expect(functions.assertEquals("This value", "This value")).toBe(true);
+test('does for loop work', () => {
+    expect(functions.forLoop([1,2,3])).toBe("246");
+    expect(functions.forLoop([10,20,30])).toBe("204060");
 });
 
-//daily 2 test 
+// while
+
+test('does while loop work', () => {
+    expect(functions.whileLoop([1,2,3])).toBe("Array item is 1Array item is 2Array item is 3");
+    expect(functions.whileLoop([10,20,30])).toBe("Array item is 10Array item is 20Array item is 30");
+    expect(functions.whileLoop([-12,43,0])).toBe("Array item is -12Array item is 43Array item is 0");
+    expect(functions.whileLoop(["my","test","array"])).toBe("Array item is myArray item is testArray item is array");
+});
+
+// do while
+
+test('does do while loop work', () => {
+    expect(functions.doWhileLoop([1,2,3])).toBe("Array item x 2 is 2Array item x 2 is 4Array item x 2 is 6");
+    expect(functions.doWhileLoop([10,20,30])).toBe("Array item x 2 is 20Array item x 2 is 40Array item x 2 is 60");
+    expect(functions.doWhileLoop([-5,-1,0])).toBe("Array item x 2 is -10Array item x 2 is -2Array item x 2 is 0");
+});
+        
+// //for in
+
+test('does for in loop work', () => {
+    expect(functions.forInLoop("!")).toBe("this is my prop! there are many like it! but this one is mine! ");
+    expect(functions.forInLoop(".")).toBe("this is my prop. there are many like it. but this one is mine. ");
+});
+
+//for of
+
+test('does for of loop work', () => {
+    expect(functions.forOfLoop([1,2,3])).toBe(undefined); // should be 1, 2, 3 in console
+    expect(functions.forOfLoop([1,10,100])).toBe(undefined); // should be 1, 10, 100 in console
+});
+
+//--- Daily 3 Test ---
+
+test('email builder from an object / map', () => {
+    const name = { fname: 'first', lname: 'last' };
+    expect(functions.makeEmailObj(name))
+        .toEqual("first.last@evolveu.ca");
+    expect(functions.makeEmailObj({ fname: 'First', lname: 'Last' }))
+        .toEqual("first.last@evolveu.ca");
+    expect(functions.makeEmailObj({ fname: "Bill", lname: "Smith" }))
+        .toEqual("bill.smith@evolveu.ca");
+});
+
+//--- Daily 2 Test ---
 
 test('email builder from an array', () => {
     const name = ["first", "last"];
@@ -25,34 +65,34 @@ test('email builder from an array', () => {
         .toEqual("bill.smith@evolveu.ca");
 });
 
-//daily 3 test 
+//--- Daily 1 Test ---
 
-test('email builder from an object / map', () => {
-    const name = { fname: 'first', lname: 'last' };
-    expect(functions.makeEmailObj(name))
-        .toEqual("first.last@evolveu.ca");
-    expect(functions.makeEmailObj({ fname: 'First', lname: 'Last' }))
-        .toEqual("first.last@evolveu.ca");
-    expect(functions.makeEmailObj({ fname: "Bill", lname: "Smith" }))
-        .toEqual("bill.smith@evolveu.ca");
+test('Checking if the parameters are equal', () => {
+    expect(functions.assertEquals("a", "b")).toBe(false);
+    expect(functions.assertEquals("a", "a")).toBe(true);
+    expect(functions.assertEquals(1, 2)).toBe(false);
+    expect(functions.assertEquals(2, 2)).toBe(true);
+    expect(functions.assertEquals("2", 2)).toBe(false);
+    expect(functions.assertEquals("This value", "This value")).toBe(true);
 });
 
-// daily 4 tests
-// for
-
-test('does for loop work', () => {
-    expect(functions.forLoop([1,2,3])).toBe("246");
-    expect(functions.forLoop([10,20,30])).toBe("204060");
-});
+// --- Daily 5 Tests ---
+//slice
 
 
-// while
+//splice
 
 
-// do while
-
-        
-//for in
+//forEach
 
 
-//for of
+//map
+
+
+//reduce
+
+
+//filter
+
+
+//sort
