@@ -91,14 +91,14 @@ const functions = {
     //     return num1 - num2;
     // },
 
-    // Calculator Button/Event Functions
+// Calculator Button/Event Functions
 
     clearDisplay: () => {
-        firstInput.value = 0;
-        secondInput.value = 0;
-        totalOutput.value = 0;
         op = "0";
-        arithmeticField.textContent = " + - x / ";
+        firstInput.value = "";
+        secondInput.value = "";
+        totalOutput.value = "";
+        arithmeticField.textContent = " ";
     },
 
     addButton: () => {
@@ -132,7 +132,7 @@ const functions = {
             return totalOutput.value = calculatorFunctions.divideOperator(Number(firstInput.value), Number(secondInput.value));
     },
 
-    // Tax Calculator Button/Event Function
+// Tax Calculator Button/Event Function
 
     bracketEstablisher: () => {
         if (incomeInput.value > taxBrackets[0].lowestIncome && incomeInput.value <= taxBrackets[0].greatestIncome) {
@@ -153,7 +153,7 @@ const functions = {
         }
     },
 
-    // Array Button/Event Functions
+// Array Button/Event Functions
 
     arrayAdd: () => {
         if (arrayInput.value == Number(arrayInput.value)) {
@@ -174,7 +174,7 @@ const functions = {
         arrayMessage.textContent = arrayFunctions.arrayClearFunction();
      },
 
-     // Object / Dictionary Function
+// Object / Dictionary Function
 
      objectLookup: () => {
         objectMessage.textContent = dictionaryFunctions.objectLookupFunction(objectInput.value);
