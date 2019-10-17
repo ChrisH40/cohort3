@@ -1,0 +1,10 @@
+.page {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.box {
+    border: solid 2px black;
+    grid-column-start: 3;
+    padding: 10px;
+}
