@@ -1,5 +1,59 @@
 import functions from './daily.js'
 
+// --- Daily 5 Tests - 16 OCT 2019 ---
+//slice
+
+test('does slice work', () => {
+    expect(functions.sliceFunction([1,2,3,4,5])).toEqual([3,4,5]);
+    expect(functions.sliceFunction([25,21,3,42,-5])).toEqual([3,42,-5]);
+});
+
+//splice
+
+test('does splice work', () => {
+    expect(functions.spliceFunction([1,2,3,4,5])).toEqual([1,2]);
+    expect(functions.spliceFunction([5,4,3,2,1])).toEqual([5,4]);
+});
+
+//forEach
+
+test('does for each work', () => {
+    expect(functions.forEachFunction(["do","ray","me","fah","so","la","tee", "DOH"])).toEqual(["do!","ray!","me!","fah!","so!","la!","tee!","DOH!"]);
+    expect(functions.forEachFunction(["oh","me","oh","my"])).toEqual(["oh!","me!","oh!","my!"]);
+});
+
+//map
+
+test('does map work', () => {
+    expect(functions.mapFunction()).toEqual([20, 30, 40, 50]); // only possible outcome..
+});
+
+//reduce
+
+test('does reduce work', () => {
+    expect(functions.reduceFunction([1,2,3,4,5])).toEqual(15);
+    expect(functions.reduceFunction([10,20,30,40,50])).toEqual(150);
+    expect(functions.reduceFunction([-1,-2,-3,1,2,3])).toEqual(0);
+
+});
+
+//filter
+
+test('does filter work', () => {
+    expect(functions.filterFunction([1,2,3,4,5])).toEqual([]);
+    expect(functions.filterFunction([10,20,30,40,50])).toEqual([20,30,40,50]);
+    expect(functions.filterFunction([11,1,12,2,20])).toEqual([11,12,20]);
+});
+
+//sort
+
+test('does sort work', () => {
+    expect(functions.sortFunction([1,5,2,4,6,3])).toEqual([1,2,3,4,5,6]);
+    expect(functions.sortFunction(["a", "f", "e", "d", "c", "b"])).toEqual(["a","b","c","d","e","f"]);
+    expect(functions.sortFunction([-50,40,30,20,10])).toEqual([-50,10,20,30,40]);
+});
+
+
 // --- Daily 4 Tests - 16 OCT 2019 ---
 // for
 
@@ -76,23 +130,3 @@ test('Checking if the parameters are equal', () => {
     expect(functions.assertEquals("This value", "This value")).toBe(true);
 });
 
-// --- Daily 5 Tests ---
-//slice
-
-
-//splice
-
-
-//forEach
-
-
-//map
-
-
-//reduce
-
-
-//filter
-
-
-//sort

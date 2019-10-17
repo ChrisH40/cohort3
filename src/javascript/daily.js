@@ -1,5 +1,76 @@
 const functions = {
 
+    // --- Daily 5 - 16 OCT 2019 ---
+
+    // More Arrays!
+    //slice
+
+    sliceFunction: (array) => {
+        return array.slice(2);
+    },
+
+    //splice
+
+    spliceFunction: (array) => {
+        array.splice(2);
+        return array;
+    },
+
+    //forEach
+
+    forEachFunction: (array) => {
+        let myNewArray = [];
+        array.forEach(item => {
+            let obj = item + "!";
+            myNewArray.push(obj);
+        }); return myNewArray;
+    },
+
+
+    loopsForEach: () => {
+        let myArray = [1, 2, 3, 4, 5];
+        let myNextArray = [];
+        myArray.forEach(num => {
+            let obj = num * 2;
+            myNextArray.push(obj);
+        }); return myNextArray;
+    },
+
+    //map
+
+    mapFunction: () => {
+        const simpsons = [
+            { name: 'Homer Simpson', age: 20 },
+            { name: 'Joey JoeJoe', age: 30 },
+            { name: 'Larleen Lumpkin', age: 40 },
+            { name: 'BleedingGums Murphy', age: 50 }
+        ];
+        const simpsonsAge = simpsons.map(simpsons => simpsons.age);
+        return simpsonsAge;
+    },
+
+    //reduce
+
+    reduceFunction: (array) => {
+        const arraySum = array.reduce((total, amount) => 
+            total + amount);
+            return arraySum;
+    },
+
+    //filter
+
+    filterFunction: (array) => {
+        const arrayFiltered = array.filter(array => array > 10);
+            return arrayFiltered;
+    },
+
+    //sort
+
+    sortFunction: (array) => {
+        const arraySorted = array.sort();
+            return arraySorted;
+    },
+
     // --- Daily 4 - 16 OCT 2019 ---
     // Loops
     // for
@@ -56,7 +127,7 @@ const functions = {
 
     forOfLoop: (array) => {
         for (const x of array) {
-           console.log(x);
+            console.log(x);
         }
     },
 
@@ -103,35 +174,6 @@ const functions = {
 };
 
 export default functions;
-
-// --- Daily 5 ---
-// More Arrays!
-//slice
-
-
-//splice
-
-
-//forEach
-
-
-//map
-
-
-//reduce
-
-
-//filter
-
-
-//sort
-
-
-const functionTest = (array) => {
-    for (const x of array) {
-        console.log(x);
-    }
-}
 
 
 
