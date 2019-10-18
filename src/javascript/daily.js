@@ -26,16 +26,6 @@ const functions = {
         }); return myNewArray;
     },
 
-
-    loopsForEach: () => {
-        let myArray = [1, 2, 3, 4, 5];
-        let myNextArray = [];
-        myArray.forEach(num => {
-            let obj = num * 2;
-            myNextArray.push(obj);
-        }); return myNextArray;
-    },
-
     //map
 
     mapFunction: () => {

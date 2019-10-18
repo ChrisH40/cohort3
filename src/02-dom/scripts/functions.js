@@ -1,22 +1,29 @@
 const list = document.querySelector(".list");
-const listTxt = list.textContent;
 
 const functions = {
-
+    
     boxClickEvent: (x) => {
         console.log(x);
     },
 
-    showButton: () => {
-        console.log(listTxt);
+    showList: () => {
+        console.log(list.children);
     },
 
-    addButton: () => {
-        const newLi = document.createElement("li");
-        list.appendChild(newLi);
+    addItemBefore: () => {
+        let newLi = document.createElement("li");
+        list.insertBefore(newLi, list.firstChild);
+        newLi.textContent = "Item";
+    },
 
-        // list.insertBefore(newLi, list.childNodes[0]); // add to start 
-        // list.removeChild(list.lastChild); // delete last item
+    addItemAfter: () => {
+        let newLi = document.createElement("li");
+        list.appendChild(newLi);
+        newLi.textContent = "Item";
+    },
+
+    deleteItem: () => {
+        list.removeChild(list.lastElementChild);
     }
 };
 

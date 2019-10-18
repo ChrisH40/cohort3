@@ -1,10 +1,71 @@
 .page {
+    background-color: rgb(240, 240, 240);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "left left mid right right"
+    "head head head head head"
+    "left left . right right"
+    "left left . right right"
+    "left left . right right"
+    "left left . right right";
 }
 
-.box {
+.basic-dom-box {
     border: solid 2px black;
     grid-column-start: 3;
+    padding: 10px;
+    background-color: white;
+}
+
+h2 {
+    grid-row-start: 2;
+    font-size: 35px;
+}
+
+.left-side-scroll-box-container {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    width:600px;
+    overflow-y: auto;
+    height: 600px;
+    border: solid 2px black;
+    margin: 0px 0px 50px 0px;
+    padding: 10px;
+    background: white;
+}
+
+.right-side-box {
+    background-color: white;
+
+}
+
+.right-side-box-text {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.box-one {
+    grid-column-start: 4;
+    grid-column-end: span 5;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    width: auto;
+    height: 600px;
+    margin: 50px 0px 50px 0px;
+    padding: 10px;
+}
+
+.box-two {
+    grid-column-start: 4;
+    grid-column-end: span 5;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    width: auto;
+    height: 600px;
+    margin: 0px 0px 50px 0px;
     padding: 10px;
 }

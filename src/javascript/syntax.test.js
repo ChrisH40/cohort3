@@ -38,8 +38,11 @@ test('Check if parameters return boolean true or false', () => {
 test('Check if arrays return correct values', () => {
     expect(syntaxFunctions.xArray(1)).toBe("one");
     expect(syntaxFunctions.xArray(2)).toBe("two");
-    expect(syntaxFunctions.xArray("two")).toBe("Please enter a number between 1 and 6.");
+    expect(syntaxFunctions.xArray(3)).toBe("three");
     expect(syntaxFunctions.xArray(4)).toBe("four");
+    expect(syntaxFunctions.xArray(5)).toBe("five");
+    expect(syntaxFunctions.xArray(6)).toBe("six");
+    expect(syntaxFunctions.xArray("two")).toBe("Please enter a number between 1 and 6.");
     expect(syntaxFunctions.xArray(-47)).toBe("Please enter a number between 1 and 6.");
     expect(syntaxFunctions.xArray(false)).toBe("Please enter a number between 1 and 6.");
 });
@@ -144,6 +147,7 @@ test('Check for / in loop', () => {
 test('Check while loop', () => {
     expect(syntaxFunctions.loopsWhile(-2000)).toBe(10);
     expect(syntaxFunctions.loopsWhile(-1)).toBe(10);
+    expect(syntaxFunctions.loopsWhile(0)).toBe(0);
     expect(syntaxFunctions.loopsWhile(123)).toBe(90);
     expect(syntaxFunctions.loopsWhile(10000)).toBe(90);
     expect(syntaxFunctions.loopsWhile("not a number")).toBe("Enter a number!");

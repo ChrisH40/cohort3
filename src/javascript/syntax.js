@@ -102,7 +102,6 @@ const syntaxFunctions = {
         let place = p2;
         let thing = p3;
         return "Hello, my name is " + person + " and I am going to " + place + " to get a " + thing + ".";
-        return "If a return comes after a return that's already happened in a function, does it really exist?"
     },
 
     // arrays
@@ -113,7 +112,6 @@ const syntaxFunctions = {
         let anotherArray = ["2nd item", "3rd item", "4th item"];
         anotherArray.unshift(add);
         if (anotherArray[1] === "2nd item") return "Item added to front of array.";
-        else return "Item not added to front of array";
     },
 
     // add to the end
@@ -123,7 +121,6 @@ const syntaxFunctions = {
         let yetAnotherArray = [1, 2, 3, 4];
         yetAnotherArray.push(end);
         if (end === yetAnotherArray[4]) return "Item added to end of array! Hooray!";
-        else return "Item not added to end of array";
     },
 
     // update values

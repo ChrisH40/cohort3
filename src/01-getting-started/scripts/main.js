@@ -1,8 +1,4 @@
 import functions from './functions.js';
-import calculatorFunctions from './calculator.js'
-import taxCalculatorFunctions from './taxcalculator.js'
-import arrayFunctions from './arrays.js'
-import dictionaryFunctions from './dictionaries.js'
 
 // **********
 //
