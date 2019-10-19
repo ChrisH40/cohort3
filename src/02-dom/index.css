@@ -1,26 +1,22 @@
 .page {
-    background-color: rgb(240, 240, 240);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
-    grid-template-areas: 
-    "left left mid right right"
-    "head head head head head"
-    "left left . right right"
-    "left left . right right"
-    "left left . right right"
-    "left left . right right";
+    background-color: rgb(240, 240, 240);
 }
 
 .basic-dom-box {
-    border: solid 2px black;
     grid-column-start: 3;
     padding: 10px;
+    border: solid 2px black;
     background-color: white;
 }
 
-h2 {
+.header {
+    grid-column-start: 1;
+    grid-column-end: span 2;
     grid-row-start: 2;
+    margin: 50px 0px 0px 25px;
     font-size: 35px;
 }
 
@@ -28,19 +24,46 @@ h2 {
     grid-column-start: 1;
     grid-column-end: span 2;
     grid-row-start: 3;
-    grid-row-end: 4;
-    width:600px;
+    grid-row-end: 5;
+    height: 57.5%;
+    width:auto;
+    margin: 25px 0px 50px 25px;
     overflow-y: auto;
-    height: 600px;
-    border: solid 2px black;
-    margin: 0px 0px 50px 0px;
-    padding: 10px;
     background: white;
+    text-align: center;
 }
 
-.right-side-box {
-    background-color: white;
+.container-add-button {
+    margin: 25px 0px 0px 0px;
+    width: 150px;
+    height: 25px;
+}
 
+.card-list {
+list-style-type: none;
+}
+
+.card-container {
+    height: 125px;
+    width: auto;
+    margin: 25px 35px 25px 0px;
+    padding: 35px 35px 35px 35px;
+    background-color: rgb(240, 240, 240);
+}
+
+.card-text {
+    font-size: 20px;
+}
+
+.divider {
+    visibility: hidden;
+    margin: 10px 0px 10px 0px;
+}
+
+.card-button {
+    width: 150px;
+    height: 25px;
+    margin: 0px 5px 0px 5px;
 }
 
 .right-side-box-text {
@@ -48,15 +71,19 @@ h2 {
     font-weight: bold;
 }
 
+.right-side-box {
+    height: 600px;
+    width: auto;
+    margin: 50px 25px 0px 0px;
+    padding: 25px;
+    text-align: center;
+    background-color: white;
+}
 .box-one {
     grid-column-start: 4;
     grid-column-end: span 5;
     grid-row-start: 3;
     grid-row-end: 4;
-    width: auto;
-    height: 600px;
-    margin: 50px 0px 50px 0px;
-    padding: 10px;
 }
 
 .box-two {
@@ -64,8 +91,4 @@ h2 {
     grid-column-end: span 5;
     grid-row-start: 4;
     grid-row-end: 5;
-    width: auto;
-    height: 600px;
-    margin: 0px 0px 50px 0px;
-    padding: 10px;
 }
