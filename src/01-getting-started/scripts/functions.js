@@ -1,77 +1,9 @@
-import calculatorFunctions from './calculator.js';
-import taxCalculatorFunctions from './taxcalculator.js';
-import arrayFunctions from './arrays.js';
-import dictionaryFunctions from './dictionaries.js';
-
-// Calculator Variables
-
-const firstInput = document.getElementById("idInputDisplay1");
-const secondInput = document.getElementById("idInputDisplay2");
-const totalOutput = document.getElementById("idTotalDisplay");
-let arithmeticField = document.getElementById("idArithmetic");
-let op = "0";
-
-// Tax Calculator Variables
-
-const incomeInput = document.getElementById("idIncomeInput");
-const taxOwingDisplay = document.getElementById("idTaxOwing");
-const effectiveRateDisplay = document.getElementById("idEffectiveRate");
-const taxBrackets = [
-
-    {
-        lowestIncome: 0.00,
-        greatestIncome: 47630.00,
-        line2: 0.00,
-        line4: 0.15,
-        line6: 0.00,
-    },
-
-    {
-        lowestIncome: 47630.01,
-        greatestIncome: 95259.00,
-        line2: 47630.00,
-        line4: 0.205,
-        line6: 7144.50,
-    },
-
-    {
-        lowestIncome: 95259.01,
-        greatestIncome: 147667.00,
-        line2: 95259.00,
-        line4: 0.26,
-        line6: 16908.445,
-    },
-
-    {
-        lowestIncome: 147667.01,
-        greatestIncome: 210371.00,
-        line2: 147667.00,
-        line4: 0.29,
-        line6: 30534.525,
-    },
-
-    {
-        lowestIncome: 210371.01,
-        line2: 210371.00,
-        line4: 0.33,
-        line6: 48718.685,
-    }
-
-];
-
-// Arrays Variables
-
-const arrayInput = document.getElementById("idArrayInput");
-const arrayMessage = document.getElementById("idArrayMsg");
-
-// Object / Dictionary Variables
-
-const objectInput = document.getElementById("idObjectInput");
-const objectMessage = document.getElementById("idObjectMsg");
+// --- Array Variable ---
+let myArray = [];
 
 // Functions
 
-const functions = {
+const pureFunctions = { // only the purest of functions...
 
     size: (num) => {
         if (num < 0) return "negative";
@@ -81,105 +13,75 @@ const functions = {
         return "extra large";
     },
 
-    // Not used:
+    // --- Calculator Functions ---
 
-    // add: (num1, num2) => {
-    //     return num1 + num2;
-    // },
-
-    // subtract: (num1, num2) => {
-    //     return num1 - num2;
-    // },
-
-// Calculator Button/Event Functions
-
-    clearDisplay: () => {
-        op = "0";
-        firstInput.value = "";
-        secondInput.value = "";
-        totalOutput.value = "";
-        arithmeticField.textContent = " ";
+    addOperator: (num1, num2) => {
+        return num1 + num2;
     },
 
-    addButton: () => {
-        op = "+";
-        arithmeticField.textContent = " + ";
+    subtractOperator: (num1, num2) => {
+        return num1 - num2
     },
 
-    subtractButton: () => {
-        op = "-";
-        arithmeticField.textContent = " - ";
+    multiplyOperator: (num1, num2) => {
+        return num1 * num2;
     },
 
-    multiplyButton: () => {
-        op = "x";
-        arithmeticField.textContent = " x ";
+    divideOperator: (num1, num2) => {
+        return num1 / num2;
     },
 
-    divideButton: () => {
-        op = "/";
-        arithmeticField.textContent = " / ";
+    // --- Array Functions ---
+
+    arrayAddFunction: (num) => {
+        return myArray.push(Number(num));
     },
 
-    equalsButton: () => {
-        if (op === "+")
-            return totalOutput.value = calculatorFunctions.addOperator(Number(firstInput.value), Number(secondInput.value));
-        if (op === "-")
-            return totalOutput.value = calculatorFunctions.subtractOperator(Number(firstInput.value), Number(secondInput.value));
-        if (op === "x")
-            return totalOutput.value = calculatorFunctions.multiplyOperator(Number(firstInput.value), Number(secondInput.value));
-        if (op === "/")
-            return totalOutput.value = calculatorFunctions.divideOperator(Number(firstInput.value), Number(secondInput.value));
+    arrayShowFunction: () => {
+        return "Current Array Values: " + myArray.toString();
     },
 
-// Tax Calculator Button/Event Function
-
-    bracketEstablisher: () => {
-        if (incomeInput.value > taxBrackets[0].lowestIncome && incomeInput.value <= taxBrackets[0].greatestIncome) {
-            taxOwingDisplay.value = taxCalculatorFunctions.taxOwingCalc(incomeInput.value, taxBrackets[0].line2, taxBrackets[0].line4, taxBrackets[0].line6);
-            effectiveRateDisplay.value = taxCalculatorFunctions.taxRateCalc(incomeInput.value, taxBrackets[0].line2, taxBrackets[0].line4, taxBrackets[0].line6);
-        } if (incomeInput.value >= taxBrackets[1].lowestIncome && incomeInput.value <= taxBrackets[1].greatestIncome) {
-            taxOwingDisplay.value = taxCalculatorFunctions.taxOwingCalc(incomeInput.value, taxBrackets[1].line2, taxBrackets[1].line4, taxBrackets[1].line6);
-            effectiveRateDisplay.value = taxCalculatorFunctions.taxRateCalc(incomeInput.value, taxBrackets[1].line2, taxBrackets[1].line4, taxBrackets[1].line6);
-        } if (incomeInput.value >= taxBrackets[2].lowestIncome && incomeInput.value <= taxBrackets[2].greatestIncome) {
-            taxOwingDisplay.value = taxCalculatorFunctions.taxOwingCalc(incomeInput.value, taxBrackets[2].line2, taxBrackets[2].line4, taxBrackets[2].line6);
-            effectiveRateDisplay.value = taxCalculatorFunctions.taxRateCalc(incomeInput.value, taxBrackets[2].line2, taxBrackets[2].line4, taxBrackets[2].line6);
-        } if (incomeInput.value >= taxBrackets[3].lowestIncome && incomeInput.value <= taxBrackets[3].greatestIncome) {
-            taxOwingDisplay.value = taxCalculatorFunctions.taxOwingCalc(incomeInput.value, taxBrackets[3].line2, taxBrackets[3].line4, taxBrackets[3].line6);
-            effectiveRateDisplay.value = taxCalculatorFunctions.taxRateCalc(incomeInput.value, taxBrackets[3].line2, taxBrackets[3].line4, taxBrackets[3].line6);
-        } if (incomeInput.value >= taxBrackets[4].lowestIncome) {
-            taxOwingDisplay.value = taxCalculatorFunctions.taxOwingCalc(incomeInput.value, taxBrackets[4].line2, taxBrackets[4].line4, taxBrackets[4].line6);
-            effectiveRateDisplay.value = taxCalculatorFunctions.taxRateCalc(incomeInput.value, taxBrackets[4].line2, taxBrackets[4].line4, taxBrackets[4].line6);
-        }
+    arrayTotalFunction: () => {
+        let arraySum = 0;
+        for (var i = 0; i < myArray.length; i++) {
+            arraySum = arraySum + myArray[i];
+        };
+        return "Total Array Sum: " + arraySum;
+       
     },
 
-// Array Button/Event Functions
-
-    arrayAdd: () => {
-        if (arrayInput.value == Number(arrayInput.value)) {
-            arrayFunctions.arrayAddFunction(arrayInput.value);
-            arrayMessage.textContent = "Number added to array.";
-        } else return arrayMessage.textContent = "Input is not a valid number.";
+    arrayClearFunction: () => {
+        myArray = [];
+        return "Array cleared!";
     },
 
-    arrayShow: () => {
-        arrayMessage.textContent = arrayFunctions.arrayShowFunction();
+    // --- Dictionary Functions ---
+
+    myDictionary: {
+
+        AB: "Alberta",
+        BC: "British Columbia",
+        MB: "Manitoba",
+        NB: "New Brunswick",
+        NL: "Newfoundland and Labrador",
+        NT: "Northwest Territories",
+        NS: "Nova Scotia",
+        NU: "Nunavut",
+        ON: "Ontario",
+        PE: "Prince Edward Island",
+        QC: "Quebec",
+        SK: "Saskatchewan",
+        YT: "Yukon"
+
     },
 
-    arrayTotal: () => {
-        arrayMessage.TextContent = arrayFunctions.arrayTotalFunction();
-    },
-
-    arrayClear: () => {
-        arrayMessage.textContent = arrayFunctions.arrayClearFunction();
-     },
-
-// Object / Dictionary Function
-
-     objectLookup: () => {
-        objectMessage.textContent = dictionaryFunctions.objectLookupFunction(objectInput.value);
-     }
+    objectLookupFunction: (prop) => {
+        prop = prop.toUpperCase();
+        if (pureFunctions.myDictionary.hasOwnProperty(prop)) {
+            return pureFunctions.myDictionary[prop];
+        } else return "Please enter a valid provincial/territorial abbreviation.";
+    }
 
 };
 
-export default functions;
+export default pureFunctions;
