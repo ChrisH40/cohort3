@@ -1,6 +1,53 @@
+
 const functions = {
 
-    // --- Daily 5 - 16 OCT 2019 ---
+    // --- Daily 9 - 2019 OCT 25 ---
+    //forEach
+
+    loopStaffForEach: (staff) => {
+        let staffEmail = [];
+        staff.forEach(item => {
+            staffEmail.push(functions.makeEmailObj(item));
+        }); return staffEmail;
+    },
+
+    //map
+
+    loopStaffMap: (staff) => {
+        const staffEmail = staff.map(functions.makeEmailObj);
+        return staffEmail;
+    },
+
+    // --- Daily 8 - 2019 OCT 24 ---
+
+    loopStaffIn: (staff) => {
+        let staffEmail = [];
+        for (let prop in staff) {
+            staffEmail.push(functions.makeEmailObj(staff[prop]));
+        } return staffEmail;
+    },
+
+    loopStaffOf: (staff) => {
+        let staffEmail = [];
+        for (let prop of staff) {
+            staffEmail.push(functions.makeEmailObj(prop));
+        } return staffEmail;
+    },
+
+    // --- Daily 7 - 2019 OCT 21 ---
+
+    loopStaff: (staff) => {
+        let staffEmail = [];
+        staff.forEach(item => {
+            staffEmail.push(functions.makeEmailObj(item));
+        }); return staffEmail;
+    },
+
+    // --- Daily 6 - 2019 OCT 18 ---
+
+    //coverage report emailed to Larry today
+
+    // --- Daily 5 - 2019 OCT 16 ---
 
     // More Arrays!
     //slice
@@ -42,23 +89,23 @@ const functions = {
     //reduce
 
     reduceFunction: (array) => {
-        const arraySum = array.reduce((total, amount) => 
+        const arraySum = array.reduce((total, amount) =>
             total + amount);
-            return arraySum;
+        return arraySum;
     },
 
     //filter
 
     filterFunction: (array) => {
         const arrayFiltered = array.filter(array => array > 10);
-            return arrayFiltered;
+        return arrayFiltered;
     },
 
     //sort
 
     sortFunction: (array) => {
         const arraySorted = array.sort();
-            return arraySorted;
+        return arraySorted;
     },
 
     // --- Daily 4 - 16 OCT 2019 ---
@@ -114,6 +161,7 @@ const functions = {
     },
 
     //for of
+    //Need to fix this
 
     forOfLoop: (array) => {
         for (const x of array) {
