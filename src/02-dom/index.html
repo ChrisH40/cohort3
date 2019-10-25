@@ -14,7 +14,7 @@
     <div class="basic-dom-box" id="idBox">
         <h1>Basic DOM</h1>
         <span>This is a list of stuff</span>
-        <ol class="list">
+        <ol class="list" id="idList">
             <li>Item 1</li>
             <li>Item 2</li>
             <li>Item 3</li>
@@ -27,21 +27,20 @@
     <h2 class="header"> Working with Cards</h2>
     <div class="left-side-scroll-box-container" id="idScrollBox">
         <input type="submit" class="container-add-button" id="idAddCardButton" value="Add Card">
-        <ol class="card-list" id="idCardList">
-            <li class="card-container" id="idCard">
+        <div class="card-container" id="idCardContainer">
+            <!-- <div class="card" id="idCard">
                 <span class=card-text id="idCardText">Card 1</span>
                 <hr class="divider">
                 <input type="submit" class="card-button add-before" id="idCardBeforeButton" value="Add Before">
                 <input type="submit" class="card-button add-after" id="idCardAfterButton" value="Add After">
                 <hr class="divider">
                 <input type="submit" class="card-button delete" id="idCardDeleteButton" value="Delete">
-            </li>
-        </ol>
+            </div> -->
+        </div>
     </div>
-        <div class="right-side-box box-one"><span class="right-side-box-text">Right Side</span></div>
-        <div class="right-side-box box-two"><span class="right-side-box-text">Right Side</span></div>
+    <div class="right-side-box box-one"><span class="right-side-box-text">Right Side</span></div>
+    <div class="right-side-box box-two"><span class="right-side-box-text">Right Side</span></div>
     <script type="module" src="./scripts/main.js"></script>
 </body>
-
 
 </html>
