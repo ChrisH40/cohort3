@@ -1,9 +1,8 @@
 .page {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: auto;
     background-color: rgb(240, 240, 240);
-    grid-gap: 5px;
 }
 
 .basic-dom-box {
@@ -19,45 +18,6 @@
     grid-row-start: 2;
     margin: 50px 0px 0px 25px;
     font-size: 35px;
-}
-
-.left-side-scroll-box-container {
-    grid-column-start: 1;
-    grid-column-end: span 2;
-    grid-row-start: 3;
-    grid-row-end: 5;
-    height: 750px;
-    width:auto;
-    margin: 25px 0px 50px 25px;
-    overflow-y: auto;
-    background: white;
-    text-align: center;
-}
-
-.container-add-button {
-    margin: 25px 0px 0px 0px;
-    width: 150px;
-    height: 25px;
-}
-
-.card {
-    height: 125px;
-    width: auto;
-    margin: 25px 35px 25px 25px;
-    padding: 35px 35px 35px 35px;
-    background-color: rgb(240, 240, 240);
-    font-size: 20px;
-}
-
-.divider {
-    visibility: hidden;
-    margin: 10px 0px 10px 0px;
-}
-
-.card-button {
-    margin: 0px 5px 0px 5px;
-    width: 150px;
-    height: 25px;
 }
 
 .right-side-box-text {
@@ -86,3 +46,48 @@
     grid-row-start: 4;
     grid-row-end: 5;
 }
+
+.left-side-scroll-box-container {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    height: 750px;
+    width:auto;
+    margin: 25px 0px 50px 25px;
+    overflow-y: auto;
+    background: white;
+    text-align: center;
+    align-items: center;
+}
+
+.card {
+    height: 125px;
+    width: auto;
+    margin: 25px 25px 25px 25px;
+    padding: 10px 5px 10px 5px;
+    background-color: rgb(240, 240, 240);
+    padding: 15px 5px 15px 5px;
+    font-size: 20px;
+    align-items: center;
+}
+
+.button {
+    width: 150px;
+    height: 25px;
+}
+
+.container-add-button {
+    margin: 25px 0px 0px 0px;
+}
+
+.card-button {
+    margin: 0px 5px 0px 5px;
+}
+
+.divider {
+    visibility: hidden;
+    margin: 10px 0px 10px 0px;
+}
+
+

@@ -26,10 +26,22 @@ const mainFunctions = {
         idList.removeChild(idList.lastElementChild);
     },
 
+    // Card Container Functions
+
     addCard: () => {
-        cardFunctions.createCard(idCardContainer, cardFunctions.cardCount);
+        return idCardContainer.appendChild(cardFunctions.createCard(cardFunctions.cardCount));
+    },
+
+    cardAction: (e) => {
+        if (e.target.innerText === "Add Before") {
+            cardFunctions.addCardBefore(idCardContainer, e.target.parentNode);
+        } if (e.target.innerText === "Add After") {
+            cardFunctions.addCardAfter(idCardContainer, e.target.parentNode);
+        } if (e.target.innerText === "Delete") {
+            cardFunctions.deleteCard(idCardContainer, e.target.parentNode);
+        }
     }
-};
+}
 
 idBox.addEventListener("click", mainFunctions.boxClickEvent);
 idShowButton.addEventListener("click", mainFunctions.showList);
@@ -37,3 +49,4 @@ idAddBeforeButton.addEventListener("click", mainFunctions.addItemBefore);
 idAddAfterButton.addEventListener("click", mainFunctions.addItemAfter);
 idDeleteButton.addEventListener("click", mainFunctions.deleteItem);
 idAddCardButton.addEventListener("click", mainFunctions.addCard);
+idScrollBox.addEventListener("click", mainFunctions.cardAction);
