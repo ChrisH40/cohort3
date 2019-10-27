@@ -1,0 +1,33 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+.left-side-scroll-box-container-temp {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    margin: 25px 25px 25px 25px;
+    padding: 10px 10px 10px 10px;
+    border: solid 2px black;
+}
+
+.left-side-scroll-box-card-play-container {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row-start: 2;
+    height: 400px;
+    margin: 25px 25px 25px 25px;
+    padding: 25px 25px 25px 25px;
+    border: solid 2px black;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.left-side-scroll-box-card-temp {
+    margin: 25px 25px 25px 25px;
+    padding: 50px 50px 50px 50px;
+    border: solid 2px black;
+    text-align: center;
+}
+
