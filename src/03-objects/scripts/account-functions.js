@@ -12,14 +12,16 @@
 
 
 export const functions = {
-    createAccount: (parent) => {
+    createAccount: (parent, name, balance) => {
         const newAccount = document.createElement("div");
         parent.appendChild(newAccount);
         const newSpanName = document.createElement("span");
         newSpanName.className = "account-name";
+        newSpanName.id = "idAccountName";
         newAccount.appendChild(newSpanName);
         const newSpanBalance = document.createElement("span");
         newSpanBalance.className = "account-balance";
+        newSpanBalance.id = "idAccountBalance";
         newAccount.appendChild(newSpanBalance);
         const newInput = document.createElement("input");
         newInput.type = "number";

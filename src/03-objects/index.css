@@ -76,20 +76,12 @@ body {
 
 .account-card {
     margin: 20px;
-    display: flex;
-}
-
-.account-input {
-    order: 1;
-}
-
-.account-button {
-    order: 2;
 }
 
 .account-input,
 .account-button {
     float: right;
+    margin: 5px;
 }
 
 .account-balance {

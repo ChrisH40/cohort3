@@ -1,25 +1,30 @@
 
-class Account {
+export class Account {
 
-    constructor(name, balance) {
-        this.name = name;
-        this.balance = balance;
+    constructor(accountName, startingBalance) {
+        this.accountName = accountName;
+        this.startingBalance = startingBalance;
     }
 
-    accountDeposit(deposit) {
-        this.balance = this.balance + deposit;
-        return this.balance;
+    accountDeposit(amount) {
+        this.startingBalance = this.startingBalance + amount;
+        return this.startingBalance;
     }
 
-    accountWithdraw(withdraw) {
-        this.balance = this.balance - withdraw;
-        return this.balance;
+    accountWithdraw(amount) {
+        this.startingBalance = this.startingBalance - amount;
+        return this.startingBalance;
     }
 
     accountBalance() {
-        return this.balance;
+        return this.startingBalance;
     }
-    
 };
 
-export default Account;
+
+export class AccountController {
+
+    constructor(accountList) {
+        this.accountList = accountList;
+    }   
+}

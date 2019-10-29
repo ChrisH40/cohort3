@@ -1,4 +1,4 @@
-import {functions} from './account-functions.js';
+import functions from './account-functions.js';
 
 test('add account test', () => {
     const myDiv = document.createElement("div");

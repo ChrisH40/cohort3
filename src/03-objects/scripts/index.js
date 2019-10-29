@@ -1,25 +1,30 @@
-import Account from './account.js';
-import {functions} from './account-functions.js';
+import { Account, AccountController } from './account.js';
+import { functions } from './account-functions.js';
+
+const newAccountController = new AccountController("John", "Smith", "DOG");
 
 
-let testLog = () => {
-    console.log('testing my patience')
-}
-/*
-eventListener calls (
-    () => {
-        function () => {
-            call the creatCard from account functions with ids and stuff
-            call constructor from account.js
-            then use the new object to populate values on the card
-            
-        }
+const newAccount = new Account("New Account", 100);
+// console.log(newAccount)
 
-        appendChild(all that shit)
+const buttonSelector = (event) => {
+    if (event.target.value == "Deposit") {
+        newAccount.accountDeposit(Number(idAccountInput.value));
+        idAccountBalance.innerText = "$" + newAccount.accountBalance();
+        idAccountInput.value = "";
+    } if (event.target.value == "Withdraw") {
+        newAccount.accountWithdraw(Number(idAccountInput.value));
+        idAccountBalance.innerText = "$" + newAccount.accountBalance();
+        idAccountInput.value = "";
     }
-)
-*/
+}
 
 
-testLog()
 
+console.log(newAccountController)
+
+idMiddleContainer.addEventListener("click", buttonSelector);
+
+// newAccountController.catFood = newAccount
+
+// console.log(AccountController)
