@@ -7,19 +7,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="./index.css">
     <title>Account Manager</title>
-
 </head>
 
-<body class="page">
-    <div class="header-container">Money Magic™<br><span class="header-slogan">Invest In Us & Watch Your Money
-            Disappear!</span></div>
-    <div class="display-container">
-        <hr class="divider">
-        <div class="accounts-display-container">ACCOUNTS</div>
-        <div class="right-panel-display-container">RIGHT PANEL</div>
-        <hr class="divider-two">
+<body>
+    <div class="wrapper">
+        <div class="header">BANK</div>
+        <div class="container-left">
+            <span class="create-account-display-header">Create New Account</span>
+            <div class="create-account-display">
+                <br><span class="create-account-text">Account Name:</span><input type=text class="create-account-name"
+                    id="idNewAcctName">
+                <br><span class="create-account-text">Opening Balance:</span><input type=number
+                    class="create-account-balance" id="idNewAcctBalance">
+                <br><input type="submit" value="Create Account" class="button create-account-button"
+                    id="idCreateAcctButton">
+            </div>
+        </div>
+        <div class="container-middle">
+            <span class="account-display-header">Accounts</span>
+            <div class="account-display">
+                <div class="account-card" id="idAcctCard">
+                    <span class="account-name" id="idAccountName">New Account</span><span class="account-balance"
+                        id="idAccountBalance">$0.00</span>
+                        <input type="number" class="account-input">
+                        <input type="submit" value="Deposit" class="button account-button" id="idDepositButton">
+                        <input type="submit" value="Withdraw" class="button account-button" id="idWithdrawButton">
+                </div>
+            </div>
+        </div>
+        <div class="container-right">Accounts Info</div>
+        <div class="footer">Footer</div>
     </div>
-    <div class="footer-container"></div>
     <script type="module" src="./scripts/index.js"></script>
 </body>
 

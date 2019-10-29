@@ -19,6 +19,7 @@ class Account {
     accountBalance() {
         return this.balance;
     }
+    
 };
 
 export default Account;
