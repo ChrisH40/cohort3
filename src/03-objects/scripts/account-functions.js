@@ -1,5 +1,3 @@
-import { Account, AccountController } from './account.js'
-
 const functions = {
 
         createAccountDiv: (parent, accountName, startingBalance) => {
@@ -17,7 +15,6 @@ const functions = {
             dollarSign.setAttribute("class", "dollar")
             newAccount.appendChild(dollarSign);
             const newSpanBalance = document.createElement("span");
-            // newSpanBalance.id = `id-${accountNameNoSpace}-balance-display`;
             newSpanBalance.setAttribute("class", "account-balance");
             newSpanBalance.textContent = Number(startingBalance).toFixed(2);
             newAccount.appendChild(newSpanBalance);
@@ -42,6 +39,10 @@ const functions = {
             newDeleteButton.setAttribute("class","delete-button account-button");
             newAccount.appendChild(newDeleteButton);
         },
+
+        deleteAccountCard: (button) => {
+            return button.parentNode.parentNode.removeChild(button.parentNode);
+        }
 };
 
 export default functions;

@@ -46,12 +46,13 @@ body {
 .container-left {
     grid-area: left;
     height: 200px;
-    padding: 15px;
+    padding: 20px;
 }
 
 .create-account-display {
     border: solid 1px rgb(0, 217, 255);
     height: 125px;
+    margin: 15px;
     padding: 15px;
 }
   
@@ -69,6 +70,7 @@ body {
 
 .account-display {
     height: 325px;
+    margin: 15px;
     padding: 5px;
     border: solid 1px rgb(0, 217, 255);
     overflow: auto;
@@ -93,4 +95,17 @@ body {
 .container-right {
     grid-area: right;
     height: 675px;
+}
+
+.balances-display {
+    display: flex;
+    height: 250px;
+    margin: 15px;
+    padding: 20px;
+    border: solid 1px rgb(0, 217, 255);
+}
+
+.container-right-display-output {
+    align-self: center;
+    font-size: 30px;
 }

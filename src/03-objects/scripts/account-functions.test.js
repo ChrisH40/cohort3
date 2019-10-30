@@ -12,3 +12,15 @@ test('add account test', () => {
     expect(myDiv.childNodes[0].children[3].getAttribute("id")).toEqual("id-Test-Account-Name-input");
 });
 
+test('test deleteAccountCard', () => {
+    const grandParent = document.createElement("div");
+    const parent = document.createElement("div");
+    const button = document.createElement("div");
+    parent.appendChild(button);
+    grandParent.appendChild(parent);
+    expect(String(grandParent.childNodes[0])).toEqual("[object HTMLDivElement]");
+    console.log(button);
+    functions.deleteAccountCard(button);
+    expect(grandParent.childNodes[0]).toEqual(undefined);
+});
+

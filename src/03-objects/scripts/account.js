@@ -19,6 +19,8 @@ export class Account {
     accountBalance() {
         return this.startingBalance;
     }
+
+    
 };
 
 export class AccountController {

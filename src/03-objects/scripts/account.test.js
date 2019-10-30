@@ -82,7 +82,6 @@ test('test deleteAccount', () => {
         );
 });
 
-
 test('test highestBalance of accounts', () => {
     const testAccountController = new AccountController("Sarah");
     testAccountController.addAccount("checking", 6);
