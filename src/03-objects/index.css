@@ -69,28 +69,25 @@ body {
 
 .account-display {
     height: 325px;
-    padding: 15px;
+    padding: 5px;
     border: solid 1px rgb(0, 217, 255);
     overflow: auto;
 }
 
 .account-card {
     margin: 20px;
+    padding: 2px;
+    border: solid 1px rgb(0, 217, 255);
 }
 
 .account-input,
 .account-button {
     float: right;
-    margin: 5px;
+    margin: 0px 2px 0px 2px;
 }
 
-.account-balance {
-    margin: 0px 0px 0px 25px;
-}
-
-.account-input,
-.button {
-    margin: 5px;
+.dollar {
+    margin: 0px 0px 0px 50px;
 }
 
 .container-right {
