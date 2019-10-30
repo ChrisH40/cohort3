@@ -1,6 +1,6 @@
 import functions from './daily.js'
 
-// --- Daily 7 - 9 Data ---
+// --- Daily 7 - 10 Data ---
 
 const data = {
     staff: [
@@ -16,6 +16,19 @@ const data = {
     city: "Calgary",
     prov: "Alberta"
 };
+
+// --- Daily 10 Tests - 29 OCT 2019 ---
+//Average Balance
+test('staff averageBalance loop', () => {
+    functions.staffAverageBalance(data.staff);
+    expect(functions.staffAverageBalance(data.staff)).toEqual(546.1428571428571);
+});
+
+// Total Balances
+test('staff totalBalance loop', () => {
+    functions.staffTotalBalance(data.staff);
+    expect(functions.staffTotalBalance(data.staff)).toEqual(3823);
+});
 
 // --- Daily 9 Tests - 25 OCT 2019 ---
 test('email forEach loop', () => {

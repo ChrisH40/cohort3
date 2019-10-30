@@ -1,6 +1,21 @@
 
 const functions = {
 
+    // --- Daily 10 - 2019 OCT 29 ---
+    //Average Balance
+    staffAverageBalance: (staff) => {
+        const staffAvgBalance = staff.map(staff => staff.balance);
+        const totalBalance = staffAvgBalance.reduce((sum, num) => sum +num);
+        return totalBalance / staffAvgBalance.length;
+    },
+
+    //Total Balances
+    staffTotalBalance: (staff) => {
+        const staffAvgBalance = staff.map(staff => staff.balance);
+        const totalBalance = staffAvgBalance.reduce((sum, num) => sum +num);
+        return totalBalance;
+    },
+
     // --- Daily 9 - 2019 OCT 25 ---
     //forEach
 
