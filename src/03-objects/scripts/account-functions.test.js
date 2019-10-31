@@ -19,7 +19,6 @@ test('test deleteAccountCard', () => {
     parent.appendChild(button);
     grandParent.appendChild(parent);
     expect(String(grandParent.childNodes[0])).toEqual("[object HTMLDivElement]");
-    console.log(button);
     functions.deleteAccountCard(button);
     expect(grandParent.childNodes[0]).toEqual(undefined);
 });

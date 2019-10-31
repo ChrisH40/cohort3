@@ -7,18 +7,17 @@ body {
 .footer {
       color: white;
       background-color: rgb(0, 217, 255);
+      padding: 30px;
 }
 
 .header {
     grid-area: header;
-    padding: 30px;
     text-align: left;
     font-size: 35px;
 }
 
 .footer {
     grid-area: footer;
-    padding: 10px;
     text-align: center;
     position: absolute;
     bottom:0;
@@ -46,7 +45,6 @@ body {
 .container-left {
     grid-area: left;
     height: 200px;
-    padding: 20px;
 }
 
 .create-account-display {
@@ -55,37 +53,53 @@ body {
     margin: 15px;
     padding: 15px;
 }
+
+.create-account-name,
+.create-account-balance {
+    margin: 5px;
+    padding: 5px;
+}
+
+.create-account-name-input,
+.create-account-balance-input {
+    float: right;
+}
   
 .container-middle {
     grid-area: middle;
     height: 400px;
 }
 
-.create-account-display-header,
-.create-account-display,
-.account-display-header,
-.account-display {
-    margin: 5px;
+.create-account-button {
+    margin: 15px 0px 0px 0px;
+    float: right;
 }
 
 .account-display {
     height: 325px;
     margin: 15px;
-    padding: 5px;
+    padding: 15px;
     border: solid 1px rgb(0, 217, 255);
     overflow: auto;
 }
 
 .account-card {
-    margin: 20px;
-    padding: 2px;
-    border: solid 1px rgb(0, 217, 255);
+    margin: 30px;
+    padding: 5px;
 }
 
 .account-input,
 .account-button {
     float: right;
-    margin: 0px 2px 0px 2px;
+    margin: 0px 5px 0px 5px;
+}
+
+.create-account-text,
+.account-name,
+.account-balance,
+.dollar {
+    float: left;
+    margin: 0px 5px 0px 5px;
 }
 
 .dollar {
@@ -94,18 +108,27 @@ body {
 
 .container-right {
     grid-area: right;
-    height: 675px;
+    height: 600px;
 }
 
 .balances-display {
     display: flex;
     height: 250px;
     margin: 15px;
-    padding: 20px;
+    padding: 15px;
     border: solid 1px rgb(0, 217, 255);
 }
 
-.container-right-display-output {
+.container-right-display-balance {
     align-self: center;
     font-size: 30px;
+}
+
+.create-account-display-header,
+.create-account-display,
+.account-display-header,
+.account-display,
+.accounts-information-display-header,
+.balances-display {
+    margin: 5px;
 }
