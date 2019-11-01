@@ -11,41 +11,38 @@
 
 <body>
     <div class="wrapper">
-        <div class="header">BANK</div>
+        <span class="header"><h1>Bank McBankerton</h1></span>
         <div class="container-left">
-            <span class="create-account-display-header">Create New Account</span>
+            <span class="container-left-header display-header">Create New Account</span>
             <div class="create-account-display">
-                <div class=create-account-name>
-                    <br><span class="create-account-text">Account Name:</span><input type="text"
-                        class="create-account-name-input" id="idAccountNameInput">
-                </div>
-                <div class=create-account-name>
-                    <br><span class="create-account-text">Opening Balance:</span><input type="number"
-                        class="create-account-balance-input" id="idAccountBalanceInput">
-                </div>
-                <br><input type="submit" value="Create Account" class="button create-account-button"
-                    id="idCreateAcctButton">
+                    <p class="create-account-text">Name:</p>
+                    <input type="text" class="create-account-name-input" id="idAccountNameInput">
+                    <p class="create-account-text"> Balance:</p>
+                    <input type="number" class="create-account-balance-input" id="idAccountBalanceInput">
+                <br><input type="submit" value="Create Account" class="button create-account-button" id="idCreateAcctButton">
             </div>
         </div>
         <div class="container-middle" id="idMiddleContainer">
-            <span class="container-middle-display-header">Accounts</span>
+            <span class="container-middle-header display-header">Accounts</span>
             <div class="account-display" id="idAccountDisplay">
-
+                <!-- created account divs go here -->
             </div>
         </div>
         <div class="container-right">
-            <span class="accounts-information-display-header">Accounts Information</span>
+            <span class="container-right-header display-header">Accounts Information</span>
             <div class="balances-display top-display" id="idHighestDisplay">
                 <span class="container-right-display-text">Highest Account Balance:</span>
-                <span class="container-right-display-balance" id="idHighest"></span>
+                <p class="balances-display-balance" id="idHighest"></p>
+                <p class="balances-display-balance-number" id="idHighestNumber"></p>
             </div>
             <div class="balances-display bottom-display" id="idLowestDisplay">
                 <span class="container-right-display-text">Lowest Account Balance:</span>
-                <span class="container-right-display-balance" id="idLowest"></span>
+                <p class="balances-display-balance" id="idLowest"></p>
+                <p class="balances-display-balance-number" id="idLowestNumber"></p>
             </div>
         </div>
 
-        <div class="footer">Footer</div>
+        <div class="footer">Give Us All Your Money....</div>
     </div>
     <script type="module" src="./scripts/index.js"></script>
 </body>

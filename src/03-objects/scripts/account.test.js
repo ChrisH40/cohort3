@@ -31,62 +31,80 @@ test('test Account balance', () => {
 test('test Account Controller add new account', () => {
     const testAccountController = new AccountController("Sarah");
     expect(testAccountController).toEqual({ "listArray": [], "listName": "Sarah" });
-    testAccountController.addAccount("checking", 50);
-    expect(testAccountController.listArray).toEqual([{ "accountName": "checking", "startingBalance": 50 }]);
-    testAccountController.addAccount("checking", 50);
+    testAccountController.addAccount("checking", 50, 1);
+    expect(testAccountController.listArray).toEqual([{ "accountName": "checking", "startingBalance": 50, "accountID": 1 }]);
+    testAccountController.addAccount("checking", 50, 2);
     expect(testAccountController.listArray).toEqual(
-        [{ "accountName": "checking", "startingBalance": 50 },
-        { "accountName": "checking", "startingBalance": 50 }]);
+        [{ "accountName": "checking", "startingBalance": 50, "accountID": 1 },
+        { "accountName": "checking", "startingBalance": 50, "accountID": 2 }]);
 });
 
 test('test totalBalances of accounts', () => {
     const testAccountController = new AccountController("Sarah");
-    testAccountController.addAccount("checking", 50);
-    testAccountController.addAccount("checking", 50);
-    testAccountController.addAccount("checking", 50);
-    testAccountController.addAccount("checking", 50);
+    testAccountController.addAccount("checking", 50, 1);
+    testAccountController.addAccount("checking", 50, 2);
+    testAccountController.addAccount("checking", 50, 3);
+    testAccountController.addAccount("checking", 50, 4);
     expect(testAccountController.totalBalances()).toBe(200);
 });
 
-test('test lowestBalance of accounts', () => {
+test('test lowestBalance name of accounts', () => {
     const testAccountController = new AccountController("Sarah");
-    testAccountController.addAccount("checking", 6);
-    testAccountController.addAccount("savings", 50);
-    testAccountController.addAccount("new car", 100);
-    testAccountController.addAccount("luxories", 54);
+    testAccountController.addAccount("checking", 6, 1);
+    testAccountController.addAccount("savings", 50, 2);
+    testAccountController.addAccount("new car", 100, 3);
+    testAccountController.addAccount("luxories", 54, 4);
     expect(testAccountController.lowestBalance()).toBe("checking");
 });
 
-test('test highestBalance of accounts', () => {
+test('test lowestBalance number of accounts', () => {
     const testAccountController = new AccountController("Sarah");
-    testAccountController.addAccount("checking", 6);
-    testAccountController.addAccount("savings", 50);
-    testAccountController.addAccount("new car", 100);
-    testAccountController.addAccount("luxories", 54);
+    testAccountController.addAccount("checking", 6, 1);
+    testAccountController.addAccount("savings", 50, 2);
+    testAccountController.addAccount("new car", 100, 3);
+    testAccountController.addAccount("luxories", 54, 4);
+    expect(testAccountController.lowestBalanceNumber()).toBe("$6.00");
+});
+
+test('test highestBalance name of accounts', () => {
+    const testAccountController = new AccountController("Sarah");
+    testAccountController.addAccount("checking", 6, 1);
+    testAccountController.addAccount("savings", 50, 2);
+    testAccountController.addAccount("new car", 100, 3);
+    testAccountController.addAccount("luxories", 54, 4);
     expect(testAccountController.highestBalance()).toBe("new car");
+});
+
+test('test highestBalance number of accounts', () => {
+    const testAccountController = new AccountController("Sarah");
+    testAccountController.addAccount("checking", 6, 1);
+    testAccountController.addAccount("savings", 50, 2);
+    testAccountController.addAccount("new car", 100, 3);
+    testAccountController.addAccount("luxories", 54, 4);
+    expect(testAccountController.highestBalanceNumber()).toBe("$100.00");
 });
 
 test('test deleteAccount', () => {
     const testAccountController = new AccountController("Sarah");
-    testAccountController.addAccount("checking", 51);
-    testAccountController.addAccount("savings", 50);
-    testAccountController.addAccount("new car", 53);
-    testAccountController.addAccount("luxories", 54);
-    expect(testAccountController.deleteAccount("savings"))
+    testAccountController.addAccount("checking", 51, 1);
+    testAccountController.addAccount("savings", 50, 2);
+    testAccountController.addAccount("new car", 53, 3);
+    testAccountController.addAccount("luxories", 54, 4);
+    expect(testAccountController.deleteAccount(2))
         .toEqual(
             [
-                { "accountName": "checking", "startingBalance": 51 },
-                { "accountName": "new car", "startingBalance": 53 },
-                { "accountName": "luxories", "startingBalance": 54 }
+                { "accountName": "checking", "startingBalance": 51, "accountID": 1 },
+                { "accountName": "new car", "startingBalance": 53, "accountID": 3 },
+                { "accountName": "luxories", "startingBalance": 54, "accountID": 4 }
             ]
         );
 });
 
-test('test highestBalance of accounts', () => {
+test('test findAccount name to array index', () => {
     const testAccountController = new AccountController("Sarah");
-    testAccountController.addAccount("checking", 6);
-    testAccountController.addAccount("savings", 50);
-    testAccountController.addAccount("new car", 100);
-    testAccountController.addAccount("luxories", 54);
-    expect(testAccountController.findAccount("savings")).toBe(1);
+    testAccountController.addAccount("checking", 6, 1);
+    testAccountController.addAccount("savings", 50, 2);
+    testAccountController.addAccount("new car", 100, 3);
+    testAccountController.addAccount("luxories", 54, 4);
+    expect(testAccountController.findAccount(2)).toBe(1);
 });

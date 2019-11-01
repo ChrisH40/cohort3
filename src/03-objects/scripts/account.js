@@ -1,14 +1,17 @@
+import functions from './account-functions.js';
 
 export class Account {
 
-    constructor(accountName, startingBalance) {
+    constructor(accountName, startingBalance, accountID) {
         this.accountName = accountName;
         this.startingBalance = Number(startingBalance);
+        this.accountID = accountID;
     }
 
     accountDeposit(amount) {
         this.startingBalance = this.startingBalance + amount;
         return this.startingBalance;
+
     }
 
     accountWithdraw(amount) {
@@ -19,8 +22,6 @@ export class Account {
     accountBalance() {
         return this.startingBalance;
     }
-
-    
 };
 
 export class AccountController {
@@ -30,9 +31,9 @@ export class AccountController {
         this.listArray = [];
     }
 
-    addAccount(accountName, startingBalance) {
-        let account = new Account(accountName, startingBalance);
-        this.listArray.push(account);
+    addAccount(accountName, startingBalance, counter) {
+        let account = new Account(accountName, startingBalance, counter);
+        return this.listArray.push(account);
     }
 
     totalBalances() {
@@ -54,6 +55,13 @@ export class AccountController {
         return array[keyElement].accountName;
     }
 
+    lowestBalanceNumber() {
+        let array = this.listArray;
+        let balanceArray = array.map(a => a.startingBalance);
+        let lowestNumber = Math.min(...balanceArray);
+        return "$" + lowestNumber.toFixed(2);
+    }
+
     highestBalance() {
         let array = this.listArray;
         let balanceArray = array.map(a => a.startingBalance);
@@ -65,24 +73,31 @@ export class AccountController {
         return array[keyElement].accountName;
     }
 
+    highestBalanceNumber() {
+        let array = this.listArray;
+        let balanceArray = array.map(a => a.startingBalance);
+        let highestNumber = Math.max(...balanceArray);
+        return "$" + highestNumber.toFixed(2);
+    }
+
     deleteAccount(search) {
         let array = this.listArray;
-        let nameArrays = array.map(a => a.accountName);
-        let searchedName = (name) => {
-            return name == search;
+        let IDArray = array.map(a => a.accountID);
+        let searchedID = (ID) => {
+            return ID == search;
         }
-        let keyElement = nameArrays.findIndex(searchedName);
+        let keyElement = IDArray.findIndex(searchedID);
         array.splice(keyElement, 1);
         return array;
     }
 
     findAccount(search) {
         let array = this.listArray;
-        let nameArrays = array.map(a => a.accountName);
-        let searchedName = (name) => {
-            return name == search;
+        let IDArray = array.map(a => a.accountID);
+        let searchedID = (ID) => {
+            return ID == search;
         }
-        let keyElement = nameArrays.findIndex(searchedName);
+        let keyElement = IDArray.findIndex(searchedID);
         return keyElement;
     }
 };
