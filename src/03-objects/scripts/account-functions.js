@@ -36,7 +36,6 @@ const functions = {
         newDeleteButton.id = `id-${accountNameNoSpace}-delete-button`.toLowerCase();
         newDeleteButton.setAttribute("class","delete-button account-button");
         newAccount.appendChild(newDeleteButton);
-        console.log(newAccount);
     },
 
         deleteAccountCard: (button) => {
