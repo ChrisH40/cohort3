@@ -59,7 +59,7 @@ body {
   
 .container-left {
     grid-area: left;
-    height: 200px;
+    height: 200PX;
 }
 
 .create-account-display {

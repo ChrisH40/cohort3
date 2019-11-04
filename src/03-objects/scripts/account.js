@@ -1,5 +1,3 @@
-import functions from './account-functions.js';
-
 export class Account {
 
     constructor(accountName, startingBalance, accountID) {
