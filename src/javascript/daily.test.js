@@ -21,7 +21,7 @@ const data = {
 //Average Balance
 test('staff averageBalance loop', () => {
     functions.staffAverageBalance(data.staff);
-    expect(functions.staffAverageBalance(data.staff)).toEqual(546.1428571428571);
+    expect(functions.staffAverageBalance(data.staff)).toBeCloseTo(546.14);
 });
 
 // Total Balances
