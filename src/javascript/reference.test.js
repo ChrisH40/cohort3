@@ -1,4 +1,6 @@
 
+// --- Daily 11 - 2019 NOV 5 ---
+
 test('How do pointers work', () => {
     console.log("Reference");
     const a = {"name":"Larry", "bal":10};

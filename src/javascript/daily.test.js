@@ -1,6 +1,88 @@
 import functions from './daily.js'
 
-// --- Daily 7 - 10 Data ---
+// --- Daily 13 Data ---
+
+const people = [
+    { fname: "Alex", lname: "Smith", province: "BC", age: 33 },
+    { fname: "Angela", lname: "Jones", province: "AB", age: 61 },
+    { fname: "Anne", lname: "Bird", province: "SK", age: 35 },
+    { fname: "Brent", lname: "Riddle", province: "MN", age: 79 },
+    { fname: "Byron", lname: "Cardenas", province: "BC", age: 38 },
+    { fname: "Carrie", lname: "Ramirez", province: "AB", age: 89 },
+    { fname: "Cheryl", lname: "Glenn", province: "SK", age: 70 },
+    { fname: "Dima", lname: "Curry", province: "MN", age: 67 },
+    { fname: "Dustin", lname: "Bullock", province: "BC", age: 59 },
+    { fname: "Eva", lname: "Keiths", province: "AB", age: 24 },
+    { fname: "Faith", lname: "Liu", province: "SK", age: 46 },
+    { fname: "Fawad", lname: "Bowman", province: "MN", age: 69 },
+    { fname: "Forest", lname: "Vaughn", province: "BC", age: 52 },
+    { fname: "Giovanni", lname: "Browning", province: "AB", age: 32 },
+    { fname: "Greg", lname: "Hogan", province: "SK", age: 55 },
+    { fname: "Harpreet", lname: "Ramsey", province: "MN", age: 18 },
+    { fname: "Ian", lname: "Fitzgerald", province: "BC", age: 16 },
+    { fname: "James", lname: "Kramer", province: "AB", age: 57 },
+    { fname: "Jarvis", lname: "Ortega", province: "SK", age: 69 },
+    { fname: "Jawad", lname: "Huerta", province: "MN", age: 35 },
+    { fname: "Jinbong", lname: "Robinson", province: "BC", age: 26 },
+    { fname: "Jingnan", lname: "Hatfield", province: "AB", age: 71 },
+    { fname: "Joe", lname: "Banks", province: "SK", age: 37 },
+    { fname: "Kristina", lname: "Dalton", province: "MN", age: 73 },
+    { fname: "Latora", lname: "Matthews", province: "BC", age: 25 },
+    { fname: "Lauren", lname: "McClure", province: "AB", age: 42 },
+    { fname: "Licedt", lname: "Rasmussen", province: "SK", age: 30 },
+    { fname: "Linden", lname: "Pierce", province: "MN", age: 68 },
+    { fname: "Luis", lname: "Price", province: "BC", age: 23 },
+    { fname: "Marcela", lname: "Perez", province: "AB", age: 20 },
+    { fname: "Marilou", lname: "Graham", province: "SK", age: 32 },
+    { fname: "Matt", lname: "Novak", province: "MN", age: 29 },
+    { fname: "Monica", lname: "Giles", province: "BC", age: 34 },
+    { fname: "Niloufar", lname: "Carson", province: "AB", age: 29 },
+    { fname: "Omar", lname: "Olson", province: "SK", age: 69 },
+    { fname: "Roger", lname: "Woodard", province: "MN", age: 84 },
+    { fname: "Roman", lname: "Swanson", province: "BC", age: 21 },
+    { fname: "Seun", lname: "Kelly", province: "AB", age: 60 },
+    { fname: "Shane", lname: "Frost", province: "SK", age: 87 },
+    { fname: "Steven", lname: "Haynes", province: "MN", age: 47 },
+    { fname: "Thomas", lname: "Hart", province: "BC", age: 14 },
+    { fname: "Trent", lname: "Kerr", province: "AB", age: 12 },
+    { fname: "Darrell", lname: "Koch", province: "SK", age: 10 },
+    { fname: "Tylor", lname: "Torres", province: "MN", age: 98 }
+];
+
+// --- Daily 13 Tests (Part 1) - 2019 NOV 8 ---
+
+test('people britishColumbiaAlberta', () => {
+    const testpeople = [
+
+        { fname: "Alex", lname: "Smith", province: "BC", age: 33 },
+        { fname: "Angela", lname: "Jones", province: "AB", age: 61 },
+        { fname: "Anne", lname: "Bird", province: "SK", age: 35 },
+        { fname: "Brent", lname: "Riddle", province: "MN", age: 79 }
+    ]
+
+    expect(functions.britishColumbiaAlberta(testpeople, functions.callbackFirstLastNames)).toEqual(["Alex Smith", "Angela Jones"]);
+
+    const testpeople_east = [
+
+        { fname: "Anne", lname: "Bird", province: "SK", age: 35 },
+        { fname: "Brent", lname: "Riddle", province: "MN", age: 79 }
+    ]
+
+    expect(functions.britishColumbiaAlberta(testpeople_east, functions.callbackFirstLastNames)).toBe("SK or MN");
+});
+
+test('people callbackFirstLastNames', () => {
+    const testpeople = [
+
+        { fname: "Alex", lname: "Smith", province: "BC", age: 33 },
+        { fname: "Angela", lname: "Jones", province: "AB", age: 61 },
+        { fname: "Anne", lname: "Bird", province: "SK", age: 35 },
+        { fname: "Brent", lname: "Riddle", province: "MN", age: 79 }
+    ]
+    expect(functions.callbackFirstLastNames(testpeople)).toEqual(["Alex Smith", "Angela Jones", "Anne Bird", "Brent Riddle"]);
+});
+
+// --- Daily 7 - 12 Data ---
 
 const data = {
     staff: [
@@ -17,7 +99,14 @@ const data = {
     prov: "Alberta"
 };
 
-// --- Daily 10 Tests - 29 OCT 2019 ---
+// --- Daily 12 Tests - 2019 NOV 6 ---
+//Balance >= 1000
+test('staff balanceGreaterEqualThousand callback', () => {
+    functions.balanceGreaterEqualThousand(data.staff);
+    expect(functions.balanceGreaterEqualThousand(data.staff)).toEqual([1000, 1330]);
+});
+
+// --- Daily 10 Tests - 2019 OCT 29 ---
 //Average Balance
 test('staff averageBalance loop', () => {
     functions.staffAverageBalance(data.staff);
@@ -30,7 +119,7 @@ test('staff totalBalance loop', () => {
     expect(functions.staffTotalBalance(data.staff)).toEqual(3823);
 });
 
-// --- Daily 9 Tests - 25 OCT 2019 ---
+// --- Daily 9 Tests - 2019 OCT 25 ---
 test('email forEach loop', () => {
     const staffEmail = functions.loopStaffForEach(data.staff);
     expect(staffEmail[0])
@@ -51,7 +140,7 @@ test('email map loop', () => {
         .toEqual("william.lee@evolveu.ca");
 });
 
-// --- Daily 8 Tests - 24 OCT 2019 ---
+// --- Daily 8 Tests - 2019 OCT 24 ---
 
 test('email builder for in loop', () => {
     const staffEmail = functions.loopStaffIn(data.staff);
@@ -73,7 +162,7 @@ test('email builder for of loop', () => {
         .toEqual("noah.ho@evolveu.ca");
 });
 
-// --- Daily 7 Tests - 21 OCT 2019 ---
+// --- Daily 7 Tests - 2019 OCT 21 ---
 
 test('email builder for company', () => {
     const staffEmail = functions.loopStaff(data.staff);

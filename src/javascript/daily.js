@@ -1,18 +1,46 @@
 
 const functions = {
 
+    // --- Daily 13 - 2019 NOV 8 ---
+
+    britishColumbiaAlberta: (data, callback) => {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].province == "AB" || data[i].province == "BC") {
+                const west = data.filter(data => data.province == "BC" || data.province == "AB");
+                return callback(west);
+            } if (data[i].province == "SK" || data[i].province == "MN") {
+                return "SK or MN";
+            }
+        }
+    },
+
+    callbackFirstLastNames: (data) => {
+        const first_last_names = data.map(data => String(data.fname + " " + data.lname));
+        return first_last_names;
+    },
+
+    // --- Daily 12 - 2019 NOV 6 ---
+
+    balanceGreaterEqualThousand: (staff) => {
+        const staff_balances_thousand = staff.filter(staff => staff.balance >= 1000);
+        const balances_thousand = staff_balances_thousand.map(staff_balances_thousand => staff_balances_thousand.balance);
+        return balances_thousand;
+    },
+
     // --- Daily 10 - 2019 OCT 29 ---
     //Average Balance
+
     staffAverageBalance: (staff) => {
         const staffAvgBalance = staff.map(staff => staff.balance);
-        const totalBalance = staffAvgBalance.reduce((sum, num) => sum +num);
+        const totalBalance = staffAvgBalance.reduce((sum, num) => sum + num);
         return totalBalance / staffAvgBalance.length;
     },
 
     //Total Balances
+
     staffTotalBalance: (staff) => {
         const staffAvgBalance = staff.map(staff => staff.balance);
-        const totalBalance = staffAvgBalance.reduce((sum, num) => sum +num);
+        const totalBalance = staffAvgBalance.reduce((sum, num) => sum + num);
         return totalBalance;
     },
 
@@ -201,8 +229,8 @@ const functions = {
     // --- Daily 1 ---
 
     /*	
-	Write the function that will create this output:
-
+    Write the function that will create this output:
+ 
         *** the two values are not the same:
             p1--> a
             p2--> b
