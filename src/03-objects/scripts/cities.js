@@ -1,8 +1,8 @@
 
 export class City {
 
-    constructor(city_id, name, latitude, longitude, population) {
-        this.city_id = Number(city_id);
+    constructor(key, name, latitude, longitude, population) {
+        this.key = Number(key);
         this.name = name;
         this.latitude = Number(latitude);
         this.longitude = Number(longitude);
@@ -38,10 +38,9 @@ export class City {
 
 export class Community {
 
-    constructor(community_id, community_name) {
-        this.community_id = Number(community_id);
+    constructor(community_name) {
         this.community_name = community_name;
-        this.community_list = [];
+        this.cities = [];
     }
 
     whichSphere(city) {
@@ -53,7 +52,7 @@ export class Community {
     }
 
     getMostNorthern() {
-        let array = this.community_list;
+        let array = this.cities;
         let latitude_array = array.map(a => a.latitude);
         let most_northern = Math.max(...latitude_array);
         let searchedLatitude = (lat) => {
@@ -64,7 +63,7 @@ export class Community {
     }
 
     getMostSouthern() {
-        let array = this.community_list;
+        let array = this.cities;
         let latitude_array = array.map(a => a.latitude);
         let most_southern = Math.min(...latitude_array);
         let searchedLatitude = (lat) => {
@@ -75,20 +74,20 @@ export class Community {
     }
 
     getPopulation() {
-        const array = this.community_list;
+        const array = this.cities;
         const city_populations = array.map(array => array.population);
         const total_populations = city_populations.reduce((sum, num) => sum + num);
         return total_populations;
     }
 
-    createCity(city_id, name, latitude, longitude, population) {
-        let new_city = new City(city_id, name, latitude, longitude, population);
-        return this.community_list.push(new_city);
+    createCity(key, name, latitude, longitude, population) {
+        let new_city = new City(key, name, latitude, longitude, population);
+        return this.cities.push(new_city);
     }
 
     deleteCity(search) {
-        let array = this.community_list;
-        let id_array = array.map(a => a.city_id);
+        let array = this.cities;
+        let id_array = array.map(a => a.key);
         let searchedID = (id) => {
             return id == search;
         }
