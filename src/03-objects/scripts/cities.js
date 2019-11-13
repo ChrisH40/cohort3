@@ -82,7 +82,8 @@ export class Community {
 
     createCity(key, name, latitude, longitude, population) {
         let new_city = new City(key, name, latitude, longitude, population);
-        return this.cities.push(new_city);
+        this.cities.push(new_city);
+        console.log(this);
     }
 
     deleteCity(search) {
