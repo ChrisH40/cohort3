@@ -1,13 +1,10 @@
 import { Community } from './cities.js';
 import syncFunctions from './cities-api-functions.js';
 
-const communities = new Community("City List");
-let counter = 0;
+export const communities = new Community("City List");
 
 const cityCreateButton = () => {
-    counter++;
-    communities.createCity(counter, idCityNameInput.value, idCityLatitudeInput.value, idCityLongitudeInput.value, idCityPopulationInput.value);
-    syncFunctions.createCitySync(counter, idCityNameInput.value, idCityLatitudeInput.value, idCityLongitudeInput.value, idCityPopulationInput.value);
+    communities.createCity(idCityNameInput.value, idCityLatitudeInput.value, idCityLongitudeInput.value, idCityPopulationInput.value);
     cityCreateClearFields();
 }
 

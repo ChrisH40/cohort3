@@ -74,7 +74,7 @@ test('test fetch working', async () => {
     expect(data.status).toEqual(400);
 });
 
-test('test dataSync on pageload working', async () => {
+test('test dataSync and counterSync on pageload working', async () => {
 
     const test_community = new Community("Test Community");
 
@@ -101,22 +101,48 @@ test('test dataSync on pageload working', async () => {
     expect(data.status).toEqual(200);
     expect(data.length).toBe(1);
     expect(data[0].name).toBe("city 1");
-    expect(test_community).toEqual({ "cities": [], "community_name": "Test Community" });
     expect(test_community.cities).toEqual([]);
 
     await syncFunctions.dataSync(test_community);
     expect(data.status).toEqual(200);
-    expect(test_community)
-        .toEqual(
-            { "cities": [{ "key": 1, "latitude": 60.01, "longitude": -115.01, "name": "city 1", "population": 1000000 }], "community_name": "Test Community" }
-        );
     expect(test_community.cities)
         .toEqual(
-            [{"key": 1, "latitude": 60.01, "longitude": -115.01, "name": "city 1", "population": 1000000}]
+            [{ "key": 1, "latitude": 60.01, "longitude": -115.01, "name": "city 1", "population": 1000000 }]
         );
+    expect(test_community.counter).toBe(1);
+
+    data = await postData(url + 'add', test_cities_list[1]);
+    expect(data.status).toEqual(200);
+
+    test_community.cities = [];
+    test_community.counter = 0;
+
+    data = await postData(url + 'all');
+    expect(data.status).toEqual(200);
+    expect(data.length).toBe(2);
+    expect(data[1].name).toBe("city 2");
+    expect(test_community.cities).toEqual([]);
+    expect(test_community.counter).toBe(0);
+
+    await syncFunctions.dataSync(test_community);
+    expect(data.status).toEqual(200);
+    expect(test_community.cities)
+        .toEqual(
+            [
+                { "key": 1, "latitude": 60.01, "longitude": -115.01, "name": "city 1", "population": 1000000 },
+                { "key": 2, "latitude": 10.17, "longitude": -40.21, "name": "city 2", "population": 50000 }
+            ]
+        );
+    expect(test_community.counter).toBe(2);
 });
 
 test('test createCitySync', async () => {
+
+    const test_cities_list =
+
+        [
+            { key: 1, latitude: 60.01, longitude: -115.01, name: "city 1", population: 1000000 }
+        ];
 
     // Check that the server is running and clear any data
     let data = await postData(url + 'clear');
@@ -125,13 +151,90 @@ test('test createCitySync', async () => {
     expect(data.status).toEqual(200);
     expect(data.length).toBe(0);
 
-    await syncFunctions.createCitySync(4, "city 4", 88.91, 114.56, 1);
+    await syncFunctions.createCitySync(test_cities_list[0]);
 
     data = await postData(url + 'all');
     expect(data.status).toEqual(200);
     expect(data.length).toBe(1);
-    expect(data[0].name).toBe("city 4");
+    expect(data[0].name).toBe("city 1");
 });
+
+test('test deleteCitySync', async () => {
+
+    const test_cities_list =
+
+        [
+            { key: 1, latitude: 60.01, longitude: -115.01, name: "city 1", population: 1000000 }
+        ];
+
+    // Check that the server is running and clear any data
+    let data = await postData(url + 'clear');
+
+    data = await postData(url + 'all');
+    expect(data.status).toEqual(200);
+    expect(data.length).toBe(0);
+
+    data = await postData(url + 'add', test_cities_list[0]);
+    expect(data.status).toEqual(200);
+
+    data = await postData(url + 'all');
+    expect(data.status).toEqual(200);
+    expect(data.length).toBe(1);
+    expect(data[0].name).toBe("city 1");
+    expect(data[0].key).toBe(1);
+
+    await syncFunctions.deleteCitySync(1);
+
+    data = await postData(url + 'all');
+    expect(data.status).toEqual(200);
+    expect(data.length).toBe(0);
+});
+
+test('test populationSync', async () => {
+
+    const test_cities_list =
+
+    [
+        { key: 1, latitude: 60.01, longitude: -115.01, name: "city 1", population: 1000000 },
+        { key: 2, latitude: 10.17, longitude: -40.21, name: "city 2", population: 50000 },
+        { key: 3, latitude: -48.17, longitude: 48.17, name: "city 3", population: 77812 },
+        { key: 4, latitude: 88.91, longitude: 114.56, name: "city 4", population: 1 },
+    ];
+
+    // Check that the server is running and clear any data
+    let data = await postData(url + 'clear');
+
+    data = await postData(url + 'all');
+    expect(data.status).toEqual(200);
+    expect(data.length).toBe(0);
+
+    data = await postData(url + 'add', test_cities_list[0]);
+    expect(data.status).toEqual(200);
+
+    data = await postData(url + 'add', test_cities_list[1]);
+    expect(data.status).toEqual(200);
+
+    data = await postData(url + 'all');
+    expect(data.status).toEqual(200);
+    expect(data.length).toBe(2);
+    expect(data[0].population).toBe(1000000);
+
+    await syncFunctions.populationSync(1, 1000100);
+
+    data = await postData(url + 'all');
+    expect(data.status).toEqual(200);
+    expect(data[0].population).toBe(1000100);
+
+    await syncFunctions.populationSync(2, 500000);
+
+    data = await postData(url + 'all');
+    expect(data.status).toEqual(200);
+    expect(data[1].population).toBe(500000);
+
+    data = await postData(url + 'clear');
+});
+
+
 
 async function postData(url = '', data = {}) {
     // Default options are marked with *

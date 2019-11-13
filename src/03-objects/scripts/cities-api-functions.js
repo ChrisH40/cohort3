@@ -1,22 +1,38 @@
-import { City, Community } from './cities.js'
 
 const syncFunctions = {
-
-    // counter: 0,
 
     async dataSync(array) {
         let data = await postData(url + 'all');
         for (let i = 0; i < data.length; i++) {
             array.cities.push(data[i]);
-        } console.log(array); 
+        }
+        syncFunctions.counterSync(array);
         return array;
     },
 
-    async createCitySync(key, name, latitude, longitude, population) {
-        let new_city = new City(key, name, latitude, longitude, population);
-        let data = await postData(url + 'add', new_city);
+    counterSync(array) {
+        let arrayKeys = array.cities.map(a => a.key);
+        if (arrayKeys.length > 0) {
+            let highestKey = Math.max(...arrayKeys);
+            array.counter = highestKey;
+        } else array.counter = 0;
+    },
+
+    async createCitySync(city) {
+        let data = await postData(url + 'add', city);
         data = await postData(url + 'all');
-        console.log(data);
+        return data;
+    },
+
+    async deleteCitySync(key) {
+        let data = await postData(url + 'delete', { key: Number(key) });
+        data = await postData(url + 'all');
+        return data;
+    },
+
+    async populationSync(key, population) {
+        let data = await postData(url + 'update', { key: Number(key), population: Number(population) });
+        data = await postData(url + 'all');
         return data;
     }
 }

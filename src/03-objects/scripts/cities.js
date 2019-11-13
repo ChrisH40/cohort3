@@ -1,3 +1,4 @@
+import syncFunctions from "./cities-api-functions.js";
 
 export class City {
 
@@ -15,11 +16,13 @@ export class City {
 
     movedIn(amount) {
         this.population = this.population + amount;
+        syncFunctions.populationSync(this.key, this.population);
         return this.population;
     }
 
     movedOut(amount) {
         this.population = this.population - amount;
+        syncFunctions.populationSync(this.key, this.population);
         return this.population;
     }
 
@@ -41,6 +44,7 @@ export class Community {
     constructor(community_name) {
         this.community_name = community_name;
         this.cities = [];
+        this.counter = 0;
     }
 
     whichSphere(city) {
@@ -80,20 +84,22 @@ export class Community {
         return total_populations;
     }
 
-    createCity(key, name, latitude, longitude, population) {
-        let new_city = new City(key, name, latitude, longitude, population);
+    createCity(name, latitude, longitude, population) {
+        this.counter++
+        let new_city = new City(this.counter, name, latitude, longitude, population);
         this.cities.push(new_city);
-        console.log(this);
+        syncFunctions.createCitySync(new_city);
     }
 
     deleteCity(search) {
         let array = this.cities;
         let id_array = array.map(a => a.key);
         let searchedID = (id) => {
-            return id == search;
+            return id == search; 
         }
         let keyElement = id_array.findIndex(searchedID);
         array.splice(keyElement, 1);
+        syncFunctions.deleteCitySync(search);
         return array;
     }
 };
