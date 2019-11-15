@@ -1,5 +1,5 @@
 
-const functions = {
+const domFunctions = {
 
     createAccountDiv: (parent, accountName, startingBalance, accountID) => {
         let accountNameNoSpace = accountName.replace(/\s/g, "-");
@@ -43,4 +43,4 @@ const functions = {
     }
 };
 
-export default functions;
+export default domFunctions;

@@ -1,9 +1,9 @@
-import functions from './account-functions.js';
+import domFunctions from './account-dom-functions.js';
 
 test('add account test', () => {
     const myDiv = document.createElement("div");
     expect(myDiv.hasChildNodes()).toBe(false);
-    functions.createAccountDiv(myDiv, "Test Account Name", 100);
+    domFunctions.createAccountDiv(myDiv, "Test Account Name", 100);
     expect(myDiv.hasChildNodes()).toBe(true);
     expect(myDiv.childNodes[0].children.length).toEqual(6);
     expect(myDiv.childNodes[0].hasAttribute("id", "id-Test-Account-Name")).toEqual(true);
@@ -19,7 +19,7 @@ test('test deleteAccountCard', () => {
     parent.appendChild(button);
     grandParent.appendChild(parent);
     expect(String(grandParent.childNodes[0])).toEqual("[object HTMLDivElement]");
-    functions.deleteAccountCard(button);
+    domFunctions.deleteAccountCard(button);
     expect(grandParent.childNodes[0]).toEqual(undefined);
 });
 
