@@ -22,9 +22,9 @@
             </span>
             <div class="create-city-display">
                 <p>City Name:</p><input type="text" id="idCityNameInput" class="create-city-input">
-                <p>Latitude: </p><input type="text" id="idCityLatitudeInput" class="create-city-input">
-                <p>Longitude: </p><input type="text" id="idCityLongitudeInput" class="create-city-input">
-                <p>Population: </p><input type="text" id="idCityPopulationInput" class="create-city-input">
+                <p>Latitude: </p><input type="number" id="idCityLatitudeInput" class="create-city-input">
+                <p>Longitude: </p><input type="number" id="idCityLongitudeInput" class="create-city-input">
+                <p>Population: </p><input type="number" id="idCityPopulationInput" class="create-city-input">
                 <input type="button" id="idCreateCityButton" class="create-city-button" value="Create City">
             </div>
         </div>
@@ -33,23 +33,46 @@
                 <!-- tbd header -->
             </span>
             <div class="city-display" id="idCityDisplay">
-                <!-- created city divs go here -->
+                <!-- created city divs -->
             </div>
         </div>
         <div class="container-middle-bottom" id="idMiddleBottomContainer">
-            <span class="container-middle-bottomheader display-header">
-                <!-- tbd header -->
-            </span>
             <div class="city-facts-display" id="idCityFactsDisplay">
-                <!-- individual city info goes here -->
+                <p class="city-show-info" id=idCityShowInfo>
+                    <!-- misc. city info -->
+                </p>
+                <p class="city-howbig-info" id=idCityHowBigInfo>
+                    <!-- misc. city info -->
+                </p>
+                <p class="city-whichsphere-info" id=idCityWhichSphere>
+                    <!-- misc. city info -->
+                </p>
             </div>
         </div>
         <div class="container-right">
             <span class="container-right-header display-header">
-                City Tidbits
+                Total Population:
             </span>
-            <div class="city-calculations-display" id="idCityCalculationsDisplay">
-                <!-- individual city info goes here -->
+            <div class="city-calculations-display one" id="idCityCalculationsDisplay">
+                <p class="container-right-info" id=idTotalPopText>
+                    <!-- total population -->
+                </p>
+            </div>
+            <span class="container-right-header display-header">
+                Most Northern City:
+            </span>
+            <div class="city-calculations-display two" id="idCityCalculationsDisplay">
+                <p class="container-right-info" id=idMostNorthernText>
+                    <!-- most northern city -->
+                </p>
+            </div>
+            <span class="container-right-header display-header">
+                Most Southern City:
+            </span>
+            <div class="city-calculations-display three" id="idCityCalculationsDisplay">
+                <p class="container-right-info" id=idMostSouthernText>
+                    <!-- most southern city -->
+                </p>
             </div>
         </div>
     </div>

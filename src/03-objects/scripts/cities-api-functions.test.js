@@ -1,7 +1,6 @@
 import { Community } from './cities.js';
 import syncFunctions from './cities-api-functions.js';
 
-
 global.fetch = require('node-fetch');
 
 /*
@@ -74,7 +73,7 @@ test('test fetch working', async () => {
     expect(data.status).toEqual(400);
 });
 
-test('test dataSync and counterSync on pageload working', async () => {
+test('test dataSync counterSync domSync on pageload working', async () => {
 
     const test_community = new Community("Test Community");
 
@@ -86,6 +85,8 @@ test('test dataSync and counterSync on pageload working', async () => {
             { key: 3, latitude: -48.17, longitude: 48.17, name: "city 3", population: 77812 },
             { key: 4, latitude: 88.91, longitude: 114.56, name: "city 4", population: 1 },
         ];
+
+    const myDiv = document.createElement("div");
 
     // Check that the server is running and clear any data
     let data = await postData(url + 'clear');
@@ -102,38 +103,14 @@ test('test dataSync and counterSync on pageload working', async () => {
     expect(data.length).toBe(1);
     expect(data[0].name).toBe("city 1");
     expect(test_community.cities).toEqual([]);
-
-    await syncFunctions.dataSync(test_community);
-    expect(data.status).toEqual(200);
-    expect(test_community.cities)
-        .toEqual(
-            [{ "key": 1, "latitude": 60.01, "longitude": -115.01, "name": "city 1", "population": 1000000 }]
-        );
-    expect(test_community.counter).toBe(1);
-
-    data = await postData(url + 'add', test_cities_list[1]);
-    expect(data.status).toEqual(200);
-
-    test_community.cities = [];
-    test_community.counter = 0;
-
-    data = await postData(url + 'all');
-    expect(data.status).toEqual(200);
-    expect(data.length).toBe(2);
-    expect(data[1].name).toBe("city 2");
-    expect(test_community.cities).toEqual([]);
     expect(test_community.counter).toBe(0);
+    expect(myDiv.hasChildNodes()).toBe(false);
 
-    await syncFunctions.dataSync(test_community);
+    await syncFunctions.dataSync(test_community, myDiv);
     expect(data.status).toEqual(200);
-    expect(test_community.cities)
-        .toEqual(
-            [
-                { "key": 1, "latitude": 60.01, "longitude": -115.01, "name": "city 1", "population": 1000000 },
-                { "key": 2, "latitude": 10.17, "longitude": -40.21, "name": "city 2", "population": 50000 }
-            ]
-        );
-    expect(test_community.counter).toBe(2);
+    expect(test_community.cities[0].key).toBe(1);
+    expect(test_community.counter).toBe(1);
+    expect(myDiv.hasChildNodes()).toBe(true);
 });
 
 test('test createCitySync', async () => {
@@ -211,30 +188,20 @@ test('test populationSync', async () => {
     data = await postData(url + 'add', test_cities_list[0]);
     expect(data.status).toEqual(200);
 
-    data = await postData(url + 'add', test_cities_list[1]);
-    expect(data.status).toEqual(200);
-
     data = await postData(url + 'all');
     expect(data.status).toEqual(200);
-    expect(data.length).toBe(2);
+    expect(data.length).toBe(1);
     expect(data[0].population).toBe(1000000);
 
-    await syncFunctions.populationSync(1, 1000100);
+    test_cities_list[0].population = 1000100;
+
+    await syncFunctions.populationSync(test_cities_list[0]);
 
     data = await postData(url + 'all');
     expect(data.status).toEqual(200);
     expect(data[0].population).toBe(1000100);
-
-    await syncFunctions.populationSync(2, 500000);
-
-    data = await postData(url + 'all');
-    expect(data.status).toEqual(200);
-    expect(data[1].population).toBe(500000);
-
-    data = await postData(url + 'clear');
+    expect(data[0].latitude).toBe(60.01);
 });
-
-
 
 async function postData(url = '', data = {}) {
     // Default options are marked with *

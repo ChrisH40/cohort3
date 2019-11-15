@@ -7,6 +7,7 @@ const domFunctions = {
         newCity.id = `id-${city.name}`.toLowerCase();
         newCity.setAttribute("class", "city-card");
         newCity.setAttribute("counter", city.key);
+        newCity.setAttribute("tabindex", city.key);
         parent.appendChild(newCity);
         const newCityName = document.createElement("span");
         newCityName.setAttribute("class", "city-name");
@@ -48,7 +49,7 @@ const domFunctions = {
 
     deleteCityCard: (button) => {
         return button.parentNode.parentNode.removeChild(button.parentNode);
-    }
+    }  
 }
 
 export default domFunctions;

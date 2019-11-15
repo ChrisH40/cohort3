@@ -1,21 +1,30 @@
+import { City } from './cities.js';
+import domFunctions from './cities-dom.js';
 
 const syncFunctions = {
 
-    async dataSync(array) {
+    async dataSync(array, parent) {
         let data = await postData(url + 'all');
         for (let i = 0; i < data.length; i++) {
-            array.cities.push(data[i]);
-        }
-        syncFunctions.counterSync(array);
+            let new_city = new City(data[i].key, data[i].name, data[i].latitude, data[i].longitude, data[i].population);
+            array.cities.push(new_city);
+        } syncFunctions.counterSync(array);
+        syncFunctions.domSync(array, parent);
         return array;
     },
 
     counterSync(array) {
-        let arrayKeys = array.cities.map(a => a.key);
+        let arrayKeys = array.cities.map(city => city.key);
         if (arrayKeys.length > 0) {
             let highestKey = Math.max(...arrayKeys);
             array.counter = highestKey;
         } else array.counter = 0;
+    },
+
+    domSync(array, parent) {
+        array.cities.forEach(city => {
+            domFunctions.createCityDiv(parent, city);
+        })
     },
 
     async createCitySync(city) {
@@ -25,13 +34,20 @@ const syncFunctions = {
     },
 
     async deleteCitySync(key) {
-        let data = await postData(url + 'delete', { key: Number(key) });
+        let data = await postData(url + 'all');
+        let array = data;
+        let id_array = array.map(a => a.key);
+        let searchedID = (id) => {
+            return id == key;
+        }
+        let keyElement = id_array.findIndex(searchedID);
+        data = await postData(url + 'delete', array[keyElement]);
         data = await postData(url + 'all');
         return data;
     },
 
-    async populationSync(key, population) {
-        let data = await postData(url + 'update', { key: Number(key), population: Number(population) });
+    async populationSync(city) {
+        let data = await postData(url + 'update', city);
         data = await postData(url + 'all');
         return data;
     }
