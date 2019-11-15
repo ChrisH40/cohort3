@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,52 @@
     <title>City Manager</title>
     <link rel="stylesheet" type="text/css" href="./cities-index.css">
 </head>
+
 <body>
-    <h1>City Manager</h1>
-    <p>City Name <input type = "text" id="idCityNameInput" class="input"></p>
-    <p>Latitude <input type = "text" id="idCityLatitudeInput" class="input"></p>
-    <p>Longitude <input type = "text" id="idCityLongitudeInput" class="input"></p>
-    <p>Population <input type = "text" id="idCityPopulationInput" class="input"></p>
-    <input type = "button" id="idCreateCityButton" class="button" value = "Create City">
+    <div class="wrapper">
+        <span class="header">
+            <h1 class="header-text">City Comptroller</h1>
+            <p class="header-text">This comptrolling task was appointed to you.. and if you can't comptrol it.... no one
+                can.</p>
+        </span>
+        <div class="container-left">
+            <span class="container-left-header display-header">
+                Add City
+            </span>
+            <div class="create-city-display">
+                <p>City Name:</p><input type="text" id="idCityNameInput" class="create-city-input">
+                <p>Latitude: </p><input type="text" id="idCityLatitudeInput" class="create-city-input">
+                <p>Longitude: </p><input type="text" id="idCityLongitudeInput" class="create-city-input">
+                <p>Population: </p><input type="text" id="idCityPopulationInput" class="create-city-input">
+                <input type="button" id="idCreateCityButton" class="create-city-button" value="Create City">
+            </div>
+        </div>
+        <div class="container-middle-top" id="idMiddleTopContainer">
+            <span class="container-middle-top-header display-header">
+                <!-- tbd header -->
+            </span>
+            <div class="city-display" id="idCityDisplay">
+                <!-- created city divs go here -->
+            </div>
+        </div>
+        <div class="container-middle-bottom" id="idMiddleBottomContainer">
+            <span class="container-middle-bottomheader display-header">
+                <!-- tbd header -->
+            </span>
+            <div class="city-facts-display" id="idCityFactsDisplay">
+                <!-- individual city info goes here -->
+            </div>
+        </div>
+        <div class="container-right">
+            <span class="container-right-header display-header">
+                City Tidbits
+            </span>
+            <div class="city-calculations-display" id="idCityCalculationsDisplay">
+                <!-- individual city info goes here -->
+            </div>
+        </div>
+    </div>
     <script type="module" src="./scripts/cities-index.js"></script>
 </body>
+
 </html>

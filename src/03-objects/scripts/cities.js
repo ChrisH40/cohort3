@@ -1,4 +1,5 @@
 import syncFunctions from "./cities-api-functions.js";
+import domFunctions from "./cities-dom.js";
 
 export class City {
 
@@ -16,13 +17,13 @@ export class City {
 
     movedIn(amount) {
         this.population = this.population + amount;
-        syncFunctions.populationSync(this.key, this.population);
+        syncFunctions.populationSync(this);
         return this.population;
     }
 
     movedOut(amount) {
         this.population = this.population - amount;
-        syncFunctions.populationSync(this.key, this.population);
+        syncFunctions.populationSync(this);
         return this.population;
     }
 
@@ -84,11 +85,13 @@ export class Community {
         return total_populations;
     }
 
-    createCity(name, latitude, longitude, population) {
+    createCity(parent, name, latitude, longitude, population) {
         this.counter++
         let new_city = new City(this.counter, name, latitude, longitude, population);
         this.cities.push(new_city);
         syncFunctions.createCitySync(new_city);
+        domFunctions.createCityDiv(parent, new_city);
+        return new_city;
     }
 
     deleteCity(search) {
@@ -98,8 +101,18 @@ export class Community {
             return id == search; 
         }
         let keyElement = id_array.findIndex(searchedID);
+        syncFunctions.deleteCitySync(array[keyElement]);
         array.splice(keyElement, 1);
-        syncFunctions.deleteCitySync(search);
         return array;
+    }
+
+    findCity(key) {
+        let array = this.cities;
+        let IDArray = array.map(a => a.key);
+        let searchedID = (ID) => {
+            return ID == key;
+        }
+        let keyElement = IDArray.findIndex(searchedID);
+        return keyElement;
     }
 };

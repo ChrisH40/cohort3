@@ -29,18 +29,18 @@ const functions = {
         const newWithdrawButton = document.createElement("button");
         newWithdrawButton.textContent = "Withdraw";
         newWithdrawButton.id = `id-${accountNameNoSpace}-withdraw-button`.toLowerCase();
-        newWithdrawButton.setAttribute("class","withdraw-button account-button");
+        newWithdrawButton.setAttribute("class", "withdraw-button account-button");
         newAccount.appendChild(newWithdrawButton);
         const newDeleteButton = document.createElement("button");
         newDeleteButton.textContent = "Delete Account";
         newDeleteButton.id = `id-${accountNameNoSpace}-delete-button`.toLowerCase();
-        newDeleteButton.setAttribute("class","delete-button account-button");
+        newDeleteButton.setAttribute("class", "delete-button account-button");
         newAccount.appendChild(newDeleteButton);
     },
 
-        deleteAccountCard: (button) => {
-            return button.parentNode.parentNode.removeChild(button.parentNode);
-        }
+    deleteAccountCard: (button) => {
+        return button.parentNode.parentNode.removeChild(button.parentNode);
+    }
 };
 
 export default functions;

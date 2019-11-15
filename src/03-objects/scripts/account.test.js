@@ -62,7 +62,7 @@ test('test deleteAccount', () => {
         );
 });
 
-test('test findAccount name to array index', () => {
+test('test findAccount key to array index', () => {
     const testAccountController = new AccountController("Sarah");
     testAccountController.addAccount("checking", 6, 1);
     testAccountController.addAccount("savings", 50, 2);

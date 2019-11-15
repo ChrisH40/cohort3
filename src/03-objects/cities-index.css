@@ -1,0 +1,117 @@
+html {
+    height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    background-image: url("./images/city_background.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-areas: 
+      'header header header header header' 
+      'left top top top right' 
+      '. bottom bottom bottom right';
+}
+
+.header {
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    padding: 30px;
+    grid-area: header;
+}
+
+.container-left {
+    grid-area: left;
+    border-radius: 25px;
+}
+
+.create-city-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+}
+
+.create-city-input {
+    margin: 10px;
+}
+
+.create-city-button {
+    grid-column-start: 2;
+    width: 100px;
+}
+
+.container-middle-top {
+    grid-area: top;
+    height: 350px;
+    padding: 10px;
+}
+
+.city-display {
+    height: 100%;
+    overflow: auto;
+}
+
+.city-card {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    height: 30px;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    justify-content: center;
+    border: solid 2px white;
+    background-color: white;
+    opacity: 75%;
+}
+
+.city-card:nth-child(odd) {background-color:  rgb(0, 217, 255); opacity: 75%; border: solid 2px rgb(0, 217, 255);}
+    
+.container-middle-bottom {
+    grid-area: bottom;
+    height: 350px;
+    padding: 10px;
+}
+
+.city-facts-display {
+    border: solid 1px rgb(0, 217, 255);
+    height: 350px;
+    overflow: auto;
+}
+
+.container-right {
+    grid-area: right;
+    grid-row-start: 2;
+    grid-row-end: span 4;
+    border-radius: 25px;
+}
+
+.display-header {
+    font-size: 20px;
+}
+
+.container-left,
+.container-right {
+    margin: 20px;
+    padding: 10px;
+    border: solid 1px rgb(0, 217, 255);
+    background-color: rgb(206, 241, 247);
+    opacity: 90%;
+}
+
+.create-city-display,
+.city-calculations-display {
+    border: solid 1px rgb(0, 217, 255);
+    margin: 10px;
+    padding: 5px;
+    border-radius: 25px
+}
