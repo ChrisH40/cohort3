@@ -13,49 +13,6 @@ const cityCreateButton = () => {
     cityCreateClearFields();
 }
 
-const cityButtonSelector = (event) => {
-    if (event.target.textContent == "Moved In") {
-        let cityKey = event.target.parentNode.getAttribute("counter");
-        let index = communities.findCity(cityKey);
-        let city = Number(event.target.parentNode.children[4].value);
-        communities.cities[index].movedIn(city);
-        let population = event.target.parentNode.children[3];
-        population.textContent = Number(communities.cities[index].population.toFixed(0));
-        cityChecker(communities);
-        event.target.parentNode.children[4].value = "";
-    } if (event.target.textContent == "Moved Out") {
-        let cityKey = event.target.parentNode.getAttribute("counter");
-        let index = communities.findCity(cityKey);
-        let city = Number(event.target.parentNode.children[4].value);
-        communities.cities[index].movedOut(city);
-        let population = event.target.parentNode.children[3];
-        population.textContent = Number(communities.cities[index].population.toFixed(0));
-        cityChecker(communities);
-        event.target.parentNode.children[4].value = "";
-    } if (event.target.textContent == "Delete City") {
-        let cityKey = event.target.parentNode.getAttribute("counter");
-        communities.deleteCity(cityKey);
-        domFunctions.deleteCityCard(event.target);
-        cityChecker(communities);
-    }
-}
-
-const cityInfoSelector = (event) => {
-    let cityKey = (event.target.getAttribute("counter") || event.target.parentNode.getAttribute("counter"));
-    let index = communities.findCity(cityKey);
-    idCityShowInfo.textContent = communities.cities[index].show();
-    idCityHowBigInfo.textContent = communities.cities[index].howBig();
-    idCityWhichSphere.textContent = communities.whichSphere(communities.cities[index]);
-}
-
-const cityChecker = (array) => {
-    setTimeout(() => {
-    idTotalPopText.textContent = array.getPopulation();
-    idMostNorthernText.textContent = array.getMostNorthern();
-    idMostSouthernText.textContent = array.getMostSouthern();
-    }, 1000);
-}
-
 const cityCreateClearFields = () => {
     idCityNameInput.value = "";
     idCityLatitudeInput.value = "";
@@ -63,7 +20,60 @@ const cityCreateClearFields = () => {
     idCityPopulationInput.value = "";
 }
 
+const cityButtonSelector = (event) => {
+    let cityKey = event.target.parentNode.getAttribute("counter");
+    let index = communities.findCity(cityKey);
+    if (event.target.textContent == "Moved In") {
+        let population_input = Number(event.target.parentNode.children[4].value);
+        let population_display = event.target.parentNode.children[3];
+        if (population_input > 0) {
+            communities.cities[index].movedIn(population_input);
+            population_display.textContent = Number(communities.cities[index].population.toFixed(0));
+            cityChecker(communities);
+        } else alert("Please enter a number greater than zero!");
+        event.target.parentNode.children[4].value = "";
+    } if (event.target.textContent == "Moved Out") {
+        let population_input = Number(event.target.parentNode.children[4].value);
+        let population_display = event.target.parentNode.children[3];
+        if (population_input <= Number(population_display.textContent)) {
+            communities.cities[index].movedOut(population_input);
+            population_display.textContent = Number(communities.cities[index].population.toFixed(0));
+            cityChecker(communities);
+        } else alert("Please enter a number less than current population!");
+        event.target.parentNode.children[4].value = "";
+    } if (event.target.textContent == "Delete City") {
+        communities.deleteCity(cityKey);
+        domFunctions.deleteCityCard(event.target);
+        cityChecker(communities);
+    }
+}
+
+const cityInfoSelector = (event) => {
+    if (event.target.parentNode == idCityDisplay || event.target.parentNode.parentNode == idCityDisplay) {
+        let cityKey = (event.target.parentNode.getAttribute("counter") || event.target.getAttribute("counter"));
+        let index = communities.findCity(cityKey);
+        let city = communities.cities[index];
+        idCityShowInfo.textContent = city.show();
+        idCityHowBigInfo.textContent = city.howBig();
+        idCityWhichSphere.textContent = communities.whichSphere(city);
+    } 
+}
+
+const cityChecker = (array) => {
+    setTimeout(() => {
+        if (array.cities.length > 0) {
+            idTotalPopText.textContent = array.getPopulation();
+            idMostNorthernText.textContent = array.getMostNorthern();
+            idMostSouthernText.textContent = array.getMostSouthern();
+        } else if (array.cities.length == 0) {
+            idTotalPopText.textContent = "";
+            idMostNorthernText.textContent = "";
+            idMostSouthernText.textContent = "";
+        }
+    }, 1000);
+}
+
 idCreateCityButton.addEventListener("click", cityCreateButton);
 idCityDisplay.addEventListener("click", cityButtonSelector);
-idCityDisplay.addEventListener("click", cityInfoSelector);
+window.addEventListener("click", cityInfoSelector);
 window.addEventListener("load", syncFunctions.dataSync(communities, idCityDisplay), cityChecker(communities));

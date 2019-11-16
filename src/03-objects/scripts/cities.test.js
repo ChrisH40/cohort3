@@ -3,7 +3,7 @@ import { City, Community } from './cities.js';
 test('test show City', () => {
     const test_city = new City(1, "Test City", 60.01, -115.01, 1000000);
     expect(test_city.show()).
-        toBe("Test City is located at 60.01 latitude, -115.01 longitude and has a population of 1000000 people.");
+        toBe("- Test City is located at 60.01 latitude, -115.01 longitude and has a population of 1000000 people.");
 });
 
 test('test movedIn and movedOut', () => {
@@ -18,26 +18,26 @@ test('test movedIn and movedOut', () => {
 
 test('test howBig', () => {
     const test_city = new City(1, "Test City", 60.01, -115.01, 1000000);
-    expect(test_city.howBig()).toBe("Test City is a City with a population > 100,000 people.");
+    expect(test_city.howBig()).toBe("- Test City is a City with a population > 100,000 people.");
     test_city.population = 50000;
-    expect(test_city.howBig()).toBe("Test City is a Large Town with a population of 20,000 to 100,000 people.");
+    expect(test_city.howBig()).toBe("- Test City is a Large Town with a population of 20,000 to 100,000 people.");
     test_city.population = 15000;
-    expect(test_city.howBig()).toBe("Test City is a Town with a population of 1,000 to 20,000 people.");
+    expect(test_city.howBig()).toBe("- Test City is a Town with a population of 1,000 to 20,000 people.");
     test_city.population = 101;
-    expect(test_city.howBig()).toBe("Test City is a Village, larger than a Hamlet but smaller than a Town.");
+    expect(test_city.howBig()).toBe("- Test City is a Village, larger than a Hamlet but smaller than a Town.");
     test_city.population = 1;
-    expect(test_city.howBig()).toBe("Test City is a Hamlet with population of 1 to 100 people.");
+    expect(test_city.howBig()).toBe("- Test City is a Hamlet with population of 1 to 100 people.");
 });
 
 test('test whichSphere', () => {
     const test_city = new City(1, "Test City", 60.01, -115.01, 1000000);
     const test_community = new Community("Test Community");
     test_city.latitude = 60.01;
-    expect(test_community.whichSphere(test_city)).toBe("Test City is located in the Northern Hemisphere.");
+    expect(test_community.whichSphere(test_city)).toBe("- Test City is located in the Northern Hemisphere.");
     test_city.latitude = -27.89;
-    expect(test_community.whichSphere(test_city)).toBe("Test City is located in the Southern Hemisphere.");
+    expect(test_community.whichSphere(test_city)).toBe("- Test City is located in the Southern Hemisphere.");
     test_city.latitude = 0.00;
-    expect(test_community.whichSphere(test_city)).toBe("Test City is located right on the Equator!");
+    expect(test_community.whichSphere(test_city)).toBe("- Test City is located right on the Equator!");
 });
 
 test('test mostNorthern and mostSouthern', () => {

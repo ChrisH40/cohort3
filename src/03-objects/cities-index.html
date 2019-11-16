@@ -25,13 +25,14 @@
                 <p>Latitude: </p><input type="number" id="idCityLatitudeInput" class="create-city-input">
                 <p>Longitude: </p><input type="number" id="idCityLongitudeInput" class="create-city-input">
                 <p>Population: </p><input type="number" id="idCityPopulationInput" class="create-city-input">
-                <input type="button" id="idCreateCityButton" class="create-city-button" value="Create City">
+                <input type="button" id="idCreateCityButton" class="create-city-button" value="Add City">
             </div>
         </div>
         <div class="container-middle-top" id="idMiddleTopContainer">
-            <span class="container-middle-top-header display-header">
-                <!-- tbd header -->
-            </span>
+            <div class="city-card-headers">
+                <span class="city-headers city-text">City</span><span class="city-headers lat-text">Latitude</span>
+                <span class="city-headers long-text">Longitude</span><span class="city-headers pop-text">Population</span>
+            </div>
             <div class="city-display" id="idCityDisplay">
                 <!-- created city divs -->
             </div>

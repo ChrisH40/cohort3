@@ -12,7 +12,7 @@ export class City {
     }
 
     show() {
-        return `${this.name} is located at ${this.latitude} latitude, ${this.longitude} longitude and has a population of ${this.population} people.`
+        return `- ${this.name} is located at ${this.latitude} latitude, ${this.longitude} longitude and has a population of ${this.population} people.`
     }
 
     movedIn(amount) {
@@ -29,14 +29,14 @@ export class City {
 
     howBig() {
         if (this.population > 100000) {
-            return `${this.name} is a City with a population > 100,000 people.`
+            return `- ${this.name} is a City with a population > 100,000 people.`
         } else if (this.population >= 20000 && this.population <= 100000) {
-            return `${this.name} is a Large Town with a population of 20,000 to 100,000 people.`
+            return `- ${this.name} is a Large Town with a population of 20,000 to 100,000 people.`
         } else if (this.population >= 1000 && this.population <= 19999) {
-            return `${this.name} is a Town with a population of 1,000 to 20,000 people.`
+            return `- ${this.name} is a Town with a population of 1,000 to 20,000 people.`
         } else if (this.population > 100 && this.population < 1000) {
-            return `${this.name} is a Village, larger than a Hamlet but smaller than a Town.`
-        } else return `${this.name} is a Hamlet with population of 1 to 100 people.`
+            return `- ${this.name} is a Village, larger than a Hamlet but smaller than a Town.`
+        } else return `- ${this.name} is a Hamlet with population of 1 to 100 people.`
     }
 };
 
@@ -50,10 +50,10 @@ export class Community {
 
     whichSphere(city) {
         if (city.latitude > 0) {
-            return `${city.name} is located in the Northern Hemisphere.`
+            return `- ${city.name} is located in the Northern Hemisphere.`
         } else if (city.latitude < 0) {
-            return `${city.name} is located in the Southern Hemisphere.`
-        } else return `${city.name} is located right on the Equator!`
+            return `- ${city.name} is located in the Southern Hemisphere.`
+        } else return `- ${city.name} is located right on the Equator!`
     }
 
     getMostNorthern() {
@@ -96,21 +96,21 @@ export class Community {
 
     deleteCity(search) {
         let array = this.cities;
-        let id_array = array.map(a => a.key);
-        let searchedID = (id) => {
-            return id == search; 
+        let key_array = array.map(a => a.key);
+        let searchedKey = (key) => {
+            return key == search; 
         }
-        let keyElement = id_array.findIndex(searchedID);
+        let keyElement = key_array.findIndex(searchedKey);
         syncFunctions.deleteCitySync(search);
         array.splice(keyElement, 1);
         return array;
     }
 
-    findCity(key) {
+    findCity(cityKey) {
         let array = this.cities;
         let IDArray = array.map(a => a.key);
         let searchedID = (ID) => {
-            return ID == key;
+            return ID == cityKey;
         }
         let keyElement = IDArray.findIndex(searchedID);
         return keyElement;
