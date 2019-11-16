@@ -125,7 +125,7 @@ test('test createCity for Comp 130E', () => {
     expect(myFav.population).toBe(2000000);
 
     // As a result of myFav's population being changed, myCity's population changed. 
-    // This is because myFav is not its own variable but a reference to the myCity variable.
+    // This is because myFav is not its own variable but a reference to the data in the myCity variable (which is a reference itself).
 
     
 });
