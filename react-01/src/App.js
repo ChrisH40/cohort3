@@ -13,7 +13,7 @@ class App extends React.Component {
     this.counter = 21;
     this.state = {
       myState: "TBD",
-      evenOddDisplay: <OddComponent appCounter={this.counter} />
+      evenOddDisplay: ""
     }
   }
 
@@ -22,7 +22,7 @@ class App extends React.Component {
     this.counter++;
     console.log(this.counter);
     this.setState(
-      { myState: "now:" + this.counter },
+      { myState: "now: " + this.counter },
     )
     this.numberChecker();
   }
@@ -40,7 +40,7 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1>I am in control of this application and my name is Chris {this.counter} {this.state.myState}</h1>
+          <h1>I am in control of this application and my name is Chris {this.state.myState}</h1>
           <button onClick={this.onPushMe}>
             Push Me
           </button>
