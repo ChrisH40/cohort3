@@ -19,16 +19,14 @@
   animation-duration: 5000ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear; 
-  height: 200px;
-  margin: 20px;
+  height: 20vmin;
+  margin: 25px;
 }
 
 .icon:hover {
-  filter: grayscale(100%) sepia(100%);
+  filter: grayscale(25%) sepia(25%);
   cursor: pointer;
   outline: 0;
-  animation-name: spin-counter-clockwise;
-  animation-duration: 4000ms;
 }
 
 .icon:focus {
@@ -36,6 +34,14 @@
   outline: 0;
   animation-name: spin-counter-clockwise;
   animation-duration: 4000ms;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-link {
+  color: #09d3ac;
 }
 
 @keyframes spin-clockwise {
@@ -54,12 +60,4 @@
   to {
       transform:rotate(-360deg);
   }
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-link {
-  color: #09d3ac;
 }

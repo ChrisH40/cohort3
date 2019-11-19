@@ -5,11 +5,18 @@ import Icons from "./components/MyIcons.js"
 
 class App extends React.Component {
 
+  selectedElement = (event) => {
+    this.setState({
+        selected: event.target.name
+    });
+    console.log(event.target.name);
+}
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <Icons />
+          <Icons selectedElement={this.selectedElement}/>
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.

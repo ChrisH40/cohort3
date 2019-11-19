@@ -8,9 +8,16 @@ import reactIcon from './images/react-icon.svg';
 
 class Icons extends React.Component {
 
+    constructor() {
+        super();
+        this.state = {
+            selected: ""
+        }
+    }
+
     imageMapper = () => {
         const images = [nuclearAtomIcon, explosionIcon, reactIcon, houseIcon, nuclearRadiationIcon];
-        return images.map((image, i) => <img key={i} name={image} src={image} tabIndex={i} className={`icon ${image}`} alt={`icon ${image}`}/>);  
+        return images.map((image, i) => <img key={i} name={image} src={image} tabIndex={i} className={`icon ${image}`} alt={`icon ${image}`} onClick={this.props.selectedElement} />);
     }
 
     render() {
