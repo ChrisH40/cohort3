@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 
-import Icons from "./components/MyIcons.js"
 import Homepage from "./components/MyHomepage.js"
 import Game from "./components/MyGame.js"
 
@@ -13,26 +12,28 @@ import ticTacToeIcon from 'C:/code/cohort3/react-02/src/images/tic-tac-toe-icon.
 
 class App extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      selected: nuclearAtomIcon
+      selected: nuclearAtomIcon,
     }
-  }
-
-  selectedElement = (event) => {
-    this.setState({
-      selected: event.target.name
-    });
-    console.log(event.target.name);
   }
 
   navIconMapper = () => {
     const images = [nuclearAtomIcon, ticTacToeIcon, explosionIcon, nuclearRadiationIcon, houseIcon];
-    return images.map((image, i) => <img key={i} name={image} src={image} tabIndex={0} className={`icon ${image}`} alt={`icon ${image}`} onClick={this.selectedElement} />);
+    return images.map((image, i) =>
+      <img key={i}
+        name={image}
+        src={image}
+        tabIndex={0}
+        className={`icon icon${i}`}
+        alt={`icon ${image}`}
+        onClick={(event) => this.setState({ selected: event.target.name })}
+      />
+    );
   }
 
-  displayScreen = () => {
+  handleSelected = () => {
     if (this.state.selected === nuclearAtomIcon) {
       return < Homepage />;
     } if (this.state.selected === ticTacToeIcon) {
@@ -46,10 +47,12 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Icons navIconMapper={this.navIconMapper} />
+          <div className="navbar">
+            {this.navIconMapper()}
+          </div>
         </header>
         <div className="App-display">
-          {this.displayScreen()}
+          {this.handleSelected()}
         </div>
       </div>
     );

@@ -17,11 +17,12 @@
 .icon {
   transform:rotate(360deg);
   animation-name: spin-clockwise;
-  animation-duration: 6000ms;
+  animation-duration: 10000ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear; 
-  height: 10vmin;
-  margin: 50px;
+  height: 10vh;
+  width: 10vw;
+  margin: 25px;
 }
 
 .icon:hover {
@@ -34,7 +35,7 @@
   filter: grayscale(100%) sepia(100%);
   outline: 0;
   animation-name: spin-counter-clockwise;
-  animation-duration: 4500ms;
+  animation-duration: 7000ms;
 }
 
 @keyframes spin-clockwise {
@@ -79,28 +80,22 @@
   color: #09d3ac;
 }
 
-/* game (tic-tac-toe) css */
+/* --- Game (tic-tac-toe) CSS --- */
+ /* reference React Tutorial for original CSS as this has been altered */
 
 .game {
+  background-color: #282c34;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
-  transform: scale(2);
+  font-size: calc(10px + 2vmin);
+  color: white;
+  min-height: 100vmin;
 }
-
-/* .game {
-  display: flex;
-  flex-direction: row;
-} */
-
-/* modified .game css, original is above */
 
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
-  /* margin: 20px; */
-  /* deleted this, was affecting entire page. added to .game above instead */
 }
 
 ol, ul {
@@ -121,15 +116,15 @@ ol, ul {
   background: #fff;
   border: 1px solid #999;
   float: left;
-  font-size: 24px;
+  font-size: calc(25px + 2vmin);
   font-weight: bold;
-  line-height: 34px;
-  height: 34px;
+  line-height: 100px;
+  height: 100px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 100px;
 }
 
 .square:focus {
