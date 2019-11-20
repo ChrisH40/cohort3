@@ -19,40 +19,41 @@ class App extends React.Component {
     }
   }
 
-  navIconMapper = () => {
-    const images = [nuclearAtomIcon, ticTacToeIcon, explosionIcon, nuclearRadiationIcon, houseIcon];
-    return images.map((image, i) =>
+  navIconMapper = (icons) => {
+    return icons.map((icon, i) =>
       <img key={i}
-        name={image}
-        src={image}
+        name={icon}
+        src={icon}
         tabIndex={0}
         className={`icon icon${i}`}
-        alt={`icon ${image}`}
+        alt={`icon ${icon}`}
         onClick={(event) => this.setState({ selected: event.target.name })}
       />
     );
   }
 
-  handleSelected = () => {
-    if (this.state.selected === nuclearAtomIcon) {
+  handleSelected = (clicked) => {
+    if (clicked === nuclearAtomIcon) {
       return < Homepage />;
-    } if (this.state.selected === ticTacToeIcon) {
+    } if (clicked === ticTacToeIcon) {
       return < Game />;
-    } if (this.state.selected === explosionIcon || this.state.selected === nuclearRadiationIcon || this.state.selected === houseIcon) {
+    } if (clicked === explosionIcon || clicked === nuclearRadiationIcon || clicked === houseIcon) {
       return < Homepage />;
     }
   }
 
   render() {
+    const images = [nuclearAtomIcon, ticTacToeIcon, explosionIcon, nuclearRadiationIcon, houseIcon];
+    
     return (
       <div className="App">
         <header className="App-header">
           <div className="navbar">
-            {this.navIconMapper()}
+            {this.navIconMapper(images)}
           </div>
         </header>
         <div className="App-display">
-          {this.handleSelected()}
+          {this.handleSelected(this.state.selected)}
         </div>
       </div>
     );

@@ -17,7 +17,7 @@
 .icon {
   transform:rotate(360deg);
   animation-name: spin-clockwise;
-  animation-duration: 10000ms;
+  animation-duration: 15000ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear; 
   height: 10vh;
@@ -35,7 +35,7 @@
   filter: grayscale(100%) sepia(100%);
   outline: 0;
   animation-name: spin-counter-clockwise;
-  animation-duration: 7000ms;
+  animation-duration: 10000ms;
 }
 
 @keyframes spin-clockwise {
@@ -66,7 +66,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
   min-height: 100vmin;
@@ -74,6 +73,7 @@
 
 .App-logo {
   height: 40vmin;
+  margin-top: 20px;
 }
 
 .App-link {
@@ -86,12 +86,26 @@
 .game {
   background-color: #282c34;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(5px + 2vmin);
   color: white;
   min-height: 100vmin;
+}
+
+.board-info-wrapper {
+  margin-top: 20px;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.game-board {
+  float: left;
+}
+
+.game-info {
+  float: left;
+  margin-left: 50px;
 }
 
 body {
@@ -118,13 +132,13 @@ ol, ul {
   float: left;
   font-size: calc(25px + 2vmin);
   font-weight: bold;
-  line-height: 100px;
-  height: 100px;
+  line-height: 10vh;
+  height: 10vh;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 100px;
+  width: 10vh;
 }
 
 .square:focus {
@@ -134,8 +148,3 @@ ol, ul {
 .kbd-navigation .square:focus {
   background: #ddd;
 }
-
-.game-info {
-  margin-left: 20px;
-}
-
