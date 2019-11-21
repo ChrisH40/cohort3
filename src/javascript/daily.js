@@ -1,6 +1,26 @@
 
 const functions = {
 
+    // --- Daily 15 - 2019 NOV 21 ---
+
+    callbackPeopleAgeAvg: (data) => {
+        const age_array = data.map(data => data.age);
+        const tot_ppl = age_array.length;
+        const tot_age = age_array.reduce((sum, num) => sum + num);
+        const avg_age = Number((tot_age / tot_ppl).toFixed(2));
+        const AB_BC_age_obj =
+        {
+            total_people: tot_ppl,
+            total_age: tot_age,
+            avgerage_age: avg_age,
+        };
+        return AB_BC_age_obj;
+    },
+
+    // --- Daily 14 - 2019 NOV 14 ---
+
+    //Pair Programming
+
     // --- Daily 13 - 2019 NOV 8 ---
 
     britishColumbiaAlberta: (data, callback) => {

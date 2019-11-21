@@ -1,6 +1,6 @@
 import functions from './daily.js'
 
-// --- Daily 13 Data ---
+// --- Daily 13, 15 Data ---
 
 const people = [
     { fname: "Alex", lname: "Smith", province: "BC", age: 33 },
@@ -49,6 +49,21 @@ const people = [
     { fname: "Tylor", lname: "Torres", province: "MN", age: 98 }
 ];
 
+// --- Daily 15 Tests (Part 2) - 2019 NOV 21 ---
+
+test('people callbackPeopleAgeAvg', () => {
+    const testpeople = [
+
+        { fname: "Alex", lname: "Smith", province: "BC", age: 33 },
+        { fname: "Angela", lname: "Jones", province: "AB", age: 61 },
+        { fname: "Anne", lname: "Bird", province: "SK", age: 35 },
+        { fname: "Brent", lname: "Riddle", province: "MN", age: 79 }
+    ]
+
+    expect(functions.britishColumbiaAlberta(testpeople, functions.callbackPeopleAgeAvg)).toEqual({"avgerage_age": 47.00, "total_age": 94, "total_people": 2});  
+    expect(functions.britishColumbiaAlberta(people, functions.callbackPeopleAgeAvg)).toEqual({"avgerage_age": 38.09, "total_age": 838, "total_people": 22});    
+});
+
 // --- Daily 13 Tests (Part 1) - 2019 NOV 8 ---
 
 test('people britishColumbiaAlberta', () => {
@@ -61,6 +76,14 @@ test('people britishColumbiaAlberta', () => {
     ]
 
     expect(functions.britishColumbiaAlberta(testpeople, functions.callbackFirstLastNames)).toEqual(["Alex Smith", "Angela Jones"]);
+    expect(functions.britishColumbiaAlberta(people, functions.callbackFirstLastNames))
+        .toEqual(
+
+            ["Alex Smith", "Angela Jones", "Byron Cardenas", "Carrie Ramirez", "Dustin Bullock", "Eva Keiths", "Forest Vaughn", 
+            "Giovanni Browning", "Ian Fitzgerald", "James Kramer", "Jinbong Robinson", "Jingnan Hatfield", "Latora Matthews", 
+            "Lauren McClure", "Luis Price", "Marcela Perez", "Monica Giles", "Niloufar Carson", "Roman Swanson", "Seun Kelly", 
+            "Thomas Hart", "Trent Kerr"]
+        );
 
     const testpeople_east = [
 
@@ -69,6 +92,7 @@ test('people britishColumbiaAlberta', () => {
     ]
 
     expect(functions.britishColumbiaAlberta(testpeople_east, functions.callbackFirstLastNames)).toBe("SK or MN");
+
 });
 
 test('people callbackFirstLastNames', () => {
