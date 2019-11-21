@@ -14,9 +14,22 @@ class Game extends React.Component {
   }
 
   handleClick(i) {
+    const location = [
+      [1, 1],
+      [2, 1],
+      [3, 1],
+      [1, 2],
+      [2, 2],
+      [3, 2],
+      [1, 3],
+      [2, 3],
+      [3, 3],
+    ];
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
+    console.log(squares + " initial square state");
+
     if (this.calculateWinner(squares) || squares[i]) {
       return;
     }
@@ -24,10 +37,12 @@ class Game extends React.Component {
     this.setState({
       history: history.concat([{
         squares: squares,
+        location: location[i],
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
     });
+    console.log(squares + " end square state");
   }
 
   jumpTo(step) {
@@ -44,28 +59,36 @@ class Game extends React.Component {
 
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Go to move #' + move :
+        'Go to move #' + move + ` (${history[move].location})` :
         'Go to game start';
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.jumpTo(move)}>{move === this.state.stepNumber ? <b>{desc}</b> : desc}</button>
         </li>
       );
     });
 
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Winner: ' + winner.player;
+    } else if (!current.squares.includes(null)) {
+      status = 'Draw';
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next Move: ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
       <div className="game">
         <h1>Tic-Tac-Toe</h1>
+        <p>First Player (X):</p>
+        <select name="first-player">
+          <option value="human">Human</option>
+          <option value="computer">Computer</option>
+        </select>
         <div className="game board-info-wrapper">
           <div className="game-board">
             <Board
+              winningRow={winner ? winner.row : []}
               squares={current.squares}
               onClick={(i) => this.handleClick(i)}
             />
@@ -93,7 +116,7 @@ class Game extends React.Component {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
+        return { player: squares[a], row: [a, b, c] };
       }
     }
     return null;

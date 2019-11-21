@@ -148,3 +148,11 @@ ol, ul {
 .kbd-navigation .square:focus {
   background: #ddd;
 }
+
+.boldedButton {
+  font-weight: bold;
+}
+
+.winning-square {
+  background: rgb(183, 248, 62);
+}
