@@ -1,6 +1,37 @@
 
 const functions = {
 
+    // --- Daily 16 - 2019 NOV 22 ---
+
+    arraySortArrowFunction: (data) => {
+        let myArray = data;
+        myArray.sort((a, b) => {
+            if (a.origin > b.origin) { return -1; }
+            if (a.origin < b.origin) { return 1; }
+            return 0;
+        })
+        console.log("myArray = ", myArray);
+        return myArray;
+    },
+
+    arraySortNamedFunction(data) {
+        let myArray = data;
+        myArray.sort((a, b) => {
+            if (a.str < b.str) { return -1; }
+            if (a.str > b.str) { return 1; }
+            return 0;
+        })
+        console.log("myArray = ", myArray);
+        return myArray;
+    },
+
+    function(data) {
+        let myArray = data;
+        myArray.sort((a, b) => parseFloat(a.num) - parseFloat(b.num));
+        console.log("myArray = ", myArray);
+        return myArray;
+    },
+
     // --- Daily 15 - 2019 NOV 21 ---
 
     callbackPeopleAgeAvg: (data) => {

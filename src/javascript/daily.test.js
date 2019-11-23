@@ -1,5 +1,72 @@
 import functions from './daily.js'
 
+// --- Daily 16 Data ---
+
+let myArray = [
+    { num: 5, str: "apples", origin: "BC" },
+    { num: 7, str: "oranges", origin: "Florida" },
+    { num: 2, str: "lemons", origin: "Mexico" },
+    { num: 8, str: "bananas", origin: "Ecuador" },
+    { num: 6, str: "avocados", origin: "Mexico" },
+    { num: 4, str: "pineapple", origin: "Brazil" },
+    { num: 3, str: "blueberries", origin: "Chile" },
+    { num: 9, str: "pears", origin: "Oregon" },
+    { num: 1, str: "cantaloupe", origin: "California" }
+];
+
+// --- Daily 16 Test - 2019 NOV 22 ---
+
+test('test arraySortArrowFunction reverse alphabetic origin', () => {
+    expect(functions.arraySortArrowFunction(myArray))
+        .toEqual(
+            [
+                { "num": 9, "origin": "Oregon", "str": "pears" },
+                { "num": 2, "origin": "Mexico", "str": "lemons" },
+                { "num": 6, "origin": "Mexico", "str": "avocados" },
+                { "num": 7, "origin": "Florida", "str": "oranges" },
+                { "num": 8, "origin": "Ecuador", "str": "bananas" },
+                { "num": 3, "origin": "Chile", "str": "blueberries" },
+                { "num": 1, "origin": "California", "str": "cantaloupe" },
+                { "num": 4, "origin": "Brazil", "str": "pineapple" },
+                { "num": 5, "origin": "BC", "str": "apples" }
+            ]
+        );
+});
+
+test('test arraySortNamedFunction alphabetic str', () => {
+    expect(functions.arraySortNamedFunction(myArray))
+        .toEqual(
+            [
+                { "num": 5, "origin": "BC", "str": "apples" },
+                { "num": 6, "origin": "Mexico", "str": "avocados" },
+                { "num": 8, "origin": "Ecuador", "str": "bananas" },
+                { "num": 3, "origin": "Chile", "str": "blueberries" },
+                { "num": 1, "origin": "California", "str": "cantaloupe" },
+                { "num": 2, "origin": "Mexico", "str": "lemons" },
+                { "num": 7, "origin": "Florida", "str": "oranges" },
+                { "num": 9, "origin": "Oregon", "str": "pears" },
+                { "num": 4, "origin": "Brazil", "str": "pineapple" }
+            ]
+        );
+});
+
+test('test anonymousFunctionNumberSort numbers ascending', () => {
+    expect(functions.function(myArray))
+        .toEqual(
+            [
+                { "num": 1, "origin": "California", "str": "cantaloupe" },
+                { "num": 2, "origin": "Mexico", "str": "lemons" },
+                { "num": 3, "origin": "Chile", "str": "blueberries" },
+                { "num": 4, "origin": "Brazil", "str": "pineapple" },
+                { "num": 5, "origin": "BC", "str": "apples" },
+                { "num": 6, "origin": "Mexico", "str": "avocados" },
+                { "num": 7, "origin": "Florida", "str": "oranges" },
+                { "num": 8, "origin": "Ecuador", "str": "bananas" },
+                { "num": 9, "origin": "Oregon", "str": "pears" }
+            ]
+        );
+});
+
 // --- Daily 13, 15 Data ---
 
 const people = [
@@ -60,8 +127,8 @@ test('people callbackPeopleAgeAvg', () => {
         { fname: "Brent", lname: "Riddle", province: "MN", age: 79 }
     ]
 
-    expect(functions.britishColumbiaAlberta(testpeople, functions.callbackPeopleAgeAvg)).toEqual({"avgerage_age": 47.00, "total_age": 94, "total_people": 2});  
-    expect(functions.britishColumbiaAlberta(people, functions.callbackPeopleAgeAvg)).toEqual({"avgerage_age": 38.09, "total_age": 838, "total_people": 22});    
+    expect(functions.britishColumbiaAlberta(testpeople, functions.callbackPeopleAgeAvg)).toEqual({ "avgerage_age": 47.00, "total_age": 94, "total_people": 2 });
+    expect(functions.britishColumbiaAlberta(people, functions.callbackPeopleAgeAvg)).toEqual({ "avgerage_age": 38.09, "total_age": 838, "total_people": 22 });
 });
 
 // --- Daily 13 Tests (Part 1) - 2019 NOV 8 ---
@@ -79,10 +146,10 @@ test('people britishColumbiaAlberta', () => {
     expect(functions.britishColumbiaAlberta(people, functions.callbackFirstLastNames))
         .toEqual(
 
-            ["Alex Smith", "Angela Jones", "Byron Cardenas", "Carrie Ramirez", "Dustin Bullock", "Eva Keiths", "Forest Vaughn", 
-            "Giovanni Browning", "Ian Fitzgerald", "James Kramer", "Jinbong Robinson", "Jingnan Hatfield", "Latora Matthews", 
-            "Lauren McClure", "Luis Price", "Marcela Perez", "Monica Giles", "Niloufar Carson", "Roman Swanson", "Seun Kelly", 
-            "Thomas Hart", "Trent Kerr"]
+            ["Alex Smith", "Angela Jones", "Byron Cardenas", "Carrie Ramirez", "Dustin Bullock", "Eva Keiths", "Forest Vaughn",
+                "Giovanni Browning", "Ian Fitzgerald", "James Kramer", "Jinbong Robinson", "Jingnan Hatfield", "Latora Matthews",
+                "Lauren McClure", "Luis Price", "Marcela Perez", "Monica Giles", "Niloufar Carson", "Roman Swanson", "Seun Kelly",
+                "Thomas Hart", "Trent Kerr"]
         );
 
     const testpeople_east = [
