@@ -17,11 +17,10 @@ class Game extends React.Component {
   }
 
   firstPlayer(event) {
+    const booleanState = (event.target.value === "true");
     if (this.state.startGame === false) {
-      const booleanState = (event.target.value === "true");
       this.setState(() => ({
         computerTurn: booleanState,
-        computerX: booleanState,
       }));
     }
   }
@@ -32,10 +31,14 @@ class Game extends React.Component {
       startGame: booleanState,
     });
     if (this.state.computerTurn === true && this.state.startGame === true) {
-      this.compDecision(this.state.history[0].squares);
+      await this.setState({
+        computerIsX: booleanState,
+      });
+      return this.compDecision(this.state.history[0].squares);
     } return;
   }
 
+  // minimax?
   compDecision(board) {
     setTimeout(() => {
       if (this.state.computerTurn === true && this.state.startGame === true) {
@@ -43,14 +46,12 @@ class Game extends React.Component {
           return index === null;
         }
         const pick = board.findIndex(is_null);
-        this.handleComp(pick);
+        return this.handleClick(pick);
       }
     }, 1500);
   }
 
-  // --- refactor: combine handleComp and handleClick ---
-
-  async handleComp(i) {
+  async handleClick(i) {
     const location = [
       [1, 1],
       [2, 1],
@@ -77,46 +78,12 @@ class Game extends React.Component {
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
-      computerTurn: false,
+      computerTurn: !this.state.computerTurn,
     });
-    return;
-  }
-
-  async handleClick(i) {
-    if (this.state.computerTurn === false && this.state.startGame === true) {
-      const location = [
-        [1, 1],
-        [2, 1],
-        [3, 1],
-        [1, 2],
-        [2, 2],
-        [3, 2],
-        [1, 3],
-        [2, 3],
-        [3, 3],
-      ];
-      const history = this.state.history.slice(0, this.state.stepNumber + 1);
-      const current = history[history.length - 1];
-      const squares = current.squares.slice();
-
-      if (this.calculateWinner(squares) || squares[i]) {
-        return;
-      }
-      squares[i] = this.state.xIsNext ? 'X' : 'O';
-      await this.setState({
-        history: history.concat([{
-          squares: squares,
-          location: location[i],
-        }]),
-        stepNumber: history.length,
-        xIsNext: !this.state.xIsNext,
-        computerTurn: true,
-      });
+    if (this.state.computerTurn === true && this.state.startGame === true) {
       return this.compDecision(squares);
     }
   }
-
-   // --- refactor: combine handleComp and handleClick ---
 
   async jumpTo(step) {
     await this.setState({
@@ -167,7 +134,6 @@ class Game extends React.Component {
         <div>
           <p>First Player (X):</p>
           <select
-            name="first-player"
             className="first-player-dropdown"
             onChange={(event) => { this.firstPlayer(event) }}
           >
@@ -183,7 +149,7 @@ class Game extends React.Component {
             <Board
               winningRow={winner ? winner.row : []}
               squares={current.squares}
-              onClick={(i) => this.handleClick(i)} //originally handleClick...
+              onClick={(i) => this.handleClick(i)}
             />
           </div>
           <div className="game-info">
@@ -217,31 +183,3 @@ class Game extends React.Component {
 }
 
 export default Game;
-
-  // computerTurn(squares) {
-  //   if (this.state.computerTurn === true && this.state.startGame === true) {
-  //     setTimeout(async () => {
-  //       console.log(squares);
-  //       for (let i = 0; i < squares.length; i++) {
-  //         if (squares[i] === null) {
-  //           squares[i] = "X";
-  //           break;
-  //         }
-  //       }
-  //       await this.setState({
-  //         computerTurn: false,
-  //         xIsNext: !this.state.xIsNext,
-  //       })
-  //     }, 500)
-  //   }
-  // }
-
-  // turnDecider(board, i) {
-  //   setTimeout(() => {
-  //     if (this.state.computerTurn === true && this.state.startGame === true) {
-  //       return this.computerDecision(board);
-  //     } else if (this.state.computerTurn === false && this.state.startGame === true) {
-  //       return this.handleClick(i);
-  //     }
-  //   }, 1000)
-  // }
