@@ -10,10 +10,47 @@ class Game extends React.Component {
       }],
       stepNumber: 0,
       xIsNext: true,
+      startGame: false,
+      computerTurn: false,
+      computerIsX: false,
     }
   }
 
-  handleClick(i) {
+  firstPlayer(event) {
+    if (this.state.startGame === false) {
+      const booleanState = (event.target.value === "true");
+      this.setState(() => ({
+        computerTurn: booleanState,
+        computerX: booleanState,
+      }));
+    }
+  }
+
+  async startGame(event) {
+    const booleanState = (event.target.value === "true");
+    await this.setState({
+      startGame: booleanState,
+    });
+    if (this.state.computerTurn === true && this.state.startGame === true) {
+      this.compDecision(this.state.history[0].squares);
+    } return;
+  }
+
+  compDecision(board) {
+    setTimeout(() => {
+      if (this.state.computerTurn === true && this.state.startGame === true) {
+        const is_null = (index) => {
+          return index === null;
+        }
+        const pick = board.findIndex(is_null);
+        this.handleComp(pick);
+      }
+    }, 1500);
+  }
+
+  // --- refactor: combine handleComp and handleClick ---
+
+  async handleComp(i) {
     const location = [
       [1, 1],
       [2, 1],
@@ -33,21 +70,70 @@ class Game extends React.Component {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
+    await this.setState({
       history: history.concat([{
         squares: squares,
         location: location[i],
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
+      computerTurn: false,
     });
+    return;
   }
 
-  jumpTo(step) {
-    this.setState({
+  async handleClick(i) {
+    if (this.state.computerTurn === false && this.state.startGame === true) {
+      const location = [
+        [1, 1],
+        [2, 1],
+        [3, 1],
+        [1, 2],
+        [2, 2],
+        [3, 2],
+        [1, 3],
+        [2, 3],
+        [3, 3],
+      ];
+      const history = this.state.history.slice(0, this.state.stepNumber + 1);
+      const current = history[history.length - 1];
+      const squares = current.squares.slice();
+
+      if (this.calculateWinner(squares) || squares[i]) {
+        return;
+      }
+      squares[i] = this.state.xIsNext ? 'X' : 'O';
+      await this.setState({
+        history: history.concat([{
+          squares: squares,
+          location: location[i],
+        }]),
+        stepNumber: history.length,
+        xIsNext: !this.state.xIsNext,
+        computerTurn: true,
+      });
+      return this.compDecision(squares);
+    }
+  }
+
+   // --- refactor: combine handleComp and handleClick ---
+
+  async jumpTo(step) {
+    await this.setState({
       stepNumber: step,
       xIsNext: (step % 2) === 0,
     });
+    if (this.state.xIsNext === true && this.state.computerIsX === true) {
+      await this.setState({
+        computerTurn: true,
+      });
+      return this.compDecision(this.state.history[step].squares);
+    } else if (this.state.xIsNext === false && this.state.computerIsX === false) {
+      await this.setState({
+        computerTurn: true,
+      });
+      return this.compDecision(this.state.history[step].squares);
+    }
   }
 
   render() {
@@ -61,7 +147,7 @@ class Game extends React.Component {
         'Go to game start';
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{move === this.state.stepNumber ? <b>{desc}</b> : desc}</button>
+          <button className="history-button" onClick={() => this.jumpTo(move)}>{move === this.state.stepNumber ? <b>{desc}</b> : desc}</button>
         </li>
       );
     });
@@ -78,17 +164,26 @@ class Game extends React.Component {
     return (
       <div className="game">
         <h1>Tic-Tac-Toe</h1>
-        <p>First Player (X):</p>
-        <select name="first-player">
-          <option value="human">Human</option>
-          <option value="computer">Computer</option>
-        </select>
+        <div>
+          <p>First Player (X):</p>
+          <select
+            name="first-player"
+            className="first-player-dropdown"
+            onChange={(event) => { this.firstPlayer(event) }}
+          >
+            <option value="false">Human</option>
+            <option value="true">Computer</option>
+          </select>
+        </div>
+        <div>
+          <button className="start-button" value="true" onClick={(event) => this.startGame(event)}>Start Game</button>
+        </div>
         <div className="game board-info-wrapper">
           <div className="game-board">
             <Board
               winningRow={winner ? winner.row : []}
               squares={current.squares}
-              onClick={(i) => this.handleClick(i)}
+              onClick={(i) => this.handleClick(i)} //originally handleClick...
             />
           </div>
           <div className="game-info">
@@ -122,3 +217,31 @@ class Game extends React.Component {
 }
 
 export default Game;
+
+  // computerTurn(squares) {
+  //   if (this.state.computerTurn === true && this.state.startGame === true) {
+  //     setTimeout(async () => {
+  //       console.log(squares);
+  //       for (let i = 0; i < squares.length; i++) {
+  //         if (squares[i] === null) {
+  //           squares[i] = "X";
+  //           break;
+  //         }
+  //       }
+  //       await this.setState({
+  //         computerTurn: false,
+  //         xIsNext: !this.state.xIsNext,
+  //       })
+  //     }, 500)
+  //   }
+  // }
+
+  // turnDecider(board, i) {
+  //   setTimeout(() => {
+  //     if (this.state.computerTurn === true && this.state.startGame === true) {
+  //       return this.computerDecision(board);
+  //     } else if (this.state.computerTurn === false && this.state.startGame === true) {
+  //       return this.handleClick(i);
+  //     }
+  //   }, 1000)
+  // }

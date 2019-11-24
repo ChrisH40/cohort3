@@ -149,10 +149,19 @@ ol, ul {
   background: #ddd;
 }
 
-.boldedButton {
-  font-weight: bold;
-}
-
 .winning-square {
   background: rgb(183, 248, 62);
 }
+
+.start-button,
+.first-player-dropdown,
+.history-button {
+  margin: 5px;
+}
+
+.start-button:hover,
+.first-player-dropdown:hover,
+.history-button:hover {
+  cursor: pointer;
+}
+
