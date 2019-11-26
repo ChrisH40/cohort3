@@ -1,4 +1,16 @@
 import functions from './daily.js'
+import { Community } from './daily.js'
+
+// --- Daily 17 Test - 2019 NOV 26 ---
+
+test('test getPopulation array/object deconstruction', () => {
+    const test_community = new Community("Test Community");
+    test_community.createCity("Calgary", -114, 68, 1300000)
+    test_community.createCity("Edmonton", -113, 68, 900000)
+    test_community.createCity("Red Deer", -113.5, 68, 100000)
+    
+    expect(test_community.getPopulation()).toEqual(2300000);
+});
 
 // --- Daily 16 Data ---
 

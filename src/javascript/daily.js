@@ -1,4 +1,48 @@
 
+// --- Daily 17 - 2019 NOV 26 ---
+// See below getPopulation() method.
+
+export class City {
+
+    constructor(key, name, latitude, longitude, population) {
+        this.key = Number(key);
+        this.name = name;
+        this.latitude = Number(latitude);
+        this.longitude = Number(longitude);
+        this.population = Number(population);
+    }
+}
+
+export class Community {
+
+    constructor(community_name) {
+        this.community_name = community_name;
+        this.cities = [];
+        this.counter = 0;
+    }
+
+    createCity(name, latitude, longitude, population) {
+        this.counter++
+        let new_city = new City(this.counter, name, latitude, longitude, population);
+        this.cities.push(new_city);
+        return new_city;
+    }
+
+    // This method demonstrates an understanding of deconstructing:
+        // - A class "Community" into an array of objects "cities" with multiple properties.
+        // - An array of objects "cities" into an array of the values of one of properties of the objects "population".
+        // - An array of "population" values returning a single value, the total "population".
+
+    // This method was used in 03-objects/scripts/cities.js and will be used again for React.
+
+    getPopulation() {
+        const array = this.cities;
+        const city_populations = array.map(array => array.population);
+        const total_population = city_populations.reduce((sum, num) => sum + num);
+        return total_population;
+    }
+}
+
 const functions = {
 
     // --- Daily 16 - 2019 NOV 22 ---
