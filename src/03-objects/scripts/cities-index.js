@@ -6,7 +6,9 @@ export const communities = new Community("City List");
 
 const cityCreateButton = () => {
     if (idCityLatitudeInput.value >= -90 && idCityLatitudeInput.value <= 90 && idCityLongitudeInput.value >= -180 && idCityLongitudeInput.value <= 180 && idCityPopulationInput.value >= 0) {
-        communities.createCity(idCityDisplay, idCityNameInput.value, idCityLatitudeInput.value, idCityLongitudeInput.value, idCityPopulationInput.value);
+        const new_city = communities.createCity(idCityNameInput.value, idCityLatitudeInput.value, idCityLongitudeInput.value, idCityPopulationInput.value);
+        syncFunctions.createCitySync(new_city);
+        domFunctions.createCityDiv(idCityDisplay, new_city);
         cityChecker(communities);
         cityCreateClearFields();
     } else alert("Latitude -90 to 90 degrees. Longitude -180 to 180 degrees. Population equal to or greater than 0. Please re-enter.");
@@ -23,26 +25,32 @@ const cityCreateClearFields = () => {
 const cityButtonSelector = (event) => {
     let cityKey = event.target.parentNode.getAttribute("counter");
     let index = communities.findCity(cityKey);
+
     if (event.target.textContent == "Moved In") {
         let population_input = Number(event.target.parentNode.children[4].value);
         let population_display = event.target.parentNode.children[3];
         if (population_input > 0) {
             communities.cities[index].movedIn(population_input);
+            syncFunctions.populationSync(communities.cities[index]);
             population_display.textContent = Number(communities.cities[index].population.toFixed(0));
             cityChecker(communities);
         } else alert("Please enter a number greater than zero!");
         event.target.parentNode.children[4].value = "";
+
     } if (event.target.textContent == "Moved Out") {
         let population_input = Number(event.target.parentNode.children[4].value);
         let population_display = event.target.parentNode.children[3];
         if (population_input <= Number(population_display.textContent)) {
             communities.cities[index].movedOut(population_input);
+            syncFunctions.populationSync(communities.cities[index]);
             population_display.textContent = Number(communities.cities[index].population.toFixed(0));
             cityChecker(communities);
         } else alert("Please enter a number less than current population!");
         event.target.parentNode.children[4].value = "";
+
     } if (event.target.textContent == "Delete City") {
         communities.deleteCity(cityKey);
+        syncFunctions.deleteCitySync(cityKey);
         domFunctions.deleteCityCard(event.target);
         cityChecker(communities);
     }

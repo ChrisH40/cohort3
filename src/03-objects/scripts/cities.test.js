@@ -42,34 +42,31 @@ test('test whichSphere', () => {
 
 test('test mostNorthern and mostSouthern', () => {
     const test_community = new Community("Test Community");
-    const myDiv = document.createElement("div");
-    test_community.createCity(myDiv, "city 1", 60.01, -115.01, 1000000);
-    test_community.createCity(myDiv, "city 2", 10.17, -40.21, 50000);
+    test_community.createCity("city 1", 60.01, -115.01, 1000000);
+    test_community.createCity("city 2", 10.17, -40.21, 50000);
     expect(test_community.getMostNorthern()).toBe("city 1");
     expect(test_community.getMostSouthern()).toBe("city 2");
-    test_community.createCity(myDiv, "city 3", -48.17, 48.17, 77812);
-    test_community.createCity(myDiv, "city 4", 88.91, 114.56, 1);
+    test_community.createCity("city 3", -48.17, 48.17, 77812);
+    test_community.createCity("city 4", 88.91, 114.56, 1);
     expect(test_community.getMostNorthern()).toBe("city 4");
     expect(test_community.getMostSouthern()).toBe("city 3");
 });
 
 test('test getPopulation total for all cities', () => {
     const test_community = new Community("Test Community");
-    const myDiv = document.createElement("div");
-    test_community.createCity(myDiv, "city 1", 60.01, -115.01, 1000000);
-    test_community.createCity(myDiv, "city 2", 10.17, -40.21, 50000);
-    test_community.createCity(myDiv, "city 3", -48.17, 48.17, 77812);
-    test_community.createCity(myDiv, "city 4", 88.91, 114.56, 1);
+    test_community.createCity("city 1", 60.01, -115.01, 1000000);
+    test_community.createCity("city 2", 10.17, -40.21, 50000);
+    test_community.createCity("city 3", -48.17, 48.17, 77812);
+    test_community.createCity("city 4", 88.91, 114.56, 1);
     expect(test_community.getPopulation()).toBe(1127813);
 });
 
 test('test deleteCity', () => {
     const test_community = new Community("Test Community");
-    const myDiv = document.createElement("div");
-    test_community.createCity(myDiv, "new city 1", 60.01, -115.01, 1000000);
-    test_community.createCity(myDiv, "new city 2", 10.17, -40.21, 50000);
-    test_community.createCity(myDiv, "new city 3", -48.17, 48.17, 77812);
-    test_community.createCity(myDiv, "new city 4", 88.91, 114.56, 1);
+    test_community.createCity("new city 1", 60.01, -115.01, 1000000);
+    test_community.createCity("new city 2", 10.17, -40.21, 50000);
+    test_community.createCity("new city 3", -48.17, 48.17, 77812);
+    test_community.createCity("new city 4", 88.91, 114.56, 1);
     expect(test_community.cities).toEqual(
         [
             { "key": 1, "latitude": 60.01, "longitude": -115.01, "name": "new city 1", "population": 1000000 },
@@ -90,9 +87,8 @@ test('test deleteCity', () => {
 
 test('test create City', () => {
     const test_community = new Community("Test Community");
-    const myDiv = document.createElement("div");
     expect(test_community).toEqual({ "cities": [], "community_name": "Test Community", "counter": 0 });
-    test_community.createCity(myDiv, "Test City", 60.01, -115.01, 1000000);
+    test_community.createCity("Test City", 60.01, -115.01, 1000000);
     expect(test_community.cities).
         toEqual(
             [
@@ -103,11 +99,10 @@ test('test create City', () => {
 
 test('test findAccount key to array index', () => {
     const test_community = new Community("Test Community");
-    const myDiv = document.createElement("div");
-    test_community.createCity(myDiv, "new city 1", 60.01, -115.01, 1000000);
-    test_community.createCity(myDiv, "new city 2", 10.17, -40.21, 50000);
-    test_community.createCity(myDiv, "new city 3", -48.17, 48.17, 77812);
-    test_community.createCity(myDiv, "new city 4", 88.91, 114.56, 1);
+    test_community.createCity("new city 1", 60.01, -115.01, 1000000);
+    test_community.createCity("new city 2", 10.17, -40.21, 50000);
+    test_community.createCity("new city 3", -48.17, 48.17, 77812);
+    test_community.createCity("new city 4", 88.91, 114.56, 1);
     expect(test_community.findCity(2)).toBe(1);
 });
 
@@ -115,8 +110,7 @@ test('test findAccount key to array index', () => {
 
 test('test createCity for Comp 130E', () => {
     const test_community = new Community("Test Community");
-    const myDiv = document.createElement("div");
-    const myCity = test_community.createCity(myDiv, "Test City", 60.01, -115.01, 1000000);
+    const myCity = test_community.createCity("Test City", 60.01, -115.01, 1000000);
     const myFav = myCity;
     expect(myCity.population).toBe(1000000);
     expect(myFav.population).toBe(1000000);

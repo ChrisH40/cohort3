@@ -1,9 +1,11 @@
 import domFunctions from './account-dom-functions.js';
+import { Account } from './account.js';
 
 test('add account test', () => {
     const myDiv = document.createElement("div");
+    const myAcct = new Account(1, "Test Account Name", 100)
     expect(myDiv.hasChildNodes()).toBe(false);
-    domFunctions.createAccountDiv(myDiv, "Test Account Name", 100);
+    domFunctions.createAccountDiv(myDiv, myAcct);
     expect(myDiv.hasChildNodes()).toBe(true);
     expect(myDiv.childNodes[0].children.length).toEqual(6);
     expect(myDiv.childNodes[0].hasAttribute("id", "id-Test-Account-Name")).toEqual(true);

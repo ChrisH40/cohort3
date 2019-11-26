@@ -1,20 +1,20 @@
 
 const domFunctions = {
 
-    createAccountDiv: (parent, accountName, startingBalance, accountID) => {
-        let accountNameNoSpace = accountName.replace(/\s/g, "-");
+    createAccountDiv: (parent, account) => {
+        let accountNameNoSpace = String(account.accountName).replace(/\s/g, "-");
         const newAccount = document.createElement("div");
-        newAccount.id = `id-${accountID}`.toLowerCase();
+        newAccount.id = `id-${account.accountName}`.toLowerCase();
         newAccount.setAttribute("class", "account-card");
-        newAccount.setAttribute("counter", accountID);
+        newAccount.setAttribute("counter", account.key);
         parent.appendChild(newAccount);
         const newSpanName = document.createElement("span");
         newSpanName.setAttribute("class", "account-name");
-        newSpanName.textContent = accountName;
+        newSpanName.textContent = account.accountName;
         newAccount.appendChild(newSpanName);
         const newSpanBalance = document.createElement("span");
         newSpanBalance.setAttribute("class", "account-balance");
-        newSpanBalance.textContent = "$" + Number(startingBalance).toFixed(2);
+        newSpanBalance.textContent = "$" + Number(account.startingBalance).toFixed(2);
         newAccount.appendChild(newSpanBalance);
         const newInput = document.createElement("input");
         newInput.type = "number";
