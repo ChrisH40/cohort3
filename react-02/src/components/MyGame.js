@@ -11,19 +11,25 @@ class Game extends React.Component {
       stepNumber: 0,
       xIsNext: true,
       startGame: false,
-      computerTurn: false,
       humanPlayer: "X",
       computerPlayer: "O",
     }
   }
 
-  firstPlayer(event) {
-    const booleanState = (event.target.value === "true");
-    if (this.state.startGame === false) {
-      this.setState({
-        computerTurn: booleanState,
+  async firstPlayer(event) {
+    if (this.state.startGame === false && event.target.value === "human") {
+      await this.setState({
+        humanPlayer: "X",
+        computerPlayer: "O",
       });
-    }
+    } 
+    else if (this.state.startGame === false && event.target.value === "computer") {
+      await this.setState({
+        humanPlayer: "O",
+        computerPlayer: "X",
+      });
+    } 
+    else return;
   }
 
   async startGame(event) {
@@ -31,13 +37,18 @@ class Game extends React.Component {
     await this.setState({
       startGame: booleanState,
     });
-    if (this.state.computerTurn === true && this.state.startGame === true) {
-      await this.setState({
-        computerPlayer: "X",
-        humanPlayer: "O",
-      });
+    if (this.state.computerPlayer === "X" && this.state.xIsNext === true && this.state.startGame === true) {
       return this.compDecision(this.state.history[0].squares);
-    } return;
+    } 
+    else return;
+  }
+
+  humanDecision(i) {
+    if ((this.state.humanPlayer === "X" && this.state.xIsNext === true && this.state.startGame === true) ||
+      (this.state.humanPlayer === "O" && this.state.xIsNext === false && this.state.startGame === true)) {
+      return this.handleClick(i)
+    } 
+    else return;
   }
 
   // --- Computer AI (unbeatable) ---
@@ -45,7 +56,7 @@ class Game extends React.Component {
 
   compDecision(board) {
     setTimeout(() => {
-      if (this.state.computerTurn === true && this.state.startGame === true) {
+      if (board.includes(null)) {
         const pick = this.miniMax(board, this.state.computerPlayer);
         this.handleClick(pick.index);
       }
@@ -58,9 +69,11 @@ class Game extends React.Component {
 
     if (this.winningMoves(board_copy, this.state.humanPlayer)) {
       return { score: -10 };
-    } else if (this.winningMoves(board_copy, this.state.computerPlayer)) {
+    } 
+    else if (this.winningMoves(board_copy, this.state.computerPlayer)) {
       return { score: 10 };
-    } else if (open_spots.length === 0) {
+    } 
+    else if (open_spots.length === 0) {
       return { score: 0 };
     }
 
@@ -166,11 +179,12 @@ class Game extends React.Component {
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
-      computerTurn: !this.state.computerTurn,
     });
-    if (this.state.computerTurn === true && this.state.startGame === true) {
+    if ((this.state.computerPlayer === "X" && this.state.xIsNext === true && this.state.startGame === true) ||
+      (this.state.computerPlayer === "O" && this.state.xIsNext === false && this.state.startGame === true)) {
       return this.compDecision(squares);
-    }
+    } 
+    else return;
   }
 
   async jumpTo(step) {
@@ -178,14 +192,29 @@ class Game extends React.Component {
       stepNumber: step,
       xIsNext: (step % 2) === 0,
     });
+    if (this.state.stepNumber === 0) {
+      await this.setState({
+        history: [{
+          squares: Array(9).fill(null),
+        }],
+        stepNumber: 0,
+        xIsNext: true,
+        startGame: false,
+        humanPlayer: "X",
+        computerPlayer: "O",
+      });
+    }
     if (
       (this.state.xIsNext === true && this.state.computerPlayer === "X") ||
       (this.state.xIsNext === false && this.state.computerPlayer === "O")) {
-      await this.setState({
-        computerTurn: true,
-      });
       return this.compDecision(this.state.history[step].squares);
     }
+    else if (
+      (this.state.xIsNext === true && this.state.humanPlayer === "X") ||
+      (this.state.xIsNext === false && this.state.humanPlayer === "O")) {
+      return;
+    } 
+    else return;
   }
 
   render() {
@@ -196,7 +225,7 @@ class Game extends React.Component {
     const moves = history.map((step, move) => {
       const desc = move ?
         'Go to move #' + move + ` (${history[move].location})` :
-        'Go to game start';
+        'Reset Game';
       return (
         <li key={move}>
           <button className="history-button" onClick={() => this.jumpTo(move)}>{move === this.state.stepNumber ? <b>{desc}</b> : desc}</button>
@@ -207,9 +236,11 @@ class Game extends React.Component {
     let status;
     if (winner) {
       status = 'Winner: ' + winner.player;
-    } else if (!current.squares.includes(null)) {
+    } 
+    else if (!current.squares.includes(null)) {
       status = 'Draw';
-    } else {
+    } 
+    else {
       status = 'Next Move: ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
@@ -220,21 +251,21 @@ class Game extends React.Component {
           <p>First Player (X):</p>
           <select
             className="first-player-dropdown"
-            onChange={(event) => { this.firstPlayer(event) }}
+            onChange={(event) => this.firstPlayer(event)}
           >
-            <option value="false">Human</option>
-            <option value="true">Computer</option>
+            <option value="human">Human</option>
+            <option value="computer">Computer</option>
           </select>
         </div>
         <div>
-          <button className="start-button" value="true" onClick={(event) => this.startGame(event)}>Start Game</button>
+          <button className="start-button" value="true" onClick={(event) => this.startGame(event)}>{this.state.startGame ? "Game On!" : "Start Game"}</button>
         </div>
         <div className="game board-info-wrapper">
           <div className="game-board">
             <Board
               winningRow={winner ? winner.row : []}
               squares={current.squares}
-              onClick={(i) => { if (this.state.computerTurn === false && this.state.startGame === true) { this.handleClick(i) } }} //refactor conditional out?
+              onClick={(i) => this.humanDecision(i)}
             />
           </div>
           <div className="game-info">
@@ -268,3 +299,4 @@ class Game extends React.Component {
 }
 
 export default Game;
+
