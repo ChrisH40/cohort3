@@ -248,7 +248,7 @@ class Game extends React.Component {
       <div className="game">
         <h1>Tic-Tac-Toe</h1>
         <div>
-          <p>First Player (X):</p>
+          <span>First Player (X):</span>
           <select
             className="first-player-dropdown"
             onChange={(event) => this.firstPlayer(event)}
