@@ -5,13 +5,27 @@
 .App-header {
   background-color: #282c34;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
   height: 20vh;
   min-height: 10vmin;
+  
+}
+
+.nav-bar  {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.icon-icon-header { 
+  display: flex;
+  margin: 25px;
+  font-size: 15px;
+  flex-direction: column;
 }
 
 .icon {
@@ -26,16 +40,16 @@
 }
 
 .icon:hover {
-  filter: grayscale(25%) sepia(25%);
+  filter: grayscale(50%) sepia(50%);
   cursor: pointer;
   outline: 0;
 }
 
 .icon-active {
   filter: grayscale(100%) sepia(100%);
-  outline: 0;
   animation-name: spin-counter-clockwise;
   animation-duration: 10000ms;
+  outline: 0;
 }
 
 @keyframes spin-clockwise {
@@ -81,9 +95,10 @@
 }
 
 /* --- Game (tic-tac-toe) CSS --- */
- /* reference React Tutorial for original CSS */
+  /* reference React Tutorial for original CSS */
 
-.game {
+.game,
+.accounts {
   background-color: #282c34;
   display: flex;
   flex-direction: column;
@@ -155,8 +170,9 @@ ol, ul {
 
 .start-button,
 .first-player-dropdown,
-.history-button {
-  margin: 5px;
+.history-button,
+.first-player-dropdown {
+  margin: 10px;
 }
 
 .start-button:hover,
@@ -166,8 +182,18 @@ ol, ul {
   cursor: pointer;
 }
 
-.square:hover {
-  border: 2px #09d3ac solid;
-
+.start-button {
+  background-color: #09d3ac;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
 }
 
+.square:hover {
+  border: 2px #09d3ac solid;
+}

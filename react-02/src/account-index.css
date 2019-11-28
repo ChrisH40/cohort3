@@ -1,0 +1,116 @@
+
+/* --- From cohort3/src/03-objects/account-index.css --- */
+  
+.wrapper {
+    display: grid;
+    grid-template-columns: 20% 30% 30% 20%;
+    grid-template-areas: 
+      'header header header header' 
+      'left  middle middle right' 
+      'footer footer footer footer';
+}
+  
+.container-left,
+.container-middle,
+.container-right {
+    margin: 20px;
+    padding: 10px;
+    border: solid 1px rgb(0, 217, 255);
+    background-color: rgb(206, 241, 247);
+    opacity: 50%;
+}
+
+.display-header {
+    font-size: 20px;
+}
+
+.create-account-display,
+.account-display,
+.balances-display {
+    border: solid 1px rgb(0, 217, 255);
+    margin: 10px;
+    padding: 5px;
+}
+  
+.container-left {
+    grid-area: left;
+    height: 200PX;
+}
+
+.create-account-display {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    height: 125px;
+}
+
+.create-account-text,
+.create-account-name-input,
+.create-account-balance-input {
+    margin: 5px;
+    padding: 5px;
+}
+
+.create-account-button {
+    margin: 10px 5px 5px 5px;
+}
+  
+.container-middle {
+    grid-area: middle;
+    height: 75%;
+}
+
+.account-display {
+    height: 90%;
+    overflow: auto;
+}
+
+.account-card {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    height: 25px;
+    padding: 10px;
+}
+
+.account-card:nth-child(odd) {background-color:  rgb(0, 217, 255);}
+
+.account-input {
+    margin: 0px 5px 0px 15px;
+}
+
+.account-button {
+    margin: 0px 5px 0px 5px;
+}
+
+.create-account-text,
+.account-name,
+.account-balance {
+    float: left;
+    margin: 0px 5px 0px 5px;
+}
+
+.dollar {
+    justify-self: right;
+    margin: 0px 0px 0px 15px;
+}
+
+.container-right {
+    grid-area: right;
+    height: 600px;
+}
+
+.balances-display {
+    height: 200px;
+    padding: 20px;
+    text-align: center;
+}
+
+.balances-display-balance {
+    font-size: 30px;
+}
+
+.create-account-display-header,
+.account-display-header,
+.accounts-information-display-header {
+    font-size: 20px;
+    margin: 5px;
+}
