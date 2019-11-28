@@ -16,6 +16,7 @@ class Accounts extends React.Component {
             highestBalance: "",
             lowestName: "",
             lowestBalance: "",
+            totalBalance: "",
         };
         this.accounts = new AccountController('test');
         this.handleOnChange = this.handleOnChange.bind(this);
@@ -42,10 +43,18 @@ class Accounts extends React.Component {
     }
 
     balanceChecker = (array) => {
-        console.log(this.accounts.lowestBalance(array));
-        console.log(this.accounts.lowestBalanceNumber(array));
         console.log(this.accounts.highestBalance(array));
         console.log(this.accounts.highestBalanceNumber(array));
+        console.log(this.accounts.lowestBalance(array));
+        console.log(this.accounts.lowestBalanceNumber(array));
+        console.log(this.accounts.totalBalances(array));
+        this.setState({
+            highestName: this.accounts.highestBalance(array),
+            highestBalance: this.accounts.highestBalanceNumber(array),
+            lowestName: this.accounts.lowestBalance(array),
+            lowestBalance: this.accounts.lowestBalanceNumber(array),
+            totalBalance: this.accounts.totalBalances(array),
+        });
     }
 
     render() {
@@ -78,13 +87,17 @@ class Accounts extends React.Component {
                     <span className="container-right-header display-header">Accounts Information</span>
                     <div className="balances-display top-display" id="idHighestDisplay">
                         <span className="container-right-display-text">Highest Account Balance:</span>
-                        <p className="balances-display-balance" id="idHighest"></p>
-                        <p className="balances-display-balance-number" id="idHighestNumber"></p>
+                        <p className="balances-display-balance" id="idHighest">{this.state.highestName}</p>
+                        <p className="balances-display-balance-number" id="idHighestNumber">{this.state.highestBalance}</p>
                     </div>
-                    <div className="balances-display bottom-display" id="idLowestDisplay">
+                    <div className="balances-display middle-display" id="idLowestDisplay">
                         <span className="container-right-display-text">Lowest Account Balance:</span>
-                        <p className="balances-display-balance" id="idLowest"></p>
-                        <p className="balances-display-balance-number" id="idLowestNumber"></p>
+                        <p className="balances-display-balance" id="idLowest">{this.state.lowestName}</p>
+                        <p className="balances-display-balance-number" id="idLowestNumber">{this.state.lowestBalance}</p>
+                    </div>
+                    <div className="balances-display bottom-display" id="idTotalDisplay">
+                        <span className="container-right-display-text">Total Account Balances:</span>
+                        <p className="balances-display-balance-total" id="idTotalNumber">{this.state.totalBalance}</p>
                     </div>
                 </div>
             </div>

@@ -124,12 +124,13 @@ body {
 }
 
 .balances-display {
-    height: 200px;
+    height: 140px;
     padding: 20px;
     text-align: center;
 }
 
-.balances-display-balance {
+.balances-display-balance,
+.balances-display-balance-total {
     font-size: 30px;
 }
 

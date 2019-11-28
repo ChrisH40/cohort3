@@ -60,12 +60,14 @@ const balanceChecker = (array) => {
         idHighestNumber.textContent = accountList.highestBalanceNumber(array);
         idLowest.textContent = accountList.lowestBalance(array);
         idLowestNumber.textContent = accountList.lowestBalanceNumber(array);
+        idTotalNumber.textContent = accountList.totalBalances(array);
     } 
     else if (array.length == 0) {
         idHighest.textContent = "";
         idHighestNumber.textContent = "";
         idLowest.textContent = "";
         idLowestNumber.textContent = "";
+        idTotalNumber.textContent = accountList.totalBalances(array);
     } 
     return
 }

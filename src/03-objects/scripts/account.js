@@ -41,7 +41,7 @@ export class AccountController {
     totalBalances(array) {
         let balanceArray = array.map(a => a.startingBalance);
         let totalBalance = balanceArray.reduce((sum, num) => sum + num, 0);
-        return totalBalance;
+        return "$" + totalBalance.toFixed(2);
     }
 
     lowestBalance(array) {

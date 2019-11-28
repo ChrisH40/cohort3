@@ -29,9 +29,9 @@ test('test Account Controller add new account', () => {
 
 test('test totalBalances lowestBalance name and number highestBalance name and number of accounts', () => {
     const testAccountController = new AccountController("Sarah");
-    expect(testAccountController.totalBalances(testAccountController.listArray)).toBe(0);
+    expect(testAccountController.totalBalances(testAccountController.listArray)).toBe("$0.00");
     testAccountController.addAccount("checking", 50);
-    expect(testAccountController.totalBalances(testAccountController.listArray)).toBe(50);
+    expect(testAccountController.totalBalances(testAccountController.listArray)).toBe("$50.00");
     testAccountController.addAccount("savings", 100);
     expect(testAccountController.lowestBalance(testAccountController.listArray)).toBe("checking");
     expect(testAccountController.lowestBalanceNumber(testAccountController.listArray)).toBe("$50.00");
@@ -39,7 +39,7 @@ test('test totalBalances lowestBalance name and number highestBalance name and n
     expect(testAccountController.highestBalanceNumber(testAccountController.listArray)).toBe("$100.00");
     testAccountController.addAccount("cat food", 7);
     testAccountController.addAccount("new boat", 128);
-    expect(testAccountController.totalBalances(testAccountController.listArray)).toBe(285);
+    expect(testAccountController.totalBalances(testAccountController.listArray)).toBe("$285.00");
     expect(testAccountController.lowestBalance(testAccountController.listArray)).toBe("cat food");
     expect(testAccountController.lowestBalanceNumber(testAccountController.listArray)).toBe("$7.00");
     expect(testAccountController.highestBalance(testAccountController.listArray)).toBe("new boat");
