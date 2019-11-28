@@ -9,38 +9,44 @@ const accountCreateButton = () => {
     let matchingName = accountNames.filter(account => account == idAccountNameInput.value)
     if (String(idAccountNameInput.value) == matchingName) {
         clearInputFields();
-        return alert("Duplicate Account Name! Please choose another name.");
+        alert("Duplicate Account Name! Please choose another name.");
     }
     else {
-        const new_account = accountList.addAccount(String(idAccountNameInput.value), idAccountBalanceInput.value)
-        domFunctions.createAccountDiv(idAccountDisplay, new_account);
-        balanceChecker(accountList);
+        const newAccount = accountList.addAccount(String(idAccountNameInput.value), idAccountBalanceInput.value);
+        domFunctions.createAccountDiv(idAccountDisplay, newAccount);
+        balanceChecker(array);
         clearInputFields();
     }
+    return
 }
 
 const accountButtonSelector = (event) => {
+    let array = accountList.listArray;
     let accountID = event.target.parentNode.getAttribute("counter");
-    let index = accountList.findAccount(accountID);
-    let input = Number(event.target.parentNode.children[2].value);
+    let index = accountList.findAccount(array, accountID);
 
     if (event.target.textContent == "Deposit") {
-        accountList.listArray[index].accountDeposit(input);
+        let input = Number(event.target.parentNode.children[2].value);
+        array[index].accountDeposit(input);
         let balance = event.target.parentNode.children[1]
-        balance.textContent = "$" + Number(accountList.listArray[index].accountBalance()).toFixed(2);
-        balanceChecker(accountList);
+        balance.textContent = "$" + Number(array[index].accountBalance()).toFixed(2);
+        balanceChecker(array);
         event.target.parentNode.children[2].value = "";
-    } else if (event.target.textContent == "Withdraw") {
-        accountList.listArray[index].accountWithdraw(input);
+    } 
+    else if (event.target.textContent == "Withdraw") {
+        let input = Number(event.target.parentNode.children[2].value);
+        array[index].accountWithdraw(input);
         let balance = event.target.parentNode.children[1]
-        balance.textContent = "$" + Number(accountList.listArray[index].accountBalance()).toFixed(2);
-        balanceChecker(accountList);
+        balance.textContent = "$" + Number(array[index].accountBalance()).toFixed(2);
+        balanceChecker(array);
         event.target.parentNode.children[2].value = "";
-    } else if (event.target.textContent == "Delete Account") {
-        accountList.deleteAccount(accountID);
+    } 
+    else if (event.target.textContent == "Delete Account") {
+        accountList.deleteAccount(array, accountID);
         domFunctions.deleteAccountCard(event.target);
-        balanceChecker(accountList);
-    }
+        balanceChecker(array);
+    } 
+    return
 }
 
 const clearInputFields = () => {
@@ -49,17 +55,19 @@ const clearInputFields = () => {
 }
 
 const balanceChecker = (array) => {
-    if (array.listArray.length > 0) {
-        idHighest.textContent = accountList.highestBalance();
-        idHighestNumber.textContent = accountList.highestBalanceNumber();
-        idLowest.textContent = accountList.lowestBalance();
-        idLowestNumber.textContent = accountList.lowestBalanceNumber();
-    } else if (array.listArray.length == 0) {
+    if (array.length > 0) {
+        idHighest.textContent = accountList.highestBalance(array);
+        idHighestNumber.textContent = accountList.highestBalanceNumber(array);
+        idLowest.textContent = accountList.lowestBalance(array);
+        idLowestNumber.textContent = accountList.lowestBalanceNumber(array);
+    } 
+    else if (array.length == 0) {
         idHighest.textContent = "";
         idHighestNumber.textContent = "";
         idLowest.textContent = "";
         idLowestNumber.textContent = "";
-    }
+    } 
+    return
 }
 
 idMiddleContainer.addEventListener("click", accountButtonSelector);

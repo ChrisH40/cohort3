@@ -38,15 +38,13 @@ export class AccountController {
         return account;
     }
 
-    totalBalances() {
-        let array = this.listArray;
+    totalBalances(array) {
         let balanceArray = array.map(a => a.startingBalance);
         let totalBalance = balanceArray.reduce((sum, num) => sum + num, 0);
         return totalBalance;
     }
 
-    lowestBalance() {
-        let array = this.listArray;
+    lowestBalance(array) {
         let balanceArray = array.map(a => a.startingBalance);
         let lowestNumber = Math.min(...balanceArray);
         let searchedBalance = (balance) => {
@@ -56,15 +54,13 @@ export class AccountController {
         return array[keyElement].accountName;
     }
 
-    lowestBalanceNumber() {
-        let array = this.listArray;
+    lowestBalanceNumber(array) {
         let balanceArray = array.map(a => a.startingBalance);
         let lowestNumber = Math.min(...balanceArray);
         return "$" + lowestNumber.toFixed(2);
     }
 
-    highestBalance() {
-        let array = this.listArray;
+    highestBalance(array) {
         let balanceArray = array.map(a => a.startingBalance);
         let highestNumber = Math.max(...balanceArray);
         let searchedBalance = (balance) => {
@@ -74,15 +70,13 @@ export class AccountController {
         return array[keyElement].accountName;
     }
 
-    highestBalanceNumber() {
-        let array = this.listArray;
+    highestBalanceNumber(array) {
         let balanceArray = array.map(a => a.startingBalance);
         let highestNumber = Math.max(...balanceArray);
         return "$" + highestNumber.toFixed(2);
     }
 
-    deleteAccount(search) {
-        let array = this.listArray;
+    deleteAccount(array, search) {
         let IDArray = array.map(a => a.key);
         let searchedID = (ID) => {
             return ID == search;
@@ -92,8 +86,7 @@ export class AccountController {
         return array;
     }
 
-    findAccount(search) {
-        let array = this.listArray;
+    findAccount(array, search) {
         let IDArray = array.map(a => a.key);
         let searchedID = (ID) => {
             return ID == search;
