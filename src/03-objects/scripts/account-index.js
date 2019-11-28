@@ -22,14 +22,14 @@ const accountCreateButton = () => {
 
 const accountButtonSelector = (event) => {
     let array = accountList.listArray;
-    let accountID = event.target.parentNode.getAttribute("counter");
-    let index = accountList.findAccount(array, accountID);
+    let accountKey = event.target.parentNode.getAttribute("counter");
+    let index = accountList.findAccount(array, accountKey);
 
     if (event.target.textContent == "Deposit") {
         let input = Number(event.target.parentNode.children[2].value);
         array[index].accountDeposit(input);
         let balance = event.target.parentNode.children[1]
-        balance.textContent = "$" + Number(array[index].accountBalance()).toFixed(2);
+        balance.textContent = "$" + Number(array[index].accountBalance(array[index])).toFixed(2);
         balanceChecker(array);
         event.target.parentNode.children[2].value = "";
     } 
@@ -37,12 +37,12 @@ const accountButtonSelector = (event) => {
         let input = Number(event.target.parentNode.children[2].value);
         array[index].accountWithdraw(input);
         let balance = event.target.parentNode.children[1]
-        balance.textContent = "$" + Number(array[index].accountBalance()).toFixed(2);
+        balance.textContent = "$" + Number(array[index].accountBalance(array[index])).toFixed(2);
         balanceChecker(array);
         event.target.parentNode.children[2].value = "";
     } 
     else if (event.target.textContent == "Delete Account") {
-        accountList.deleteAccount(array, accountID);
+        accountList.deleteAccount(array, accountKey);
         domFunctions.deleteAccountCard(event.target);
         balanceChecker(array);
     } 
@@ -70,5 +70,5 @@ const balanceChecker = (array) => {
     return
 }
 
-idMiddleContainer.addEventListener("click", accountButtonSelector);
+idAccountDisplay.addEventListener("click", accountButtonSelector);
 idCreateAcctButton.addEventListener("click", accountCreateButton);

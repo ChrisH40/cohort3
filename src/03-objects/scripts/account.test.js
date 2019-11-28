@@ -3,17 +3,17 @@ import { Account, AccountController } from './account.js';
 test('test Account deposit withdraw balance', () => {
     const testAccount = new Account(1, "Test Account", 0);
     expect(testAccount.accountDeposit(1)).toEqual(1);
-    expect(testAccount.accountBalance()).toEqual(1);
+    expect(testAccount.accountBalance(testAccount)).toEqual(1);
     expect(testAccount.accountDeposit(10)).toEqual(11);
-    expect(testAccount.accountBalance()).toEqual(11);
+    expect(testAccount.accountBalance(testAccount)).toEqual(11);
     expect(testAccount.accountDeposit(101)).toEqual(112);
-    expect(testAccount.accountBalance()).toEqual(112);
+    expect(testAccount.accountBalance(testAccount)).toEqual(112);
     expect(testAccount.accountWithdraw(12)).toEqual(100);
-    expect(testAccount.accountBalance()).toEqual(100);
+    expect(testAccount.accountBalance(testAccount)).toEqual(100);
     expect(testAccount.accountWithdraw(5)).toEqual(95);
-    expect(testAccount.accountBalance()).toEqual(95);
+    expect(testAccount.accountBalance(testAccount)).toEqual(95);
     expect(testAccount.accountWithdraw(17)).toEqual(78);
-    expect(testAccount.accountBalance()).toEqual(78);
+    expect(testAccount.accountBalance(testAccount)).toEqual(78);
 });
 
 test('test Account Controller add new account', () => {

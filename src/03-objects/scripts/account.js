@@ -18,8 +18,8 @@ export class Account {
         return this.startingBalance;
     }
 
-    accountBalance() {
-        return this.startingBalance;
+    accountBalance(city) {
+        return city.startingBalance;
     }
 };
 
@@ -46,12 +46,9 @@ export class AccountController {
 
     lowestBalance(array) {
         let balanceArray = array.map(a => a.startingBalance);
-        let lowestNumber = Math.min(...balanceArray);
-        let searchedBalance = (balance) => {
-            return balance == lowestNumber;
-        }
-        let keyElement = balanceArray.findIndex(searchedBalance);
-        return array[keyElement].accountName;
+        let highestNumber = Math.min(...balanceArray);
+        let found_index = balanceArray.indexOf(highestNumber);
+        return array[found_index].accountName;
     }
 
     lowestBalanceNumber(array) {
@@ -63,11 +60,8 @@ export class AccountController {
     highestBalance(array) {
         let balanceArray = array.map(a => a.startingBalance);
         let highestNumber = Math.max(...balanceArray);
-        let searchedBalance = (balance) => {
-            return balance == highestNumber;
-        }
-        let keyElement = balanceArray.findIndex(searchedBalance);
-        return array[keyElement].accountName;
+        let found_index = balanceArray.indexOf(highestNumber);
+        return array[found_index].accountName;
     }
 
     highestBalanceNumber(array) {
@@ -76,22 +70,18 @@ export class AccountController {
         return "$" + highestNumber.toFixed(2);
     }
 
-    deleteAccount(array, search) {
-        let IDArray = array.map(a => a.key);
-        let searchedID = (ID) => {
-            return ID == search;
-        }
-        let keyElement = IDArray.findIndex(searchedID);
-        array.splice(keyElement, 1);
+    deleteAccount(array, accountKey) {
+        let array_keys = array.map(account => account.key);
+        let found_key = array_keys.find((key)=> key == accountKey)
+        let found_index = array_keys.indexOf(found_key);
+        array.splice(found_index, 1);
         return array;
     }
 
-    findAccount(array, search) {
-        let IDArray = array.map(a => a.key);
-        let searchedID = (ID) => {
-            return ID == search;
-        }
-        let keyElement = IDArray.findIndex(searchedID);
-        return keyElement;
+    findAccount(array, accountKey) {
+        let array_keys = array.map(account => account.key);
+        let found_key = array_keys.find((key) => key == accountKey);
+        let found_index = array_keys.indexOf(found_key);
+        return found_index;
     }
 };
