@@ -65,7 +65,8 @@
 }
 
 .account-card {
-    display: grid;
+    display: flex;
+    flex-direction: row;
     grid-template-columns: repeat(6, 1fr);
     height: 25px;
     padding: 10px;
