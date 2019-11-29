@@ -18,8 +18,8 @@ export class Account {
         return this.startingBalance;
     }
 
-    accountBalance(city) {
-        return city.startingBalance;
+    accountBalance(account) {
+        return account.startingBalance;
     }
 };
 
