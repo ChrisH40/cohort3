@@ -10,6 +10,7 @@ class Accounts extends React.Component {
         this.accounts = new AccountController('test');
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDeposit = this.handleDeposit.bind(this);
         this.state = {
             listArray: this.accounts.listArray,
             acctName: "",
@@ -37,7 +38,15 @@ class Accounts extends React.Component {
         })
         this.balanceChecker(this.accounts.listArray);
         event.preventDefault();
+    }
 
+    handleDeposit(i) {
+        console.log(this.accounts.listArray[i]);
+        // this.accounts.listArray[i].accountDeposit(this.state.balanceChange);
+        // this.setState({
+        //     listArray: this.accounts.listArray,
+        //     balanceChange: "",
+        // })
     }
 
     balanceChecker = (array) => {
@@ -75,6 +84,9 @@ class Accounts extends React.Component {
                     <div className="account-display">
                         <AccountCardsList
                             listArray={this.accounts.listArray}
+                            balanceChange={this.state.balanceChange}
+                            handleDeposit={this.handleDeposit}
+                            handleOnChange={this.handleOnChange}
                         />
                     </div>
                 </div>
@@ -104,7 +116,6 @@ class Accounts extends React.Component {
                     </div>
                 </div>
             </div>
-
         );
     }
 }

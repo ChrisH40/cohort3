@@ -12,7 +12,6 @@ export class Account {
     accountDeposit(amount) {
         this.startingBalance = this.startingBalance + amount;
         return this.startingBalance;
-
     }
 
     accountWithdraw(amount) {

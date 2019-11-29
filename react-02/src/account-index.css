@@ -67,7 +67,6 @@
 .account-card {
     display: flex;
     flex-direction: row;
-    grid-template-columns: repeat(6, 1fr);
     height: 25px;
     padding: 10px;
 }
@@ -87,11 +86,6 @@
 .account-balance {
     float: left;
     margin: 0px 5px 0px 5px;
-}
-
-.dollar {
-    justify-self: right;
-    margin: 0px 0px 0px 15px;
 }
 
 .container-right {
