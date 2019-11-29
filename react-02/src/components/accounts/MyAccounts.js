@@ -1,6 +1,6 @@
 import React from 'react';
 import AccountCardsList from './MyAccountsCards.js';
-import 'C:/code/cohort3/react-02/src/account-index.css';
+import './account-index.css';
 import { AccountController } from './account.js';
 
 
@@ -20,6 +20,7 @@ class Accounts extends React.Component {
             lowestName: "",
             lowestBalance: "",
             totalBalance: "",
+            activeBalance: "",
         };
     }
 
@@ -40,13 +41,29 @@ class Accounts extends React.Component {
         event.preventDefault();
     }
 
-    handleDeposit(i) {
-        console.log(this.accounts.listArray[i]);
-        // this.accounts.listArray[i].accountDeposit(this.state.balanceChange);
-        // this.setState({
-        //     listArray: this.accounts.listArray,
-        //     balanceChange: "",
-        // })
+    handleDeposit= (i) => {
+        this.accounts.listArray[i].accountDeposit(Number(this.state.activeBalance));
+        this.setState({
+            listArray: this.accounts.listArray,
+            activeBalance: "",
+        })
+        this.todoTextElem.value = '';
+    }
+
+    handleWithdraw= (i) => {
+        this.accounts.listArray[i].accountWithdraw(Number(this.state.activeBalance));
+        this.setState({
+            listArray: this.accounts.listArray,
+            activeBalance: "",
+        })
+        this.todoTextElem.value = '';
+    }
+
+    handleDelete= (i) => {
+        this.accounts.listArray.splice(i, 1);
+        this.setState({
+            listArray: this.accounts.listArray,
+        })
     }
 
     balanceChecker = (array) => {
@@ -57,6 +74,10 @@ class Accounts extends React.Component {
             lowestBalance: this.accounts.lowestBalanceNumber(array),
             totalBalance: this.accounts.totalBalances(array),
         });
+    }
+
+    clearInput = (el) => {
+        this.todoTextElem = el
     }
 
     render() {
@@ -84,9 +105,12 @@ class Accounts extends React.Component {
                     <div className="account-display">
                         <AccountCardsList
                             listArray={this.accounts.listArray}
-                            balanceChange={this.state.balanceChange}
-                            handleDeposit={this.handleDeposit}
+                            activeBalance={this.state.activeBalance}
                             handleOnChange={this.handleOnChange}
+                            handleDeposit={this.handleDeposit}
+                            handleWithdraw={this.handleWithdraw}
+                            handleDelete={this.handleDelete}
+                            clearInput={this.clearInput}
                         />
                     </div>
                 </div>
