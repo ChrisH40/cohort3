@@ -8,6 +8,8 @@
       'header header header header' 
       'left  middle middle right' 
       'footer footer footer footer';
+    background-color: #282c34;
+    min-height: 90vmin;
 }
   
 .container-left,
@@ -15,48 +17,53 @@
 .container-right {
     margin: 20px;
     padding: 10px;
-    border: solid 1px rgb(0, 217, 255);
-    background-color: rgb(206, 241, 247);
-    opacity: 50%;
+    border: solid 1px #09d3ac;
+    background-color:  rgba(0, 217, 255, 0.25);
 }
 
 .display-header {
     font-size: 20px;
+    color: white;
 }
 
 .create-account-display,
 .account-display,
 .balances-display {
-    border: solid 1px rgb(0, 217, 255);
+    background-color: #282c34;
+    border: solid 1px #09d3ac;;
+    color: white;
     margin: 10px;
-    padding: 5px;
+    padding: 10px;
 }
   
 .container-left {
     grid-area: left;
-    height: 200PX;
+    height: 27vh;
 }
 
 .create-account-display {
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
-    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
 }
 
-.create-account-text,
 .create-account-name-input,
 .create-account-balance-input {
-    margin: 5px;
+    margin: 10px;
     padding: 5px;
+    height: 2vh;
+    width: 10vw;
 }
 
-.create-account-button {
+.create-account-button,
+.create-account-text {
     margin: 10px 5px 5px 5px;
 }
   
 .container-middle {
     grid-area: middle;
-    height: 75%;
+    height: 70vh;
 }
 
 .account-display {
@@ -67,36 +74,30 @@
 .account-card {
     display: flex;
     flex-direction: row;
-    height: 25px;
+    justify-content: space-evenly;
+    height: 5%;
     padding: 10px;
 }
 
-.account-card:nth-child(odd) {background-color:  rgb(0, 217, 255);}
+.account-card:nth-child(odd) {background-color:  rgba(0, 217, 255, 0.25);}
 
-.account-input {
-    margin: 0px 5px 0px 15px;
-}
-
-.account-button {
-    margin: 0px 5px 0px 5px;
-}
-
-.create-account-text,
 .account-name,
-.account-balance {
-    float: left;
-    margin: 0px 5px 0px 5px;
+.account-balance,
+.account-input,
+.account-button {
+    margin: 2px 15px 2px 15px;
 }
 
 .container-right {
     grid-area: right;
-    height: 600px;
+    height: 70vh;
+    color: white;
 }
 
 .balances-display {
-    height: 140px;
     padding: 20px;
     text-align: center;
+    height: 16vh;
 }
 
 .balances-display-balance,

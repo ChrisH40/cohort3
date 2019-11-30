@@ -12,7 +12,6 @@
   color: white;
   height: 20vh;
   min-height: 10vmin;
-  
 }
 
 .nav-bar  {
@@ -97,8 +96,7 @@
 /* --- Game (tic-tac-toe) CSS --- */
   /* reference React Tutorial for original CSS */
 
-.game,
-.accounts {
+.game {
   background-color: #282c34;
   display: flex;
   flex-direction: column;
