@@ -35,8 +35,8 @@ class Accounts extends React.Component {
         let array = this.accounts.listArray;
         let accountNames = array.map(array => array.accountName);
         let matchingName = accountNames.find(account => account === this.state.acctName);
-        if (this.state.acctName === matchingName) {
-            alert("Duplicate Account Name! Please choose another name.");
+        if (this.state.acctName === matchingName || this.state.acctName === "") {
+            alert("Duplicate or no account name entered!");
         }
         else {
             this.accounts.addAccount(this.state.acctName, this.state.acctBalance);
@@ -61,15 +61,15 @@ class Accounts extends React.Component {
             listArray: this.accounts.listArray,
             changeBalance: "",
         })
-        this.accountInput.value = '';
         this.balanceChecker(this.accounts.listArray);
+        this.accountInput.value = '';
         
     }
 
     handleWithdraw = (i) => {
         if (this.state.changeBalance < 0.01) {
             alert("Please enter a number greater than zero!");
-        }
+        } 
         else {
             this.accounts.listArray[i].accountWithdraw(Number(this.state.changeBalance));
         }
@@ -77,8 +77,8 @@ class Accounts extends React.Component {
             listArray: this.accounts.listArray,
             changeBalance: "",
         })
-        this.accountInput.value = '';
         this.balanceChecker(this.accounts.listArray);
+        
         
     }
 
