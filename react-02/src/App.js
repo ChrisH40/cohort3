@@ -15,8 +15,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: houseIcon,
-      activeIconIndex: 0,
+      selected: bankIcon,
+      activeIconIndex: 2,
     }
   }
 

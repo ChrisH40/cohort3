@@ -22,13 +22,13 @@ class Game extends React.Component {
         humanPlayer: "X",
         computerPlayer: "O",
       });
-    } 
+    }
     else if (this.state.startGame === false && event.target.value === "computer") {
       await this.setState({
         humanPlayer: "O",
         computerPlayer: "X",
       });
-    } 
+    }
     else return;
   }
 
@@ -39,7 +39,7 @@ class Game extends React.Component {
     });
     if (this.state.computerPlayer === "X" && this.state.xIsNext === true && this.state.startGame === true) {
       return this.compDecision(this.state.history[0].squares);
-    } 
+    }
     else return;
   }
 
@@ -47,7 +47,7 @@ class Game extends React.Component {
     if ((this.state.humanPlayer === "X" && this.state.xIsNext === true && this.state.startGame === true) ||
       (this.state.humanPlayer === "O" && this.state.xIsNext === false && this.state.startGame === true)) {
       return this.handleClick(i)
-    } 
+    }
     else return;
   }
 
@@ -69,10 +69,10 @@ class Game extends React.Component {
 
     if (this.winningMoves(board_copy, this.state.humanPlayer)) {
       return { score: -10 };
-    } 
+    }
     else if (this.winningMoves(board_copy, this.state.computerPlayer)) {
       return { score: 10 };
-    } 
+    }
     else if (open_spots.length === 0) {
       return { score: 0 };
     }
@@ -183,7 +183,7 @@ class Game extends React.Component {
     if ((this.state.computerPlayer === "X" && this.state.xIsNext === true && this.state.startGame === true) ||
       (this.state.computerPlayer === "O" && this.state.xIsNext === false && this.state.startGame === true)) {
       return this.compDecision(squares);
-    } 
+    }
     else return;
   }
 
@@ -213,7 +213,7 @@ class Game extends React.Component {
       (this.state.xIsNext === true && this.state.humanPlayer === "X") ||
       (this.state.xIsNext === false && this.state.humanPlayer === "O")) {
       return;
-    } 
+    }
     else return;
   }
 
@@ -236,10 +236,10 @@ class Game extends React.Component {
     let status;
     if (winner) {
       status = 'Winner: ' + winner.player;
-    } 
+    }
     else if (!current.squares.includes(null)) {
       status = 'Draw';
-    } 
+    }
     else {
       status = 'Next Move: ' + (this.state.xIsNext ? 'X' : 'O');
     }
@@ -270,7 +270,9 @@ class Game extends React.Component {
           </div>
           <div className="game-info">
             <div>{status}</div>
-            <ol>{moves}</ol>
+            <div className="game-info-display">
+              <ol>{moves}</ol>
+            </div>
           </div>
         </div>
       </div>

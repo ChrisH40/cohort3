@@ -1,19 +1,18 @@
 import React from 'react';
-import AccountCreateDisplay from './MyCreateAccountDisplay.js'
-import AccountCardsList from './MyAccountsCards.js';
-import AccountBalancesDisplay from './MyAccountDisplay.js'
+import AccountCreateDisplay from './MyAccountsCreateDisplay.js'
+import AccountCardsList from './MyAccountsCardsList.js';
+import AccountBalancesDisplay from './MyAccountsInfoDisplay.js'
 import { AccountController } from './account.js';
 import './account-index.css';
 
 class Accounts extends React.Component {
+    
     constructor(props) {
         super(props);
         this.accounts = new AccountController('test');
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleDeposit = this.handleDeposit.bind(this);
         this.state = {
-            listArray: this.accounts.listArray,
             acctName: "",
             acctBalance: "",
             highestName: "",
@@ -21,7 +20,6 @@ class Accounts extends React.Component {
             lowestName: "",
             lowestBalance: "",
             totalBalance: "",
-            changeBalance: "",
         };
     }
 
@@ -50,43 +48,8 @@ class Accounts extends React.Component {
         event.preventDefault();
     }
 
-    handleDeposit = (i) => {
-        if (this.state.changeBalance < 0.01) {
-            alert("Please enter a number greater than zero!");
-        }
-        else {
-            this.accounts.listArray[i].accountDeposit(Number(this.state.changeBalance));
-        }
-        this.setState({
-            listArray: this.accounts.listArray,
-            changeBalance: "",
-        })
-        this.balanceChecker(this.accounts.listArray);
-        this.accountInput.value = '';
-        
-    }
-
-    handleWithdraw = (i) => {
-        if (this.state.changeBalance < 0.01) {
-            alert("Please enter a number greater than zero!");
-        } 
-        else {
-            this.accounts.listArray[i].accountWithdraw(Number(this.state.changeBalance));
-        }
-        this.setState({
-            listArray: this.accounts.listArray,
-            changeBalance: "",
-        })
-        this.balanceChecker(this.accounts.listArray);
-        
-        
-    }
-
     handleDelete = (i) => {
         this.accounts.listArray.splice(i, 1);
-        this.setState({
-            listArray: this.accounts.listArray,
-        })
         this.balanceChecker(this.accounts.listArray);
     }
 
@@ -111,11 +74,8 @@ class Accounts extends React.Component {
         }
     }
 
-    clearInput = (input) => {
-        this.accountInput = input
-    }
-
     render() {
+
         return (
             <div className="wrapper">
                 <div className="container-left">
@@ -131,12 +91,8 @@ class Accounts extends React.Component {
                     <span className="container-middle-header display-header">Accounts Display</span>
                     <AccountCardsList
                         listArray={this.accounts.listArray}
-                        handleOnChange={this.handleOnChange}
-                        changeBalance={this.state.changeBalance}
-                        handleDeposit={this.handleDeposit}
-                        handleWithdraw={this.handleWithdraw}
                         handleDelete={this.handleDelete}
-                        clearInput={this.clearInput}
+                        balanceChecker={this.balanceChecker}
                     />
                 </div>
                 <div className="container-right">
