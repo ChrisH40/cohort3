@@ -30,7 +30,7 @@
 .account-display,
 .balances-display {
     background-color: #282c34;
-    border: solid 1px #09d3ac;;
+    border: solid 1px #09d3ac;
     color: white;
     margin: 10px;
     padding: 10px;
@@ -74,7 +74,6 @@
 .account-card {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     height: 5%;
     padding: 10px;
 }
@@ -103,7 +102,7 @@
 
 .balances-display-balance,
 .balances-display-balance-total {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .create-account-display-header,

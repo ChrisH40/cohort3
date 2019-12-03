@@ -114,11 +114,12 @@
 
 .game-board {
   float: left;
+  margin: 10px 20px 10px 10px;
 }
 
 .game-info {
   float: left;
-  margin-left: 50px;
+  margin-left: 75px;
 }
 
 body {
@@ -170,7 +171,7 @@ ol, ul {
 .first-player-dropdown,
 .history-button,
 .first-player-dropdown {
-  margin: 10px;
+  margin: 15px;
 }
 
 .start-button:hover,
@@ -194,4 +195,17 @@ ol, ul {
 
 .square:hover {
   border: 2px #09d3ac solid;
+}
+
+.game-info {
+  background-color:  rgba(0, 217, 255, 0.25);
+  border: solid 1px #09d3ac;
+  padding: 10px;
+}
+
+.game-info-display {
+  background-color: #282c34;
+  border: solid 1px #09d3ac;
+  padding: 10px;
+  margin: 13px 13px 13px -30px;
 }
