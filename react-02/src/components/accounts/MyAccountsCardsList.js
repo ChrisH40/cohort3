@@ -7,12 +7,12 @@ class AccountCardsList extends React.Component {
         const cardList = this.props.listArray.map((account, i) => {
             return <AccountCard
                 listArray={this.props.listArray}
+                handleDelete={this.props.handleDelete}
+                balanceChecker={this.props.balanceChecker}
                 index={i}
                 key={account.key}
                 name={account.accountName}
                 balance={account.startingBalance}
-                handleDelete={this.props.handleDelete}
-                balanceChecker={this.props.balanceChecker}
             />
         })
 

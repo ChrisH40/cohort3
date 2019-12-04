@@ -5,11 +5,10 @@
     display: grid;
     grid-template-columns: 20% 30% 30% 20%;
     grid-template-areas: 
-      'header header header header' 
-      'left  middle middle right' 
-      'footer footer footer footer';
+      'left middle middle right';
     background-color: #282c34;
     min-height: 90vmin;
+    padding: 5px;
 }
   
 .container-left,
@@ -72,8 +71,8 @@
 }
 
 .account-card {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     height: 5%;
     padding: 10px;
 }

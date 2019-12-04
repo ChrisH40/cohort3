@@ -40,7 +40,6 @@ class Accounts extends React.Component {
             this.accounts.addAccount(this.state.acctName, this.state.acctBalance);
         }
         this.setState({
-            listArray: this.accounts.listArray,
             acctName: "",
             acctBalance: "",
         })
