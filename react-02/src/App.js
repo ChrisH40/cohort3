@@ -4,6 +4,7 @@ import './App.css';
 import Homepage from "./components/MyHomepage.js";
 import Game from "./components/tic-tac-toe/MyGame.js";
 import Accounts from "./components/accounts/MyAccounts.js";
+import Cities from "./components/cities/MyCities.js";
 
 import bankIcon from './images/piggy-bank-icon.svg';
 import houseIcon from './images/house-icon.svg';
@@ -15,8 +16,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: bankIcon,
-      activeIconIndex: 2,
+      selected: houseIcon,
+      activeIconIndex: 0,
     }
   }
 
@@ -55,7 +56,7 @@ class App extends React.Component {
     } if (selected === bankIcon) {
       return < Accounts />
     } if (selected === cityIcon) {
-      return < Homepage />
+      return < Cities />
     }
   }
 
