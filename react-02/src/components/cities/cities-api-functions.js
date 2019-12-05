@@ -1,5 +1,6 @@
 // --- From cohort3/src/03-objects/scripts/cities-api-functions.js --- 
 
+import { City } from "./cities.js"
 // import domFunctions from './cities-dom.js';
 
 const syncFunctions = {
@@ -7,7 +8,8 @@ const syncFunctions = {
     async dataSync(array, /*parent*/) {
         let data = await postData(url + 'all');
         for (let i = 0; i < data.length; i++) {
-            array.createCity(data[i].name, data[i].latitude, data[i].longitude, data[i].population);
+            let new_city = new City(data[i].key, data[i].name, data[i].latitude, data[i].longitude, data[i].population);
+            array.cities.push(new_city);
         } syncFunctions.counterSync(array);
         // syncFunctions.domSync(array, parent);  // --- re-factor this code (from original cities-api-functions.js file)?
         return array;

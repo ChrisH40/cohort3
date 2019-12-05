@@ -1,12 +1,23 @@
 import React from 'react';
 
-class CityStatsDisplay extends React.Component {
+class CityFactsDisplay extends React.Component {
 
-    // render() {
-    //     return (
-    //         
-    //     )
-    // }
+    render() {
+        return (
+            <div className="city-facts-display">
+                City Information (click a city for more information):
+                <p className="city-facts-text">
+                    {this.props.showCity}
+                </p>
+                <p className="city-facts-text">
+                    {this.props.howBigCity}
+                </p>
+                <p className="city-facts-text" >
+                    {this.props.whichSphereCity}
+                </p>
+            </div>
+        )
+    }
 }
 
-export default CityStatsDisplay;
+export default CityFactsDisplay;

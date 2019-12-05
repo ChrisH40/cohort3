@@ -1,8 +1,8 @@
 import React from 'react';
-// import CityCreateDisplay from './MyCitiesCreateDisplay.js';
+import CityCreateDisplay from './MyCitiesCreateDisplay.js';
 import CityCardsList from './MyCitiesCardsList.js';
-// import CityStatsDisplay from './MyCitiesFactsDisplay.js';
-// import CityInfoDisplay from './MyCitiesInfoDisplay.js';
+import CityFactsDisplay from './MyCitiesFactsDisplay.js';
+import CityInfoDisplay from './MyCitiesInfoDisplay.js';
 import { Community } from './cities.js';
 import syncFunctions from './cities-api-functions.js';
 import './cities-index.css';
@@ -14,9 +14,6 @@ class Cities extends React.Component {
         this.citiesList = new Community('test');
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
-        this.cityInfoSelector = this.cityInfoSelector.bind(this)
-        this.componentDidMount = this.componentDidMount.bind(this);
         this.state = {
             dataLoad: false,
             cityName: "",
@@ -26,19 +23,22 @@ class Cities extends React.Component {
             mostNorthern: "",
             mostSouthern: "",
             totalPopulation: "",
-            selectedCity: "",
             showCity: "",
             howBigCity: "",
             whichSphereCity: "",
+            selectedCity: "",
         };
     }
 
     componentDidMount = async () => {
-        await syncFunctions.dataSync(this.citiesList); 
-        this.setState({
-            dataLoad: true,
-        });
-        this.cityChecker(this.citiesList.cities);
+        if (this.state.dataLoad === false) {
+            await syncFunctions.dataSync(this.citiesList);
+            this.setState({
+                dataLoad: true,
+            });
+            this.cityChecker(this.citiesList.cities);
+        }
+        else return;
     }
 
     handleOnChange = (event) => {
@@ -48,7 +48,11 @@ class Cities extends React.Component {
     }
 
     handleSubmit = (event) => {
-        if (this.state.latitude < -90 || this.state.latitude > 90 || this.state.longitude < -180 || this.state.longitude > 180 || this.state.population < 0) {
+        if (this.state.latitude < -90 ||
+            this.state.latitude > 90 ||
+            this.state.longitude < -180 ||
+            this.state.longitude > 180 ||
+            this.state.population < 0) {
             alert("Latitude -90 to 90 degrees. Longitude -180 to 180 degrees. Population equal to or greater than 0. Please re-enter.");
         }
         else {
@@ -97,6 +101,7 @@ class Cities extends React.Component {
     cityInfoSelector = (event, i) => {
         if (event.target.value !== "Delete City") {
             this.setState({
+                selectedCity: this.citiesList.cities[i],
                 showCity: this.citiesList.cities[i].show(),
                 howBigCity: this.citiesList.cities[i].howBig(),
                 whichSphereCity: this.citiesList.whichSphere(this.citiesList.cities[i]),
@@ -108,35 +113,22 @@ class Cities extends React.Component {
         return (
             <div className="city-wrapper">
                 <div className="city-container-left">
-                    <span className="container-left-header city-display-header">
-                        Add City
-                    </span>
-                    <div className="create-city-display">
-                        <form onSubmit={this.handleSubmit}>
-                            <label>
-                                City Name:
-                            </label>
-                            <input type="text" name="cityName" className="create-city-input" value={this.state.cityName} onChange={this.handleOnChange} />
-                            <label>
-                                Latitude:
-                            </label>
-                            <input type="number" name="latitude" className="create-city-input" value={this.state.latitude} onChange={this.handleOnChange} />
-                            <label>
-                                Longitude:
-                            </label>
-                            <input type="number" name="longitude" className="create-city-input" value={this.state.longitude} onChange={this.handleOnChange} />
-                            <label>
-                                Population:
-                            </label>
-                            <input type="number" name="population" className="create-city-input" value={this.state.population} onChange={this.handleOnChange} />
-                            <input type="submit" value="Add City" className="create-city-button" />
-                        </form>
-                    </div>
+                    <span className="container-left-header city-display-header">Add City</span>
+                    <CityCreateDisplay
+                        handleSubmit={this.handleSubmit}
+                        handleOnChange={this.handleOnChange}
+                        cityName={this.state.cityName}
+                        latitude={this.state.latitude}
+                        longitude={this.state.longitude}
+                        population={this.state.population}
+                    />
                 </div>
                 <div className="city-container-middle-top">
                     <div className="city-display-headers">
-                        <span className="city-headers">City</span><span className="city-headers">Latitude</span>
-                        <span className="city-headers">Longitude</span><span className="city-headers">Population</span>
+                        <span className="city-headers">City</span>
+                        <span className="city-headers">Latitude</span>
+                        <span className="city-headers">Longitude</span>
+                        <span className="city-headers">Population</span>
                     </div>
                     <div>
                         <CityCardsList
@@ -149,37 +141,18 @@ class Cities extends React.Component {
                     </div>
                 </div>
                 <div className="city-container-middle-bottom">
-                    <div className="city-facts-display">
-                        <p className="city-facts-text">
-                            {this.state.showCity}
-                        </p>
-                        <p className="city-facts-text">
-                            {this.state.howBigCity}
-                        </p>
-                        <p className="city-facts-text" >
-                            {this.state.whichSphereCity}
-                        </p>
-                    </div>
+                    <CityFactsDisplay
+                        showCity={this.state.showCity}
+                        howBigCity={this.state.howBigCity}
+                        whichSphereCity={this.state.whichSphereCity}
+                    />
                 </div>
                 <div className="city-container-right">
-                    <div className="city-calculations-display">
-                        <span className="city-container-right-header city-display-header">
-                            Total Population:
-                        </span>
-                        <p className="container-right-info">{this.state.totalPopulation}</p>
-                    </div>
-                    <div className="city-calculations-display">
-                        <span className="container-right-header city-display-header">
-                            Most Northern City:
-                        </span>
-                        <p className="container-right-info">{this.state.mostNorthern}</p>
-                    </div>
-                    <div className="city-calculations-display">
-                        <span className="container-right-header city-display-header">
-                            Most Southern City:
-                        </span>
-                        <p className="container-right-info">{this.state.mostSouthern}</p>
-                    </div>
+                    <CityInfoDisplay 
+                        mostNorthern={this.state.mostNorthern}
+                        mostSouthern={this.state.mostSouthern}
+                        totalPopulation={this.state.totalPopulation}
+                    />
                 </div>
             </div>
         );
