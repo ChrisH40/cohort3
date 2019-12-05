@@ -108,6 +108,10 @@
 .city-latitude {
     margin: 2px 10px 2px 10px;
 }
+
+.city-population-input {
+    width: 6vw;
+}
     
 .city-container-middle-bottom {
     grid-area: bottom;
@@ -119,14 +123,14 @@
 .city-facts-display {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
-    height: 21vh;
+    height: 22vh;
     text-align: left;
-    font-size: 15px;
+    font-size: 13px;
     margin: -35px 0px 0px 0px;
 }
 
 .city-facts-text {
-    font-size: 20px
+    font-size: 17px
 }
 
 .city-container-right {
@@ -144,8 +148,12 @@
     margin: 13px 13px 13px -30px;
 }
 
+.city-container-right-header {
+    font-size: 15px;
+}
+
 .city-button {
-    background-color: #09d3ac;
+    background-color: rgb(9, 211, 172, 0.4);
     border: none;
     color: white;
     padding: 5px 10px;
@@ -153,5 +161,4 @@
     text-decoration: none;
     display: inline-block;
     font-size: 13px;
-    font-weight: bold;
   }

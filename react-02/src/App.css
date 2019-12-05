@@ -181,8 +181,19 @@ ol, ul {
   cursor: pointer;
 }
 
+.history-button{
+  background-color: rgb(9, 211, 172, 0.4);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+}
+
 .start-button {
-  background-color: #09d3ac;
+  background-color: rgb(9, 211, 172);
   border: none;
   color: white;
   padding: 15px 32px;
