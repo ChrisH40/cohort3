@@ -9,8 +9,8 @@ export class City {
         this.population = Number(population);
     }
 
-    show(city) {
-        return `- ${city.name} is located at ${city.latitude} latitude, ${city.longitude} longitude and has a population of ${city.population} people.`
+    show() {
+        return `- ${this.name} is located at ${this.latitude} latitude, ${this.longitude} longitude and has a population of ${this.population} people.`
     }
 
     movedIn(amount) {
@@ -23,16 +23,16 @@ export class City {
         return this.population;
     }
 
-    howBig(city) {
-        if (city.population > 100000) {
-            return `- ${city.name} is a City with a population > 100,000 people.`
-        } else if (city.population >= 20000 && city.population <= 100000) {
-            return `- ${city.name} is a Large Town with a population of 20,000 to 100,000 people.`
-        } else if (city.population >= 1000 && city.population <= 19999) {
-            return `- ${city.name} is a Town with a population of 1,000 to 20,000 people.`
-        } else if (city.population > 100 && city.population < 1000) {
-            return `- ${city.name} is a Village, larger than a Hamlet but smaller than a Town.`
-        } else return `- ${city.name} is a Hamlet with population of 1 to 100 people.`
+    howBig() {
+        if (this.population > 100000) {
+            return `- ${this.name} is a City with a population > 100,000 people.`
+        } else if (this.population >= 20000 && this.population <= 100000) {
+            return `- ${this.name} is a Large Town with a population of 20,000 to 100,000 people.`
+        } else if (this.population >= 1000 && this.population <= 19999) {
+            return `- ${this.name} is a Town with a population of 1,000 to 20,000 people.`
+        } else if (this.population > 100 && this.population < 1000) {
+            return `- ${this.name} is a Village, larger than a Hamlet but smaller than a Town.`
+        } else return `- ${this.name} is a Hamlet with population of 1 to 100 people.`
     }
 };
 
@@ -79,11 +79,8 @@ export class Community {
         return new_city;
     }
 
-    deleteCity(array, cityKey) {
-        let array_keys = array.map(city => city.key);
-        let found_key = array_keys.find((key) => key == cityKey);
-        let found_index = array_keys.indexOf(found_key);
-        array.splice(found_index, 1);
+    deleteCity(array, index) {
+        array.splice(index, 1);
         return array;
     }
 

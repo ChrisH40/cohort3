@@ -33,15 +33,8 @@ const syncFunctions = {
         return data;
     },
 
-    async deleteCitySync(key) {
-        let data = await postData(url + 'all');
-        let array = data;
-        let id_array = array.map(a => a.key);
-        let searchedID = (id) => {
-            return id == key;
-        }
-        let keyElement = id_array.findIndex(searchedID);
-        data = await postData(url + 'delete', array[keyElement]);
+    async deleteCitySync(city) {
+        let data = await postData(url + 'delete', city);
         data = await postData(url + 'all');
         return data;
     },

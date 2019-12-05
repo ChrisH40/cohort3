@@ -2,7 +2,7 @@ import { City, Community } from './cities.js';
 
 test('test show City', () => {
     const test_city = new City(1, "Test City", 60.01, -115.01, 1000000);
-    expect(test_city.show(test_city)).
+    expect(test_city.show()).
         toBe("- Test City is located at 60.01 latitude, -115.01 longitude and has a population of 1000000 people.");
 });
 
@@ -18,15 +18,15 @@ test('test movedIn and movedOut', () => {
 
 test('test howBig', () => {
     const test_city = new City(1, "Test City", 60.01, -115.01, 1000000);
-    expect(test_city.howBig(test_city)).toBe("- Test City is a City with a population > 100,000 people.");
+    expect(test_city.howBig()).toBe("- Test City is a City with a population > 100,000 people.");
     test_city.population = 50000;
-    expect(test_city.howBig(test_city)).toBe("- Test City is a Large Town with a population of 20,000 to 100,000 people.");
+    expect(test_city.howBig()).toBe("- Test City is a Large Town with a population of 20,000 to 100,000 people.");
     test_city.population = 15000;
-    expect(test_city.howBig(test_city)).toBe("- Test City is a Town with a population of 1,000 to 20,000 people.");
+    expect(test_city.howBig()).toBe("- Test City is a Town with a population of 1,000 to 20,000 people.");
     test_city.population = 101;
-    expect(test_city.howBig(test_city)).toBe("- Test City is a Village, larger than a Hamlet but smaller than a Town.");
+    expect(test_city.howBig()).toBe("- Test City is a Village, larger than a Hamlet but smaller than a Town.");
     test_city.population = 1;
-    expect(test_city.howBig(test_city)).toBe("- Test City is a Hamlet with population of 1 to 100 people.");
+    expect(test_city.howBig()).toBe("- Test City is a Hamlet with population of 1 to 100 people.");
 });
 
 test('test whichSphere', () => {
@@ -75,7 +75,7 @@ test('test deleteCity', () => {
             { "key": 4, "latitude": 88.91, "longitude": 114.56, "name": "new city 4", "population": 1 }
         ]
     );
-    expect(test_community.deleteCity(test_community.cities, 3))
+    expect(test_community.deleteCity(test_community.cities, 2))
         .toEqual(
             [
                 { "key": 1, "latitude": 60.01, "longitude": -115.01, "name": "new city 1", "population": 1000000 },

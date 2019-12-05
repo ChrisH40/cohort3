@@ -160,7 +160,7 @@ test('test deleteCitySync', async () => {
     expect(data[0].name).toBe("city 1");
     expect(data[0].key).toBe(1);
 
-    await syncFunctions.deleteCitySync(1);
+    await syncFunctions.deleteCitySync(test_cities_list[0]);
 
     data = await postData(url + 'all');
     expect(data.status).toEqual(200);

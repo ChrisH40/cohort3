@@ -51,8 +51,8 @@ const cityButtonSelector = (event) => {
         event.target.parentNode.children[4].value = "";
 
     } if (event.target.textContent == "Delete City") {
-        communities.deleteCity(array, cityKey);
-        syncFunctions.deleteCitySync(cityKey);
+        communities.deleteCity(array, index);
+        syncFunctions.deleteCitySync(array[index]);
         domFunctions.deleteCityCard(event.target);
         cityChecker(array);
     }
