@@ -73,7 +73,7 @@ test('test fetch working', async () => {
     expect(data.status).toEqual(400);
 });
 
-test('test dataSync counterSync domSync on pageload working', async () => {
+test('test dataSync on pageload working', async () => {
 
     const test_community = new Community("Test Community");
 
@@ -86,9 +86,6 @@ test('test dataSync counterSync domSync on pageload working', async () => {
             { key: 4, latitude: 88.91, longitude: 114.56, name: "city 4", population: 1 },
         ];
 
-    const myDiv = document.createElement("div");
-
-    // Check that the server is running and clear any data
     let data = await postData(url + 'clear');
 
     data = await postData(url + 'all');
@@ -104,13 +101,10 @@ test('test dataSync counterSync domSync on pageload working', async () => {
     expect(data[0].name).toBe("city 1");
     expect(test_community.cities).toEqual([]);
     expect(test_community.counter).toBe(0);
-    expect(myDiv.hasChildNodes()).toBe(false);
 
-    await syncFunctions.dataSync(test_community, myDiv);
+    await syncFunctions.dataSync(test_community.cities);
     expect(data.status).toEqual(200);
     expect(test_community.cities[0].key).toBe(1);
-    expect(test_community.counter).toBe(1);
-    expect(myDiv.hasChildNodes()).toBe(true);
 });
 
 test('test createCitySync', async () => {
@@ -121,7 +115,6 @@ test('test createCitySync', async () => {
             { key: 1, latitude: 60.01, longitude: -115.01, name: "city 1", population: 1000000 }
         ];
 
-    // Check that the server is running and clear any data
     let data = await postData(url + 'clear');
 
     data = await postData(url + 'all');
@@ -144,7 +137,6 @@ test('test deleteCitySync', async () => {
             { key: 1, latitude: 60.01, longitude: -115.01, name: "city 1", population: 1000000 }
         ];
 
-    // Check that the server is running and clear any data
     let data = await postData(url + 'clear');
 
     data = await postData(url + 'all');
@@ -178,7 +170,6 @@ test('test populationSync', async () => {
         { key: 4, latitude: 88.91, longitude: 114.56, name: "city 4", population: 1 },
     ];
 
-    // Check that the server is running and clear any data
     let data = await postData(url + 'clear');
 
     data = await postData(url + 'all');

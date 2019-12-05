@@ -1,30 +1,14 @@
 import { City } from './cities.js';
-import domFunctions from './cities-dom.js';
 
 const syncFunctions = {
 
-    async dataSync(array, parent) {
+    async dataSync(array) {
         let data = await postData(url + 'all');
         for (let i = 0; i < data.length; i++) {
             let new_city = new City(data[i].key, data[i].name, data[i].latitude, data[i].longitude, data[i].population);
-            array.cities.push(new_city);
-        } syncFunctions.counterSync(array);
-        syncFunctions.domSync(array, parent);
+            array.push(new_city);
+        }
         return array;
-    },
-
-    counterSync(array) {
-        let arrayKeys = array.cities.map(city => city.key);
-        if (arrayKeys.length > 0) {
-            let highestKey = Math.max(...arrayKeys);
-            array.counter = highestKey;
-        } else array.counter = 0;
-    },
-
-    domSync(array, parent) {
-        array.cities.forEach(city => {
-            domFunctions.createCityDiv(parent, city);
-        })
     },
 
     async createCitySync(city) {

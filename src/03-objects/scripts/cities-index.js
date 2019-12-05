@@ -68,7 +68,7 @@ const cityInfoSelector = (event) => {
         idCityShowInfo.textContent = city.show(city);
         idCityHowBigInfo.textContent = city.howBig(city);
         idCityWhichSphere.textContent = communities.whichSphere(city);
-    } 
+    }
     else return;
 }
 
@@ -87,7 +87,26 @@ const cityChecker = (array) => {
     }, 1000);
 }
 
+const domSync = (array, parent) => {
+    setTimeout(() => {
+        array.forEach(city => {
+            domFunctions.createCityDiv(parent, city);
+        })
+    }, 1000);
+}
+
+const counterSync = (controller) => {
+    setTimeout(() => {
+        let arrayKeys = controller.cities.map(city => city.key);
+        if (arrayKeys.length > 0) {
+            let highestKey = Math.max(...arrayKeys);
+            controller.counter = highestKey;
+        } else controller.counter = 0;
+    }, 1000);
+}
+
 idCreateCityButton.addEventListener("click", cityCreateButton);
 idCityDisplay.addEventListener("click", cityButtonSelector);
 window.addEventListener("click", cityInfoSelector);
-window.addEventListener("load", syncFunctions.dataSync(communities, idCityDisplay), cityChecker(communities.cities));
+window.addEventListener("load", syncFunctions.dataSync(communities.cities));
+window.addEventListener("load", domSync(communities.cities, idCityDisplay), counterSync(communities), cityChecker(communities.cities));
