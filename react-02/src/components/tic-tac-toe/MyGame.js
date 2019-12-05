@@ -16,15 +16,15 @@ class Game extends React.Component {
     }
   }
 
-  async firstPlayer(event) {
+  firstPlayer = (event) => {
     if (this.state.startGame === false && event.target.value === "human") {
-      await this.setState({
+      this.setState({
         humanPlayer: "X",
         computerPlayer: "O",
       });
     }
     else if (this.state.startGame === false && event.target.value === "computer") {
-      await this.setState({
+      this.setState({
         humanPlayer: "O",
         computerPlayer: "X",
       });
@@ -32,29 +32,26 @@ class Game extends React.Component {
     else return;
   }
 
-  async startGame(event) {
+  startGame = (event) => {
     const booleanState = (event.target.value === "true");
-    await this.setState({
+    this.setState({
       startGame: booleanState,
     });
-    if (this.state.computerPlayer === "X" && this.state.xIsNext === true && this.state.startGame === true) {
+    if (this.state.startGame === true && this.state.computerPlayer === "X" && this.state.xIsNext === true) {
       return this.compDecision(this.state.history[0].squares);
     }
     else return;
   }
 
   humanDecision(i) {
-    if ((this.state.humanPlayer === "X" && this.state.xIsNext === true && this.state.startGame === true) ||
-      (this.state.humanPlayer === "O" && this.state.xIsNext === false && this.state.startGame === true)) {
+    if ((this.state.startGame === true && this.state.humanPlayer === "X" && this.state.xIsNext === true) ||
+      (this.state.startGame === true && this.state.humanPlayer === "O" && this.state.xIsNext === false)) {
       return this.handleClick(i)
     }
     else return;
   }
 
-  // --- Computer AI (unbeatable) ---
-  // Logic (miniMax) inspired by ahmad abdolsaheb at https://www.freecodecamp.org/news/how-to-make-your-tic-tac-toe-game-unbeatable-by-using-the-minimax-algorithm-9d690bad4b37/
-
-  compDecision(board) {
+ compDecision(board) {
     setTimeout(() => {
       if (board.includes(null)) {
         const pick = this.miniMax(board, this.state.computerPlayer);
@@ -62,6 +59,10 @@ class Game extends React.Component {
       }
     }, 1000);
   }
+
+  // --- Computer AI (unbeatable) ---
+  // Logic (miniMax) inspired by ahmad abdolsaheb at https://www.freecodecamp.org/news/how-to-make-your-tic-tac-toe-game-unbeatable-by-using-the-minimax-algorithm-9d690bad4b37/
+
 
   miniMax(board, player) {
     let open_spots = this.emptyIndexes(board);
