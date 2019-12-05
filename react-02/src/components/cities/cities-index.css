@@ -143,3 +143,15 @@
     font-size: 30px;    
     margin: 13px 13px 13px -30px;
 }
+
+.city-button {
+    background-color: #09d3ac;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+  }

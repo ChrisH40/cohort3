@@ -49,7 +49,7 @@ class CityCard extends React.Component {
 
     render() {
         return (
-            <div className={`city-card ` + (this.props.selectedCity === this.props.cities[this.props.index] ? "active-city-card" : null)} name="selectedCity" value="selectedCity" onClick={(event) => this.props.cityInfoSelector(event, this.props.index)}>
+            <div className={`city-card ` + (this.props.selectedCity === this.props.cities[this.props.index] ? "active-city-card" : null)} onClick={(event) => this.props.cityInfoSelector(event, this.props.index)}>
                 <label className="city-name city-card-elements">
                     {this.props.name}
                 </label>

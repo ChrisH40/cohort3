@@ -14,7 +14,7 @@ class AccountCreateDisplay extends React.Component {
                         Balance:
                     </label>
                     <input type="number" name="acctBalance" className="create-account-balance-input" value={this.props.acctBalance} onChange={this.props.handleOnChange} />
-                    <input type="submit" value="Submit" className="button create-account-button" />
+                    <input type="submit" value="Submit" className="account-button create-account-button" />
                 </form>
             </div>
         )

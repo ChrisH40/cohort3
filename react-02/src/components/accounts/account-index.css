@@ -75,9 +75,11 @@
     grid-template-columns: repeat(6, 1fr);
     height: 5%;
     padding: 10px;
+    margin: 5px 0px 5px 0px;
+    background-color:  rgba(0, 217, 255, 0.05);
 }
 
-.account-card:nth-child(odd) {background-color:  rgba(0, 217, 255, 0.25);}
+.account-card:nth-child(odd) {background-color:  rgba(0, 217, 255, 0.10);}
 
 .account-name,
 .account-balance,
@@ -110,3 +112,15 @@
     font-size: 20px;
     margin: 5px;
 }
+
+.account-button {
+    background-color: #09d3ac;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+  }

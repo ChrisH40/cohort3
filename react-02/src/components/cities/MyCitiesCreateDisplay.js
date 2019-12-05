@@ -22,7 +22,7 @@ class CityCreateDisplay extends React.Component {
                     Population:
                 </label>
                 <input type="number" name="population" className="create-city-input" value={this.props.population} onChange={this.props.handleOnChange} />
-                <input type="submit" value="Add City" className="create-city-button" />
+                <input type="submit" value="Add City" className="create-city-button city-button" />
             </form>
         </div>
         )
