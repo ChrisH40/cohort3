@@ -21,7 +21,7 @@ class CityCard extends React.Component {
 
     handleMovedIn(i) {
         if (this.state.changePopulation < 0) {
-            alert("Please enter a number greater than zero!");
+            alert("Please enter a number greater than zero.");
         }
         else {
             this.props.cities[i].movedIn(Number(this.state.changePopulation));
@@ -35,7 +35,7 @@ class CityCard extends React.Component {
 
     handleMovedOut(i) {
         if (this.state.changePopulation < 0 || this.state.changePopulation >= this.props.population) {
-            alert("Please enter a number greater than zero or less than current population!");
+            alert("Please enter a number greater than zero or less than current population.");
         }
         else {
             this.props.cities[i].movedOut(Number(this.state.changePopulation));

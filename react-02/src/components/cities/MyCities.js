@@ -11,7 +11,7 @@ class Cities extends React.Component {
 
     constructor(props) {
         super(props);
-        this.citiesList = new Community('test');
+        this.citiesList = new Community('Cities Controller');
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
@@ -32,14 +32,23 @@ class Cities extends React.Component {
 
     componentDidMount = async () => {
         if (this.state.dataLoad === false) {
-            await syncFunctions.dataSync(this.citiesList);
+            await syncFunctions.dataSync(this.citiesList.cities);
             this.setState({
                 dataLoad: true,
             });
+            this.counterSync(this.citiesList);
             this.cityChecker(this.citiesList.cities);
         }
         else return;
     }
+
+    counterSync = (controller) => {
+            let arrayKeys = controller.cities.map(city => city.key);
+            if (arrayKeys.length > 0) {
+                let highestKey = Math.max(...arrayKeys);
+                controller.counter = highestKey;
+            } else controller.counter = 0;
+    } 
 
     handleOnChange = (event) => {
         this.setState({
@@ -48,12 +57,17 @@ class Cities extends React.Component {
     }
 
     handleSubmit = (event) => {
-        if (this.state.latitude < -90 ||
-            this.state.latitude > 90 ||
-            this.state.longitude < -180 ||
-            this.state.longitude > 180 ||
-            this.state.population < 0) {
-            alert("Latitude -90 to 90 degrees. Longitude -180 to 180 degrees. Population equal to or greater than 0. Please re-enter.");
+        if (this.state.cityName === "") {
+            alert("Name required. Please re-enter.");
+        }
+        else if (this.state.latitude < -90 || this.state.latitude > 90) {
+            alert("Latitude must be between -90 and 90 degrees. Please re-enter.");
+        }
+        else if (this.state.longitude < -180 || this.state.longitude > 180) {
+            alert("Longitude must be between -180 and 180 degrees. Please re-enter.");
+        }
+        else if (this.state.population < 0) {
+            alert("Population must be greater than or equal to 0. Please re-enter.");
         }
         else {
             const newCity = this.citiesList.createCity(this.state.cityName, this.state.latitude, this.state.longitude, this.state.population);
@@ -70,8 +84,8 @@ class Cities extends React.Component {
     }
 
     handleDelete = (i) => {
-        syncFunctions.deleteCitySync(this.citiesList.cities[i].key);
-        this.citiesList.cities.splice(i, 1);
+        syncFunctions.deleteCitySync(this.citiesList.cities[i]);
+        this.citiesList.deleteCity(this.citiesList.cities, i);
         this.cityChecker(this.citiesList.cities);
         this.setState({
             selectedCity: "",
@@ -82,7 +96,7 @@ class Cities extends React.Component {
     }
 
     cityChecker = (array) => {
-        if (this.citiesList.cities.length > 0) {
+        if (array.length > 0) {
             this.setState({
                 mostNorthern: this.citiesList.getMostNorthern(array),
                 mostSouthern: this.citiesList.getMostSouthern(array),
