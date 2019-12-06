@@ -19,8 +19,8 @@ export class Account {
         return this.startingBalance;
     }
 
-    accountBalance(account) {
-        return account.startingBalance;
+    accountBalance() {
+        return this.startingBalance;
     }
 };
 
@@ -71,12 +71,8 @@ export class AccountController {
         return "$" + highestNumber.toFixed(2);
     }
 
-    deleteAccount(array, accountKey) {
-        let array_keys = array.map(account => account.key);
-        // eslint-disable-next-line
-        let found_key = array_keys.find((key)=> key == accountKey)
-        let found_index = array_keys.indexOf(found_key);
-        array.splice(found_index, 1);
+    deleteAccount(array, index) {
+        array.splice(index, 1);
         return array;
     }
 
