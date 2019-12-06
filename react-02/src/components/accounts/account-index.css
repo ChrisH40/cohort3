@@ -59,6 +59,11 @@
 .create-account-text {
     margin: 10px 5px 5px 5px;
 }
+
+.create-account-button:hover,
+.account-button:hover {
+    cursor: pointer;
+}
   
 .container-middle {
     grid-area: middle;

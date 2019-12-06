@@ -59,6 +59,10 @@
     margin: 10px 5px 5px 5px;
 }
 
+.create-city-button:hover {
+    cursor: pointer;
+}
+
 .city-display-headers {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
