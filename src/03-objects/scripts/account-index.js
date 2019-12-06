@@ -29,7 +29,7 @@ const accountButtonSelector = (event) => {
         let input = Number(event.target.parentNode.children[2].value);
         array[index].accountDeposit(input);
         let balance = event.target.parentNode.children[1]
-        balance.textContent = "$" + Number(array[index].accountBalance(array[index])).toFixed(2);
+        balance.textContent = "$" + Number(array[index].accountBalance()).toFixed(2);
         balanceChecker(array);
         event.target.parentNode.children[2].value = "";
     } 
@@ -37,12 +37,12 @@ const accountButtonSelector = (event) => {
         let input = Number(event.target.parentNode.children[2].value);
         array[index].accountWithdraw(input);
         let balance = event.target.parentNode.children[1]
-        balance.textContent = "$" + Number(array[index].accountBalance(array[index])).toFixed(2);
+        balance.textContent = "$" + Number(array[index].accountBalance()).toFixed(2);
         balanceChecker(array);
         event.target.parentNode.children[2].value = "";
     } 
     else if (event.target.textContent == "Delete Account") {
-        accountList.deleteAccount(array, accountKey);
+        accountList.deleteAccount(array, index);
         domFunctions.deleteAccountCard(event.target);
         balanceChecker(array);
     } 
@@ -67,7 +67,7 @@ const balanceChecker = (array) => {
         idHighestNumber.textContent = "";
         idLowest.textContent = "";
         idLowestNumber.textContent = "";
-        idTotalNumber.textContent = accountList.totalBalances(array);
+        idTotalNumber.textContent = "";
     } 
     return
 }
