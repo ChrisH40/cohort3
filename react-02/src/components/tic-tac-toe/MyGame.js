@@ -32,9 +32,9 @@ class Game extends React.Component {
     else return;
   }
 
-  startGame = (event) => {
+  async startGame(event) {
     const booleanState = (event.target.value === "true");
-    this.setState({
+    await this.setState({
       startGame: booleanState,
     });
     if (this.state.startGame === true && this.state.computerPlayer === "X" && this.state.xIsNext === true) {
@@ -57,7 +57,7 @@ class Game extends React.Component {
         const pick = this.miniMax(board, this.state.computerPlayer);
         this.handleClick(pick.index);
       }
-    }, 1000);
+    }, 500);
   }
 
   // --- Computer AI (unbeatable) ---
