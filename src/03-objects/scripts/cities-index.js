@@ -73,7 +73,6 @@ const cityInfoSelector = (event) => {
 }
 
 const cityChecker = (array) => {
-    setTimeout(() => {
         if (array.length > 0) {
             idTotalPopText.textContent = communities.getPopulation(array);
             idMostNorthernText.textContent = communities.getMostNorthern(array);
@@ -84,29 +83,24 @@ const cityChecker = (array) => {
             idMostSouthernText.textContent = "";
         }
         else return;
-    }, 1000);
 }
 
 const domSync = (array, parent) => {
-    setTimeout(() => {
         array.forEach(city => {
             domFunctions.createCityDiv(parent, city);
         })
-    }, 1000);
 }
 
 const counterSync = (controller) => {
-    setTimeout(() => {
         let arrayKeys = controller.cities.map(city => city.key);
         if (arrayKeys.length > 0) {
             let highestKey = Math.max(...arrayKeys);
             controller.counter = highestKey;
         } else controller.counter = 0;
-    }, 1000);
 }
 
 idCreateCityButton.addEventListener("click", cityCreateButton);
 idCityDisplay.addEventListener("click", cityButtonSelector);
 window.addEventListener("click", cityInfoSelector);
 window.addEventListener("load", syncFunctions.dataSync(communities.cities));
-window.addEventListener("load", domSync(communities.cities, idCityDisplay), counterSync(communities), cityChecker(communities.cities));
+setTimeout(() => window.addEventListener("load", domSync(communities.cities, idCityDisplay), counterSync(communities), cityChecker(communities.cities)), 500);
