@@ -53,7 +53,7 @@ class AccountCard extends React.Component {
                 <label className="account-balance">
                     {`$${(this.props.balance).toFixed(2)}`}
                 </label>
-                <input type="number" name="changeBalance" value={this.state.changeBalance} className="account-input" onChange={this.handleOnChange} />
+                <input type="number" name="changeBalance" placeholder="amount" value={this.state.changeBalance} className="account-input" onChange={this.handleOnChange} />
                 <input type="button" value="Deposit" className="deposit-button account-button" onClick={() => this.handleDeposit(this.props.index)} />
                 <input type="button" value="Withdraw" className="withdraw-button account-button" onClick={() => this.handleWithdraw(this.props.index)} />
                 <input type="button" value="Delete Account" className="delete-button account-button" onClick={() => this.props.handleDelete(this.props.index)} />

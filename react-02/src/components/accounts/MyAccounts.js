@@ -95,7 +95,6 @@ class Accounts extends React.Component {
                     />
                 </div>
                 <div className="container-right">
-                    <span className="container-right-header display-header">Accounts Information</span>
                     <AccountBalancesDisplay
                         highestName={this.state.highestName}
                         highestBalance={this.state.highestBalance}

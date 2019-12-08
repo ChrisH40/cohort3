@@ -9,11 +9,11 @@ class AccountCreateDisplay extends React.Component {
                     <label className="create-account-text">
                         Name:
                     </label>
-                    <input type="text" name="acctName" className="create-account-name-input" value={this.props.acctName} onChange={this.props.handleOnChange} />
+                    <input type="text" name="acctName" placeholder="name" className="create-account-name-input" value={this.props.acctName} onChange={this.props.handleOnChange} />
                     <label className="create-account-text">
-                        Balance:
+                        Opening Balance:
                     </label>
-                    <input type="number" name="acctBalance" className="create-account-balance-input" value={this.props.acctBalance} onChange={this.props.handleOnChange} />
+                    <input type="number" name="acctBalance" placeholder="balance" className="create-account-balance-input" value={this.props.acctBalance} onChange={this.props.handleOnChange} />
                     <input type="submit" value="Submit" className="account-button create-account-button" />
                 </form>
             </div>

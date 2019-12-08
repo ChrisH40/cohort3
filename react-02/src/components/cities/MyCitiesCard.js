@@ -3,8 +3,8 @@ import syncFunctions from './cities-api-functions.js';
 
 class CityCard extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleMovedIn = this.handleMovedIn.bind(this);
         this.handleMovedOut = this.handleMovedOut.bind(this);
@@ -62,7 +62,7 @@ class CityCard extends React.Component {
                 <label className="city-population city-card-elements">
                     {(this.props.population).toFixed(0)}
                 </label>
-                <input type="number" name="changePopulation" value={this.state.changePopulation} className="city-population-input city-card-elements" onChange={this.handleOnChange} />
+                <input type="number" name="changePopulation" placeholder="pop." value={this.state.changePopulation} className="city-population-input city-card-elements" onChange={this.handleOnChange} />
                 <input type="button" value="Moved In" className="movedin-button city-button city-card-elements" onClick={() => this.handleMovedIn(this.props.index)} />
                 <input type="button" value="Moved Out" className="movedout-button city-button city-card-elements" onClick={() => this.handleMovedOut(this.props.index)} />
                 <input type="button" value="Delete City" className="delete-button city-button city-card-elements" onClick={() => this.props.handleDelete(this.props.index)} />
