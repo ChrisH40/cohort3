@@ -6,15 +6,9 @@ class CityFactsDisplay extends React.Component {
         return (
             <div className="city-facts-display">
                 City Information (click a city for more information):
-                <p className="city-facts-text">
-                    {this.props.showCity}
-                </p>
-                <p className="city-facts-text">
-                    {this.props.howBigCity}
-                </p>
-                <p className="city-facts-text" >
-                    {this.props.whichSphereCity}
-                </p>
+                <p className="city-facts-text">{this.props.showCity}</p>
+                <p className="city-facts-text">{this.props.howBigCity}</p>
+                <p className="city-facts-text" >{this.props.whichSphereCity}</p>
             </div>
         )
     }

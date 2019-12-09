@@ -50,22 +50,32 @@ class CityCard extends React.Component {
     render() {
         return (
             <div className={`city-card ` + (this.props.selectedCity === this.props.cities[this.props.index] ? "active-city-card" : null)} onClick={(event) => this.props.cityInfoSelector(event, this.props.index)}>
-                <label className="city-name city-card-elements">
-                    {this.props.name}
-                </label>
-                <label className="city-latitude city-card-elements">
-                    {(this.props.latitude).toFixed(2)}
-                </label>
-                <label className="city-longitude city-card-elements">
-                    {(this.props.longitude).toFixed(2)}
-                </label>
-                <label className="city-population city-card-elements">
-                    {(this.props.population).toFixed(0)}
-                </label>
-                <input type="number" name="changePopulation" placeholder="pop." value={this.state.changePopulation} className="city-population-input city-card-elements" onChange={this.handleOnChange} />
-                <input type="button" value="Moved In" className="movedin-button city-button city-card-elements" onClick={() => this.handleMovedIn(this.props.index)} />
-                <input type="button" value="Moved Out" className="movedout-button city-button city-card-elements" onClick={() => this.handleMovedOut(this.props.index)} />
-                <input type="button" value="Delete City" className="delete-button city-button city-card-elements" onClick={() => this.props.handleDelete(this.props.index)} />
+                <label className="city-name city-card-elements">{this.props.name}</label>
+                <label className="city-latitude city-card-elements">{(this.props.latitude).toFixed(2)}</label>
+                <label className="city-longitude city-card-elements">{(this.props.longitude).toFixed(2)}</label>
+                <label className="city-population city-card-elements">{(this.props.population).toFixed(0)}</label>
+                <input
+                    type="number"
+                    name="changePopulation"
+                    placeholder="pop."
+                    value={this.state.changePopulation}
+                    className="city-population-input city-card-elements"
+                    onChange={this.handleOnChange} />
+                <input
+                    type="button"
+                    value="Moved In"
+                    className="city-button city-card-elements"
+                    onClick={() => this.handleMovedIn(this.props.index)} />
+                <input
+                    type="button"
+                    value="Moved Out"
+                    className="city-button city-card-elements"
+                    onClick={() => this.handleMovedOut(this.props.index)} />
+                <input
+                    type="button"
+                    value="Delete City"
+                    className="city-button city-card-elements"
+                    onClick={() => this.props.handleDelete(this.props.index)} />
             </div>
         )
     }

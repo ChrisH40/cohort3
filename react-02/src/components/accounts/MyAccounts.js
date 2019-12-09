@@ -78,7 +78,7 @@ class Accounts extends React.Component {
         return (
             <div className="wrapper">
                 <div className="container-left">
-                    <span className="container-left-header display-header">Create New Account</span>
+                    <span className="display-header">Create New Account</span>
                     <AccountCreateDisplay
                         handleSubmit={this.handleSubmit}
                         handleOnChange={this.handleOnChange}
@@ -87,7 +87,7 @@ class Accounts extends React.Component {
                     />
                 </div>
                 <div className="container-middle">
-                    <span className="container-middle-header display-header">Accounts Display</span>
+                    <span className="display-header">Accounts Display</span>
                     <AccountCardsList
                         listArray={this.accounts.listArray}
                         handleDelete={this.handleDelete}

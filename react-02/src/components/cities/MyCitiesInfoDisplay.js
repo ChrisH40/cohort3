@@ -6,21 +6,15 @@ class CityInfoDisplay extends React.Component {
         return (
             <div>
                 <div className="city-calculations-display">
-                    <span className="city-container-right-header city-display-header">
-                        Total Population:
-                        </span>
+                    <span className="city-container-right-header city-display-header">Total Population:</span>
                     <p className="container-right-info">{this.props.totalPopulation}</p>
                 </div>
                 <div className="city-calculations-display">
-                    <span className="city-container-right-header city-display-header">
-                        Most Northern City:
-                        </span>
+                    <span className="city-container-right-header city-display-header">Most Northern City:</span>
                     <p className="container-right-info">{this.props.mostNorthern}</p>
                 </div>
                 <div className="city-calculations-display">
-                    <span className="city-container-right-header city-display-header">
-                        Most Southern City:
-                        </span>
+                    <span className="city-container-right-header city-display-header">Most Southern City:</span>
                     <p className="container-right-info">{this.props.mostSouthern}</p>
                 </div>
             </div>

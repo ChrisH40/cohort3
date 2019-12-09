@@ -127,7 +127,7 @@ class Cities extends React.Component {
         return (
             <div className="city-wrapper">
                 <div className="city-container-left">
-                    <span className="container-left-header city-display-header">Add City</span>
+                    <span className="city-display-header">Add City</span>
                     <CityCreateDisplay
                         handleSubmit={this.handleSubmit}
                         handleOnChange={this.handleOnChange}
@@ -138,7 +138,7 @@ class Cities extends React.Component {
                     />
                 </div>
                 <div className="city-container-middle-top">
-                    <div className="city-display-headers">
+                    <div className="city-cards-display-headers">
                         <span className="city-headers">City</span>
                         <span className="city-headers">Latitude</span>
                         <span className="city-headers">Longitude</span>

@@ -63,7 +63,7 @@
     cursor: pointer;
 }
 
-.city-display-headers {
+.city-cards-display-headers {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     color: white;
