@@ -9,7 +9,7 @@ class Accounts extends React.Component {
     
     constructor(props) {
         super(props);
-        this.accounts = new AccountController('test');
+        this.accounts = new AccountController('My Accounts');
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
@@ -74,7 +74,6 @@ class Accounts extends React.Component {
     }
 
     render() {
-
         return (
             <div className="wrapper">
                 <div className="container-left">

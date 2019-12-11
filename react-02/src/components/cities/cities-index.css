@@ -69,6 +69,7 @@
     color: white;
     font-size: 18px;
     text-align: center;
+    margin-left: 10px;
 }
 
 .city-container-middle-top {
@@ -85,7 +86,7 @@
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     height: 3vh;
-    padding: 10px;
+    padding: 10px 0px 10px 0px;
     margin: 5px 0px 5px 0px;
     background-color:  rgba(0, 217, 255, 0.10);
 }
@@ -105,12 +106,15 @@
 }
 
 .city-button,
-.city-population-input,
+.city-population-input {
+    margin: 0px 5px 0px 5px;
+}
+
 .city-name,
 .city-population,
 .city-longitude,
 .city-latitude {
-    margin: 2px 10px 2px 10px;
+    margin-top: 4px;
 }
 
 .city-population-input {

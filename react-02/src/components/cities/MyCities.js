@@ -140,9 +140,9 @@ class Cities extends React.Component {
                 <div className="city-container-middle-top">
                     <div className="city-cards-display-headers">
                         <span className="city-headers">City</span>
-                        <span className="city-headers">Latitude</span>
-                        <span className="city-headers">Longitude</span>
-                        <span className="city-headers">Population</span>
+                        <span className="city-headers">Lat.</span>
+                        <span className="city-headers">Long.</span>
+                        <span className="city-headers">Pop.</span>
                     </div>
                     <div>
                         <CityCardsList
