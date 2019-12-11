@@ -5,24 +5,27 @@ import Homepage from "./components/MyHomepage.js";
 import Game from "./components/tic-tac-toe/MyGame.js";
 import Accounts from "./components/accounts/MyAccounts.js";
 import Cities from "./components/cities/MyCities.js";
+import LinkedListDisplay from "./components/linked-list/MyLinkedList.js";
 
-import bankIcon from './images/piggy-bank-icon.svg';
 import houseIcon from './images/house-icon.svg';
-import cityIcon from './images/city-skyline-icon.svg';
 import ticTacToeIcon from './images/tic-tac-toe-icon.svg';
+import bankIcon from './images/piggy-bank-icon.svg';
+import cityIcon from './images/city-skyline-icon.svg';
+import linkedListIcon from './images/linked-list-icon.svg';
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
       selected: houseIcon,
       activeIconIndex: 0,
     }
   }
 
-  async handleClick(event) {
-    await this.setState({
+  handleClick = (event) => {
+    this.setState({
       selected: event.target.name,
       activeIconIndex: Number(event.target.id),
     })
@@ -38,7 +41,7 @@ class App extends React.Component {
           tabIndex={0}
           className={`icon icon${i} ` + (this.state.activeIconIndex === i ? "icon-active" : null)}
           alt={`icon ${icon}`}
-          onClick={(event) => this.handleClick(event)}
+          onClick={this.handleClick}
         />
         <span
           id={i}>
@@ -57,13 +60,14 @@ class App extends React.Component {
       return < Accounts />
     } if (selected === cityIcon) {
       return < Cities />
-    }
+    } if (selected === linkedListIcon) {
+      return < LinkedListDisplay />
+    } 
   }
 
-
   render() {
-    const images = [houseIcon, ticTacToeIcon, bankIcon, cityIcon];
-    const image_headers = ['Home', "Tic-Tac-Toe", "Accounts", "Cities"]
+    const images = [houseIcon, ticTacToeIcon, bankIcon, cityIcon, linkedListIcon];
+    const image_headers = ['Home', "Tic-Tac-Toe", "Accounts", "Cities", "Linked List"]
 
     return (
       <div className="App">

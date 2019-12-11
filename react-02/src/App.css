@@ -22,7 +22,7 @@
 
 .icon-icon-header { 
   display: flex;
-  margin: 25px;
+  margin: 15px;
   font-size: 15px;
   flex-direction: column;
 }
@@ -35,7 +35,7 @@
   animation-timing-function: linear; 
   height: 10vh;
   width: 10vw;
-  margin: 25px;
+  margin: 15px;
 }
 
 .icon:hover {
