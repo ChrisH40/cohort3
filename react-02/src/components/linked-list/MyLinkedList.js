@@ -15,33 +15,34 @@ const LinkedListDisplay = () => {
         setSubject = ("");
         setAmount = ("");
         event.preventDefault();
-    } 
+    }
 
     return (
-        // change ALL classNames for future CSS
-        <div className="create-account-display"> 
-            <form onSubmit={handleInsert}>
-                <label className="create-account-text">Subject:</label>
-                <input
-                    type="text"
-                    name="acctName"
-                    placeholder="subj."
-                    className="create-account-name-input"
-                    value={subject}
-                    onChange={(event) => setSubject(event.target.value)} />
-                <label className="create-account-text">Amount:</label>
-                <input
-                    type="number"
-                    name="acctBalance"
-                    placeholder="amt."
-                    className="create-account-balance-input"
-                    value={amount}
-                    onChange={(event) => setAmount(event.target.value)} />
-                <input
-                    type="submit"
-                    value="Submit"
-                    className="account-button create-account-button" />
-            </form>
+        <div className="list-wrapper">
+            <div className="create-listNode-display">
+                <form onSubmit={handleInsert}>
+                    <label className="create-listNode-text">Subject:</label>
+                    <input
+                        type="text"
+                        name="nodeSubject"
+                        placeholder="subj."
+                        className="create-listNode-subject-input"
+                        value={subject}
+                        onChange={(event) => setSubject(event.target.value)} />
+                    <label className="create-listNode-text">Amount:</label>
+                    <input
+                        type="number"
+                        name="nodeAmount"
+                        placeholder="amt."
+                        className="create-listNode-amount-input"
+                        value={amount}
+                        onChange={(event) => setAmount(event.target.value)} />
+                    <input
+                        type="submit"
+                        value="Submit"
+                        className="list-button create-listNode-button" />
+                </form>
+            </div>
         </div>
     )
 }

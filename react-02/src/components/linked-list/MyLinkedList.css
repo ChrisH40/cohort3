@@ -1,1 +1,41 @@
 /* --- CSS TBD --- */
+
+.list-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #282c34;
+    height: 90vh;
+    min-height: 90vmin;
+    padding: 5px;
+}
+
+.create-listNode-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #282c34;
+    border: solid 1px #09d3ac;
+    color: white;
+    height: 90%;
+    padding: 10px;
+}
+
+.create-listNode-subject-input,
+.create-listNode-amount-input {
+    margin: 10px;
+    padding: 5px;
+    height: 2vh;
+    width: 10vw;
+}
+
+.list-button {
+    background-color:rgb(9, 211, 172, 0.4);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+  }
