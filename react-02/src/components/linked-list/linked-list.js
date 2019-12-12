@@ -1,11 +1,11 @@
 
-// --- subject to change ---
+// --- Subject to Change ---
 
 export class ListNode {
 
-    constructor(key, forwardNode, subject, amount) {
-        this.key = Number(key) // might not use now?
+    constructor(forwardNode, previousNode, subject, amount) {
         this.forwardNode = forwardNode;
+        this.previousNode = previousNode;
         this.subject = subject;
         this.amount = Number(amount);
     }
@@ -23,13 +23,16 @@ export class LinkedList {
         this.counter = 0; // might not use now?
     }
 
-    createListNode(forwardNode, subject, amount) {
+    createListNode(forwardNode, previousNode, subject, amount) {
         this.counter++;
-        const newListNode = new ListNode (this.counter, forwardNode, subject, amount);
+        const newListNode = new ListNode (forwardNode, previousNode, subject, amount);
+        this.listArray.push(newListNode); // might not use now, if no array used?
         return newListNode;
     }
 
-    total() {
-        //total amounts of all ListNodes... might not go here?
+    totalAmounts(array) {
+        const arrayAmounts = array.map(listNode => listNode.amount); // might not use now, if no array used?
+        const totalAmounts = arrayAmounts.reduce((sum, num) => sum + num); 
+        return totalAmounts;
     }
 };
