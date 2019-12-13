@@ -3,11 +3,10 @@
 
 export class ListNode {
 
-    constructor(forwardNode, previousNode, subject, amount) {
-        this.forwardNode = forwardNode;
-        this.previousNode = previousNode;
+    constructor(subject, amount) {
         this.subject = subject;
         this.amount = Number(amount);
+        this.next = null;
     }
 
     show() {
@@ -17,22 +16,27 @@ export class ListNode {
 
 export class LinkedList {
 
-    constructor(listName) {
-        this.listName = listName;
-        this.listArray = []; // might not use now?
-        this.counter = 0; // might not use now?
+    constructor() {
+        this.head = null;
+        this.length = 0;
     }
 
-    createListNode(forwardNode, previousNode, subject, amount) {
-        this.counter++;
-        const newListNode = new ListNode (forwardNode, previousNode, subject, amount);
-        this.listArray.push(newListNode); // might not use now, if no array used?
-        return newListNode;
+    insertListNodeHead(subject, amount) {
+        const newListNode = new ListNode(subject, amount);
+        if (this.head === null) {
+            this.head = newListNode;
+            this.length++;
+            return this;
+        }
+        else {
+            newListNode.next = this.head;
+            this.head = newListNode
+            this.length++;
+            return this;
+        }
     }
 
-    totalAmounts(array) {
-        const arrayAmounts = array.map(listNode => listNode.amount); // might not use now, if no array used?
-        const totalAmounts = arrayAmounts.reduce((sum, num) => sum + num); 
-        return totalAmounts;
-    }
+    // totalAmounts() {
+    //     
+    // }
 };

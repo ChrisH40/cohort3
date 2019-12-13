@@ -5,15 +5,17 @@ import React, { useState, useEffect } from 'react';
 import { LinkedList } from './linked-list';
 import './MyLinkedList.css';
 
+const linkedList = new LinkedList();
+
 const LinkedListDisplay = () => {
-    let [subject, setSubject] = useState("");
-    let [amount, setAmount] = useState("");
+    const [subject, setSubject] = useState("");
+    const [amount, setAmount] = useState("");
 
     const handleInsert = (event) => {
-        console.log("insert");
-        console.log(subject, amount);
-        setSubject = ("");
-        setAmount = ("");
+        const newListNode = linkedList.insertListNodeHead(subject, amount);
+        setSubject("");
+        setAmount("");
+        console.log(newListNode);
         event.preventDefault();
     }
 
