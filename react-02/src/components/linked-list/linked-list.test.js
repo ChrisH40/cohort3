@@ -13,6 +13,16 @@ test('test LinkedList insertListNodeHead', () => {
         "tail": {"amount": 1, "next": null, "prev": null, "subject": "Test Node"}});
 });
 
+test('test LinkedList displayNode', () => {
+    const testLinkedList = new LinkedList();
+    testLinkedList.insertListNodeHead("Test Node", 1);
+    expect(testLinkedList.displayNode()).
+        toEqual("| Subject: Test Node, Amount: 1 |");
+    testLinkedList.insertListNodeHead("Test Node Two", 2);
+    expect(testLinkedList.displayNode()).
+        toEqual("| Subject: Test Node Two, Amount: 2 || Subject: Test Node, Amount: 1 |");
+});
+
 // test('test LinkedList totalAmounts', () => {
 //     
 // });

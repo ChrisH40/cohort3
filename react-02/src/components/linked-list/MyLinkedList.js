@@ -15,7 +15,6 @@ const LinkedListDisplay = () => {
         // currentNode(newListNode);
         setSubject("");
         setAmount("");
-        console.log(newListNode);
         event.preventDefault();
     }
 
@@ -55,36 +54,37 @@ const LinkedListDisplay = () => {
                     value="First Item"
                     className="list-button"
                     name="firstNode"
-                    // value={TBD}
-                    // onClick={TBD} 
-                    />
+                // value={TBD}
+                // onClick={TBD} 
+                />
                 <input
                     type="submit"
                     value="Previous Item"
                     className="list-button"
                     name="prevNode"
-                    // value={TBD}
-                    // onClick={TBD} 
-                    />
+                // value={TBD}
+                // onClick={TBD} 
+                />
                 <input
                     type="submit"
                     value="Next Item"
                     className="list-button"
                     name="nextNode"
-                    // value={TBD}
-                    // onClick={TBD} 
-                    />
+                // value={TBD}
+                // onClick={TBD} 
+                />
                 <input
                     type="submit"
                     value="Last Item"
                     className="list-button"
                     name="lastNode"
-                    // value={TBD}
-                    // onClick={TBD} 
-                    />
+                // value={TBD}
+                // onClick={TBD} 
+                />
             </div>
             <div className="list-display">
-                {/* ListNodes go here (delete?) */}
+                {linkedList.displayNode()} {/* This output will change */}
+                {/* ListNodes go here (delete function?) */}
             </div>
         </div>
     )

@@ -37,7 +37,7 @@ export class LinkedList {
             this.head.prev = newListNode;
             this.head = newListNode;
             let findTail = this.head;
-            while (findTail.next !== null) {
+            while (findTail.next) {
                 findTail = findTail.next;
                 this.tail = findTail;
             }
@@ -45,6 +45,16 @@ export class LinkedList {
             return this;
         }
     }
+
+    displayNode() { 
+        var currentNode = this.head; 
+        var displayedNode = ""; 
+        while (currentNode) { 
+            displayedNode += `| Subject: ${currentNode.subject}, Amount: ${currentNode.amount} |`
+            currentNode = currentNode.next; 
+        }
+        return displayedNode; 
+    }  
 
     // totalAmounts() {
     //     
