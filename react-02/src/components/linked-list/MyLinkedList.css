@@ -2,31 +2,56 @@
 
 .list-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
     background-color: #282c34;
     height: 90vh;
-    min-height: 90vmin;
-    padding: 5px;
-}
-
-.create-listNode-display {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #282c34;
-    border: solid 1px #09d3ac;
-    color: white;
-    height: 90%;
     padding: 10px;
 }
 
-.create-listNode-subject-input,
-.create-listNode-amount-input {
+.create-node-display {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    border: solid 1px #09d3ac;
+    color: white;
+    height: 10vh;
+    padding: 10px;
+    margin: 10px;
+}
+
+.create-node-subject-input,
+.create-node-amount-input {
     margin: 10px;
     padding: 5px;
     height: 2vh;
     width: 10vw;
+}
+
+.list-navbar {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    border: solid 1px #09d3ac;
+    color: white;
+    height: 10vh;
+    padding: 10px;
+    margin: 10px;
+}
+
+.list-button {
+    margin: 10px;
+    width: 10vw;
+}
+
+.list-display {
+    display: flex;
+    flex-direction: row;
+    border: solid 1px #09d3ac;
+    padding: 10px;
+    margin: 10px;
+    height: 90vh;
+    overflow-x: scroll;
 }
 
 .list-button {
