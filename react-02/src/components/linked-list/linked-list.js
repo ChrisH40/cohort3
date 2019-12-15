@@ -47,8 +47,8 @@ export class LinkedList {
     }
 
     displayNode() { 
-        var currentNode = this.head; 
-        var displayedNode = ""; 
+        let currentNode = this.head; 
+        let displayedNode = ""; 
         while (currentNode) { 
             displayedNode += `| Subject: ${currentNode.subject}, Amount: ${currentNode.amount} |`
             currentNode = currentNode.next; 
