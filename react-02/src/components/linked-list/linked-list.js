@@ -14,6 +14,9 @@ export class ListNode {
 
 export class LinkedList {
 
+    // --- Chose Double-LinkedList --- 
+    // Did so as it seemed to make more sense, given the need to easily navigate forward and backwards through list items. Also to try and learn more about LinkedLists in general.
+
     constructor() {
         this.head = null;
         this.tail = null;
@@ -50,7 +53,8 @@ export class LinkedList {
     // --- New current is the prev listNode --- 
     // Inserting new nodes is based on the current node, as new nodes come after the current node. So it seemed to make the most sense to move in the opposite direction when nodes are deleted, and make the new current node the deleted node.prev.
     // The only exception being if there are only two nodes and this.head is deleted, in which case the current node becomes this.tail (the only remaining node). 
-    deleteListNode(node) {  
+
+    deleteListNode(node) {
         if (!node) {
             return null
         }
@@ -92,17 +96,11 @@ export class LinkedList {
         else return this.head;
     }
 
-    prevNode(node) {
-        if (!node) {
+    lastNode() {
+        if (!this.tail) {
             return null;
         }
-        else if (!node.prev) {
-            return node;
-        }
-        else {
-            let prevNode = node.prev;
-            return prevNode;
-        }
+        else return this.tail;
     }
 
     nextNode(node) {
@@ -118,11 +116,17 @@ export class LinkedList {
         }
     }
 
-    lastNode() {
-        if (!this.tail) {
+    prevNode(node) {
+        if (!node) {
             return null;
         }
-        else return this.tail;
+        else if (!node.prev) {
+            return node;
+        }
+        else {
+            let prevNode = node.prev;
+            return prevNode;
+        }
     }
 
     totalAmounts() {
