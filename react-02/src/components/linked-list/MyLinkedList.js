@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-// import ListNode from './MyListNode.js'; --- TBD if this is needed ---
+import React, { useState } from 'react';
 import { LinkedList } from './linked-list';
 import './MyLinkedList.css';
 
@@ -8,24 +7,55 @@ const linkedList = new LinkedList();
 const LinkedListDisplay = () => {
     const [subject, setSubject] = useState("");
     const [amount, setAmount] = useState("");
-    // const [current, setCurrent] = useState("");
+    let [current, setCurrent] = useState("");
 
     const handleInsert = (event) => {
-        const newListNode = linkedList.insertListNodeHead(subject, amount);
-        // currentNode(newListNode);
-        setSubject("");
-        setAmount("");
-        event.preventDefault();
+        if (subject === "" || amount === "") {
+            alert("Please enter a subject and/or amount!");
+            event.preventDefault();
+        }
+        else {
+            setCurrent(current = linkedList.insertListNode(current, subject, amount));
+            setSubject("");
+            setAmount("");
+            event.preventDefault();
+        }
     }
 
-    // const currentNode = (node) => {
-    //     setCurrent(node);
-    // }
+    const DisplayNodes = (list) => {
+        if (!list.head) {
+            return null;
+        }
+        else {
+            let currentNode = list.head;
+            let displayedNodes = []; // --- try and render without array? ---
+            while (currentNode) {
+                displayedNodes.push(
+                    < ListCard
+                        node={currentNode}
+                    />
+                )
+                currentNode = currentNode.next;
+            }
+            return displayedNodes;
+        }
+    }
+
+    const ListCard = (props) => ( // --- refactor cards ---
+        <div className={`list-card ` + ((props.node === current) ? "active-list-card" : null)}>
+            <span>Subject: {props.node.subject}</span>
+            <br />
+            <span>Amount: {props.node.amount}</span>
+        </div>
+    )
 
     return (
         <div className="list-wrapper">
             <div className="create-node-display">
-                <form onSubmit={handleInsert}>
+                <div className="list-header">
+                    CREATE LIST NODE:
+                </div>
+                <form onSubmit={(event) => handleInsert(event)}>
                     <label className="create-node-text">Subject:</label>
                     <input
                         type="text"
@@ -47,44 +77,47 @@ const LinkedListDisplay = () => {
                         value="Create New Item"
                         className="list-button create-list-button" />
                 </form>
+                <div className="list-total-amounts">
+                    TOTAL AMOUNTS: {linkedList.totalAmounts()}
+                </div>
             </div>
             <div className="list-navbar">
+                <div className="list-header">
+                    NAVIGATION:
+                </div>
                 <input
                     type="submit"
                     value="First Item"
                     className="list-button"
-                    name="firstNode"
-                // value={TBD}
-                // onClick={TBD} 
+                    onClick={() => setCurrent(current = linkedList.firstNode())}
                 />
                 <input
                     type="submit"
                     value="Previous Item"
                     className="list-button"
-                    name="prevNode"
-                // value={TBD}
-                // onClick={TBD} 
+                    onClick={() => setCurrent(current = linkedList.prevNode(current))}
                 />
                 <input
                     type="submit"
                     value="Next Item"
                     className="list-button"
-                    name="nextNode"
-                // value={TBD}
-                // onClick={TBD} 
+                    onClick={() => setCurrent(current = linkedList.nextNode(current))}
                 />
                 <input
                     type="submit"
                     value="Last Item"
                     className="list-button"
-                    name="lastNode"
-                // value={TBD}
-                // onClick={TBD} 
+                    onClick={() => setCurrent(current = linkedList.lastNode())}
+                />
+                <input
+                    type="submit"
+                    value="Delete Current Item"
+                    className="list-button delete-button"
+                    onClick={() => setCurrent(current = linkedList.deleteListNode(current))}
                 />
             </div>
             <div className="list-display">
-                {linkedList.displayNode()} {/* This output will change */}
-                {/* ListNodes go here (delete function?) */}
+                {DisplayNodes(linkedList)}
             </div>
         </div>
     )

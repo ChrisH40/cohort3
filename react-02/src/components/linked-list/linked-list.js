@@ -7,10 +7,6 @@ export class ListNode {
         this.prev = null;
     }
 
-    // delete() {
-    // --- likely will go in the node itself ---
-    // }
-
     show() {
         return `The subject is ${this.subject} and the amount is ${this.amount}.`
     }
@@ -21,42 +17,126 @@ export class LinkedList {
     constructor() {
         this.head = null;
         this.tail = null;
-        this.length = 0;
     }
 
-    insertListNodeHead(subject, amount) { // --- Insert at start for now ---
-        const newListNode = new ListNode(subject, amount);
-        if (!this.head) {
+    insertListNode(current, subject, amount) {
+        let newListNode = new ListNode(subject, amount);
+        if (!current) {
             this.head = newListNode;
             this.tail = newListNode;
-            this.length++;
-            return this;
+            return newListNode;
         }
         else {
-            newListNode.next = this.head;
-            this.head.prev = newListNode;
-            this.head = newListNode;
-            let findTail = this.head;
-            while (findTail.next) {
-                findTail = findTail.next;
-                this.tail = findTail;
+            let newNext = current.next;
+            let newPrev = current;
+            if ((current === this.head && current === this.tail) ||
+                current === this.tail) {
+                current.next = newListNode;
+                newListNode.prev = newPrev;
+                newListNode.next = null;
+                this.tail = newListNode;
+                return newListNode;
             }
-            this.length++;
-            return this;
+            else {
+                current.next = newListNode;
+                newListNode.prev = newPrev;
+                newListNode.next = newNext;
+                newNext.prev = newListNode;
+                return newListNode;
+            }
         }
     }
 
-    displayNode() { 
-        let currentNode = this.head; 
-        let displayedNode = ""; 
-        while (currentNode) { 
-            displayedNode += `| Subject: ${currentNode.subject}, Amount: ${currentNode.amount} |`
-            currentNode = currentNode.next; 
+    // --- New current is the prev listNode --- 
+    // Inserting new nodes is based on the current node, as new nodes come after the current node. So it seemed to make the most sense to move in the opposite direction when nodes are deleted, and make the new current node the deleted node.prev.
+    // The only exception being if there are only two nodes and this.head is deleted, in which case the current node becomes this.tail (the only remaining node). 
+    deleteListNode(node) {  
+        if (!node) {
+            return null
         }
-        return displayedNode; 
-    }  
+        else {
+            let newNext = node.next;
+            let newPrev = node.prev;
+            if (node === this.head && node === this.tail) {
+                this.head = null;
+                this.tail = null;
+                node = null;
+                return "";
+            }
+            if (node === this.head) {
+                this.head = newNext;
+                this.head.prev = null;
+                node = null;
+                return this.head;
+            }
+            if (node === this.tail) {
+                this.tail = newPrev;
+                this.tail.next = null;
+                node = null;
+                return this.tail;
+            }
+            else {
+                let newCurrentNode = newPrev;
+                newCurrentNode.next = newNext;
+                newNext.prev = newCurrentNode;
+                node = null;
+                return newCurrentNode;
+            }
+        }
+    }
 
-    // totalAmounts() {
-    //     
-    // }
+    firstNode() {
+        if (!this.head) {
+            return null;
+        }
+        else return this.head;
+    }
+
+    prevNode(node) {
+        if (!node) {
+            return null;
+        }
+        else if (!node.prev) {
+            return node;
+        }
+        else {
+            let prevNode = node.prev;
+            return prevNode;
+        }
+    }
+
+    nextNode(node) {
+        if (!node) {
+            return null;
+        }
+        else if (!node.next) {
+            return node;
+        }
+        else {
+            let nextNode = node.next;
+            return nextNode;
+        }
+    }
+
+    lastNode() {
+        if (!this.tail) {
+            return null;
+        }
+        else return this.tail;
+    }
+
+    totalAmounts() {
+        if (!this.head) {
+            return 0;
+        }
+        else {
+            let currentNode = this.head;
+            let totalNumber = 0;
+            while (currentNode) {
+                totalNumber += currentNode.amount;
+                currentNode = currentNode.next;
+            }
+            return totalNumber;
+        }
+    }
 };

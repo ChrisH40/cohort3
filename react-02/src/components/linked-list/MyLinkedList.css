@@ -1,4 +1,4 @@
-/* --- CSS TBD --- */
+/* --- refactor CSS --- */
 
 .list-wrapper {
     display: flex;
@@ -9,7 +9,12 @@
     padding: 10px;
 }
 
-.create-node-header {
+.list-header,
+.list-total-amounts {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    background-color:  rgba(0, 217, 255, 0.25);
     font-size: 15px;
     font-weight: bold;
     margin-right: 2vw;
@@ -53,6 +58,7 @@
 
 .list-display {
     display: flex;
+    justify-self: baseline;
     flex-direction: column;
     border: solid 1px #09d3ac;
     color: white;
@@ -64,12 +70,17 @@
 
 .list-card {
     margin: 10px;
+    padding: 5px;
+    border: solid 1px #09d3ac;
+    background-color: #282c34;
+    
 }
 
 .active-list-card {
     color: #09d3ac;
     font-weight: bold;
     font-size: 15px;
+    background-color:  rgba(0, 217, 255, 0.25);
 }
 
 .list-total-amounts {
@@ -91,8 +102,12 @@
     font-size: 13px;
   }
 
+  .list-button:hover {
+      cursor: pointer;
+  }
+
   .delete-button {
-    background-color: #282c34;
+    background-color:  rgba(0, 217, 255, 0.25);
     color: #09d3ac;
     border: solid 1px #09d3ac; 
     font-weight: bold;
