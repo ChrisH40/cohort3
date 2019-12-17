@@ -9,6 +9,14 @@
     padding: 10px;
 }
 
+.create-node-header {
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 2vw;
+    padding: 10px;
+    border: solid 1px #09d3ac;
+}
+
 .create-node-display {
     display: flex;
     align-items: center;
@@ -30,8 +38,7 @@
 
 .list-navbar {
     display: flex;
-    align-items: center;
-    justify-items: center;
+    justify-content: center;
     border: solid 1px #09d3ac;
     color: white;
     height: 10vh;
@@ -46,13 +53,31 @@
 
 .list-display {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     border: solid 1px #09d3ac;
     color: white;
     padding: 10px;
     margin: 10px;
     height: 90vh;
-    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+.list-card {
+    margin: 10px;
+}
+
+.active-list-card {
+    color: #09d3ac;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.list-total-amounts {
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 22vw;
+    padding: 10px;
+    border: solid 1px #09d3ac;
 }
 
 .list-button {
@@ -65,3 +90,11 @@
     display: inline-block;
     font-size: 13px;
   }
+
+  .delete-button {
+    background-color: #282c34;
+    color: #09d3ac;
+    border: solid 1px #09d3ac; 
+    font-weight: bold;
+    font-size: 15px;
+}
