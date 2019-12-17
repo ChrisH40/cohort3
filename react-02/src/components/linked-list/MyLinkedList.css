@@ -3,9 +3,9 @@
 .list-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: #282c34;
-    height: 90vh;
+    min-height: 90vmin;
     padding: 10px;
 }
 
@@ -32,7 +32,7 @@
     justify-items: center;
     border: solid 1px #09d3ac;
     color: white;
-    height: 10vh;
+    height: 5vh;
     padding: 10px;
     margin: 10px;
 }
@@ -50,7 +50,7 @@
     display: flex;
     justify-content: center;
     color: white;
-    height: 10vh;
+    height: 7vh;
     padding: 5px;
     margin: 5px;
 }
@@ -68,7 +68,7 @@
     color: white;
     padding: 10px;
     margin: 10px;
-    height: 90vh;
+    height: 45vh;
     overflow-y: scroll;
 }
 
