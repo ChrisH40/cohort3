@@ -12,6 +12,7 @@ import ticTacToeIcon from './images/tic-tac-toe-icon.svg';
 import bankIcon from './images/piggy-bank-icon.svg';
 import cityIcon from './images/city-skyline-icon.svg';
 import linkedListIcon from './images/linked-list-icon.svg';
+import fifoLifoIcon from './images/pancake-stack-icon.svg';
 
 class App extends React.Component {
 
@@ -62,12 +63,14 @@ class App extends React.Component {
       return < Cities />
     } if (selected === linkedListIcon) {
       return < LinkedListDisplay />
+    } if (selected === fifoLifoIcon) {
+      return < Homepage />
     } 
   }
 
   render() {
-    const images = [houseIcon, ticTacToeIcon, bankIcon, cityIcon, linkedListIcon];
-    const image_headers = ['Home', "Tic-Tac-Toe", "Accounts", "Cities", "Linked List"]
+    const images = [houseIcon, ticTacToeIcon, bankIcon, cityIcon, linkedListIcon, fifoLifoIcon];
+    const image_headers = ['Home', "Tic-Tac-Toe", "Accounts", "Cities", "Linked List", "FIFO Queue/LIFO Stack"];
 
     return (
       <div className="App">
