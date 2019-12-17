@@ -7,8 +7,8 @@ export class ListNode {
         this.prev = null;
     }
 
-    show() {
-        return `The subject is ${this.subject} and the amount is ${this.amount}.`
+    show() { 
+        return `The current item's subject is ${this.subject} and amount is ${this.amount}.`
     }
 };
 
@@ -32,8 +32,7 @@ export class LinkedList {
         else {
             let newNext = current.next;
             let newPrev = current;
-            if ((current === this.head && current === this.tail) ||
-                current === this.tail) {
+            if (current === this.tail) {
                 current.next = newListNode;
                 newListNode.prev = newPrev;
                 newListNode.next = null;

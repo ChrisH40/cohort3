@@ -10,16 +10,20 @@
 }
 
 .list-header,
-.list-total-amounts {
+.list-total-amounts,
+.list-current-show {
     display: flex;
     align-items: center;
     justify-items: center;
     background-color:  rgba(0, 217, 255, 0.25);
     font-size: 15px;
-    font-weight: bold;
     margin-right: 2vw;
     padding: 10px;
     border: solid 1px #09d3ac;
+}
+
+.list-header {
+    font-weight: bold;
 }
 
 .create-node-display {
@@ -41,14 +45,14 @@
     width: 10vw;
 }
 
-.list-navbar {
+.list-navbar,
+.list-info {
     display: flex;
     justify-content: center;
-    border: solid 1px #09d3ac;
     color: white;
     height: 10vh;
-    padding: 10px;
-    margin: 10px;
+    padding: 5px;
+    margin: 5px;
 }
 
 .list-button {
@@ -76,6 +80,10 @@
     
 }
 
+.list-card-text {
+    margin: 0px 15px 0px 15px;
+}
+
 .active-list-card {
     color: #09d3ac;
     font-weight: bold;
@@ -85,10 +93,13 @@
 
 .list-total-amounts {
     font-size: 15px;
-    font-weight: bold;
-    margin-left: 22vw;
+    width: 15vw;
     padding: 10px;
     border: solid 1px #09d3ac;
+}
+
+.list-current-show {
+    width: 40vw;
 }
 
 .list-button {

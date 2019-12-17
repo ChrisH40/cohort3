@@ -7,7 +7,7 @@ const linkedList = new LinkedList();
 const LinkedListDisplay = () => {
     const [subject, setSubject] = useState("");
     const [amount, setAmount] = useState("");
-    let [current, setCurrent] = useState("");
+    let [current, setCurrent] = useState();
 
     const handleInsert = (event) => {
         if (subject === "" || amount === "") {
@@ -43,9 +43,8 @@ const LinkedListDisplay = () => {
 
     const ListCard = (props) => ( // --- refactor cards ---
         <div className={`list-card ` + ((props.node === current) ? "active-list-card" : null)}>
-            <span>Subject: {props.node.subject}</span>
-            <br />
-            <span>Amount: {props.node.amount}</span>
+            <span className="list-card-text">Subject: {props.node.subject}</span>
+            <span className="list-card-text">Amount: {props.node.amount}</span>
         </div>
     )
 
@@ -53,7 +52,7 @@ const LinkedListDisplay = () => {
         <div className="list-wrapper">
             <div className="create-node-display">
                 <div className="list-header">
-                    CREATE LIST NODE:
+                    CREATE ITEM
                 </div>
                 <form onSubmit={(event) => handleInsert(event)}>
                     <label className="create-node-text">Subject:</label>
@@ -77,14 +76,16 @@ const LinkedListDisplay = () => {
                         value="Create New Item"
                         className="list-button create-list-button" />
                 </form>
+            </div>
+            <div className="list-info">
+                <div className="list-current-show">
+                    Current Item: {(current) ? current.show() : null}  
+                </div>
                 <div className="list-total-amounts">
-                    TOTAL AMOUNTS: {linkedList.totalAmounts()}
+                    Total Item Amounts: {linkedList.totalAmounts()}
                 </div>
             </div>
             <div className="list-navbar">
-                <div className="list-header">
-                    NAVIGATION:
-                </div>
                 <input
                     type="submit"
                     value="First Item"
@@ -99,6 +100,12 @@ const LinkedListDisplay = () => {
                 />
                 <input
                     type="submit"
+                    value="Delete Current Item"
+                    className="list-button delete-button"
+                    onClick={() => setCurrent(current = linkedList.deleteListNode(current))}
+                />
+                <input
+                    type="submit"
                     value="Next Item"
                     className="list-button"
                     onClick={() => setCurrent(current = linkedList.nextNode(current))}
@@ -108,12 +115,6 @@ const LinkedListDisplay = () => {
                     value="Last Item"
                     className="list-button"
                     onClick={() => setCurrent(current = linkedList.lastNode())}
-                />
-                <input
-                    type="submit"
-                    value="Delete Current Item"
-                    className="list-button delete-button"
-                    onClick={() => setCurrent(current = linkedList.deleteListNode(current))}
                 />
             </div>
             <div className="list-display">
