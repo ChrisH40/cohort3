@@ -5,6 +5,7 @@ import Game from "./components/tic-tac-toe/MyGame.js";
 import Accounts from "./components/accounts/MyAccounts.js";
 import Cities from "./components/cities/MyCities.js";
 import LinkedListDisplay from "./components/linked-list/MyLinkedList.js";
+import FifoLifoListDisplay from "./components/fifo-lifo-list/MyFifoLifoList.js";
 
 it('App renders without crashing', () => {
   const div = document.createElement('div');
@@ -33,6 +34,12 @@ it('Cities renders without crashing', () => {
 it('LinkedList renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<LinkedListDisplay />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+
+it('FifoLifoList renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<FifoLifoListDisplay />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
 

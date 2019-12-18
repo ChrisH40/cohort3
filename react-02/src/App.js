@@ -6,6 +6,7 @@ import Game from "./components/tic-tac-toe/MyGame.js";
 import Accounts from "./components/accounts/MyAccounts.js";
 import Cities from "./components/cities/MyCities.js";
 import LinkedListDisplay from "./components/linked-list/MyLinkedList.js";
+import FifoLifoListDisplay from "./components/fifo-lifo-list/MyFifoLifoList.js";
 
 import houseIcon from './images/house-icon.svg';
 import ticTacToeIcon from './images/tic-tac-toe-icon.svg';
@@ -64,7 +65,7 @@ class App extends React.Component {
     } if (selected === linkedListIcon) {
       return < LinkedListDisplay />
     } if (selected === fifoLifoIcon) {
-      return < Homepage />
+      return < FifoLifoListDisplay />
     } 
   }
 
