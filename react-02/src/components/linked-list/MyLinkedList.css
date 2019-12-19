@@ -9,9 +9,7 @@
     padding: 10px;
 }
 
-.list-header,
-.list-total-amounts,
-.list-current-show {
+.list-header {
     display: flex;
     align-items: center;
     justify-items: center;
@@ -90,14 +88,21 @@
 }
 
 .list-total-amounts {
-    font-size: 15px;
     width: 15vw;
-    padding: 10px;
-    border: solid 1px #09d3ac;
 }
 
 .list-current-show {
     width: 40vw;
+}
+
+.list-total-amounts,
+.list-current-show {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    font-size: 15px;
+    margin-right: 2vw;
+    padding: 10px;
 }
 
 .list-button {
