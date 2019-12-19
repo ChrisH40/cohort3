@@ -7,7 +7,7 @@ const linkedList = new LinkedList();
 const LinkedListDisplay = () => {
     const [subject, setSubject] = useState("");
     const [amount, setAmount] = useState("");
-    let [current, setCurrent] = useState();
+    let [current, setCurrent] = useState("");
 
     const handleInsert = (event) => {
         if (subject === "" || amount === "") {
@@ -22,7 +22,7 @@ const LinkedListDisplay = () => {
         }
     }
 
-    const DisplayNodes = (list) => {
+    const displayNodes = (list) => {
         if (!list.head) {
             return null;
         }
@@ -118,7 +118,7 @@ const LinkedListDisplay = () => {
                 />
             </div>
             <div className="list-display">
-                {DisplayNodes(linkedList)}
+                {displayNodes(linkedList)}
             </div>
         </div>
     )

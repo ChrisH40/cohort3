@@ -64,7 +64,7 @@
     display: flex;
     justify-self: baseline;
     flex-direction: column;
-    border: solid 1px #09d3ac;
+    align-items: center;
     color: white;
     padding: 10px;
     margin: 10px;
@@ -74,10 +74,8 @@
 
 .list-card {
     margin: 10px;
-    padding: 5px;
-    border: solid 1px #09d3ac;
-    background-color: #282c34;
-    
+    padding: 5px; 
+    width: 30vw;  
 }
 
 .list-card-text {
