@@ -1,7 +1,8 @@
-import { FifoQueue } from './fifo-queue.js';
-import { LifoStack } from './lifo-stack.js';
 
 export class ListGenerator {
+
+    // This is also a FIFO Queue that interacts with both the other FIFO Queue list as well as the LIFO Stack list. 
+    // It provides each with their list items. 
 
     constructor() {
         this.list =

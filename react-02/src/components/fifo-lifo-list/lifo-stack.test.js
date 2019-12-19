@@ -9,3 +9,8 @@ test('test add remove', () => {
     expect(testStack.list)
         .toEqual(["Reno", "Chicago", "Fargo", "Minnesota", "Buffalo", "Toronto", "Winslow", "Sarasota", "Wichita", "Tulsa"]);
 });
+
+test('test nextToRemove', () => {
+    const testStack = new LifoStack();
+    expect(testStack.nextToRemove()).toBe("Tulsa");
+});

@@ -9,3 +9,8 @@ test('test add remove', () => {
     expect(testQueue.list)
         .toEqual(["Chicago", "Fargo", "Minnesota", "Buffalo", "Toronto", "Winslow", "Sarasota", "Wichita", "Tulsa", "Calgary"]);
 });
+
+test('test nextToRemove', () => {
+    const testQueue = new FifoQueue();
+    expect(testQueue.nextToRemove()).toBe("Reno");
+});

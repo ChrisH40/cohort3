@@ -15,4 +15,8 @@ export class FifoQueue {
         return removedItem;
     }
 
+    nextToRemove() {
+        return this.list[0];
+    }
+
 };

@@ -1,0 +1,93 @@
+.fifolifo-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #282c34;
+    min-height: 90vmin;
+    padding: 10px;
+    color: white;
+}
+
+.fifolifo-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.fifolifo-main-header {
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin: 10px;
+}
+
+.fifo-wrapper,
+.lifo-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+}
+
+.fifo-deleted-item,
+.lifo-deleted-item {
+    width: 25vw;
+    text-align: left;
+    border: solid 1px #09d3ac;
+    padding: 10px;
+}
+
+.fifo-display,
+.lifo-display {
+    margin: 10px;
+    padding: 10px;
+    height: 40vh;
+    overflow-y: scroll;
+}
+
+.fifolifo-header {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.fifolifo-important-text {
+    font-weight: bold;
+}
+
+.fifo-card,
+.lifo-card {
+    margin: 10px;
+}
+
+.next-fifo-card-remove,
+.next-lifo-card-remove {
+    color: red;
+}
+
+.fifolifo-next-item,
+.fifo-deleted-item,
+.lifo-deleted-item {
+    font-size: 17px;
+}
+
+.fifolifo-next-item {
+    align-self: center;
+    border: solid 1px #09d3ac;
+    padding: 10px;
+    margin: 10px;
+    width: 14vw;
+}
+
+.fifolifo-button {
+    background-color:rgb(9, 211, 172, 0.4);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 10px;
+  }
