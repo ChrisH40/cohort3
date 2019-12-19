@@ -40,6 +40,9 @@ const FifoLifoListDisplay = () => {
     return (
         <div className="fifolifo-wrapper">
             <span className="fifolifo-main-header">I've Been Everywhere, Man, I've Been Everywhere. I've Been To...</span>
+            <div className="fifolifo-next-item">
+                Next Item To Put In Both Lists: <span className="fifolifo-important-text">{nextAdd}</span>
+            </div>
             <div className="fifolifo-navbar">
                 <input
                     type="submit"
@@ -53,9 +56,6 @@ const FifoLifoListDisplay = () => {
                     className="fifolifo-button"
                     onClick={() => handleTakeOut()}
                 />
-            </div>
-            <div className="fifolifo-next-item">
-                Next Item To Put In Both Lists: <span className="fifolifo-important-text">{nextAdd}</span>
             </div>
             <div className="fifolifo-display">
                 <div className="fifo-wrapper">

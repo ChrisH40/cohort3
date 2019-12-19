@@ -17,8 +17,8 @@
 .fifolifo-main-header {
     font-size: 30px;
     font-weight: bold;
-    text-decoration: underline;
     margin: 10px;
+    margin-bottom: 5px;
 }
 
 .fifo-wrapper,
