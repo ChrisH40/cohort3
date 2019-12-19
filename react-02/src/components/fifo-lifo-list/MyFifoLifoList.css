@@ -81,13 +81,19 @@
 }
 
 .fifolifo-button {
-    background-color:rgb(9, 211, 172, 0.4);
+    background-color: rgb(9, 211, 172);
     border: none;
     color: white;
-    padding: 5px 10px;
+    padding: 8px 20px;
+    margin: 5px;
+    width: 10vw;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 13px;
-    margin: 10px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .fifolifo-button:hover {
+      cursor: pointer;
   }
