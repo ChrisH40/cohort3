@@ -61,7 +61,7 @@ const FifoLifoListDisplay = () => {
                 <div className="fifo-wrapper">
                     <span className="fifolifo-header">FIFO Queue - First In First Out</span>
                     <div className="fifo-deleted-item">
-                        Last Item Taken Out Of FIFO Queue: <span className="fifolifo-important-text">{fifoRemoved}</span>
+                        Last Item Taken Out: <span className="fifolifo-important-text">{fifoRemoved}</span>
                     </div>
                     < FifoQueueDisplay
                         fifoQueue={fifoQueue}
@@ -70,7 +70,7 @@ const FifoLifoListDisplay = () => {
                 <div className="lifo-wrapper">
                     <span className="fifolifo-header">LIFO Stack - Last In First Out</span>
                     <div className="lifo-deleted-item">
-                        Last Item Taken Out Of LIFO Stack: <span className="fifolifo-important-text">{lifoRemoved}</span>
+                        Last Item Taken Out: <span className="fifolifo-important-text">{lifoRemoved}</span>
                     </div>
                     < LifoStackDisplay
                         lifoStack={lifoStack}
