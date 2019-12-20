@@ -20,30 +20,34 @@ export class LinkedList {
     constructor() {
         this.head = null;
         this.tail = null;
+        this.current = null;
     }
 
-    insertListNode(current, subject, amount) {
+    insertListNode(subject, amount) { 
         let newListNode = new ListNode(subject, amount);
-        if (!current) {
+        if (!this.current) {
             this.head = newListNode;
             this.tail = newListNode;
+            this.current = newListNode;
             return newListNode;
         }
         else {
-            let newNext = current.next;
-            let newPrev = current;
-            if (current === this.tail) {
-                current.next = newListNode;
+            let newNext = this.current.next;
+            let newPrev = this.current;
+            if (this.current === this.tail) {
+                this.current.next = newListNode;
                 newListNode.prev = newPrev;
-                newListNode.next = null;
                 this.tail = newListNode;
+                this.current = newListNode;
+                newListNode.next = null;
                 return newListNode;
             }
             else {
-                current.next = newListNode;
+                this.current.next = newListNode;
                 newListNode.prev = newPrev;
                 newListNode.next = newNext;
                 newNext.prev = newListNode;
+                this.current = newListNode;
                 return newListNode;
             }
         }
@@ -63,18 +67,21 @@ export class LinkedList {
             if (node === this.head && node === this.tail) {
                 this.head = null;
                 this.tail = null;
+                this.current = null;
                 node = null;
                 return "";
             }
             if (node === this.head) {
                 this.head = newNext;
                 this.head.prev = null;
+                this.current = this.head;
                 node = null;
                 return this.head;
             }
             if (node === this.tail) {
                 this.tail = newPrev;
                 this.tail.next = null;
+                this.current = this.tail;
                 node = null;
                 return this.tail;
             }
@@ -82,6 +89,7 @@ export class LinkedList {
                 let newCurrentNode = newPrev;
                 newCurrentNode.next = newNext;
                 newNext.prev = newCurrentNode;
+                this.current = newCurrentNode;
                 node = null;
                 return newCurrentNode;
             }
@@ -92,14 +100,16 @@ export class LinkedList {
         if (!this.head) {
             return null;
         }
-        else return this.head;
+        this.current = this.head;
+        return this.head;
     }
 
     lastNode() {
         if (!this.tail) {
             return null;
         }
-        else return this.tail;
+        this.current = this.tail;
+        return this.tail;
     }
 
     nextNode(node) {
@@ -107,10 +117,12 @@ export class LinkedList {
             return null;
         }
         else if (!node.next) {
+            this.current = node;
             return node;
         }
         else {
             let nextNode = node.next;
+            this.current = nextNode;
             return nextNode;
         }
     }
@@ -120,10 +132,12 @@ export class LinkedList {
             return null;
         }
         else if (!node.prev) {
+            this.current = node;
             return node;
         }
         else {
             let prevNode = node.prev;
+            this.current = prevNode;
             return prevNode;
         }
     }

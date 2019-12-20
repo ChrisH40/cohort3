@@ -15,7 +15,7 @@ const LinkedListDisplay = () => {
             event.preventDefault();
         }
         else {
-            setCurrent(current = linkedList.insertListNode(current, subject, amount));
+            setCurrent(current = linkedList.insertListNode(subject, amount));
             setSubject("");
             setAmount("");
             event.preventDefault();
@@ -28,7 +28,7 @@ const LinkedListDisplay = () => {
         }
         else {
             let currentNode = list.head;
-            let displayedNodes = []; // --- try and render without array? ---
+            let displayedNodes = [];
             while (currentNode) {
                 displayedNodes.push(
                     < ListCard
@@ -41,7 +41,7 @@ const LinkedListDisplay = () => {
         }
     }
 
-    const ListCard = (props) => ( // --- refactor cards ---
+    const ListCard = (props) => (
         <div className={`list-card ` + ((props.node === current) ? "active-list-card" : null)}>
             <span className="list-card-text">Subject: {props.node.subject}</span>
             <span className="list-card-text">Amount: {props.node.amount}</span>
