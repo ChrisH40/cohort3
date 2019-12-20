@@ -79,7 +79,7 @@ const LinkedListDisplay = () => {
             </div>
             <div className="list-info">
                 <div className="list-current-show">
-                    Current Item: {(current) ? current.show() : null}  
+                    Current Item: {(linkedList.current) ? linkedList.current.show() : null}  
                 </div>
                 <div className="list-total-amounts">
                     Total Item Amounts: {linkedList.totalAmounts()}
@@ -96,19 +96,19 @@ const LinkedListDisplay = () => {
                     type="submit"
                     value="Previous Item"
                     className="list-button"
-                    onClick={() => setCurrent(current = linkedList.prevNode(current))}
+                    onClick={() => setCurrent(current = linkedList.prevNode(linkedList.current))}
                 />
                 <input
                     type="submit"
                     value="Delete Current Item"
                     className="list-button delete-button"
-                    onClick={() => setCurrent(current = linkedList.deleteListNode(current))}
+                    onClick={() => setCurrent(current = linkedList.deleteListNode(linkedList.current))}
                 />
                 <input
                     type="submit"
                     value="Next Item"
                     className="list-button"
-                    onClick={() => setCurrent(current = linkedList.nextNode(current))}
+                    onClick={() => setCurrent(current = linkedList.nextNode(linkedList.current))}
                 />
                 <input
                     type="submit"

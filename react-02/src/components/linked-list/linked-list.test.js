@@ -11,30 +11,37 @@ test('test LinkedList insertListNode', () => {
     const testNodeOne = testLinkedList.insertListNode("Test Node One", 1);
     expect(testNodeOne).toBe(testLinkedList.head);
     expect(testNodeOne).toBe(testLinkedList.tail);
+    expect(testNodeOne).toBe(testLinkedList.current);
     const testNodeTwo = testLinkedList.insertListNode("Test Node Two", 2);
     expect(testNodeTwo).toBe(testLinkedList.tail);
     expect(testNodeTwo).toBe(testLinkedList.current);
     expect(testNodeTwo.next).toBe(null);
+    expect(testNodeTwo.prev).toBe(testNodeOne);
     const testNodeThree = testLinkedList.insertListNode("Test Node Three", 3);
     expect(testNodeThree).toBe(testLinkedList.tail);
+    expect(testNodeThree).toBe(testLinkedList.current);  
+    expect(testNodeThree.next).toBe(null);
     expect(testNodeThree.prev).toBe(testNodeTwo);
-    expect(testNodeThree).toBe(testLinkedList.current);
 });
 
 test('test LinkedList deleteListNode', () => {
     const testLinkedList = new LinkedList();
-    expect(testLinkedList.deleteListNode(null)).toBe(null);
+    expect(testLinkedList.deleteListNode()).toBe(null);
     const testNodeOne = testLinkedList.insertListNode("Test Node One", 1);
     expect(testLinkedList.deleteListNode(testNodeOne)).toBe("");
     const testNodeTwo = testLinkedList.insertListNode("Test Node Two", 2);
     const testNodeThree = testLinkedList.insertListNode("Test Node Three", 3);
     expect(testLinkedList.deleteListNode(testNodeTwo)).toBe(testNodeThree);
     expect(testNodeThree).toBe(testLinkedList.head);
+    expect(testNodeThree).toBe(testLinkedList.tail);
     expect(testNodeThree).toBe(testLinkedList.current);
+    expect(testNodeThree.next).toBe(null);
+    expect(testNodeThree.prev).toBe(null);
     const testNodeFour = testLinkedList.insertListNode("Test Node Four", 4);
     expect(testLinkedList.deleteListNode(testNodeFour)).toBe(testNodeThree);
     expect(testNodeThree).toBe(testLinkedList.tail); 
     expect(testNodeThree).toBe(testLinkedList.head);
+    expect(testNodeThree).toBe(testLinkedList.current);
     const testNodeFive = testLinkedList.insertListNode("Test Node Five", 5);
     const testNodeSix = testLinkedList.insertListNode("Test Node Six", 6);
     expect(testLinkedList.deleteListNode(testNodeFive)).toBe(testNodeThree);
@@ -44,19 +51,15 @@ test('test LinkedList firstNode prevNode nextNode lastNode', () => {
     const testLinkedList = new LinkedList();
     expect(testLinkedList.firstNode()).toBe(null);
     expect(testLinkedList.lastNode()).toBe(null);
-    expect(testLinkedList.prevNode(null)).toBe(null);
-    expect(testLinkedList.nextNode(null)).toBe(null);
+    expect(testLinkedList.prevNode()).toBe(null);
+    expect(testLinkedList.nextNode()).toBe(null);
     const testNodeOne = testLinkedList.insertListNode("Test Node One", 1);
     const testNodeTwo = testLinkedList.insertListNode("Test Node Two", 2);
     const testNodeThree = testLinkedList.insertListNode("Test Node Three", 3);
-    const firstNodeTest = testLinkedList.firstNode();
-    expect(firstNodeTest).toBe(testNodeOne);
-    const lastNodeTest = testLinkedList.lastNode();
-    expect(lastNodeTest).toBe(testNodeThree);
-    const prevNodeTest = testLinkedList.prevNode(testNodeThree);
-    expect(prevNodeTest).toBe(testNodeTwo);
-    const nextNodeTest = testLinkedList.nextNode(testNodeTwo);
-    expect(nextNodeTest).toBe(testNodeThree);
+    expect(testLinkedList.firstNode()).toBe(testNodeOne);
+    expect(testLinkedList.lastNode()).toBe(testNodeThree);
+    expect(testLinkedList.prevNode(testNodeThree)).toBe(testNodeTwo);
+    expect(testLinkedList.nextNode(testNodeTwo)).toBe(testNodeThree);
 });
 
 test('test LinkedList totalAmounts', () => {

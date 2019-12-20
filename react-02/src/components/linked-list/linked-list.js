@@ -55,7 +55,7 @@ export class LinkedList {
 
     // --- New current is the prev listNode --- 
     // Inserting new nodes is based on the current node, as new nodes come after the current node. So it seemed to make the most sense to move in the opposite direction when nodes are deleted, and make the new current node the deleted node.prev.
-    // The only exception being if there are only two nodes and this.head is deleted, in which case the current node becomes this.tail (the only remaining node). 
+    // The only exception being if there are only two nodes and this.head is deleted, in which case the current node becomes this.head (the only remaining node). 
 
     deleteListNode(node) {
         if (!node) {
