@@ -9,6 +9,7 @@
       background-color: #282c34;
       min-height: 90vmin;
       padding: 5px;
+      color: white;
 }
 
 .city-container-left,
@@ -23,7 +24,6 @@
 
 .city-display-header {
     font-size: 20px;
-    color: white;
 }
 
 .create-city-display,
@@ -32,7 +32,6 @@
 .city-calculations-display {
     background-color: #282c34;
     border: solid 1px #09d3ac;
-    color: white;
     margin: 10px;
     padding: 10px;
 }
@@ -66,7 +65,6 @@
 .city-cards-display-headers {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    color: white;
     font-size: 18px;
     text-align: center;
     margin-left: 10px;
@@ -144,7 +142,6 @@
 .city-container-right {
     grid-area: right;
     height: 70vh;
-    color: white;
 }
 
 .city-calculations-display {

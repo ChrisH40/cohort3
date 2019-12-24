@@ -1,12 +1,13 @@
 import React from 'react';
-import AccountCreateDisplay from './MyAccountsCreateDisplay.js'
+import { ThemeContext } from '../theme-context.js';
+import AccountCreateDisplay from './MyAccountsCreateDisplay.js';
 import AccountCardsList from './MyAccountsCardsList.js';
-import AccountBalancesDisplay from './MyAccountsInfoDisplay.js'
+import AccountBalancesDisplay from './MyAccountsInfoDisplay.js';
 import { AccountController } from './account.js';
 import './account-index.css';
 
 class Accounts extends React.Component {
-    
+
     constructor(props) {
         super(props);
         this.accounts = new AccountController('My Accounts');
@@ -75,34 +76,38 @@ class Accounts extends React.Component {
 
     render() {
         return (
-            <div className="wrapper">
-                <div className="container-left">
-                    <span className="display-header">Create New Account</span>
-                    <AccountCreateDisplay
-                        handleSubmit={this.handleSubmit}
-                        handleOnChange={this.handleOnChange}
-                        acctName={this.state.acctName}
-                        acctBalance={this.state.acctBalance}
-                    />
-                </div>
-                <div className="container-middle">
-                    <span className="display-header">Accounts Display</span>
-                    <AccountCardsList
-                        listArray={this.accounts.listArray}
-                        handleDelete={this.handleDelete}
-                        balanceChecker={this.balanceChecker}
-                    />
-                </div>
-                <div className="container-right">
-                    <AccountBalancesDisplay
-                        highestName={this.state.highestName}
-                        highestBalance={this.state.highestBalance}
-                        lowestName={this.state.lowestName}
-                        lowestBalance={this.state.lowestBalance}
-                        totalBalance={this.state.totalBalance}
-                    />
-                </div>
-            </div>
+            <ThemeContext.Consumer>
+                {(theme) => (
+                    <div className="wrapper" style={{ backgroundColor: theme.background, color: theme.color }}>
+                        <div className="container-left">
+                            <span className="display-header">Create New Account</span>
+                            <AccountCreateDisplay
+                                handleSubmit={this.handleSubmit}
+                                handleOnChange={this.handleOnChange}
+                                acctName={this.state.acctName}
+                                acctBalance={this.state.acctBalance}
+                            />
+                        </div>
+                        <div className="container-middle">
+                            <span className="display-header">Accounts Display</span>
+                            <AccountCardsList
+                                listArray={this.accounts.listArray}
+                                handleDelete={this.handleDelete}
+                                balanceChecker={this.balanceChecker}
+                            />
+                        </div>
+                        <div className="container-right">
+                            <AccountBalancesDisplay
+                                highestName={this.state.highestName}
+                                highestBalance={this.state.highestBalance}
+                                lowestName={this.state.lowestName}
+                                lowestBalance={this.state.lowestBalance}
+                                totalBalance={this.state.totalBalance}
+                            />
+                        </div>
+                    </div>
+                )}
+            </ThemeContext.Consumer>
         );
     }
 }

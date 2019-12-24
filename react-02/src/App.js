@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import { ThemeContext, themes } from './theme-context.js';
+import { ThemeContext, themes } from './components/theme-context.js';
 import Homepage from "./components/MyHomepage.js";
 import Game from "./components/tic-tac-toe/MyGame.js";
 import Accounts from "./components/accounts/MyAccounts.js";
@@ -43,10 +43,32 @@ class App extends React.Component {
         theme: themes.default,
       })
     }
-    else
+    if (event.target.value === "dark") {
       this.setState({
         theme: themes.dark,
       })
+    }
+    else return;
+  }
+
+  handleSelected = (selected) => {
+    if (selected === houseIcon) {
+      return < Homepage />;
+    } if (selected === ticTacToeIcon) {
+      return < Game />;
+    } if (selected === bankIcon) {
+      return < Accounts />
+    } if (selected === cityIcon) {
+      return < Cities />
+    } if (selected === linkedListIcon) {
+      return < LinkedListDisplay />
+    } if (selected === fifoLifoIcon) {
+      return < FifoLifoListDisplay />
+    } if (selected === settingsIcon) {
+      return < ChangeSettingsDisplay
+        handleSettingsChange={this.handleSettingsChange}
+      />
+    }
   }
 
   navIconMapper = (icons, image_headers) => {
@@ -67,25 +89,6 @@ class App extends React.Component {
         </span>
       </div>
     );
-  }
-
-  handleSelected = (selected) => {
-    if (selected === houseIcon) {
-      return < Homepage />;
-    } if (selected === ticTacToeIcon) {
-      return < Game />;
-    } if (selected === bankIcon) {
-      return < Accounts />
-    } if (selected === cityIcon) {
-      return < Cities />
-    } if (selected === linkedListIcon) {
-      return < LinkedListDisplay />
-    } if (selected === fifoLifoIcon) {
-      return < FifoLifoListDisplay />
-    } if (selected === settingsIcon) {
-      return < ChangeSettingsDisplay
-        handleSettingsChange={this.handleSettingsChange} />
-    }
   }
 
   render() {

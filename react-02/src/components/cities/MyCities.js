@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThemeContext } from '../theme-context.js';
 import CityCreateDisplay from './MyCitiesCreateDisplay.js';
 import CityCardsList from './MyCitiesCardsList.js';
 import CityFactsDisplay from './MyCitiesFactsDisplay.js';
@@ -43,12 +44,12 @@ class Cities extends React.Component {
     }
 
     counterSync = (controller) => {
-            let arrayKeys = controller.cities.map(city => city.key);
-            if (arrayKeys.length > 0) {
-                let highestKey = Math.max(...arrayKeys);
-                controller.counter = highestKey;
-            } else controller.counter = 0;
-    } 
+        let arrayKeys = controller.cities.map(city => city.key);
+        if (arrayKeys.length > 0) {
+            let highestKey = Math.max(...arrayKeys);
+            controller.counter = highestKey;
+        } else controller.counter = 0;
+    }
 
     handleOnChange = (event) => {
         this.setState({
@@ -125,50 +126,54 @@ class Cities extends React.Component {
 
     render() {
         return (
-            <div className="city-wrapper">
-                <div className="city-container-left">
-                    <span className="city-display-header">Add City</span>
-                    <CityCreateDisplay
-                        handleSubmit={this.handleSubmit}
-                        handleOnChange={this.handleOnChange}
-                        cityName={this.state.cityName}
-                        latitude={this.state.latitude}
-                        longitude={this.state.longitude}
-                        population={this.state.population}
-                    />
-                </div>
-                <div className="city-container-middle-top">
-                    <div className="city-cards-display-headers">
-                        <span className="city-headers">City</span>
-                        <span className="city-headers">Lat.</span>
-                        <span className="city-headers">Long.</span>
-                        <span className="city-headers">Pop.</span>
+            <ThemeContext.Consumer>
+                {(theme) => (
+                    <div className="city-wrapper" style={{ backgroundColor: theme.background, color: theme.color }}>
+                        <div className="city-container-left">
+                            <span className="city-display-header">Add City</span>
+                            <CityCreateDisplay
+                                handleSubmit={this.handleSubmit}
+                                handleOnChange={this.handleOnChange}
+                                cityName={this.state.cityName}
+                                latitude={this.state.latitude}
+                                longitude={this.state.longitude}
+                                population={this.state.population}
+                            />
+                        </div>
+                        <div className="city-container-middle-top">
+                            <div className="city-cards-display-headers">
+                                <span className="city-headers">City</span>
+                                <span className="city-headers">Lat.</span>
+                                <span className="city-headers">Long.</span>
+                                <span className="city-headers">Pop.</span>
+                            </div>
+                            <div>
+                                <CityCardsList
+                                    cities={this.citiesList.cities}
+                                    handleDelete={this.handleDelete}
+                                    cityChecker={this.cityChecker}
+                                    cityInfoSelector={this.cityInfoSelector}
+                                    selectedCity={this.state.selectedCity}
+                                />
+                            </div>
+                        </div>
+                        <div className="city-container-middle-bottom">
+                            <CityFactsDisplay
+                                showCity={this.state.showCity}
+                                howBigCity={this.state.howBigCity}
+                                whichSphereCity={this.state.whichSphereCity}
+                            />
+                        </div>
+                        <div className="city-container-right">
+                            <CityInfoDisplay
+                                mostNorthern={this.state.mostNorthern}
+                                mostSouthern={this.state.mostSouthern}
+                                totalPopulation={this.state.totalPopulation}
+                            />
+                        </div>
                     </div>
-                    <div>
-                        <CityCardsList
-                            cities={this.citiesList.cities}
-                            handleDelete={this.handleDelete}
-                            cityChecker={this.cityChecker}
-                            cityInfoSelector={this.cityInfoSelector}
-                            selectedCity={this.state.selectedCity}
-                        />
-                    </div>
-                </div>
-                <div className="city-container-middle-bottom">
-                    <CityFactsDisplay
-                        showCity={this.state.showCity}
-                        howBigCity={this.state.howBigCity}
-                        whichSphereCity={this.state.whichSphereCity}
-                    />
-                </div>
-                <div className="city-container-right">
-                    <CityInfoDisplay 
-                        mostNorthern={this.state.mostNorthern}
-                        mostSouthern={this.state.mostSouthern}
-                        totalPopulation={this.state.totalPopulation}
-                    />
-                </div>
-            </div>
+                )}
+            </ThemeContext.Consumer>
         );
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeContext } from 'C:/code/cohort3/react-02/src/theme-context.js';
+import { ThemeContext } from '../theme-context.js';
 import './settings.css';
 
 const ChangeSettingsDisplay = (props) => {
@@ -14,7 +14,7 @@ const ChangeSettingsDisplay = (props) => {
                     className="settings-backround-dropdown"
                     onChange={(event) => props.handleSettingsChange(event)}
                 >
-                    <option value="nothing">--- Select ---</option>
+                    <option>--- Select ---</option>
                     <option value="default">Default</option>
                     <option value="dark">Black</option>
                 </select>

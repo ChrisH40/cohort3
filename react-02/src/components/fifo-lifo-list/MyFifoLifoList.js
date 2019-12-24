@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ThemeContext } from 'C:/code/cohort3/react-02/src/theme-context.js';
+import { ThemeContext } from '../theme-context.js';
 import LifoStackDisplay from './MyLifoStack.js';
 import FifoQueueDisplay from './MyFifoQueue.js';
 import { ListGenerator } from './fifo-lifo.js';

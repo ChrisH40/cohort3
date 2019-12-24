@@ -1,5 +1,6 @@
 import React from 'react';
-import Board from "./MyBoard.js"
+import Board from "./MyBoard.js";
+import { ThemeContext } from '../theme-context.js';
 
 class Game extends React.Component {
   constructor(props) {
@@ -51,7 +52,7 @@ class Game extends React.Component {
     else return;
   }
 
- compDecision(board) {
+  compDecision(board) {
     setTimeout(() => {
       if (board.includes(null)) {
         const pick = this.miniMax(board, this.state.computerPlayer);
@@ -246,37 +247,41 @@ class Game extends React.Component {
     }
 
     return (
-      <div className="game">
-        <h1>Tic-Tac-Toe</h1>
-        <div>
-          <span>First Player (X):</span>
-          <select
-            className="first-player-dropdown"
-            onChange={(event) => this.firstPlayer(event)}
-          >
-            <option value="human">Human</option>
-            <option value="computer">Computer</option>
-          </select>
-        </div>
-        <div>
-          <button className="start-button" value="true" onClick={(event) => this.startGame(event)}>{this.state.startGame ? "Game On!" : "Start Game"}</button>
-        </div>
-        <div className="game board-info-wrapper">
-          <div className="game-board">
-            <Board
-              winningRow={winner ? winner.row : []}
-              squares={current.squares}
-              onClick={(i) => this.humanDecision(i)}
-            />
-          </div>
-          <div className="game-info">
-            <div>{status}</div>
-            <div className="game-info-display">
-              <ol>{moves}</ol>
+      <ThemeContext.Consumer>
+        {(theme) => (
+          <div className="game" style={{ backgroundColor: theme.background, color: theme.color }}>
+            <h1>Tic-Tac-Toe</h1>
+            <div>
+              <span>First Player (X):</span>
+              <select
+                className="first-player-dropdown"
+                onChange={(event) => this.firstPlayer(event)}
+              >
+                <option value="human">Human</option>
+                <option value="computer">Computer</option>
+              </select>
+            </div>
+            <div>
+              <button className="start-button" value="true" onClick={(event) => this.startGame(event)}>{this.state.startGame ? "Game On!" : "Start Game"}</button>
+            </div>
+            <div className="game board-info-wrapper" style={{ backgroundColor: theme.background, color: theme.color }}>
+              <div className="game-board">
+                <Board
+                  winningRow={winner ? winner.row : []}
+                  squares={current.squares}
+                  onClick={(i) => this.humanDecision(i)}
+                />
+              </div>
+              <div className="game-info">
+                <div>{status}</div>
+                <div className="game-info-display">
+                  <ol>{moves}</ol>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 
