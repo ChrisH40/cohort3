@@ -9,7 +9,7 @@ const ChangeSettingsDisplay = (props) => {
     return (
         <div className="settings-wrapper" style={{ backgroundColor: theme.background, color: theme.color }}>
             <div className="settings-dropdown-wrapper">
-                <label className="settings-background-text">Change Background:</label>
+                <label className="settings-background-text">Change Theme:</label>
                 <select
                     className="settings-backround-dropdown"
                     onChange={(event) => props.handleSettingsChange(event)}

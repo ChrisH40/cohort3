@@ -84,7 +84,6 @@ class App extends React.Component {
       return < FifoLifoListDisplay />
     } if (selected === settingsIcon) {
       return < ChangeSettingsDisplay
-        theme={this.state.theme}
         handleSettingsChange={this.handleSettingsChange} />
     }
   }
