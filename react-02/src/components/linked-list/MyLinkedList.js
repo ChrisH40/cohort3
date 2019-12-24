@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ThemeContext } from 'C:/code/cohort3/react-02/src/theme-context.js';
 import { LinkedList } from './linked-list';
 import './MyLinkedList.css';
 
@@ -8,6 +9,8 @@ const LinkedListDisplay = () => {
     const [subject, setSubject] = useState("");
     const [amount, setAmount] = useState("");
     let [current, setCurrent] = useState("");
+
+    const theme = React.useContext(ThemeContext);
 
     const handleInsert = (event) => {
         if (subject === "" || amount === "") {
@@ -29,12 +32,15 @@ const LinkedListDisplay = () => {
         else {
             let currentNode = list.head;
             let displayedNodes = [];
+            let counter = 1;
             while (currentNode) {
                 displayedNodes.push(
                     < ListCard
                         node={currentNode}
+                        key={counter}
                     />
                 )
+                counter++;
                 currentNode = currentNode.next;
             }
             return displayedNodes;
@@ -49,7 +55,7 @@ const LinkedListDisplay = () => {
     )
 
     return (
-        <div className="list-wrapper">
+        <div className="list-wrapper" style={{ backgroundColor: theme.background, color: theme.color }}>
             <div className="create-node-display">
                 <div className="list-header">
                     CREATE ITEM
@@ -79,7 +85,7 @@ const LinkedListDisplay = () => {
             </div>
             <div className="list-info">
                 <div className="list-current-show">
-                    Current Item: {(linkedList.current) ? linkedList.current.show() : null}  
+                    Current Item: {(linkedList.current) ? linkedList.current.show() : null}
                 </div>
                 <div className="list-total-amounts">
                     Total Item Amounts: {linkedList.totalAmounts()}

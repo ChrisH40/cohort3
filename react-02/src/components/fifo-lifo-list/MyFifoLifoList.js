@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ThemeContext } from 'C:/code/cohort3/react-02/src/theme-context.js';
 import LifoStackDisplay from './MyLifoStack.js';
 import FifoQueueDisplay from './MyFifoQueue.js';
 import { ListGenerator } from './fifo-lifo.js';
@@ -16,6 +17,8 @@ const FifoLifoListDisplay = () => {
     let [nextLifoRemove, setNextLifoRemove] = useState(lifoStack.nextToRemove());
     let [fifoRemoved, setFifoRemoved] = useState("");
     let [lifoRemoved, setLifoRemoved] = useState("");
+
+    const theme = React.useContext(ThemeContext);
 
     const handlePutIn = () => {
         fifoQueue.add(nextAdd);
@@ -38,7 +41,7 @@ const FifoLifoListDisplay = () => {
     }
 
     return (
-        <div className="fifolifo-wrapper">
+        <div className="fifolifo-wrapper" style={{ backgroundColor: theme.background, color: theme.color }}>
             <span className="fifolifo-main-header">I've Been Everywhere, Man, I've Been Everywhere. I've Been To...</span>
             <div className="fifolifo-next-item">
                 Next Item To Put In Both Lists: <span className="fifolifo-important-text">{nextAdd}</span>

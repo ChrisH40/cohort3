@@ -169,9 +169,8 @@ ol, ul {
 
 .start-button,
 .first-player-dropdown,
-.history-button,
-.first-player-dropdown {
-  margin: 15px;
+.history-button {
+    margin: 15px;
 }
 
 .start-button:hover,

@@ -1,0 +1,19 @@
+
+.settings-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #282c34;
+    min-height: 90vmin;
+    padding: 10px;
+    color: white;
+}
+
+.settings-background-text {
+    margin: 15px;
+}
+
+.settings-background-dropdown {
+  margin: 15px;
+  width: 10vw;
+}

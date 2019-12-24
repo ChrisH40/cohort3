@@ -6,6 +6,7 @@ import Accounts from "./components/accounts/MyAccounts.js";
 import Cities from "./components/cities/MyCities.js";
 import LinkedListDisplay from "./components/linked-list/MyLinkedList.js";
 import FifoLifoListDisplay from "./components/fifo-lifo-list/MyFifoLifoList.js";
+import ChangeSettingsDisplay from './components/settings/settings';
 
 it('App renders without crashing', () => {
   const div = document.createElement('div');
@@ -40,6 +41,12 @@ it('LinkedList renders without crashing', () => {
 it('FifoLifoList renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<FifoLifoListDisplay />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+
+it('ChangeSettingsDisplay renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<ChangeSettingsDisplay />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
 

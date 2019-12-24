@@ -7,6 +7,7 @@
     background-color: #282c34;
     min-height: 90vmin;
     padding: 10px;
+    color: white;
 }
 
 .list-header {
@@ -29,7 +30,6 @@
     align-items: center;
     justify-items: center;
     border: solid 1px #09d3ac;
-    color: white;
     height: 5vh;
     padding: 10px;
     margin: 10px;
@@ -47,7 +47,6 @@
 .list-info {
     display: flex;
     justify-content: center;
-    color: white;
     height: 7vh;
     padding: 5px;
     margin: 5px;
@@ -63,7 +62,6 @@
     justify-self: baseline;
     flex-direction: column;
     align-items: center;
-    color: white;
     padding: 10px;
     margin: 10px;
     height: 45vh;
@@ -107,8 +105,8 @@
 
 .list-button {
     background-color:rgb(9, 211, 172, 0.4);
-    border: none;
     color: white;
+    border: none;
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;

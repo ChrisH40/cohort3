@@ -1,12 +1,14 @@
 import React from 'react';
 import './App.css';
 
+import { ThemeContext, themes } from './theme-context.js';
 import Homepage from "./components/MyHomepage.js";
 import Game from "./components/tic-tac-toe/MyGame.js";
 import Accounts from "./components/accounts/MyAccounts.js";
 import Cities from "./components/cities/MyCities.js";
 import LinkedListDisplay from "./components/linked-list/MyLinkedList.js";
 import FifoLifoListDisplay from "./components/fifo-lifo-list/MyFifoLifoList.js";
+import ChangeSettingsDisplay from './components/settings/settings.js';
 
 import houseIcon from './images/house-icon.svg';
 import ticTacToeIcon from './images/tic-tac-toe-icon.svg';
@@ -24,6 +26,7 @@ class App extends React.Component {
     this.state = {
       selected: houseIcon,
       activeIconIndex: 0,
+      theme: themes.default,
     }
   }
 
@@ -32,6 +35,18 @@ class App extends React.Component {
       selected: event.target.name,
       activeIconIndex: Number(event.target.id),
     })
+  }
+
+  handleSettingsChange = (event) => {
+    if (event.target.value === "default") {
+      this.setState({
+        theme: themes.default,
+      })
+    }
+    else
+      this.setState({
+        theme: themes.dark,
+      })
   }
 
   navIconMapper = (icons, image_headers) => {
@@ -68,7 +83,9 @@ class App extends React.Component {
     } if (selected === fifoLifoIcon) {
       return < FifoLifoListDisplay />
     } if (selected === settingsIcon) {
-      return < Homepage />
+      return < ChangeSettingsDisplay
+        theme={this.state.theme}
+        handleSettingsChange={this.handleSettingsChange} />
     }
   }
 
@@ -78,13 +95,15 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="App-header" style={{ backgroundColor: this.state.theme.background, color: this.state.theme.color }}>
           <div className="nav-bar">
             {this.navIconMapper(images, image_headers)}
           </div>
         </header>
         <div className="App-display">
-          {this.handleSelected(this.state.selected)}
+          <ThemeContext.Provider value={this.state.theme}>
+            {this.handleSelected(this.state.selected)}
+          </ThemeContext.Provider>
         </div>
       </div>
     );
