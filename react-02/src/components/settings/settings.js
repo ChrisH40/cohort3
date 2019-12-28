@@ -14,7 +14,6 @@ const ChangeSettingsDisplay = (props) => {
                     className="settings-backround-dropdown"
                     onChange={(event) => props.handleSettingsChange(event)}
                 >
-                    <option>--- Select ---</option>
                     <option value="default">Default</option>
                     <option value="dark">Black</option>
                 </select>
