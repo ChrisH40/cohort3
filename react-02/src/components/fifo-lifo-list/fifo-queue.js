@@ -1,15 +1,7 @@
-export class FifoQueue {
+import { ListGenerator } from './fifo-lifo.js';
 
-    constructor() {
-        this.list =
-            ["Reno", "Chicago", "Fargo", "Minnesota", "Buffalo", "Toronto", "Winslow", "Sarasota", "Wichita", "Tulsa"];
-    }
-
-    add(item) {
-        this.list.push(item);
-        return item;
-    }
-
+export class FifoQueue extends ListGenerator  {
+    
     remove() {
         const removedItem = this.list.shift();
         return removedItem;
@@ -18,5 +10,4 @@ export class FifoQueue {
     nextToRemove() {
         return this.list[0];
     }
-
 };

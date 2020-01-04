@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, /*useEffect*/ } from 'react';
 import { ThemeContext } from '../theme-context.js';
 import LifoStackDisplay from './MyLifoStack.js';
 import FifoQueueDisplay from './MyFifoQueue.js';
@@ -23,7 +23,7 @@ const FifoLifoListDisplay = () => {
     const handlePutIn = () => {
         fifoQueue.add(nextAdd);
         lifoStack.add(nextAdd);
-        listGenerator.remove(nextAdd);
+        listGenerator.removeMasterList(nextAdd);
         setNextAdd(nextAdd = listGenerator.nextToAdd());
         setNextFifoRemove(nextFifoRemove = fifoQueue.nextToRemove());
         setNextLifoRemove(nextLifoRemove = lifoStack.nextToRemove());
@@ -32,8 +32,8 @@ const FifoLifoListDisplay = () => {
     const handleTakeOut = () => {
         fifoQueue.remove(nextFifoRemove);
         lifoStack.remove(nextLifoRemove);
-        listGenerator.add(nextFifoRemove);
-        listGenerator.add(nextLifoRemove);
+        listGenerator.addMasterList(nextFifoRemove);
+        listGenerator.addMasterList(nextLifoRemove);
         setFifoRemoved(fifoRemoved = nextFifoRemove);
         setLifoRemoved(lifoRemoved = nextLifoRemove);
         setNextFifoRemove(nextFifoRemove = fifoQueue.nextToRemove());

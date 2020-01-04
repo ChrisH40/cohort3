@@ -1,11 +1,14 @@
 
 export class ListGenerator {
 
-    // This is also a FIFO Queue that interacts with both the other FIFO Queue list as well as the LIFO Stack list. 
-    // It provides each with their list items. 
+    // The masterList is also a FIFO Queue that interacts with the other FIFO Queue and LIFO Stack lists. 
+    // ListGenerator has the masterList items and also provides the FifoQueue and LifoStacks with their own list items, as well as add functions. 
 
     constructor() {
         this.list =
+            ["Reno", "Chicago", "Fargo", "Minnesota", "Buffalo",
+                "Toronto", "Winslow", "Sarasota", "Wichita", "Tulsa"];
+        this.masterList =
             ["Ottawa", "Oklahoma",
                 "Tampa", "Panama", "Mattawa", "La Paloma",
                 "Bangor", "Baltimore", "Salvador", "Amarillo",
@@ -28,17 +31,22 @@ export class ListGenerator {
                 "Sioux City", "Cedar City", "Dodge City"];
     }
 
-    add(item) {
-        this.list.push(item);
+    addMasterList(item) {
+        this.masterList.push(item);
         return item;
     }
 
-    remove() {
-        const removedItem = this.list.shift();
+    removeMasterList() {
+        const removedItem = this.masterList.shift();
         return removedItem;
     }
 
     nextToAdd() {
-        return this.list[0];
+        return this.masterList[0];
+    }
+
+    add(item) {
+        this.list.push(item);
+        return item;
     }
 };

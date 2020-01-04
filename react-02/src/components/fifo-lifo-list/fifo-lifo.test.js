@@ -1,9 +1,9 @@
 import { ListGenerator } from './fifo-lifo.js';
 
-test('test add remove', () => {
+test('test add remove from Master List', () => {
     const testGenerator = new ListGenerator();
-    expect(testGenerator.add("Calgary")).toBe("Calgary");
-    expect(testGenerator.list)
+    expect(testGenerator.addMasterList("Calgary")).toBe("Calgary");
+    expect(testGenerator.masterList)
         .toEqual(
             ["Ottawa", "Oklahoma", "Tampa", "Panama", "Mattawa",
                 "La Paloma", "Bangor", "Baltimore", "Salvador", "Amarillo",
@@ -25,8 +25,8 @@ test('test add remove', () => {
                 "Opelika", "Baraboo", "Waterloo", "Kalamazoo", "Kansas City",
                 "Sioux City", "Cedar City", "Dodge City", "Calgary"]
         );
-    expect(testGenerator.remove()).toBe("Ottawa");
-    expect(testGenerator.list)
+    expect(testGenerator.removeMasterList()).toBe("Ottawa");
+    expect(testGenerator.masterList)
         .toEqual(
             ["Oklahoma", "Tampa", "Panama", "Mattawa", "La Paloma",
                 "Bangor", "Baltimore", "Salvador", "Amarillo",
@@ -53,7 +53,7 @@ test('test add remove', () => {
 test('test nextToAdd', () => {
     const testGenerator = new ListGenerator();
     expect(testGenerator.nextToAdd()).toBe("Ottawa");
-    expect(testGenerator.list)
+    expect(testGenerator.masterList)
         .toEqual(
             ["Ottawa", "Oklahoma", "Tampa", "Panama", "Mattawa",
                 "La Paloma", "Bangor", "Baltimore", "Salvador", "Amarillo",
@@ -75,4 +75,11 @@ test('test nextToAdd', () => {
                 "Opelika", "Baraboo", "Waterloo", "Kalamazoo", "Kansas City",
                 "Sioux City", "Cedar City", "Dodge City"]
         );
+});
+
+test('test add to fifo queue, lifo stack lists', () => {
+    const testGenerator = new ListGenerator();
+    expect(testGenerator.add("Calgary")).toBe("Calgary");
+    expect(testGenerator.list)
+        .toEqual(["Reno", "Chicago", "Fargo", "Minnesota", "Buffalo", "Toronto", "Winslow", "Sarasota", "Wichita", "Tulsa", "Calgary"]);
 });
