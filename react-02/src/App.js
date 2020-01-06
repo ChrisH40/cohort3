@@ -20,12 +20,10 @@ import settingsIcon from './images/settings-icon.svg';
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
+  constructor() {
+    super();
     this.state = {
       selected: houseIcon,
-      activeIconIndex: 0,
       theme: themes.default,
       themeValue: "default",
     }
@@ -34,7 +32,6 @@ class App extends React.Component {
   handleClick = (event) => {
     this.setState({
       selected: event.target.name,
-      activeIconIndex: Number(event.target.id),
     })
   }
 
@@ -73,16 +70,15 @@ class App extends React.Component {
     return
   }
 
-  navIconMapper = (icons, image_headers) => {
-    return icons.map((icon, i) =>
+  navIconMapper = (images, image_headers) => {
+    return images.map((image, i) =>
       <div className="icon-icon-header" key={i}>
         <img
           id={i}
-          name={icon}
-          src={icon}
-          tabIndex={0}
-          className={`icon icon${i} ` + (this.state.activeIconIndex === i ? "icon-active" : null)}
-          alt={`icon ${icon}`}
+          name={image}
+          src={image}
+          className={`icon icon${i} ` + (this.state.selected === image ? "icon-active" : null)}
+          alt={`icon ${image}`}
           onClick={this.handleClick}
         />
         <span
