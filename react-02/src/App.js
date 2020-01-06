@@ -39,40 +39,38 @@ class App extends React.Component {
   }
 
   handleSettingsChange = (event) => {
-    if (event.target.value === "default") {
       this.setState({
-        theme: themes.default,
+        theme: themes[event.target.value],
         themeValue: event.target.value,
       })
     }
-    if (event.target.value === "dark") {
-      this.setState({
-        theme: themes.dark,
-        themeValue: event.target.value,
-      })
-    }
-    return;
-  }
 
   handleSelected = (selected) => {
     if (selected === houseIcon) {
       return < Homepage />;
-    } if (selected === ticTacToeIcon) {
+    } 
+    if (selected === ticTacToeIcon) {
       return < Game />;
-    } if (selected === bankIcon) {
+    } 
+    if (selected === bankIcon) {
       return < Accounts />
-    } if (selected === cityIcon) {
+    } 
+    if (selected === cityIcon) {
       return < Cities />
-    } if (selected === linkedListIcon) {
+    } 
+    if (selected === linkedListIcon) {
       return < LinkedListDisplay />
-    } if (selected === fifoLifoIcon) {
+    } 
+    if (selected === fifoLifoIcon) {
       return < FifoLifoListDisplay />
-    } if (selected === settingsIcon) {
+    } 
+    if (selected === settingsIcon) {
       return < ChangeSettingsDisplay
         handleSettingsChange={this.handleSettingsChange}
         themeValue={this.state.themeValue}
       />
     }
+    return
   }
 
   navIconMapper = (icons, image_headers) => {
