@@ -3,7 +3,7 @@ import { ThemeContext } from '../theme-context.js';
 import './settings.css';
 
 const ChangeSettingsDisplay = (props) => {
-
+    
     const theme = React.useContext(ThemeContext);
 
     return (
@@ -13,9 +13,10 @@ const ChangeSettingsDisplay = (props) => {
                 <select
                     className="settings-backround-dropdown"
                     onChange={(event) => props.handleSettingsChange(event)}
+                    value={props.themeValue}
                 >
                     <option value="default">Default</option>
-                    <option value="dark">Black</option>
+                    <option value="dark">Dark</option>
                 </select>
             </div>
         </div>

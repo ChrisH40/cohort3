@@ -3,7 +3,6 @@ import React from 'react';
 const LifoStackDisplay = (props) => {
 
     const lifoList = props.lifoStack.list.map((item, i) => {
-        // Need to use 'UseEffect' for special CSS class...
         return (
             <div className={`lifo-card ` + ((item === props.nextLifoRemove) ? "next-lifo-card-remove" : null)} key={i}>
                 <span className="lifo-card-text">{item}</span>

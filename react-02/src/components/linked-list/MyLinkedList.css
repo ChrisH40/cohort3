@@ -65,7 +65,7 @@
     padding: 10px;
     margin: 10px;
     height: 45vh;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .list-card {

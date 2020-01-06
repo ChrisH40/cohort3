@@ -27,6 +27,7 @@ class App extends React.Component {
       selected: houseIcon,
       activeIconIndex: 0,
       theme: themes.default,
+      themeValue: "default",
     }
   }
 
@@ -41,11 +42,13 @@ class App extends React.Component {
     if (event.target.value === "default") {
       this.setState({
         theme: themes.default,
+        themeValue: event.target.value,
       })
     }
     if (event.target.value === "dark") {
       this.setState({
         theme: themes.dark,
+        themeValue: event.target.value,
       })
     }
     return;
@@ -67,6 +70,7 @@ class App extends React.Component {
     } if (selected === settingsIcon) {
       return < ChangeSettingsDisplay
         handleSettingsChange={this.handleSettingsChange}
+        themeValue={this.state.themeValue}
       />
     }
   }
