@@ -48,10 +48,10 @@ class AccountCard extends React.Component {
         return (
             <div className="account-card">
                 <label className="account-name">
-                    {this.props.name}
+                    {this.props.account.accountName}
                 </label>
                 <label className="account-balance">
-                    {`$${(this.props.balance).toFixed(2)}`}
+                    {`$${(this.props.account.startingBalance).toFixed(2)}`}
                 </label>
                 <input
                     type="number"

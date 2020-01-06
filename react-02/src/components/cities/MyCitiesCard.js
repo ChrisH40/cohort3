@@ -34,8 +34,8 @@ class CityCard extends React.Component {
     }
 
     handleMovedOut(i) {
-        if (this.state.changePopulation < 0 || this.state.changePopulation >= this.props.population) {
-            alert("Please enter a number greater than zero or less than current population.");
+        if (this.state.changePopulation < 0 || this.state.changePopulation > this.props.city.population) {
+            alert("Please enter a number greater than zero or less than/equal to current population.");
         }
         else {
             this.props.cities[i].movedOut(Number(this.state.changePopulation));
@@ -50,10 +50,10 @@ class CityCard extends React.Component {
     render() {
         return (
             <div className={`city-card ` + (this.props.selectedCity === this.props.cities[this.props.index] ? "active-city-card" : null)} onClick={(event) => this.props.cityInfoSelector(event, this.props.index)}>
-                <label className="city-name city-card-elements">{this.props.name}</label>
-                <label className="city-latitude city-card-elements">{(this.props.latitude).toFixed(2)}</label>
-                <label className="city-longitude city-card-elements">{(this.props.longitude).toFixed(2)}</label>
-                <label className="city-population city-card-elements">{(this.props.population).toFixed(0)}</label>
+                <label className="city-name city-card-elements">{this.props.city.name}</label>
+                <label className="city-latitude city-card-elements">{(this.props.city.latitude).toFixed(2)}</label>
+                <label className="city-longitude city-card-elements">{(this.props.city.longitude).toFixed(2)}</label>
+                <label className="city-population city-card-elements">{(this.props.city.population).toFixed(0)}</label>
                 <input
                     type="number"
                     name="changePopulation"

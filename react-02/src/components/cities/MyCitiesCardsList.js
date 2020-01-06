@@ -7,11 +7,7 @@ class CityCardsList extends React.Component {
         const cityList = this.props.cities.map((city, i) => {
             return <CityCard
                 cities={this.props.cities}
-                key={city.key}
-                name={city.name}
-                latitude={city.latitude}
-                longitude={city.longitude}
-                population={city.population}
+                city={city}
                 index={i}
                 handleDelete={this.props.handleDelete}
                 cityChecker={this.props.cityChecker}
