@@ -42,7 +42,8 @@ export class ListGenerator {
     }
 
     nextToAdd() {
-        return this.masterList[0];
+        const nextAdd = this.masterList[0];
+        return nextAdd;
     }
 
     add(item) {

@@ -8,6 +8,7 @@ export class FifoQueue extends ListGenerator  {
     }
 
     nextToRemove() {
-        return this.list[0];
+        const firstItem = this.list[0];
+        return firstItem;
     }
 };
