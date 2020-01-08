@@ -27,7 +27,7 @@ class AccountCard extends React.Component {
         this.setState({
             changeBalance: "",
         })
-        this.context.handleAccountsBalanceChecker(this.props.listArray);
+        this.props.balanceChecker(this.props.listArray);
     };
 
     handleWithdraw(i) {
@@ -40,7 +40,7 @@ class AccountCard extends React.Component {
         this.setState({
             changeBalance: "",
         })
-        this.context.handleAccountsBalanceChecker(this.props.listArray);
+        this.props.balanceChecker(this.props.listArray);
     };
 
     render() {

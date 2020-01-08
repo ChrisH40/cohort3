@@ -13,7 +13,6 @@ class Cities extends React.Component {
     constructor(props) {
         super(props);
         this.citiesList = new Community('Cities Controller');
-        this.handleOnChange = this.handleOnChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             dataLoad: false,

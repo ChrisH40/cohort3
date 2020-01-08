@@ -25,15 +25,34 @@ class Accounts extends React.Component {
         else {
             this.accounts.addAccount(this.context.state.acctName, this.context.state.acctBalance);
         }
-        this.context.handleClear(["acctName", "acctBalance"]);
-        this.context.handleAccountsBalanceChecker(this.accounts.listArray);
+        this.context.handleStateClear(["acctName", "acctBalance"]);
+        this.balanceChecker(this.accounts.listArray);
         event.preventDefault();
     }
 
     handleDelete = (i) => {
         this.accounts.deleteAccount(this.accounts.listArray, i);
-        this.context.handleAccountsBalanceChecker(this.accounts.listArray);
+        this.balanceChecker(this.accounts.listArray);
     }
+
+    balanceChecker = (array) => {
+        if (accounts.listArray.length > 0) {
+            this.context.handleStateFunctions([
+                { state: "highestName", func: accounts.highestBalance(array) },
+                { state: "highestBalance", func: accounts.highestBalanceNumber(array) },
+                { state: "lowestName", func: accounts.lowestBalance(array) },
+                { state: "lowestBalanceNumber", func: accounts.lowestBalanceNumber(array) },
+                { state: "totalBalance", func: accounts.totalBalances(array) },
+            ]);
+        }
+        else this.context.handleStateClear([
+            "highestName",
+            "highestBalance",
+            "lowestName",
+            "lowestBalance",
+            "totalBalance"
+        ]);
+    };
 
     render() {
         return (
@@ -51,6 +70,7 @@ class Accounts extends React.Component {
                             <AccountCardsList
                                 listArray={this.accounts.listArray}
                                 handleDelete={this.handleDelete}
+                                balanceChecker={this.balanceChecker}
                             />
                         </div>
                         <div className="container-right">

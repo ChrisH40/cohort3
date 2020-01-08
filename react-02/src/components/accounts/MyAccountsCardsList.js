@@ -10,6 +10,7 @@ class AccountCardsList extends React.Component {
                     key={i}
                     listArray={this.props.listArray}
                     handleDelete={this.props.handleDelete}
+                    balanceChecker={this.props.balanceChecker}
                     index={i}
                     account={account}
                 />

@@ -36,7 +36,7 @@ export class ContextProvider extends React.Component {
         })
     };
 
-    handleClear = (states) => {
+    handleStateClear = (states) => {
         for (let i = 0; i < states.length; i++) {
             this.setState({
                 [states[i]]: "",
@@ -44,17 +44,12 @@ export class ContextProvider extends React.Component {
         }
     };
 
-    handleAccountsBalanceChecker = (array) => {
-        if (accounts.listArray.length > 0) {
+    handleStateFunctions = (statefuncs) => {
+        for (let i = 0; i < statefuncs.length; i++) {
             this.setState({
-                highestName: accounts.highestBalance(array),
-                highestBalance: accounts.highestBalanceNumber(array),
-                lowestName: accounts.lowestBalance(array),
-                lowestBalance: accounts.lowestBalanceNumber(array),
-                totalBalance: accounts.totalBalances(array),
-            });
+                [statefuncs[i].state]: [statefuncs[i].funcs],
+            })
         }
-        else this.handleClear(["highestName", "highestBalance", "lowestName", "lowestBalance", "totalBalance"]);
     };
 
     render() {
@@ -64,8 +59,8 @@ export class ContextProvider extends React.Component {
                     state: this.state,
                     theme: this.theme,
                     handleOnChange: this.handleOnChange,
-                    handleClear: this.handleClear,
-                    handleAccountsBalanceChecker: this.handleAccountsBalanceChecker,
+                    handleStateClear: this.handleStateClear,
+                    handleStateFunctions:  this.handleStateFunctions,
                 }}
             >
                 <App />

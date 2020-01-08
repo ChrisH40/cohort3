@@ -5,9 +5,6 @@ class CityCard extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleMovedIn = this.handleMovedIn.bind(this);
-        this.handleMovedOut = this.handleMovedOut.bind(this);
         this.state = {
             changePopulation: "",
         }
