@@ -20,24 +20,12 @@ export class ContextProvider extends React.Component {
         },
     };
 
-    handleOnChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value,
-        })
-    };
-
     handleSettingsChange = (event) => {
         this.setState({
             theme: this.theme[event.target.value],
             themeValue: event.target.value,
         })
     }
-
-    handleSubmit = (event) => {
-        this.setState({
-            [event.target.name]: "",
-        })
-    };
 
     render() {
         return (
