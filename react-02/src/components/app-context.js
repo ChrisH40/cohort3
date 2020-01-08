@@ -47,7 +47,7 @@ export class ContextProvider extends React.Component {
     handleStateFunctions = (statefuncs) => {
         for (let i = 0; i < statefuncs.length; i++) {
             this.setState({
-                [statefuncs[i].state]: [statefuncs[i].funcs],
+                [statefuncs[i].state]: [statefuncs[i].func],
             })
         }
     };

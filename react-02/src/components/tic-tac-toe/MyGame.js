@@ -9,11 +9,11 @@ class Game extends React.Component {
       history: [{
         squares: Array(9).fill(null),
       }],
-      stepNumber: 0,
-      xIsNext: true,
       startGame: false,
       humanPlayer: "X",
       computerPlayer: "O",
+      stepNumber: 0,
+      xIsNext: true,
     }
   }
 
@@ -34,9 +34,9 @@ class Game extends React.Component {
   }
 
   async startGame(event) {
-    const booleanState = (event.target.value === "true");
+    const booleanTrue = (event.target.value === "true");
     await this.setState({
-      startGame: booleanState,
+      startGame: booleanTrue,
     });
     if (this.state.startGame === true && this.state.computerPlayer === "X" && this.state.xIsNext === true) {
       return this.compDecision(this.state.history[0].squares);
@@ -45,8 +45,7 @@ class Game extends React.Component {
   }
 
   humanDecision(i) {
-    if ((this.state.startGame === true && this.state.humanPlayer === "X" && this.state.xIsNext === true) ||
-      (this.state.startGame === true && this.state.humanPlayer === "O" && this.state.xIsNext === false)) {
+    if ((this.state.startGame === true && this.state.humanPlayer === "X" && this.state.xIsNext === true) || (this.state.startGame === true && this.state.humanPlayer === "O" && this.state.xIsNext === false)) {
       return this.handleClick(i)
     }
     else return;
@@ -147,9 +146,8 @@ class Game extends React.Component {
       (board[2] === player && board[4] === player && board[6] === player)
     ) {
       return true;
-    } else {
-      return false;
     }
+    else return false;
   }
 
   // --- ---
@@ -173,6 +171,7 @@ class Game extends React.Component {
     if (this.calculateWinner(squares) || squares[i]) {
       return;
     }
+
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     await this.setState({
       history: history.concat([{
@@ -182,6 +181,7 @@ class Game extends React.Component {
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
     });
+
     if ((this.state.computerPlayer === "X" && this.state.xIsNext === true && this.state.startGame === true) ||
       (this.state.computerPlayer === "O" && this.state.xIsNext === false && this.state.startGame === true)) {
       return this.compDecision(squares);
@@ -207,13 +207,11 @@ class Game extends React.Component {
       });
     }
     if (
-      (this.state.xIsNext === true && this.state.computerPlayer === "X") ||
-      (this.state.xIsNext === false && this.state.computerPlayer === "O")) {
+      (this.state.xIsNext === true && this.state.computerPlayer === "X") || (this.state.xIsNext === false && this.state.computerPlayer === "O")) {
       return this.compDecision(this.state.history[step].squares);
     }
     else if (
-      (this.state.xIsNext === true && this.state.humanPlayer === "X") ||
-      (this.state.xIsNext === false && this.state.humanPlayer === "O")) {
+      (this.state.xIsNext === true && this.state.humanPlayer === "X") || (this.state.xIsNext === false && this.state.humanPlayer === "O")) {
       return;
     }
     else return;
@@ -249,7 +247,7 @@ class Game extends React.Component {
     return (
       <AppContext.Consumer>
         {({ state, theme }) => (
-          <div className="game" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color}}>
+          <div className="game" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color }}>
             <h1>Tic-Tac-Toe</h1>
             <div>
               <span>First Player (X):</span>
@@ -264,7 +262,7 @@ class Game extends React.Component {
             <div>
               <button className="start-button" value="true" onClick={(event) => this.startGame(event)}>{this.state.startGame ? "Game On!" : "Start Game"}</button>
             </div>
-            <div className="game board-info-wrapper" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color}}>
+            <div className="game board-info-wrapper" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color }}>
               <div className="game-board">
                 <Board
                   winningRow={winner ? winner.row : []}
@@ -307,4 +305,3 @@ class Game extends React.Component {
 }
 
 export default Game;
-
