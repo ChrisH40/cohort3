@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeContext } from '../theme-context.js';
+import { AppContext } from '../app-context.js';
 import AccountCreateDisplay from './MyAccountsCreateDisplay.js';
 import AccountCardsList from './MyAccountsCardsList.js';
 import AccountBalancesDisplay from './MyAccountsInfoDisplay.js';
@@ -76,9 +76,9 @@ class Accounts extends React.Component {
 
     render() {
         return (
-            <ThemeContext.Consumer>
-                {(theme) => (
-                    <div className="wrapper" style={{ backgroundColor: theme.background, color: theme.color }}>
+            <AppContext.Consumer>
+                {({ state, theme }) => (
+                    <div className="wrapper" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color}}>
                         <div className="container-left">
                             <span className="display-header">Create New Account</span>
                             <AccountCreateDisplay
@@ -107,7 +107,7 @@ class Accounts extends React.Component {
                         </div>
                     </div>
                 )}
-            </ThemeContext.Consumer>
+            </AppContext.Consumer>
         );
     }
 }

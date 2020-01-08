@@ -1,6 +1,6 @@
 import React from 'react';
 import Board from "./MyBoard.js";
-import { ThemeContext } from '../theme-context.js';
+import { AppContext } from '../app-context.js';
 
 class Game extends React.Component {
   constructor(props) {
@@ -247,9 +247,9 @@ class Game extends React.Component {
     }
 
     return (
-      <ThemeContext.Consumer>
-        {(theme) => (
-          <div className="game" style={{ backgroundColor: theme.background, color: theme.color }}>
+      <AppContext.Consumer>
+        {({ state, theme }) => (
+          <div className="game" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color}}>
             <h1>Tic-Tac-Toe</h1>
             <div>
               <span>First Player (X):</span>
@@ -264,7 +264,7 @@ class Game extends React.Component {
             <div>
               <button className="start-button" value="true" onClick={(event) => this.startGame(event)}>{this.state.startGame ? "Game On!" : "Start Game"}</button>
             </div>
-            <div className="game board-info-wrapper" style={{ backgroundColor: theme.background, color: theme.color }}>
+            <div className="game board-info-wrapper" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color}}>
               <div className="game-board">
                 <Board
                   winningRow={winner ? winner.row : []}
@@ -281,7 +281,7 @@ class Game extends React.Component {
             </div>
           </div>
         )}
-      </ThemeContext.Consumer>
+      </AppContext.Consumer>
     );
   }
 

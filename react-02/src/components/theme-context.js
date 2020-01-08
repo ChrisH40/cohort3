@@ -11,4 +11,4 @@ export const themes = {
     },
 };
 
-export const ThemeContext = React.createContext(themes.default);
+export const ThemeContext = React.createContext(themes);

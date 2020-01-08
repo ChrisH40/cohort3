@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeContext } from '../theme-context.js';
+import { AppContext } from '../app-context.js';
 import CityCreateDisplay from './MyCitiesCreateDisplay.js';
 import CityCardsList from './MyCitiesCardsList.js';
 import CityFactsDisplay from './MyCitiesFactsDisplay.js';
@@ -48,7 +48,8 @@ class Cities extends React.Component {
         if (arrayKeys.length > 0) {
             let highestKey = Math.max(...arrayKeys);
             controller.counter = highestKey;
-        } else controller.counter = 0;
+        }
+        else controller.counter = 0;
     }
 
     handleOnChange = (event) => {
@@ -122,13 +123,14 @@ class Cities extends React.Component {
                 whichSphereCity: this.citiesList.whichSphere(this.citiesList.cities[i]),
             })
         }
+        else return;
     }
 
     render() {
         return (
-            <ThemeContext.Consumer>
-                {(theme) => (
-                    <div className="city-wrapper" style={{ backgroundColor: theme.background, color: theme.color }}>
+            <AppContext.Consumer>
+                {({ state, theme }) => (
+                    <div className="city-wrapper" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color }}>
                         <div className="city-container-left">
                             <span className="city-display-header">Add City</span>
                             <CityCreateDisplay
@@ -173,7 +175,7 @@ class Cities extends React.Component {
                         </div>
                     </div>
                 )}
-            </ThemeContext.Consumer>
+            </AppContext.Consumer>
         );
     }
 }

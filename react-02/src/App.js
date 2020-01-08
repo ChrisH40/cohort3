@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
 
-import { ThemeContext, themes } from './components/theme-context.js';
+import { AppContext } from './components/app-context.js';
 import Homepage from "./components/MyHomepage.js";
 import Game from "./components/tic-tac-toe/MyGame.js";
 import Accounts from "./components/accounts/MyAccounts.js";
 import Cities from "./components/cities/MyCities.js";
 import LinkedListDisplay from "./components/linked-list/MyLinkedList.js";
 import FifoLifoListDisplay from "./components/fifo-lifo-list/MyFifoLifoList.js";
-import ChangeSettingsDisplay from './components/settings/settings.js';
+import ChangeSettingsDisplay from './components/settings/MySettings.js';
 
 import houseIcon from './images/house-icon.svg';
 import ticTacToeIcon from './images/tic-tac-toe-icon.svg';
@@ -24,8 +24,6 @@ class App extends React.Component {
     super();
     this.state = {
       selected: houseIcon,
-      theme: themes.default,
-      themeValue: "default",
     }
   }
 
@@ -35,37 +33,27 @@ class App extends React.Component {
     })
   }
 
-  handleSettingsChange = (event) => {
-      this.setState({
-        theme: themes[event.target.value],
-        themeValue: event.target.value,
-      })
-    }
-
   handleSelected = (selected) => {
     if (selected === houseIcon) {
       return < Homepage />;
-    } 
+    }
     if (selected === ticTacToeIcon) {
       return < Game />;
-    } 
+    }
     if (selected === bankIcon) {
       return < Accounts />
-    } 
+    }
     if (selected === cityIcon) {
       return < Cities />
-    } 
+    }
     if (selected === linkedListIcon) {
       return < LinkedListDisplay />
-    } 
+    }
     if (selected === fifoLifoIcon) {
       return < FifoLifoListDisplay />
-    } 
+    }
     if (selected === settingsIcon) {
-      return < ChangeSettingsDisplay
-        handleSettingsChange={this.handleSettingsChange}
-        themeValue={this.state.themeValue}
-      />
+      return < ChangeSettingsDisplay />
     }
     return
   }
@@ -94,18 +82,20 @@ class App extends React.Component {
     const image_headers = ['Home', "Tic-Tac-Toe", "Accounts", "Cities", "Linked List", "FIFO Queue/LIFO Stack", "Settings"];
 
     return (
-      <div className="App">
-        <header className="App-header" style={{ backgroundColor: this.state.theme.background, color: this.state.theme.color }}>
-          <div className="nav-bar">
-            {this.navIconMapper(images, image_headers)}
+      <AppContext.Consumer>
+        {({ state, theme }) => (
+          <div className="App">
+            <header className="App-header" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color }}>
+              <div className="nav-bar">
+                {this.navIconMapper(images, image_headers)}
+              </div>
+            </header>
+            <div className="App-display">
+              {this.handleSelected(this.state.selected)}
+            </div>
           </div>
-        </header>
-        <div className="App-display">
-          <ThemeContext.Provider value={this.state.theme}>
-            {this.handleSelected(this.state.selected)}
-          </ThemeContext.Provider>
-        </div>
-      </div>
+        )}
+      </AppContext.Consumer>
     );
   }
 }
