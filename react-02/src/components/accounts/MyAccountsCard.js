@@ -1,22 +1,21 @@
 import React from 'react';
+import { AppContext } from '../app-context.js';
 
 class AccountCard extends React.Component {
+    static contextType = AppContext;
 
     constructor() {
         super();
-        this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleDeposit = this.handleDeposit.bind(this);
-        this.handleWithdraw = this.handleWithdraw.bind(this);
         this.state = {
             changeBalance: "",
         }
-    }
+    };
 
     handleOnChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
         })
-    }
+    };
 
     handleDeposit(i) {
         if (this.state.changeBalance < 0.01) {
@@ -28,8 +27,8 @@ class AccountCard extends React.Component {
         this.setState({
             changeBalance: "",
         })
-        this.props.balanceChecker(this.props.listArray);
-    }
+        this.context.handleAccountsBalanceChecker(this.props.listArray);
+    };
 
     handleWithdraw(i) {
         if (this.state.changeBalance < 0.01) {
@@ -41,8 +40,8 @@ class AccountCard extends React.Component {
         this.setState({
             changeBalance: "",
         })
-        this.props.balanceChecker(this.props.listArray);
-    }
+        this.context.handleAccountsBalanceChecker(this.props.listArray);
+    };
 
     render() {
         return (

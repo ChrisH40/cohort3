@@ -6,13 +6,14 @@ const ChangeSettingsDisplay = () => {
 
     return (      
         <AppContext.Consumer>
-            {({state, theme, handleSettingsChange}) => (
+            {({state, theme, handleOnChange}) => (
                 <div className="settings-wrapper" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color}}>
                     <div className="settings-dropdown-wrapper">
                         <label className="settings-background-text">Change Theme:</label>
                         <select
                             className="settings-backround-dropdown"
-                            onChange={(event) => handleSettingsChange(event)}
+                            onChange={(event) => handleOnChange(event)}
+                            name="themeValue"
                             value={state.themeValue}
                         >
                             <option value="default">Default</option>
