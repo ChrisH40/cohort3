@@ -17,6 +17,9 @@ export class ContextProvider extends React.Component {
         lowestName: "",
         lowestBalance: "",
         totalBalance: "",
+        current: "",
+        lastFifoRemoved: "",
+        lastLifoRemoved: "",
     };
 
     theme = {

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { AppContext } from '../app-context.js';
-import { LinkedList } from './linked-list';
+import { LinkedList } from './linked-list.js';
 import './MyLinkedList.css';
 
 const linkedList = new LinkedList();
 
 const LinkedListDisplay = () => {
+    const context = React.useContext(AppContext);
+
     const [subject, setSubject] = useState("");
     const [amount, setAmount] = useState("");
-    let [current, setCurrent] = useState("");
 
     const handleInsert = (event) => {
         if (subject === "" || amount === "") {
@@ -16,7 +17,7 @@ const LinkedListDisplay = () => {
             event.preventDefault();
         }
         else {
-            setCurrent(current = linkedList.insertListNode(subject, amount));
+            context.handleStateFunctions([{ state: "current", func: linkedList.insertListNode(subject, amount) }])
             setSubject("");
             setAmount("");
             event.preventDefault();
@@ -46,7 +47,7 @@ const LinkedListDisplay = () => {
     }
 
     const ListCard = (props) => (
-        <div className={`list-card ` + ((props.node === current) ? "active-list-card" : null)}>
+        <div className={`list-card ` + ((props.node === linkedList.current) ? "active-list-card" : null)}>
             <span className="list-card-text">Subject: {props.node.subject}</span>
             <span className="list-card-text">Amount: {props.node.amount}</span>
         </div>
@@ -96,31 +97,31 @@ const LinkedListDisplay = () => {
                             type="submit"
                             value="First Item"
                             className="list-button"
-                            onClick={() => setCurrent(current = linkedList.firstNode())}
+                            onClick={() => context.handleStateFunctions([{ state: "current", func: linkedList.firstNode() }])}
                         />
                         <input
                             type="submit"
                             value="Previous Item"
                             className="list-button"
-                            onClick={() => setCurrent(current = linkedList.prevNode(linkedList.current))}
+                            onClick={() => context.handleStateFunctions([{ state: "current", func: linkedList.prevNode(linkedList.current) }])}
                         />
                         <input
                             type="submit"
                             value="Delete Current Item"
                             className="list-button delete-button"
-                            onClick={() => setCurrent(current = linkedList.deleteListNode(linkedList.current))}
+                            onClick={() => context.handleStateFunctions([{ state: "current", func: linkedList.deleteListNode(linkedList.current) }])}
                         />
                         <input
                             type="submit"
                             value="Next Item"
                             className="list-button"
-                            onClick={() => setCurrent(current = linkedList.nextNode(linkedList.current))}
+                            onClick={() => context.handleStateFunctions([{ state: "current", func: linkedList.nextNode(linkedList.current) }])}
                         />
                         <input
                             type="submit"
                             value="Last Item"
                             className="list-button"
-                            onClick={() => setCurrent(current = linkedList.lastNode())}
+                            onClick={() => context.handleStateFunctions([{ state: "current", func: linkedList.lastNode() }])}
                         />
                     </div>
                     <div className="list-display">

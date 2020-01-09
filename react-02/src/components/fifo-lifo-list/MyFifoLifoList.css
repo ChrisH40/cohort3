@@ -56,6 +56,12 @@
     font-weight: bold;
 }
 
+.fifolifo-removed-text {
+    font-weight: bold;
+    color: red;
+}
+
+
 .fifo-card,
 .lifo-card {
     margin: 10px;

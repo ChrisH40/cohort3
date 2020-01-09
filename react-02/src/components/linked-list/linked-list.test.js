@@ -28,7 +28,7 @@ test('test LinkedList deleteListNode', () => {
     const testLinkedList = new LinkedList();
     expect(testLinkedList.deleteListNode()).toBe(null);
     const testNodeOne = testLinkedList.insertListNode("Test Node One", 1);
-    expect(testLinkedList.deleteListNode(testNodeOne)).toBe("");
+    expect(testLinkedList.deleteListNode(testNodeOne)).toBe(null);
     const testNodeTwo = testLinkedList.insertListNode("Test Node Two", 2);
     const testNodeThree = testLinkedList.insertListNode("Test Node Three", 3);
     expect(testLinkedList.deleteListNode(testNodeTwo)).toBe(testNodeThree);

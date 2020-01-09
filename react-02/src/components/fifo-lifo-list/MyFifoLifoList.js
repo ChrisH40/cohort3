@@ -12,11 +12,11 @@ const fifoQueue = new FifoQueue();
 const lifoStack = new LifoStack();
 
 const FifoLifoListDisplay = () => {
+    const context = React.useContext(AppContext);
+
     let [nextAdd, setNextAdd] = useState(listGenerator.nextToAdd());
     let [nextFifoRemove, setNextFifoRemove] = useState(fifoQueue.nextToRemove());
     let [nextLifoRemove, setNextLifoRemove] = useState(lifoStack.nextToRemove());
-    let [lastFifoRemoved, setLastFifoRemoved] = useState("");
-    let [lastLifoRemoved, setLastLifoRemoved] = useState("");
 
     const handlePutIn = () => {
         fifoQueue.add(nextAdd);
@@ -32,8 +32,7 @@ const FifoLifoListDisplay = () => {
         lifoStack.remove(nextLifoRemove);
         listGenerator.addMasterList(nextFifoRemove);
         listGenerator.addMasterList(nextLifoRemove);
-        setLastFifoRemoved(lastFifoRemoved = nextFifoRemove);
-        setLastLifoRemoved(lastLifoRemoved = nextLifoRemove);
+        context.handleStateFunctions([{ state: "lastFifoRemoved", func: nextFifoRemove }, { state: "lastLifoRemoved", func: nextLifoRemove }]);
         setNextFifoRemove(nextFifoRemove = fifoQueue.nextToRemove());
         setNextLifoRemove(nextLifoRemove = lifoStack.nextToRemove());
     }
@@ -64,7 +63,7 @@ const FifoLifoListDisplay = () => {
                         <div className="fifo-wrapper">
                             <span className="fifolifo-header">FIFO Queue - First In First Out</span>
                             <div className="fifo-deleted-item">
-                                Last Item Taken Out: <span className="fifolifo-important-text">{lastFifoRemoved}</span>
+                                Last Item Taken Out: <span className="fifolifo-removed-text">{state.lastFifoRemoved}</span>
                             </div>
                             < FifoQueueDisplay
                                 fifoQueue={fifoQueue}
@@ -73,7 +72,7 @@ const FifoLifoListDisplay = () => {
                         <div className="lifo-wrapper">
                             <span className="fifolifo-header">LIFO Stack - Last In First Out</span>
                             <div className="lifo-deleted-item">
-                                Last Item Taken Out: <span className="fifolifo-important-text">{lastLifoRemoved}</span>
+                                Last Item Taken Out: <span className="fifolifo-removed-text">{state.lastLifoRemoved}</span>
                             </div>
                             < LifoStackDisplay
                                 lifoStack={lifoStack}

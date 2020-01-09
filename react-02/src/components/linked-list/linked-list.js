@@ -32,11 +32,9 @@ export class LinkedList {
             return newListNode;
         }
         else {
-            let newNext = this.current.next;
-            let newPrev = this.current;
             if (this.current === this.tail) {
                 this.current.next = newListNode;
-                newListNode.prev = newPrev;
+                newListNode.prev = this.current;
                 this.tail = newListNode;
                 this.current = newListNode;
                 newListNode.next = null;
@@ -44,9 +42,8 @@ export class LinkedList {
             }
             else {
                 this.current.next = newListNode;
-                newListNode.prev = newPrev;
-                newListNode.next = newNext;
-                newNext.prev = newListNode;
+                newListNode.prev = this.current;
+                newListNode.next = this.current.next;
                 this.current = newListNode;
                 return newListNode;
             }
@@ -62,33 +59,31 @@ export class LinkedList {
             return null
         }
         else {
-            let newNext = node.next;
-            let newPrev = node.prev;
             if (node === this.head && node === this.tail) {
                 this.head = null;
                 this.tail = null;
                 this.current = null;
                 node = null;
-                return "";
+                return null;
             }
             if (node === this.head) {
-                this.head = newNext;
+                this.head = node.next;
                 this.head.prev = null;
                 this.current = this.head;
                 node = null;
                 return this.head;
             }
             if (node === this.tail) {
-                this.tail = newPrev;
+                this.tail = node.prev;
                 this.tail.next = null;
                 this.current = this.tail;
                 node = null;
                 return this.tail;
             }
             else {
-                let newCurrentNode = newPrev;
-                newCurrentNode.next = newNext;
-                newNext.prev = newCurrentNode;
+                let newCurrentNode = node.prev;
+                newCurrentNode.next = node.next;
+                node.next.prev = newCurrentNode;
                 this.current = newCurrentNode;
                 node = null;
                 return newCurrentNode;
