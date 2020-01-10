@@ -32,56 +32,52 @@ const FifoLifoListDisplay = () => {
         lifoStack.remove(nextLifoRemove);
         listGenerator.addMasterList(nextFifoRemove);
         listGenerator.addMasterList(nextLifoRemove);
-        context.handleStateFunctions([{ state: "lastFifoRemoved", func: nextFifoRemove }, { state: "lastLifoRemoved", func: nextLifoRemove }]);
+        context.handleStateChange([{ state: "lastFifoRemoved", newState: nextFifoRemove }, { state: "lastLifoRemoved", newState: nextLifoRemove }]);
         setNextFifoRemove(nextFifoRemove = fifoQueue.nextToRemove());
         setNextLifoRemove(nextLifoRemove = lifoStack.nextToRemove());
     }
 
     return (
-        <AppContext.Consumer>
-            {({ state, theme }) => (
-                <div className="fifolifo-wrapper" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color }}>
-                    <span className="fifolifo-main-header">I've Been Everywhere, Man, I've Been Everywhere. I've Been To...</span>
-                    <div className="fifolifo-next-item">
-                        Next Item To Put In Both Lists: <span className="fifolifo-important-text">{nextAdd}</span>
+        <div className="fifolifo-wrapper" style={{ backgroundColor: context.theme[context.state.themeValue].background, color: context.theme[context.state.themeValue].color }}>
+            <span className="fifolifo-main-header">I've Been Everywhere, Man, I've Been Everywhere. I've Been To...</span>
+            <div className="fifolifo-next-item">
+                Next Item To Put In Both Lists: <span className="fifolifo-important-text">{nextAdd}</span>
+            </div>
+            <div className="fifolifo-navbar">
+                <input
+                    type="submit"
+                    value="Put In"
+                    className="fifolifo-button"
+                    onClick={() => handlePutIn()}
+                />
+                <input
+                    type="submit"
+                    value="Take Out"
+                    className="fifolifo-button"
+                    onClick={() => handleTakeOut()}
+                />
+            </div>
+            <div className="fifolifo-display">
+                <div className="fifo-wrapper">
+                    <span className="fifolifo-header">FIFO Queue - First In First Out</span>
+                    <div className="fifo-deleted-item">
+                        Last Item Taken Out: <span className="fifolifo-removed-text">{context.state.lastFifoRemoved}</span>
                     </div>
-                    <div className="fifolifo-navbar">
-                        <input
-                            type="submit"
-                            value="Put In"
-                            className="fifolifo-button"
-                            onClick={() => handlePutIn()}
-                        />
-                        <input
-                            type="submit"
-                            value="Take Out"
-                            className="fifolifo-button"
-                            onClick={() => handleTakeOut()}
-                        />
-                    </div>
-                    <div className="fifolifo-display">
-                        <div className="fifo-wrapper">
-                            <span className="fifolifo-header">FIFO Queue - First In First Out</span>
-                            <div className="fifo-deleted-item">
-                                Last Item Taken Out: <span className="fifolifo-removed-text">{state.lastFifoRemoved}</span>
-                            </div>
-                            < FifoQueueDisplay
-                                fifoQueue={fifoQueue}
-                                nextFifoRemove={nextFifoRemove} />
-                        </div>
-                        <div className="lifo-wrapper">
-                            <span className="fifolifo-header">LIFO Stack - Last In First Out</span>
-                            <div className="lifo-deleted-item">
-                                Last Item Taken Out: <span className="fifolifo-removed-text">{state.lastLifoRemoved}</span>
-                            </div>
-                            < LifoStackDisplay
-                                lifoStack={lifoStack}
-                                nextLifoRemove={nextLifoRemove} />
-                        </div>
-                    </div>
+                    < FifoQueueDisplay
+                        fifoQueue={fifoQueue}
+                        nextFifoRemove={nextFifoRemove} />
                 </div>
-            )}
-        </AppContext.Consumer>
+                <div className="lifo-wrapper">
+                    <span className="fifolifo-header">LIFO Stack - Last In First Out</span>
+                    <div className="lifo-deleted-item">
+                        Last Item Taken Out: <span className="fifolifo-removed-text">{context.state.lastLifoRemoved}</span>
+                    </div>
+                    < LifoStackDisplay
+                        lifoStack={lifoStack}
+                        nextLifoRemove={nextLifoRemove} />
+                </div>
+            </div>
+        </div>
     )
 }
 

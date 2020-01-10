@@ -10,6 +10,15 @@ export class ContextProvider extends React.Component {
 
     state = {
         themeValue: "default",
+        history: [{
+            squares: Array(9).fill(null),
+        }],
+        ticTacPlayerValue: "human",
+        startGame: false,
+        humanPlayer: "X",
+        computerPlayer: "O",
+        stepNumber: 0,
+        xIsNext: true,
         acctName: "",
         acctBalance: "",
         highestName: "",
@@ -39,21 +48,13 @@ export class ContextProvider extends React.Component {
         })
     };
 
-    handleStateClear = (states) => {
+    handleStateChange = (states) => {
         for (let i = 0; i < states.length; i++) {
             this.setState({
-                [states[i]]: "",
+                [states[i].state]: states[i].newState,
             })
         }
-    };
-
-    handleStateFunctions = (statefuncs) => {
-        for (let i = 0; i < statefuncs.length; i++) {
-            this.setState({
-                [statefuncs[i].state]: [statefuncs[i].func],
-            })
-        }
-    };
+    }
 
     render() {
         return (
@@ -62,8 +63,7 @@ export class ContextProvider extends React.Component {
                     state: this.state,
                     theme: this.theme,
                     handleOnChange: this.handleOnChange,
-                    handleStateClear: this.handleStateClear,
-                    handleStateFunctions:  this.handleStateFunctions,
+                    handleStateChange: this.handleStateChange,
                 }}
             >
                 <App />

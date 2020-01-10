@@ -3,49 +3,38 @@ import Board from "./MyBoard.js";
 import { AppContext } from '../app-context.js';
 
 class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      history: [{
-        squares: Array(9).fill(null),
-      }],
-      startGame: false,
-      humanPlayer: "X",
-      computerPlayer: "O",
-      stepNumber: 0,
-      xIsNext: true,
-    }
-  }
+  static contextType = AppContext;
 
   firstPlayer = (event) => {
-    if (this.state.startGame === false && event.target.value === "human") {
-      this.setState({
-        humanPlayer: "X",
-        computerPlayer: "O",
-      });
+    if (this.context.state.startGame === false && event.target.value === "human") {
+      this.context.handleStateChange([
+        { state: "ticTacPlayerValue", newState: "human" },
+        { state: "humanPlayer", newState: "X" },
+        { state: "computerPlayer", newState: "O" },
+      ])
     }
-    else if (this.state.startGame === false && event.target.value === "computer") {
-      this.setState({
-        humanPlayer: "O",
-        computerPlayer: "X",
-      });
+    else if (this.context.state.startGame === false && event.target.value === "computer") {
+      this.context.handleStateChange([
+        { state: "ticTacPlayerValue", newState: "computer" },
+        { state: "humanPlayer", newState: "O" },
+        { state: "computerPlayer", newState: "X" },
+      ])
     }
     else return;
   }
 
-  async startGame(event) {
-    const booleanTrue = (event.target.value === "true");
-    await this.setState({
-      startGame: booleanTrue,
-    });
-    if (this.state.startGame === true && this.state.computerPlayer === "X" && this.state.xIsNext === true) {
-      return this.compDecision(this.state.history[0].squares);
+  async startGame() {
+    await this.context.handleStateChange([
+      { state: "startGame", newState: true },
+    ])
+    if (this.context.state.startGame === true && this.context.state.computerPlayer === "X" && this.context.state.xIsNext === true) {
+      return this.compDecision(this.context.state.history[0].squares);
     }
     else return;
   }
 
   humanDecision(i) {
-    if ((this.state.startGame === true && this.state.humanPlayer === "X" && this.state.xIsNext === true) || (this.state.startGame === true && this.state.humanPlayer === "O" && this.state.xIsNext === false)) {
+    if ((this.context.state.startGame === true && this.context.state.humanPlayer === "X" && this.context.state.xIsNext === true) || (this.context.state.startGame === true && this.context.state.humanPlayer === "O" && this.context.state.xIsNext === false)) {
       return this.handleClick(i)
     }
     else return;
@@ -54,7 +43,7 @@ class Game extends React.Component {
   compDecision(board) {
     setTimeout(() => {
       if (board.includes(null)) {
-        const pick = this.miniMax(board, this.state.computerPlayer);
+        const pick = this.miniMax(board, this.context.state.computerPlayer);
         this.handleClick(pick.index);
       }
     }, 500);
@@ -68,10 +57,10 @@ class Game extends React.Component {
     let open_spots = this.emptyIndexes(board);
     let board_copy = board.slice(0);
 
-    if (this.winningMoves(board_copy, this.state.humanPlayer)) {
+    if (this.winningMoves(board_copy, this.context.state.humanPlayer)) {
       return { score: -10 };
     }
-    else if (this.winningMoves(board_copy, this.state.computerPlayer)) {
+    else if (this.winningMoves(board_copy, this.context.state.computerPlayer)) {
       return { score: 10 };
     }
     else if (open_spots.length === 0) {
@@ -89,12 +78,12 @@ class Game extends React.Component {
 
       board_copy[open_spots[i]] = player;
 
-      if (player === this.state.computerPlayer) {
-        let result1 = this.miniMax(board_copy, this.state.humanPlayer);
+      if (player === this.context.state.computerPlayer) {
+        let result1 = this.miniMax(board_copy, this.context.state.humanPlayer);
         move.score = result1.score;
       }
       else {
-        let result2 = this.miniMax(board_copy, this.state.computerPlayer);
+        let result2 = this.miniMax(board_copy, this.context.state.computerPlayer);
         move.score = result2.score;
       }
 
@@ -103,7 +92,7 @@ class Game extends React.Component {
     }
 
     let best_pick;
-    if (player === this.state.computerPlayer) {
+    if (player === this.context.state.computerPlayer) {
       let best_score = -10000;
       for (let i = 0; i < moves.length; i++) {
         if (moves[i].score > best_score) {
@@ -164,7 +153,7 @@ class Game extends React.Component {
       [2, 3],
       [3, 3],
     ];
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const history = this.context.state.history.slice(0, this.context.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
 
@@ -172,54 +161,56 @@ class Game extends React.Component {
       return;
     }
 
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    await this.setState({
-      history: history.concat([{
-        squares: squares,
-        location: location[i],
-      }]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-    });
+    squares[i] = this.context.state.xIsNext ? 'X' : 'O';
+    await this.context.handleStateChange([
+      {
+        state: "history", newState:
+          this.context.state.history.concat([{
+            squares: squares,
+            location: location[i],
+          }])
+      },
+      { state: "stepNumber", newState: this.context.state.history.length },
+      { state: "xIsNext", newState: !this.context.state.xIsNext },
+    ])
 
-    if ((this.state.computerPlayer === "X" && this.state.xIsNext === true && this.state.startGame === true) ||
-      (this.state.computerPlayer === "O" && this.state.xIsNext === false && this.state.startGame === true)) {
+    if ((this.context.state.computerPlayer === "X" && this.context.state.xIsNext === true && this.context.state.startGame === true) ||
+      (this.context.state.computerPlayer === "O" && this.context.state.xIsNext === false && this.context.state.startGame === true)) {
       return this.compDecision(squares);
     }
     else return;
   }
 
   async jumpTo(step) {
-    await this.setState({
-      stepNumber: step,
-      xIsNext: (step % 2) === 0,
-    });
-    if (this.state.stepNumber === 0) {
-      await this.setState({
-        history: [{
-          squares: Array(9).fill(null),
-        }],
-        stepNumber: 0,
-        xIsNext: true,
-        startGame: false,
-        humanPlayer: "X",
-        computerPlayer: "O",
-      });
+    await this.context.handleStateChange([
+      { state: "stepNumber", newState: step },
+      { state: "xIsNext", newState: (step % 2) === 0 },
+    ])
+
+    if (this.context.state.stepNumber === 0) {
+      await this.context.handleStateChange([
+        { state: "history", newState: [{ squares: Array(9).fill(null) }] },
+        { state: "stepNumber", newState: 0 },
+        { state: "xIsNext", newState: true },
+        { state: "startGame", newState: false },
+        { state: "humanPlayer", newState: "X" },
+        { state: "computerPlayer", newState: "O" },
+      ])
     }
     if (
-      (this.state.xIsNext === true && this.state.computerPlayer === "X") || (this.state.xIsNext === false && this.state.computerPlayer === "O")) {
-      return this.compDecision(this.state.history[step].squares);
+      (this.context.state.xIsNext === true && this.context.state.computerPlayer === "X") || (this.context.state.xIsNext === false && this.context.state.computerPlayer === "O")) {
+      return this.compDecision(this.context.state.history[step].squares);
     }
     else if (
-      (this.state.xIsNext === true && this.state.humanPlayer === "X") || (this.state.xIsNext === false && this.state.humanPlayer === "O")) {
+      (this.context.state.xIsNext === true && this.context.state.humanPlayer === "X") || (this.context.state.xIsNext === false && this.context.state.humanPlayer === "O")) {
       return;
     }
     else return;
   }
 
   render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    const history = this.context.state.history;
+    const current = history[this.context.state.stepNumber];
     const winner = this.calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
@@ -228,7 +219,7 @@ class Game extends React.Component {
         'Reset Game';
       return (
         <li key={move}>
-          <button className="history-button" onClick={() => this.jumpTo(move)}>{move === this.state.stepNumber ? <b>{desc}</b> : desc}</button>
+          <button className="history-button" onClick={() => this.jumpTo(move)}>{move === this.context.state.stepNumber ? <b>{desc}</b> : desc}</button>
         </li>
       );
     });
@@ -241,45 +232,42 @@ class Game extends React.Component {
       status = 'Draw';
     }
     else {
-      status = 'Next Move: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next Move: ' + (this.context.state.xIsNext ? 'X' : 'O');
     }
 
     return (
-      <AppContext.Consumer>
-        {({ state, theme }) => (
-          <div className="game" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color }}>
-            <h1>Tic-Tac-Toe</h1>
-            <div>
-              <span>First Player (X):</span>
-              <select
-                className="first-player-dropdown"
-                onChange={(event) => this.firstPlayer(event)}
-              >
-                <option value="human">Human</option>
-                <option value="computer">Computer</option>
-              </select>
-            </div>
-            <div>
-              <button className="start-button" value="true" onClick={(event) => this.startGame(event)}>{this.state.startGame ? "Game On!" : "Start Game"}</button>
-            </div>
-            <div className="game board-info-wrapper" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color }}>
-              <div className="game-board">
-                <Board
-                  winningRow={winner ? winner.row : []}
-                  squares={current.squares}
-                  onClick={(i) => this.humanDecision(i)}
-                />
-              </div>
-              <div className="game-info">
-                <div>{status}</div>
-                <div className="game-info-display">
-                  <ol>{moves}</ol>
-                </div>
-              </div>
+      <div className="game" style={{ backgroundColor: this.context.theme[this.context.state.themeValue].background, color: this.context.theme[this.context.state.themeValue].color }}>
+        <h1>Tic-Tac-Toe</h1>
+        <div>
+          <span>First Player (X):</span>
+          <select
+            className="first-player-dropdown"
+            onChange={(event) => this.firstPlayer(event)}
+            name="ticTacPlayerValue"
+            value={this.context.state.ticTacPlayerValue}
+          >
+            <option value="human">Human</option>
+            <option value="computer">Computer</option>
+          </select>
+        </div>
+        <div>
+          <button className="start-button" name="startGame" onClick={(event) => this.startGame(event)}>{this.context.state.startGame ? "Game On!" : "Start Game"}</button>
+        </div>
+        <div className="game board-info-wrapper" style={{ backgroundColor: this.context.theme[this.context.state.themeValue].background, color: this.context.theme[this.context.state.themeValue].color }}>
+          <div className="game-board">
+            <Board
+              winningRow={winner ? winner.row : []}
+              onClick={(i) => this.humanDecision(i)}
+            />
+          </div>
+          <div className="game-info">
+            <div>{status}</div>
+            <div className="game-info-display">
+              <ol>{moves}</ol>
             </div>
           </div>
-        )}
-      </AppContext.Consumer>
+        </div>
+      </div>
     );
   }
 
