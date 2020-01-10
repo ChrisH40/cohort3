@@ -19,6 +19,7 @@ import fifoLifoIcon from './images/pancake-stack-icon.svg';
 import settingsIcon from './images/settings-icon.svg';
 
 class App extends React.Component {
+  static contextType = AppContext;
 
   constructor() {
     super();
@@ -82,20 +83,16 @@ class App extends React.Component {
     const image_headers = ['Home', "Tic-Tac-Toe", "Accounts", "Cities", "Linked List", "FIFO Queue/LIFO Stack", "Settings"];
 
     return (
-      <AppContext.Consumer>
-        {({ state, theme }) => (
-          <div className="App">
-            <header className="App-header" style={{ backgroundColor: theme[state.themeValue].background, color: theme[state.themeValue].color }}>
-              <div className="nav-bar">
-                {this.navIconMapper(images, image_headers)}
-              </div>
-            </header>
-            <div className="App-display">
-              {this.handleSelected(this.state.selected)}
-            </div>
+      <div className="App">
+        <header className="App-header" style={{ backgroundColor: this.context.theme[this.context.state.themeValue].background, color: this.context.theme[this.context.state.themeValue].color }}>
+          <div className="nav-bar">
+            {this.navIconMapper(images, image_headers)}
           </div>
-        )}
-      </AppContext.Consumer>
+        </header>
+        <div className="App-display">
+          {this.handleSelected(this.state.selected)}
+        </div>
+      </div>
     );
   }
 }

@@ -27,69 +27,73 @@
     flex-direction: column;
     padding: 10px;
     margin: 10px;
+    border: solid 1px #09d3ac;
 }
 
 .fifo-deleted-item,
 .lifo-deleted-item {
-    width: 25vw;
-    text-align: left;
+    align-self: center;
     border: solid 1px #09d3ac;
-    padding: 10px;
+    padding: 15px;
+    margin: 15px;
+    width: 10vw;
+    height: 5vh;
 }
 
 .fifo-display,
 .lifo-display {
-    margin: 10px;
-    padding: 10px;
-    height: 40vh;
+    margin: 5px;
+    padding: 5px;
+    height: 30vh;
     overflow-y: auto;
 }
 
 .fifolifo-header {
     font-weight: bold;
-    text-decoration: underline;
     font-size: 20px;
     margin: 10px;
 }
 
-.fifolifo-important-text {
+.fifolifo-next-text {
     font-weight: bold;
+    font-size: 20px;
+    color: #09d3ac;
 }
 
 .fifolifo-removed-text {
     font-weight: bold;
+    font-size: 20px;
     color: red;
 }
 
-
 .fifo-card,
 .lifo-card {
-    margin: 10px;
+    margin: 7px;
 }
 
 .next-fifo-card-remove,
 .next-lifo-card-remove {
-    color: red;
+    color:rgba(255, 255, 0, 0.781);
 }
 
 .fifolifo-next-item,
 .fifo-deleted-item,
 .lifo-deleted-item {
-    font-size: 17px;
+    font-size: 15px;
 }
 
 .fifolifo-next-item {
     align-self: center;
     border: solid 1px #09d3ac;
-    padding: 10px;
-    margin: 10px;
+    padding: 15px;
+    margin: 15px;
     width: 14vw;
 }
 
 .fifolifo-button {
     background-color: rgb(9, 211, 172);
     border: none;
-    color: white;
+    color: #282c34;
     padding: 8px 20px;
     margin: 5px;
     width: 10vw;
@@ -100,6 +104,12 @@
     font-weight: bold;
   }
 
-  .fifolifo-button:hover {
-      cursor: pointer;
-  }
+.fifolifo-button:hover {
+    background-color: rgb(9, 211, 172, 0.8);
+    cursor: pointer;
+}
+
+.fifolifo-button:active {
+  background-color: rgb(9, 211, 172, 0.8);
+  transform: translateY(4px);
+}

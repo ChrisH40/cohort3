@@ -1,7 +1,9 @@
 import React from 'react';
 import syncFunctions from './cities-api-functions.js';
+import { AppContext } from '../app-context.js';
 
 class CityCard extends React.Component {
+    static contextType = AppContext;
 
     constructor(props) {
         super(props);
@@ -46,7 +48,7 @@ class CityCard extends React.Component {
 
     render() {
         return (
-            <div className={`city-card ` + (this.props.selectedCity === this.props.cities[this.props.index] ? "active-city-card" : null)} onClick={(event) => this.props.cityInfoSelector(event, this.props.index)}>
+            <div className={`city-card ` + (this.context.state.selectedCity === this.props.cities[this.props.index] ? "active-city-card" : null)} onClick={(event) => this.props.cityInfoSelector(event, this.props.index)}>
                 <label className="city-name city-card-elements">{this.props.city.name}</label>
                 <label className="city-latitude city-card-elements">{(this.props.city.latitude).toFixed(2)}</label>
                 <label className="city-longitude city-card-elements">{(this.props.city.longitude).toFixed(2)}</label>

@@ -10,11 +10,19 @@
     color: white;
 }
 
+.settings-dropdown-wrapper {
+  margin-top: 50px;
+}
+
 .settings-background-text {
     margin: 15px;
 }
 
 .settings-background-dropdown {
-  margin: 15px;
-  width: 10vw;
+  margin-top: 15px;
+  width: 5vw;
+}
+
+.settings-background-dropdown:hover {
+  cursor: pointer;
 }

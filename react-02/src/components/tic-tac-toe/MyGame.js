@@ -237,7 +237,7 @@ class Game extends React.Component {
 
     return (
       <div className="game" style={{ backgroundColor: this.context.theme[this.context.state.themeValue].background, color: this.context.theme[this.context.state.themeValue].color }}>
-        <h1>Tic-Tac-Toe</h1>
+        <h1>(unbeatable...) Tic-Tac-Toe</h1>
         <div>
           <span>First Player (X):</span>
           <select

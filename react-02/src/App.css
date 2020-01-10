@@ -175,14 +175,12 @@ ol, ul {
 }
 
 .start-button:hover,
-.first-player-dropdown:hover,
-.history-button:hover,
-.square:hover  {
+.first-player-dropdown:hover {
   cursor: pointer;
 }
 
 .history-button{
-  background-color: rgb(9, 211, 172, 0.4);
+    background-color: rgb(9, 211, 172, 0.4);
     border: none;
     color: white;
     padding: 5px 10px;
@@ -192,10 +190,20 @@ ol, ul {
     font-size: 13px;
 }
 
+.history-button:hover {
+  background-color: rgb(9, 211, 172, 0.3);
+  cursor: pointer;
+}
+
+.history-button:active {
+  background-color: rgb(9, 211, 172, 0.3);
+  transform: translateY(4px);
+}
+
 .start-button {
   background-color: rgb(9, 211, 172);
   border: none;
-  color: white;
+  color: #282c34;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -204,9 +212,25 @@ ol, ul {
   font-weight: bold;
 }
 
-.square:hover {
-  border: 2px #09d3ac solid;
+.start-button:hover {
+  background-color: rgb(9, 211, 172, 0.8);
+  cursor: pointer;
 }
+
+.start-button:active {
+background-color: rgb(9, 211, 172, 0.8);
+transform: translateY(4px);
+}
+
+.square:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+.square:active {
+  background-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(4px);
+  }
 
 .game-info {
   background-color:  rgba(0, 217, 255, 0.25);

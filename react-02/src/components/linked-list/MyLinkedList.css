@@ -60,18 +60,21 @@
 .list-display {
     display: flex;
     justify-self: baseline;
+    align-self: center;
     flex-direction: column;
     align-items: center;
     padding: 10px;
     margin: 10px;
     height: 45vh;
     overflow-y: auto;
+    border: solid 1px #09d3ac;
+    width: 54vw;
 }
 
 .list-card {
     margin: 10px;
     padding: 5px; 
-    width: 30vw;  
+    width: 54vw;  
 }
 
 .list-card-text {
@@ -104,24 +107,41 @@
 }
 
 .list-button {
-    background-color:rgb(9, 211, 172, 0.4);
-    color: white;
+    background-color: rgb(9, 211, 172);
     border: none;
-    padding: 5px 10px;
+    color: #282c34;
+    padding: 8px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: bold;
   }
 
-  .list-button:hover {
-      cursor: pointer;
-  }
+.list-button:hover {
+    background-color:rgb(9, 211, 172, 0.8);
+    cursor: pointer;
+}
 
-  .delete-button {
+.list-button:active {
+    background-color:rgb(9, 211, 172, 0.8);
+    transform: translateY(4px);
+}
+
+.delete-button {
     background-color:  rgba(0, 217, 255, 0.25);
     color: #09d3ac;
-    border: solid 1px #09d3ac; 
+    border: none; 
     font-weight: bold;
     font-size: 15px;
+}
+
+.delete-button:hover {
+    background-color:  rgba(0, 217, 255, 0.20);
+    cursor: pointer;
+}
+
+.delete-button:active {
+    background-color:  rgba(0, 217, 255, 0.20);
+    transform: translateY(4px);
 }

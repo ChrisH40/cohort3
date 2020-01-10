@@ -58,10 +58,6 @@
     margin: 10px 5px 5px 5px;
 }
 
-.create-city-button:hover {
-    cursor: pointer;
-}
-
 .city-cards-display-headers {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
@@ -166,4 +162,32 @@
     text-decoration: none;
     display: inline-block;
     font-size: 13px;
+  }
+
+.city-button:hover {
+    background-color: rgb(9, 211, 172, 0.3);
+    cursor: pointer;
+  }
+  
+.city-button:active {
+    background-color: rgb(9, 211, 172, 0.3);
+    transform: translateY(4px);
+  }
+
+  .create-city-button {
+    background-color: rgb(9, 211, 172);
+    border: none;
+    color: #282c34;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .create-city-button:hover {
+    background-color: rgb(9, 211, 172, 0.8);
+    cursor: pointer;
+  }
+  
+  .create-city-button:active {
+    background-color:rgb(9, 211, 172, 0.8);
+    transform: translateY(4px);
   }

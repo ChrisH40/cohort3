@@ -1,24 +1,29 @@
 import React from 'react';
 import App from '../App.js';
 import { AccountController } from '../components/accounts/account.js';
+import { Community } from '../components/cities/cities.js';
 
-export const AppContext = React.createContext({});
+export const AppContext = React.createContext();
 
 export const accounts = new AccountController("My Accounts");
+export const cities = new Community('Cities Controller');
 
 export class ContextProvider extends React.Component {
 
     state = {
+    // Settings
         themeValue: "default",
+    // Tic Tac Toe
         history: [{
             squares: Array(9).fill(null),
         }],
         ticTacPlayerValue: "human",
         startGame: false,
+        xIsNext: true,
         humanPlayer: "X",
         computerPlayer: "O",
         stepNumber: 0,
-        xIsNext: true,
+    // Accounts
         acctName: "",
         acctBalance: "",
         highestName: "",
@@ -26,7 +31,23 @@ export class ContextProvider extends React.Component {
         lowestName: "",
         lowestBalance: "",
         totalBalance: "",
+    // Cities
+        dataLoad: false,
+        apiAlert: false,
+        cityName: "",
+        latitude: "",
+        longitude: "",
+        population: "",
+        mostNorthern: "",
+        mostSouthern: "",
+        totalPopulation: "",
+        showCity: "",
+        howBigCity: "",
+        whichSphereCity: "",
+        selectedCity: "",
+    // Linked-List
         current: "",
+    // Fifo-Lifo List
         lastFifoRemoved: "",
         lastLifoRemoved: "",
     };

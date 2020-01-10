@@ -10,7 +10,7 @@ const ChangeSettingsDisplay = () => {
             <div className="settings-dropdown-wrapper">
                 <label className="settings-background-text">Change Theme:</label>
                 <select
-                    className="settings-backround-dropdown"
+                    className="settings-background-dropdown"
                     onChange={(event) => context.handleOnChange(event)}
                     name="themeValue"
                     value={context.state.themeValue}
@@ -20,7 +20,6 @@ const ChangeSettingsDisplay = () => {
                 </select>
             </div>
         </div>
-
     )
 }
 

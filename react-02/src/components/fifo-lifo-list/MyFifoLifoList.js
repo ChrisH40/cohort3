@@ -41,7 +41,7 @@ const FifoLifoListDisplay = () => {
         <div className="fifolifo-wrapper" style={{ backgroundColor: context.theme[context.state.themeValue].background, color: context.theme[context.state.themeValue].color }}>
             <span className="fifolifo-main-header">I've Been Everywhere, Man, I've Been Everywhere. I've Been To...</span>
             <div className="fifolifo-next-item">
-                Next Item To Put In Both Lists: <span className="fifolifo-important-text">{nextAdd}</span>
+                Next Item To Put In Both Lists:   <span className="fifolifo-next-text">{nextAdd}</span>
             </div>
             <div className="fifolifo-navbar">
                 <input
@@ -59,7 +59,7 @@ const FifoLifoListDisplay = () => {
             </div>
             <div className="fifolifo-display">
                 <div className="fifo-wrapper">
-                    <span className="fifolifo-header">FIFO Queue - First In First Out</span>
+                    <span className="fifolifo-header">First In First Out (FIFO) Queue </span>
                     <div className="fifo-deleted-item">
                         Last Item Taken Out: <span className="fifolifo-removed-text">{context.state.lastFifoRemoved}</span>
                     </div>
@@ -68,9 +68,9 @@ const FifoLifoListDisplay = () => {
                         nextFifoRemove={nextFifoRemove} />
                 </div>
                 <div className="lifo-wrapper">
-                    <span className="fifolifo-header">LIFO Stack - Last In First Out</span>
+                    <span className="fifolifo-header">Last In First Out (LIFO) Stack </span>
                     <div className="lifo-deleted-item">
-                        Last Item Taken Out: <span className="fifolifo-removed-text">{context.state.lastLifoRemoved}</span>
+                        Last Item Taken Out:   <span className="fifolifo-removed-text">{context.state.lastLifoRemoved}</span>
                     </div>
                     < LifoStackDisplay
                         lifoStack={lifoStack}
