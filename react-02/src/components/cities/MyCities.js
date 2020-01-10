@@ -34,7 +34,7 @@ class Cities extends React.Component {
             }
             else return;
         }
-    }
+    };
 
     counterSync = (controller) => {
         let arrayKeys = controller.cities.map(city => city.key);
@@ -46,16 +46,16 @@ class Cities extends React.Component {
     }
 
     handleSubmit = (event) => {
-        if (this.state.cityName === "") {
+        if (this.context.state.cityName === "") {
             alert("Name required. Please re-enter.");
         }
-        else if (this.state.latitude < -90 || this.state.latitude > 90) {
+        else if (this.context.state.latitude < -90 || this.context.state.latitude > 90) {
             alert("Latitude must be between -90 and 90 degrees. Please re-enter.");
         }
-        else if (this.state.longitude < -180 || this.state.longitude > 180) {
+        else if (this.context.state.longitude < -180 || this.context.state.longitude > 180) {
             alert("Longitude must be between -180 and 180 degrees. Please re-enter.");
         }
-        else if (this.state.population < 0) {
+        else if (this.context.state.population < 0) {
             alert("Population must be greater than or equal to 0. Please re-enter.");
         }
         else {
@@ -141,7 +141,7 @@ class Cities extends React.Component {
                     </div>
                 </div>
                 <div className="city-container-middle-bottom">
-                    <CityFactsDisplay/>
+                    <CityFactsDisplay />
                 </div>
                 <div className="city-container-right">
                     <CityInfoDisplay />
