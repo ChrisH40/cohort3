@@ -23,13 +23,13 @@ class CityCard extends React.Component {
             alert("Please enter a number greater than zero.");
         }
         else {
-            this.props.cities[i].movedIn(Number(this.state.changePopulation));
-            syncFunctions.populationSync(this.props.cities[i]);
+            this.context.cities.cities[i].movedIn(Number(this.state.changePopulation));
+            syncFunctions.populationSync(this.context.cities.cities[i]);
         }
         this.setState({
             changePopulation: "",
         })
-        this.props.cityChecker(this.props.cities);
+        this.props.cityChecker(this.context.cities.cities);
     }
 
     handleMovedOut(i) {
@@ -37,18 +37,18 @@ class CityCard extends React.Component {
             alert("Please enter a number greater than zero or less than/equal to current population.");
         }
         else {
-            this.props.cities[i].movedOut(Number(this.state.changePopulation));
-            syncFunctions.populationSync(this.props.cities[i]);
+            this.context.cities.cities[i].movedOut(Number(this.state.changePopulation));
+            syncFunctions.populationSync(this.context.cities.cities[i]);
         }
         this.setState({
             changePopulation: "",
         })
-        this.props.cityChecker(this.props.cities);
+        this.props.cityChecker(this.context.cities.cities);
     }
 
     render() {
         return (
-            <div className={`city-card ` + (this.context.state.selectedCity === this.props.cities[this.props.index] ? "active-city-card" : null)} onClick={(event) => this.props.cityInfoSelector(event, this.props.index)}>
+            <div className={`city-card ` + (this.context.state.selectedCity === this.context.cities.cities[this.props.index] ? "active-city-card" : null)} onClick={(event) => this.props.cityInfoSelector(event, this.props.index)}>
                 <label className="city-name city-card-elements">{this.props.city.name}</label>
                 <label className="city-latitude city-card-elements">{(this.props.city.latitude).toFixed(2)}</label>
                 <label className="city-longitude city-card-elements">{(this.props.city.longitude).toFixed(2)}</label>

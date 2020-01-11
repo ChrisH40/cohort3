@@ -1,13 +1,14 @@
 import React from 'react';
 import CityCard from "./MyCitiesCard.js";
+import { AppContext } from '../app-context.js';
 
 class CityCardsList extends React.Component {
+    static contextType = AppContext;
 
     render() {
-        const cityList = this.props.cities.map((city, i) => {
+        const cityList = this.context.cities.cities.map((city, i) => {
             return <CityCard
                 key={i}
-                cities={this.props.cities}
                 city={city}
                 index={i}
                 handleDelete={this.props.handleDelete}

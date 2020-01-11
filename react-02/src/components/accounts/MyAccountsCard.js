@@ -22,12 +22,12 @@ class AccountCard extends React.Component {
             alert("Please enter a number greater than zero!");
         }
         else {
-            this.props.listArray[i].accountDeposit(Number(this.state.changeBalance));
+            this.context.accounts.listArray[i].accountDeposit(Number(this.state.changeBalance));
         }
         this.setState({
             changeBalance: "",
         })
-        this.props.balanceChecker(this.props.listArray);
+        this.props.balanceChecker(this.context.accounts.listArray);
     };
 
     handleWithdraw(i) {
@@ -35,12 +35,12 @@ class AccountCard extends React.Component {
             alert("Please enter a number greater than zero!");
         }
         else {
-            this.props.listArray[i].accountWithdraw(Number(this.state.changeBalance));
+            this.context.accounts.listArray[i].accountWithdraw(Number(this.state.changeBalance));
         }
         this.setState({
             changeBalance: "",
         })
-        this.props.balanceChecker(this.props.listArray);
+        this.props.balanceChecker(this.context.accounts.listArray);
     };
 
     render() {

@@ -5,10 +5,10 @@ import { Community } from '../components/cities/cities.js';
 
 export const AppContext = React.createContext();
 
-export const accounts = new AccountController("My Accounts");
-export const cities = new Community('Cities Controller');
-
 export class ContextProvider extends React.Component {
+
+    accounts = new AccountController("My Accounts");
+    cities = new Community('Cities Controller');
 
     state = {
     // Settings
@@ -81,6 +81,8 @@ export class ContextProvider extends React.Component {
         return (
             <AppContext.Provider
                 value={{
+                    accounts: this.accounts,
+                    cities: this.cities,
                     state: this.state,
                     theme: this.theme,
                     handleOnChange: this.handleOnChange,

@@ -1,14 +1,15 @@
 import React from 'react';
 import AccountCard from './MyAccountsCard.js';
+import { AppContext } from '../app-context.js';
 
 class AccountCardsList extends React.Component {
+    static contextType = AppContext;
 
     render() {
-        const cardList = this.props.listArray.map((account, i) => {
+        const cardList = this.context.accounts.listArray.map((account, i) => {
             return (
                 <AccountCard
                     key={i}
-                    listArray={this.props.listArray}
                     handleDelete={this.props.handleDelete}
                     balanceChecker={this.props.balanceChecker}
                     index={i}

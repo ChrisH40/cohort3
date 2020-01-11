@@ -4,7 +4,6 @@ import CityCreateDisplay from './MyCitiesCreateDisplay.js';
 import CityCardsList from './MyCitiesCardsList.js';
 import CityFactsDisplay from './MyCitiesFactsDisplay.js';
 import CityInfoDisplay from './MyCitiesInfoDisplay.js';
-import { cities } from '../app-context.js';
 import syncFunctions from './cities-api-functions.js';
 import './cities-index.css';
 
@@ -13,29 +12,27 @@ class Cities extends React.Component {
 
     constructor(props) {
         super(props);
-        this.citiesList = cities;
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount = async () => {
         try {
             if (this.context.state.dataLoad === false) {
-                await syncFunctions.dataSync(this.citiesList.cities);
+                await syncFunctions.dataSync(this.context.cities.cities);
                 this.context.handleStateChange([{ state: "dataLoad", newState: true }]);
-                this.counterSync(this.citiesList);
-                this.cityChecker(this.citiesList.cities);
+                this.counterSync(this.context.cities);
+                this.cityChecker(this.context.cities.cities);
             }
             else return;
         }
         catch (error) {
             if (this.context.state.apiAlert === false) {
-                alert("ALERT: API server not detected!\n \nAPI server not required but recommended for maximum functionality of Cities component.");
+                alert("ALERT: API server not detected! Cities data will not be synced with server.\n \nAPI server not required but recommended for proper functionality of Cities component.");
                 this.context.handleStateChange([{ state: "apiAlert", newState: true }]);
             }
             else return;
         }
-    };
-
+    }
     counterSync = (controller) => {
         let arrayKeys = controller.cities.map(city => city.key);
         if (arrayKeys.length > 0) {
@@ -43,7 +40,7 @@ class Cities extends React.Component {
             controller.counter = highestKey;
         }
         else controller.counter = 0;
-    }
+    };
 
     handleSubmit = (event) => {
         if (this.context.state.cityName === "") {
@@ -59,7 +56,7 @@ class Cities extends React.Component {
             alert("Population must be greater than or equal to 0. Please re-enter.");
         }
         else {
-            const newCity = this.citiesList.createCity(this.context.state.cityName, this.context.state.latitude, this.context.state.longitude, this.context.state.population);
+            const newCity = this.context.cities.createCity(this.context.state.cityName, this.context.state.latitude, this.context.state.longitude, this.context.state.population);
             syncFunctions.createCitySync(newCity);
         }
         this.context.handleStateChange([
@@ -69,29 +66,28 @@ class Cities extends React.Component {
             { state: "population", newState: "" },
 
         ]);
-        this.cityChecker(this.citiesList.cities);
+        this.cityChecker(this.context.cities.cities);
         event.preventDefault();
-    }
+    };
 
     handleDelete = (i) => {
-        syncFunctions.deleteCitySync(this.citiesList.cities[i]);
-        this.citiesList.deleteCity(this.citiesList.cities, i);
-        this.cityChecker(this.citiesList.cities);
+        syncFunctions.deleteCitySync(this.context.cities.cities[i]);
+        this.citiesList.deleteCity(this.context.cities.cities, i);
+        this.cityChecker(this.context.cities.cities);
         this.context.handleStateChange([
             { state: "selectedCity", newState: "" },
             { state: "showCity", newState: "" },
             { state: "howBigCity", newState: "" },
             { state: "whichSphereCity", newState: "" },
-
         ]);
-    }
+    };
 
     cityChecker = (array) => {
         if (array.length > 0) {
             this.context.handleStateChange([
-                { state: "mostNorthern", newState: this.citiesList.getMostNorthern(array) },
-                { state: "mostSouthern", newState: this.citiesList.getMostSouthern(array) },
-                { state: "totalPopulation", newState: this.citiesList.getPopulation(array) },
+                { state: "mostNorthern", newState: this.context.cities.getMostNorthern(array) },
+                { state: "mostSouthern", newState: this.context.cities.getMostSouthern(array) },
+                { state: "totalPopulation", newState: this.context.cities.getPopulation(array) },
             ]);
         }
         else {
@@ -101,19 +97,19 @@ class Cities extends React.Component {
                 { state: "totalPopulation", newState: "" },
             ]);
         }
-    }
+    };
 
     cityInfoSelector = (event, i) => {
         if (event.target.value !== "Delete City") {
             this.context.handleStateChange([
-                { state: "selectedCity", newState: this.citiesList.cities[i] },
-                { state: "showCity", newState: this.citiesList.cities[i].show() },
-                { state: "howBigCity", newState: this.citiesList.cities[i].howBig() },
-                { state: "whichSphereCity", newState: this.citiesList.whichSphere(this.citiesList.cities[i]) },
+                { state: "selectedCity", newState: this.context.cities.cities[i] },
+                { state: "showCity", newState: this.context.cities.cities[i].show() },
+                { state: "howBigCity", newState: this.context.cities.cities[i].howBig() },
+                { state: "whichSphereCity", newState: this.context.cities.whichSphere(this.context.cities.cities[i]) },
             ]);
         }
         else return;
-    }
+    };
 
     render() {
         return (
@@ -133,7 +129,6 @@ class Cities extends React.Component {
                     </div>
                     <div>
                         <CityCardsList
-                            cities={this.citiesList.cities}
                             handleDelete={this.handleDelete}
                             cityChecker={this.cityChecker}
                             cityInfoSelector={this.cityInfoSelector}
