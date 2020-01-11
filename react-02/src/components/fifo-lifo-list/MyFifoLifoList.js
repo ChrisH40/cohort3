@@ -2,39 +2,32 @@ import React, { useState } from 'react';
 import { AppContext } from '../app-context.js';
 import LifoStackDisplay from './MyLifoStack.js';
 import FifoQueueDisplay from './MyFifoQueue.js';
-import { ListGenerator } from './fifo-lifo.js';
-import { FifoQueue } from './fifo-queue.js';
-import { LifoStack } from './lifo-stack.js';
 import "./MyFifoLifoList.css";
-
-const listGenerator = new ListGenerator();
-const fifoQueue = new FifoQueue();
-const lifoStack = new LifoStack();
 
 const FifoLifoListDisplay = () => {
     const context = React.useContext(AppContext);
 
-    let [nextAdd, setNextAdd] = useState(listGenerator.nextToAdd());
-    let [nextFifoRemove, setNextFifoRemove] = useState(fifoQueue.nextToRemove());
-    let [nextLifoRemove, setNextLifoRemove] = useState(lifoStack.nextToRemove());
+    let [nextAdd, setNextAdd] = useState(context.listGenerator.nextToAdd());
+    let [nextFifoRemove, setNextFifoRemove] = useState(context.fifoQueue.nextToRemove());
+    let [nextLifoRemove, setNextLifoRemove] = useState(context.lifoStack.nextToRemove());
 
     const handlePutIn = () => {
-        fifoQueue.add(nextAdd);
-        lifoStack.add(nextAdd);
-        listGenerator.removeMasterList(nextAdd);
-        setNextAdd(nextAdd = listGenerator.nextToAdd());
-        setNextFifoRemove(nextFifoRemove = fifoQueue.nextToRemove());
-        setNextLifoRemove(nextLifoRemove = lifoStack.nextToRemove());
+        context.fifoQueue.add(nextAdd);
+        context.lifoStack.add(nextAdd);
+        context.listGenerator.removeMasterList(nextAdd);
+        setNextAdd(nextAdd = context.listGenerator.nextToAdd());
+        setNextFifoRemove(nextFifoRemove = context.fifoQueue.nextToRemove());
+        setNextLifoRemove(nextLifoRemove = context.lifoStack.nextToRemove());
     }
 
     const handleTakeOut = () => {
-        fifoQueue.remove(nextFifoRemove);
-        lifoStack.remove(nextLifoRemove);
-        listGenerator.addMasterList(nextFifoRemove);
-        listGenerator.addMasterList(nextLifoRemove);
+        context.fifoQueue.remove(nextFifoRemove);
+        context.lifoStack.remove(nextLifoRemove);
+        context.listGenerator.addMasterList(nextFifoRemove);
+        context.listGenerator.addMasterList(nextLifoRemove);
         context.handleStateChange([{ state: "lastFifoRemoved", newState: nextFifoRemove }, { state: "lastLifoRemoved", newState: nextLifoRemove }]);
-        setNextFifoRemove(nextFifoRemove = fifoQueue.nextToRemove());
-        setNextLifoRemove(nextLifoRemove = lifoStack.nextToRemove());
+        setNextFifoRemove(nextFifoRemove = context.fifoQueue.nextToRemove());
+        setNextLifoRemove(nextLifoRemove = context.lifoStack.nextToRemove());
     }
 
     return (
@@ -64,7 +57,6 @@ const FifoLifoListDisplay = () => {
                         Last Item Taken Out: <span className="fifolifo-removed-text">{context.state.lastFifoRemoved}</span>
                     </div>
                     < FifoQueueDisplay
-                        fifoQueue={fifoQueue}
                         nextFifoRemove={nextFifoRemove} />
                 </div>
                 <div className="lifo-wrapper">
@@ -73,7 +65,6 @@ const FifoLifoListDisplay = () => {
                         Last Item Taken Out:   <span className="fifolifo-removed-text">{context.state.lastLifoRemoved}</span>
                     </div>
                     < LifoStackDisplay
-                        lifoStack={lifoStack}
                         nextLifoRemove={nextLifoRemove} />
                 </div>
             </div>

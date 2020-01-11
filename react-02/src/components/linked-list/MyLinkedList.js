@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { AppContext } from '../app-context.js';
-import { LinkedList } from './linked-list.js';
 import './MyLinkedList.css';
-
-const linkedList = new LinkedList();
 
 const LinkedListDisplay = () => {
     const context = React.useContext(AppContext);
@@ -17,7 +14,7 @@ const LinkedListDisplay = () => {
             event.preventDefault();
         }
         else {
-            context.handleStateChange([{ state: "current", newState: linkedList.insertListNode(subject, amount) }])
+            context.handleStateChange([{ state: "current", newState: context.linkedList.insertListNode(subject, amount) }])
             setSubject("");
             setAmount("");
             event.preventDefault();
@@ -47,7 +44,7 @@ const LinkedListDisplay = () => {
     }
 
     const ListCard = (props) => (
-        <div className={`list-card ` + ((props.node === linkedList.current) ? "active-list-card" : null)}>
+        <div className={`list-card ` + ((props.node === context.linkedList.current) ? "active-list-card" : null)}>
             <span className="list-card-text">Subject: {props.node.subject}</span>
             <span className="list-card-text">Amount: {props.node.amount}</span>
         </div>
@@ -84,10 +81,10 @@ const LinkedListDisplay = () => {
             </div>
             <div className="list-info">
                 <div className="list-current-show">
-                    Current Item: {(linkedList.current) ? linkedList.current.show() : null}
+                    Current Item: {context.linkedList.current ? context.linkedList.current.show() : null}
                 </div>
                 <div className="list-total-amounts">
-                    Total Item Amounts: {linkedList.totalAmounts()}
+                    Total Item Amounts: {context.linkedList.totalAmounts()}
                 </div>
             </div>
             <div className="list-navbar">
@@ -95,35 +92,35 @@ const LinkedListDisplay = () => {
                     type="submit"
                     value="First Item"
                     className="list-button"
-                    onClick={() => context.handleStateChange([{ state: "current", newState: linkedList.firstNode() }])}
+                    onClick={() => context.handleStateChange([{ state: "current", newState: context.linkedList.firstNode() }])}
                 />
                 <input
                     type="submit"
                     value="Previous Item"
                     className="list-button"
-                    onClick={() => context.handleStateChange([{ state: "current", newState: linkedList.prevNode(linkedList.current) }])}
+                    onClick={() => context.handleStateChange([{ state: "current", newState: context.linkedList.prevNode(context.linkedList.current) }])}
                 />
                 <input
                     type="submit"
                     value="Delete Current Item"
                     className="list-button delete-button"
-                    onClick={() => context.handleStateChange([{ state: "current", newState: linkedList.deleteListNode(linkedList.current) }])}
+                    onClick={() => context.handleStateChange([{ state: "current", newState: context.linkedList.deleteListNode(context.linkedList.current) }])}
                 />
                 <input
                     type="submit"
                     value="Next Item"
                     className="list-button"
-                    onClick={() => context.handleStateChange([{ state: "current", newState: linkedList.nextNode(linkedList.current) }])}
+                    onClick={() => context.handleStateChange([{ state: "current", newState: context.linkedList.nextNode(context.linkedList.current) }])}
                 />
                 <input
                     type="submit"
                     value="Last Item"
                     className="list-button"
-                    onClick={() => context.handleStateChange([{ state: "current", newState: linkedList.lastNode() }])}
+                    onClick={() => context.handleStateChange([{ state: "current", newState: context.linkedList.lastNode() }])}
                 />
             </div>
             <div className="list-display">
-                {displayNodes(linkedList)}
+                {displayNodes(context.linkedList)}
             </div>
         </div>
     )

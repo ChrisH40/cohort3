@@ -2,6 +2,10 @@ import React from 'react';
 import App from '../App.js';
 import { AccountController } from '../components/accounts/account.js';
 import { Community } from '../components/cities/cities.js';
+import { LinkedList } from '../components/linked-list/linked-list.js';
+import { ListGenerator } from '../components/fifo-lifo-list/fifo-lifo.js';
+import { FifoQueue } from '../components/fifo-lifo-list/fifo-queue.js';
+import { LifoStack } from '../components/fifo-lifo-list/lifo-stack.js';
 
 export const AppContext = React.createContext();
 
@@ -9,6 +13,10 @@ export class ContextProvider extends React.Component {
 
     accounts = new AccountController("My Accounts");
     cities = new Community('Cities Controller');
+    linkedList = new LinkedList();
+    listGenerator = new ListGenerator();
+    fifoQueue = new FifoQueue();
+    lifoStack = new LifoStack();
 
     state = {
     // Settings
@@ -47,6 +55,7 @@ export class ContextProvider extends React.Component {
         selectedCity: "",
     // Linked-List
         current: "",
+        total: "",
     // Fifo-Lifo List
         lastFifoRemoved: "",
         lastLifoRemoved: "",
@@ -83,8 +92,12 @@ export class ContextProvider extends React.Component {
                 value={{
                     accounts: this.accounts,
                     cities: this.cities,
+                    linkedList: this.linkedList,
                     state: this.state,
                     theme: this.theme,
+                    listGenerator: this.listGenerator,
+                    fifoQueue: this.fifoQueue,
+                    lifoStack: this.lifoStack,
                     handleOnChange: this.handleOnChange,
                     handleStateChange: this.handleStateChange,
                 }}
