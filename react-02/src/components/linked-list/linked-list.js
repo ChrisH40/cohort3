@@ -133,7 +133,7 @@ export class LinkedList {
         else {
             let prevNode = node.prev;
             this.current = prevNode;
-            return prevNode;
+            return this.current;
         }
     }
 

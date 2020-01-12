@@ -19,9 +19,9 @@ export class ContextProvider extends React.Component {
     lifoStack = new LifoStack();
 
     state = {
-    // Settings
+        // Settings
         themeValue: "default",
-    // Tic Tac Toe
+        // Tic Tac Toe
         history: [{
             squares: Array(9).fill(null),
         }],
@@ -31,7 +31,7 @@ export class ContextProvider extends React.Component {
         humanPlayer: "X",
         computerPlayer: "O",
         stepNumber: 0,
-    // Accounts
+        // Accounts
         acctName: "",
         acctBalance: "",
         highestName: "",
@@ -39,7 +39,7 @@ export class ContextProvider extends React.Component {
         lowestName: "",
         lowestBalance: "",
         totalBalance: "",
-    // Cities
+        // Cities
         dataLoad: false,
         apiAlert: false,
         cityName: "",
@@ -53,10 +53,9 @@ export class ContextProvider extends React.Component {
         howBigCity: "",
         whichSphereCity: "",
         selectedCity: "",
-    // Linked-List
+        // Linked-List
         current: "",
-        total: "",
-    // Fifo-Lifo List
+        // Fifo-Lifo List
         lastFifoRemoved: "",
         lastLifoRemoved: "",
     };
