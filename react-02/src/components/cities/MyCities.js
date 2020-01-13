@@ -50,7 +50,6 @@ class Cities extends React.Component {
         else {
             const newCity = this.context.cities.createCity(this.context.state.cityName, this.context.state.latitude, this.context.state.longitude, this.context.state.population);
             syncFunctions.createCitySync(newCity);
-            console.log(this.context.cities.cities)
         }
         this.context.handleStateChange([
             { state: "cityName", newState: "" },
