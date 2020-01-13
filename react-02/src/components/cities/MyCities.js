@@ -16,23 +16,15 @@ class Cities extends React.Component {
     }
 
     componentDidMount = async () => {
-        try {
-            if (this.context.state.dataLoad === false) {
-                await syncFunctions.dataSync(this.context.cities.cities);
-                this.context.handleStateChange([{ state: "dataLoad", newState: true }]);
-                this.counterSync(this.context.cities);
-                this.cityChecker(this.context.cities.cities);
-            }
-            else return;
+        if (this.context.state.dataLoad === false) {
+            await syncFunctions.dataSync(this.context.cities.cities);
+            this.context.handleStateChange([{ state: "dataLoad", newState: true }]);
+            this.counterSync(this.context.cities);
+            this.cityChecker(this.context.cities.cities);
         }
-        catch (error) {
-            if (this.context.state.apiAlert === false) {
-                alert("ALERT: API server not detected! Cities data will not be synced with server.\n \nAPI server not required but recommended for proper functionality of Cities component.");
-                this.context.handleStateChange([{ state: "apiAlert", newState: true }]);
-            }
-            else return;
-        }
-    }
+        else return;
+    };
+
     counterSync = (controller) => {
         let arrayKeys = controller.cities.map(city => city.key);
         if (arrayKeys.length > 0) {
@@ -58,6 +50,7 @@ class Cities extends React.Component {
         else {
             const newCity = this.context.cities.createCity(this.context.state.cityName, this.context.state.latitude, this.context.state.longitude, this.context.state.population);
             syncFunctions.createCitySync(newCity);
+            console.log(this.context.cities.cities)
         }
         this.context.handleStateChange([
             { state: "cityName", newState: "" },
@@ -72,7 +65,7 @@ class Cities extends React.Component {
 
     handleDelete = (i) => {
         syncFunctions.deleteCitySync(this.context.cities.cities[i]);
-        this.citiesList.deleteCity(this.context.cities.cities, i);
+        this.context.cities.deleteCity(this.context.cities.cities, i);
         this.cityChecker(this.context.cities.cities);
         this.context.handleStateChange([
             { state: "selectedCity", newState: "" },

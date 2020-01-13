@@ -32,8 +32,8 @@ class Accounts extends React.Component {
     }
 
     handleDelete = (i) => {
-        this.context.accounts.deleteAccount(this.accounts.listArray, i);
-        this.balanceChecker(this.accounts.listArray);
+        this.context.accounts.deleteAccount(this.context.accounts.listArray, i);
+        this.balanceChecker(this.context.accounts.listArray);
     }
 
     balanceChecker = (array) => {
