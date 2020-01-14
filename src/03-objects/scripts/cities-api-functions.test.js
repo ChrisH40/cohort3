@@ -163,12 +163,12 @@ test('test populationSync', async () => {
 
     const test_cities_list =
 
-    [
-        { key: 1, latitude: 60.01, longitude: -115.01, name: "city 1", population: 1000000 },
-        { key: 2, latitude: 10.17, longitude: -40.21, name: "city 2", population: 50000 },
-        { key: 3, latitude: -48.17, longitude: 48.17, name: "city 3", population: 77812 },
-        { key: 4, latitude: 88.91, longitude: 114.56, name: "city 4", population: 1 },
-    ];
+        [
+            { key: 1, latitude: 60.01, longitude: -115.01, name: "city 1", population: 1000000 },
+            { key: 2, latitude: 10.17, longitude: -40.21, name: "city 2", population: 50000 },
+            { key: 3, latitude: -48.17, longitude: 48.17, name: "city 3", population: 77812 },
+            { key: 4, latitude: 88.91, longitude: 114.56, name: "city 4", population: 1 },
+        ];
 
     let data = await postData(url + 'clear');
 
@@ -192,6 +192,8 @@ test('test populationSync', async () => {
     expect(data.status).toEqual(200);
     expect(data[0].population).toBe(1000100);
     expect(data[0].latitude).toBe(60.01);
+
+    data = await postData(url + 'clear');
 });
 
 async function postData(url = '', data = {}) {

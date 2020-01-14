@@ -195,6 +195,8 @@ test('test populationSync', async () => {
     expect(data.status).toEqual(200);
     expect(data[0].population).toBe(1000100);
     expect(data[0].latitude).toBe(60.01);
+
+    data = await postData(url + 'clear');
 });
 
 async function postData(url = '', data = {}) {

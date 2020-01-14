@@ -7,13 +7,15 @@ export const communities = new Community("City List");
 const cityCreateButton = () => {
     let array = communities.cities;
     if (idCityLatitudeInput.value >= -90 && idCityLatitudeInput.value <= 90 && idCityLongitudeInput.value >= -180 && idCityLongitudeInput.value <= 180 && idCityPopulationInput.value >= 0) {
-        const new_city = communities.createCity(idCityNameInput.value, idCityLatitudeInput.value, idCityLongitudeInput.value, idCityPopulationInput.value);
+        const new_city = communities.createCity(String(idCityNameInput.value), idCityLatitudeInput.value, idCityLongitudeInput.value, idCityPopulationInput.value);
         syncFunctions.createCitySync(new_city);
         domFunctions.createCityDiv(idCityDisplay, new_city);
         cityChecker(array);
         cityCreateClearFields();
-    } else alert("Latitude -90 to 90 degrees. Longitude -180 to 180 degrees. Population equal to or greater than 0. Please re-enter.");
-    cityCreateClearFields();
+    } else {
+        alert("Latitude -90 to 90 degrees. Longitude -180 to 180 degrees. Population equal to or greater than 0. Please re-enter.");
+        cityCreateClearFields();
+    }
 }
 
 const cityCreateClearFields = () => {
@@ -51,8 +53,8 @@ const cityButtonSelector = (event) => {
         event.target.parentNode.children[4].value = "";
 
     } if (event.target.textContent == "Delete City") {
-        communities.deleteCity(array, index);
         syncFunctions.deleteCitySync(array[index]);
+        communities.deleteCity(array, index);
         domFunctions.deleteCityCard(event.target);
         cityChecker(array);
     }
@@ -60,7 +62,7 @@ const cityButtonSelector = (event) => {
 }
 
 const cityInfoSelector = (event) => {
-    if (event.target.parentNode == idCityDisplay || event.target.parentNode.parentNode == idCityDisplay) {
+    if (event.target.parentNode == idCityDisplay && event.target.textContent !== "Delete City" || event.target.parentNode.parentNode == idCityDisplay && event.target.textContent !== "Delete City") {
         let array = communities.cities;
         let cityKey = (event.target.parentNode.getAttribute("counter") || event.target.getAttribute("counter"));
         let index = communities.findCity(array, cityKey);
@@ -73,34 +75,34 @@ const cityInfoSelector = (event) => {
 }
 
 const cityChecker = (array) => {
-        if (array.length > 0) {
-            idTotalPopText.textContent = communities.getPopulation(array);
-            idMostNorthernText.textContent = communities.getMostNorthern(array);
-            idMostSouthernText.textContent = communities.getMostSouthern(array);
-        } else if (array.length == 0) {
-            idTotalPopText.textContent = "";
-            idMostNorthernText.textContent = "";
-            idMostSouthernText.textContent = "";
-        }
-        else return;
+    if (array.length > 0) {
+        idTotalPopText.textContent = communities.getPopulation(array);
+        idMostNorthernText.textContent = communities.getMostNorthern(array);
+        idMostSouthernText.textContent = communities.getMostSouthern(array);
+    } else if (array.length == 0) {
+        idTotalPopText.textContent = "";
+        idMostNorthernText.textContent = "";
+        idMostSouthernText.textContent = "";
+    }
+    else return;
 }
 
 const domSync = (array, parent) => {
-        array.forEach(city => {
-            domFunctions.createCityDiv(parent, city);
-        })
+    array.forEach(city => {
+        domFunctions.createCityDiv(parent, city);
+    })
 }
 
 const counterSync = (controller) => {
-        let arrayKeys = controller.cities.map(city => city.key);
-        if (arrayKeys.length > 0) {
-            let highestKey = Math.max(...arrayKeys);
-            controller.counter = highestKey;
-        } else controller.counter = 0;
+    let arrayKeys = controller.cities.map(city => city.key);
+    if (arrayKeys.length > 0) {
+        let highestKey = Math.max(...arrayKeys);
+        controller.counter = highestKey;
+    } else controller.counter = 0;
 }
 
 idCreateCityButton.addEventListener("click", cityCreateButton);
 idCityDisplay.addEventListener("click", cityButtonSelector);
 window.addEventListener("click", cityInfoSelector);
 window.addEventListener("load", syncFunctions.dataSync(communities.cities));
-setTimeout(() => window.addEventListener("load", domSync(communities.cities, idCityDisplay), counterSync(communities), cityChecker(communities.cities)), 500);
+setTimeout(() => window.addEventListener("load", domSync(communities.cities, idCityDisplay), counterSync(communities), cityChecker(communities.cities)), 1000);

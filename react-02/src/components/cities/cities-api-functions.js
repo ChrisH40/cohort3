@@ -5,30 +5,50 @@ import { City } from "./cities.js"
 const syncFunctions = {
 
     async dataSync(array) {
-        let data = await postData(url + 'all');
-        for (let i = 0; i < data.length; i++) {
-            let new_city = new City(data[i].key, data[i].name, data[i].latitude, data[i].longitude, data[i].population);
-            array.push(new_city);
+        try {
+            let data = await postData(url + 'all');
+            for (let i = 0; i < data.length; i++) {
+                let new_city = new City(data[i].key, data[i].name, data[i].latitude, data[i].longitude, data[i].population);
+                array.push(new_city);
+            }
+            return array;
         }
-        return array;
+        catch (error) {
+            return alert("ALERT: API server not detected! Data will not be synced with server.\n \nAPI server not required but recommended for proper functionality.");
+        }
     },
 
     async createCitySync(city) {
-        let data = await postData(url + 'add', city);
-        data = await postData(url + 'all');
-        return data;
+        try {
+            let data = await postData(url + 'add', city);
+            data = await postData(url + 'all');
+            return data;
+        }
+        catch (error) {
+            return alert("ALERT: API server not detected! Data will not be synced with server.\n \nAPI server not required but recommended for proper functionality.");
+        }
     },
 
     async deleteCitySync(city) {
+        try {
         let data = await postData(url + 'delete', city);
         data = await postData(url + 'all');
         return data;
+        }
+        catch (error) {
+            return alert("ALERT: API server not detected! Data will not be synced with server.\n \nAPI server not required but recommended for proper functionality.");
+        }
     },
 
     async populationSync(city) {
+        try {
         let data = await postData(url + 'update', city);
         data = await postData(url + 'all');
         return data;
+        }
+        catch (error) {
+            return alert("ALERT: API server not detected! Data will not be synced with server.\n \nAPI server not required but recommended for proper functionality.");
+        }
     }
 }
 

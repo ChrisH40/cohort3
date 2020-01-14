@@ -41,7 +41,6 @@ export class ContextProvider extends React.Component {
         totalBalance: "",
         // Cities
         dataLoad: false,
-        apiAlert: false,
         cityName: "",
         latitude: "",
         longitude: "",
