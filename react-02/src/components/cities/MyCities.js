@@ -16,13 +16,18 @@ class Cities extends React.Component {
     }
 
     componentDidMount = async () => {
-        if (this.context.state.dataLoad === false) {
-            await syncFunctions.dataSync(this.context.cities.cities);
-            this.context.handleStateChange([{ state: "dataLoad", newState: true }]);
-            this.counterSync(this.context.cities);
-            this.cityChecker(this.context.cities.cities);
+        try {
+            if (this.context.state.dataLoad === false) {
+                await syncFunctions.dataSync(this.context.cities.cities);
+                this.context.handleStateChange([{ state: "dataLoad", newState: true }]);
+                this.counterSync(this.context.cities);
+                this.cityChecker(this.context.cities.cities);
+            }
+            else return;
         }
-        else return;
+        catch (error) {
+            alert("ALERT: API server not detected! \n\nInitial Cities data not synced with server. \n\nAPI server not required but recommended for proper functionality.");
+        }
     };
 
     counterSync = (controller) => {
@@ -32,6 +37,15 @@ class Cities extends React.Component {
             controller.counter = highestKey;
         }
         else controller.counter = 0;
+    };
+
+    createCitySync = async (city) => {
+        try {
+            await syncFunctions.createCitySync(city);
+        }
+        catch (error) {
+            alert("ALERT: API server not detected!\n\n" + city.name + " data not synced with server.");
+        };
     };
 
     handleSubmit = (event) => {
@@ -49,8 +63,8 @@ class Cities extends React.Component {
         }
         else {
             const newCity = this.context.cities.createCity(this.context.state.cityName, this.context.state.latitude, this.context.state.longitude, this.context.state.population);
-            syncFunctions.createCitySync(newCity);
-        }
+            this.createCitySync(newCity);
+        };
         this.context.handleStateChange([
             { state: "cityName", newState: "" },
             { state: "latitude", newState: "" },
@@ -62,8 +76,17 @@ class Cities extends React.Component {
         event.preventDefault();
     };
 
+    deleteCitySync = async (city) => {
+        try {
+            await syncFunctions.deleteCitySync(city);
+        }
+        catch (error) {
+            alert("ALERT: API server not detected!\n\n" + city.name + " not deleted from server.");
+        };
+    };
+
     handleDelete = (i) => {
-        syncFunctions.deleteCitySync(this.context.cities.cities[i]);
+        this.deleteCitySync(this.context.cities.cities[i]);
         this.context.cities.deleteCity(this.context.cities.cities, i);
         this.cityChecker(this.context.cities.cities);
         this.context.handleStateChange([
@@ -109,7 +132,7 @@ class Cities extends React.Component {
                 <div className="city-container-left">
                     <span className="city-display-header">Add City</span>
                     <CityCreateDisplay
-                        handleSubmit={this.handleSubmit}
+                        handleSubmit={(event) => {this.handleSubmit(event)}}
                     />
                 </div>
                 <div className="city-container-middle-top">

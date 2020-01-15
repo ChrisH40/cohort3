@@ -11,5 +11,10 @@ test('test remove', () => {
 
 test('test nextToRemove', () => {
     const testQueue = new FifoQueue();
-    expect(testQueue.nextToRemove()).toBe("Reno");
+    testQueue.list = ["Wichita", "Tulsa"];
+    expect(testQueue.nextToRemove()).toBe("Wichita");
+    testQueue.remove();
+    expect(testQueue.nextToRemove()).toBe("Tulsa");
+    testQueue.remove();
+    expect(testQueue.nextToRemove()).toBe("Tulsa");
 });

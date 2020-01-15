@@ -29,6 +29,7 @@ test('test fetch working', async () => {
         ];
 
     // Check that the server is running and clear any data
+
     let data = await postData(url + 'clear');
 
     data = await postData(url + 'all');
@@ -166,12 +167,12 @@ test('test populationSync', async () => {
 
     const test_cities_list =
 
-    [
-        { key: 1, latitude: 60.01, longitude: -115.01, name: "city 1", population: 1000000 },
-        { key: 2, latitude: 10.17, longitude: -40.21, name: "city 2", population: 50000 },
-        { key: 3, latitude: -48.17, longitude: 48.17, name: "city 3", population: 77812 },
-        { key: 4, latitude: 88.91, longitude: 114.56, name: "city 4", population: 1 },
-    ];
+        [
+            { key: 1, latitude: 60.01, longitude: -115.01, name: "city 1", population: 1000000 },
+            { key: 2, latitude: 10.17, longitude: -40.21, name: "city 2", population: 50000 },
+            { key: 3, latitude: -48.17, longitude: 48.17, name: "city 3", population: 77812 },
+            { key: 4, latitude: 88.91, longitude: 114.56, name: "city 4", population: 1 },
+        ];
 
     let data = await postData(url + 'clear');
 

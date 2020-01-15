@@ -18,27 +18,36 @@ class CityCard extends React.Component {
         })
     }
 
-    handleMovedIn(i) {
+    popSync = async (city) => {
+        try {
+            await syncFunctions.populationSync(city);
+        }
+        catch (error) {
+            alert("ALERT: API server not detected!\n\n" + city.name + " population not synced with server.");
+        };
+    }
+
+    handleMovedIn = (i) => {
         if (this.state.changePopulation < 0) {
             alert("Please enter a number greater than zero.");
         }
         else {
             this.context.cities.cities[i].movedIn(Number(this.state.changePopulation));
-            syncFunctions.populationSync(this.context.cities.cities[i]);
-        }
+            this.popSync(this.context.cities.cities[i]);
+        };
         this.setState({
             changePopulation: "",
         })
         this.props.cityChecker(this.context.cities.cities);
     }
 
-    handleMovedOut(i) {
+    handleMovedOut = (i) => {
         if (this.state.changePopulation < 0 || this.state.changePopulation > this.props.city.population) {
             alert("Please enter a number greater than zero or less than/equal to current population.");
         }
         else {
             this.context.cities.cities[i].movedOut(Number(this.state.changePopulation));
-            syncFunctions.populationSync(this.context.cities.cities[i]);
+            this.popSync(this.context.cities.cities[i]);
         }
         this.setState({
             changePopulation: "",

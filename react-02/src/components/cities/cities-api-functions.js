@@ -5,76 +5,52 @@ import { City } from "./cities.js"
 const syncFunctions = {
 
     async dataSync(array) {
-        try {
-            let data = await postData(url + 'all');
-            for (let i = 0; i < data.length; i++) {
-                let new_city = new City(data[i].key, data[i].name, data[i].latitude, data[i].longitude, data[i].population);
-                array.push(new_city);
-            }
-            return array;
+        let data = await syncFunctions.postData(syncFunctions.url + 'all');
+        for (let i = 0; i < data.length; i++) {
+            let new_city = new City(data[i].key, data[i].name, data[i].latitude, data[i].longitude, data[i].population);
+            array.push(new_city);
         }
-        catch (error) {
-            return alert("ALERT: API server not detected! Data will not be synced with server.\n \nAPI server not required but recommended for proper functionality.");
-        }
+        return array;
     },
 
     async createCitySync(city) {
-        try {
-            let data = await postData(url + 'add', city);
-            data = await postData(url + 'all');
-            return data;
-        }
-        catch (error) {
-            return alert("ALERT: API server not detected! Data will not be synced with server.\n \nAPI server not required but recommended for proper functionality.");
-        }
+        let data = await syncFunctions.postData(syncFunctions.url + 'add', city);
+        data = await syncFunctions.postData(syncFunctions.url + 'all');
+        return data;
     },
 
     async deleteCitySync(city) {
-        try {
-        let data = await postData(url + 'delete', city);
-        data = await postData(url + 'all');
+        let data = await syncFunctions.postData(syncFunctions.url + 'delete', city);
+        data = await syncFunctions.postData(syncFunctions.url + 'all');
         return data;
-        }
-        catch (error) {
-            return alert("ALERT: API server not detected! Data will not be synced with server.\n \nAPI server not required but recommended for proper functionality.");
-        }
     },
 
     async populationSync(city) {
-        try {
-        let data = await postData(url + 'update', city);
-        data = await postData(url + 'all');
+        let data = await syncFunctions.postData(syncFunctions.url + 'update', city);
+        data = await syncFunctions.postData(syncFunctions.url + 'all');
         return data;
-        }
-        catch (error) {
-            return alert("ALERT: API server not detected! Data will not be synced with server.\n \nAPI server not required but recommended for proper functionality.");
-        }
+    },
+
+    url: 'http://localhost:5000/',
+
+    async postData(url = '', data = {}) {
+            const response = await fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                referrer: 'no-referrer',
+                body: JSON.stringify(data)
+            });
+            const json = await response.json();
+            json.status = response.status;
+            json.statusText = response.statusText;
+            return json;
     }
-}
-
-const url = 'http://localhost:5000/';
-
-async function postData(url = '', data = {}) {
-    // Default options are marked with *
-    const response = await fetch(url, {
-        method: 'POST',     // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors',       // no-cors, *cors, same-origin
-        cache: 'no-cache',  // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-            'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: 'follow',         // manual, *follow, error
-        referrer: 'no-referrer',    // no-referrer, *client
-        body: JSON.stringify(data)  // body data type must match "Content-Type" header
-    });
-
-    const json = await response.json();    // parses JSON response into native JavaScript objects
-    json.status = response.status;
-    json.statusText = response.statusText;
-    // console.log(json, typeof(json));
-    return json;
 }
 
 export default syncFunctions;

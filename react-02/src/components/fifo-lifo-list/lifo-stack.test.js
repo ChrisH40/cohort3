@@ -11,5 +11,10 @@ test('test remove', () => {
 
 test('test nextToRemove', () => {
     const testStack = new LifoStack();
+    testStack.list = ["Wichita", "Tulsa"];
     expect(testStack.nextToRemove()).toBe("Tulsa");
+    testStack.remove();
+    expect(testStack.nextToRemove()).toBe("Wichita");
+    testStack.remove();
+    expect(testStack.nextToRemove()).toBe("Wichita");
 });

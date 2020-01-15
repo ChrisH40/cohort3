@@ -7,7 +7,7 @@ export class ListNode {
         this.prev = null;
     }
 
-    show() { 
+    show() {
         return `The current item's subject is ${this.subject} and amount is ${this.amount}.`
     }
 };
@@ -23,7 +23,7 @@ export class LinkedList {
         this.current = null;
     }
 
-    insertListNode(subject, amount) { 
+    insertListNode(subject, amount) {
         let newListNode = new ListNode(subject, amount);
         if (!this.current) {
             this.head = newListNode;
@@ -31,22 +31,20 @@ export class LinkedList {
             this.current = newListNode;
             return newListNode;
         }
+        else if (this.current === this.tail) {
+            this.current.next = newListNode;
+            newListNode.prev = this.current;
+            this.tail = newListNode;
+            this.current = newListNode;
+            newListNode.next = null;
+            return newListNode;
+        }
         else {
-            if (this.current === this.tail) {
-                this.current.next = newListNode;
-                newListNode.prev = this.current;
-                this.tail = newListNode;
-                this.current = newListNode;
-                newListNode.next = null;
-                return newListNode;
-            }
-            else {
-                this.current.next = newListNode;
-                newListNode.prev = this.current;
-                newListNode.next = this.current.next;
-                this.current = newListNode;
-                return newListNode;
-            }
+            this.current.next = newListNode;
+            newListNode.prev = this.current;
+            newListNode.next = this.current.next;
+            this.current = newListNode;
+            return newListNode;
         }
     }
 

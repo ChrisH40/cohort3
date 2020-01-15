@@ -22,6 +22,11 @@ test('test LinkedList insertListNode', () => {
     expect(testNodeThree).toBe(testLinkedList.current);  
     expect(testNodeThree.next).toBe(null);
     expect(testNodeThree.prev).toBe(testNodeTwo);
+    testLinkedList.current = testNodeTwo;
+    const testNodeFour = testLinkedList.insertListNode("Test Node Four", 4);
+    expect(testNodeTwo.next).toBe(testNodeFour);
+    expect(testNodeFour.prev).toBe(testNodeTwo);
+    expect(testLinkedList.current).toBe(testNodeFour);
 });
 
 test('test LinkedList deleteListNode', () => {
@@ -60,6 +65,8 @@ test('test LinkedList firstNode prevNode nextNode lastNode', () => {
     expect(testLinkedList.lastNode()).toBe(testNodeThree);
     expect(testLinkedList.prevNode(testNodeThree)).toBe(testNodeTwo);
     expect(testLinkedList.nextNode(testNodeTwo)).toBe(testNodeThree);
+    expect(testLinkedList.prevNode(testNodeOne)).toBe(testNodeOne);
+    expect(testLinkedList.nextNode(testNodeThree)).toBe(testNodeThree);
 });
 
 test('test LinkedList totalAmounts', () => {
