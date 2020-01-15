@@ -18,7 +18,8 @@ CREATE TABLE player_stats(
 	first_name VARCHAR(100) NOT NULL,
 	last_name VARCHAR(100) NOT NULL,
     games_played INT NOT NULL CHECK (games_played >= 0), 
-        -- teams.games_played not easily referenced, or else would add restriction that player_stats.games_played can't be greater than teams.games_played
+        -- teams.games_played not easily referenced, or else would add restriction that player_stats.games_played can't be greater than teams.games_played.
+        -- Can possibly use trigger for this.
 	goals INT NOT NULL CHECK (goals >= 0),
 	assists INT NOT NULL CHECK (goals >= 0),
 	points INT NOT NULL CHECK (points = (goals + assists)),
