@@ -1,6 +1,9 @@
 # --- Exercises from "UDEMY – REST APIs with Flask and Python" Course --- 
 
 # --- Coding Exerise 7: @classmethod and @staticmethod ---
+# 1. The franchise method, which takes in a store as argument. It should return a new store object, with a name equal to the argument + " = franchise".
+
+# 2. The store_details method, which also takes in a store as argument. It should return a string representing the argument.
 
 class Store:
     def __init__(self, name):
@@ -27,7 +30,7 @@ class Store:
     @staticmethod
     def store_details(store):
         return "{}, total stock price: {}".format(store.name, int(store.stock_price()))
-        
+
 
 # --- Coding Exerise 6: Classes and objects ---
 # 1. The __init__ method, which should take an argument, name. It should initialize self.name to be the argument, and self.items to be an empty list.
@@ -36,7 +39,7 @@ class Store:
 
 # 3. The stock_price method, which should add up each item price inside self.items to come up with a total, and return that.
 
-class Store:
+class StoreTwo:
     def __init__(self, name):
         self.name = name
         self.items = []
