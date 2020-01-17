@@ -2,13 +2,11 @@
   "name": "react-02",
   "jest": {
     "collectCoverageFrom": [
-      "src/components/accounts/account.js",
-      "src/components/cities/cities.js",
-      "src/components/cities/cities-api-functions.js",
-      "src/components/fifo-lifo-list/fifo-lifo.js",
-      "src/components/fifo-lifo-list/fifo-queue.js",
-      "src/components/fifo-lifo-list/lifo-stack.js",
-      "src/components/linked-list/linked-list.js"
+      "src/components/accounts/scripts/*.js",
+      "src/components/cities/scripts/*.js",
+      "src/components/cities/scripts/*.js",
+      "src/components/fifo-lifo-list/scripts/*.js",
+      "src/components/linked-list/scripts/*.js"
     ]
   },
   "version": "0.1.0",
@@ -23,9 +21,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "reactRenderTest": "react-scripts test react-02/src/App.test.js",
-    "reactTest": "react-scripts test src/components/accounts/account.test.js react-02/src/components/cities/cities.test.js react-02/src/components/cities/cities-api-functions.test.js react-02/src/components/cities/cities-api-functions.test.js react-02/src/components/fifo-lifo-list/fifo-lifo.test.js react-02/src/components/fifo-lifo-list/fifo-queue.test.js react-02/src/components/fifo-lifo-list/lifo-stack.test.js react-02/src/components/linked-list/linked-list.test.js",
-    "reactCoverageTest": "react-scripts test src/ --coverage"
+    "React02RendTest": "react-scripts test react-02/src/App.test.js",
+    "ReactTest": "react-scripts test src/components/accounts/account.test.js react-02/src/components/cities/cities.test.js react-02/src/components/cities/cities-api-functions.test.js react-02/src/components/cities/cities-api-functions.test.js react-02/src/components/fifo-lifo-list/fifo-lifo.test.js react-02/src/components/fifo-lifo-list/fifo-queue.test.js react-02/src/components/fifo-lifo-list/lifo-stack.test.js react-02/src/components/linked-list/linked-list.test.js",
+    "ReactCovTest": "react-scripts test src/ --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"

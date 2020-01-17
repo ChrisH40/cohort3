@@ -4,7 +4,7 @@ import CityCreateDisplay from './MyCitiesCreateDisplay.js';
 import CityCardsList from './MyCitiesCardsList.js';
 import CityFactsDisplay from './MyCitiesFactsDisplay.js';
 import CityInfoDisplay from './MyCitiesInfoDisplay.js';
-import syncFunctions from './cities-api-functions.js';
+import syncFunctions from './scripts/cities-api-functions.js';
 import './cities-index.css';
 
 class Cities extends React.Component {

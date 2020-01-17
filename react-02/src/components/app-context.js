@@ -1,11 +1,11 @@
 import React from 'react';
 import App from '../App.js';
-import { AccountController } from '../components/accounts/account.js';
-import { Community } from '../components/cities/cities.js';
-import { LinkedList } from '../components/linked-list/linked-list.js';
-import { ListGenerator } from '../components/fifo-lifo-list/fifo-lifo.js';
-import { FifoQueue } from '../components/fifo-lifo-list/fifo-queue.js';
-import { LifoStack } from '../components/fifo-lifo-list/lifo-stack.js';
+import { AccountController } from '../components/accounts/scripts/account.js';
+import { Community } from '../components/cities/scripts/cities.js';
+import { LinkedList } from '../components/linked-list/scripts/linked-list.js';
+import { ListGenerator } from '../components/fifo-lifo-list/scripts/fifo-lifo.js';
+import { FifoQueue } from '../components/fifo-lifo-list/scripts/fifo-queue.js';
+import { LifoStack } from '../components/fifo-lifo-list/scripts/lifo-stack.js';
 
 export const AppContext = React.createContext();
 

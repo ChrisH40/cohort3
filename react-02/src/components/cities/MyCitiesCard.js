@@ -1,5 +1,5 @@
 import React from 'react';
-import syncFunctions from './cities-api-functions.js';
+import syncFunctions from './scripts/cities-api-functions.js';
 import { AppContext } from '../app-context.js';
 
 class CityCard extends React.Component {
