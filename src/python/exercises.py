@@ -129,7 +129,6 @@ set2 = {5, 77, 9, 12}
 print(set1.intersection(set2))
 
 
-
 # --- Coding Exerise 1: Variables ---
 # 1. Create two variables, var1 and var2, both with the same value. It can be anything you want.
 
