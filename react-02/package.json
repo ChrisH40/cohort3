@@ -1,13 +1,7 @@
 {
   "name": "react-02",
   "jest": {
-    "collectCoverageFrom": [
-      "src/components/accounts/scripts/*.js",
-      "src/components/cities/scripts/*.js",
-      "src/components/cities/scripts/*.js",
-      "src/components/fifo-lifo-list/scripts/*.js",
-      "src/components/linked-list/scripts/*.js"
-    ]
+    "collectCoverageFrom": ["src/components/**/scripts/*.js"]
   },
   "version": "0.1.0",
   "private": true,
