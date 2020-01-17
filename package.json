@@ -10,7 +10,7 @@
         "test1cov": "jest src/01-getting-started --coverage",
         "testfile": "jest src/01-getting-started/scripts/lfsplay.test.js",
         "syntaxtest": "jest src/javascript/syntax.test.js",
-        "dailytest": "jest src/javascript/daily.test.js",
+        "dailytest": "jest src/javascript/daily.test.js --coverage",
         "100test": "jest src/01-getting-started/scripts --coverage",
         "110test": "jest src/02-dom/scripts --coverage",
         "130test": "jest src/03-objects/scripts --coverage"
