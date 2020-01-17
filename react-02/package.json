@@ -21,9 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "React02RendTest": "react-scripts test react-02/src/App.test.js",
-    "ReactTest": "react-scripts test src/components/accounts/account.test.js react-02/src/components/cities/cities.test.js react-02/src/components/cities/cities-api-functions.test.js react-02/src/components/cities/cities-api-functions.test.js react-02/src/components/fifo-lifo-list/fifo-lifo.test.js react-02/src/components/fifo-lifo-list/fifo-queue.test.js react-02/src/components/fifo-lifo-list/lifo-stack.test.js react-02/src/components/linked-list/linked-list.test.js",
-    "ReactCovTest": "react-scripts test src/ --coverage"
+    "react02rendtest": "react-scripts test react-02/src/App.test.js",
+    "react02covtest": "react-scripts test src/ --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
