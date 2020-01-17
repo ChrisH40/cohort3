@@ -13,10 +13,6 @@ test('test Account deposit withdraw balance', () => {
     expect(testAccount.accountBalance()).toEqual(112);
     expect(testAccount.accountWithdraw(12)).toEqual(100);
     expect(testAccount.accountBalance()).toEqual(100);
-    expect(testAccount.accountWithdraw(5)).toEqual(95);
-    expect(testAccount.accountBalance()).toEqual(95);
-    expect(testAccount.accountWithdraw(17)).toEqual(78);
-    expect(testAccount.accountBalance()).toEqual(78);
 });
 
 test('test Account Controller add new account', () => {
@@ -24,10 +20,10 @@ test('test Account Controller add new account', () => {
     expect(testAccountController).toEqual({ "listArray": [], "listName": "Sarah", "counter": 0 });
     testAccountController.addAccount("checking", 50);
     expect(testAccountController.listArray).toEqual([{ "accountName": "checking", "key": 1, "startingBalance": 50 }]);
-    testAccountController.addAccount("checking", 50);
+    testAccountController.addAccount("checking two", 100);
     expect(testAccountController.listArray).toEqual(
         [{ "key": 1, "accountName": "checking", "startingBalance": 50 },
-        { "key": 2, "accountName": "checking", "startingBalance": 50 }]);
+        { "key": 2, "accountName": "checking two", "startingBalance": 100 }]);
 });
 
 test('test totalBalances lowestBalance name and number highestBalance name and number of accounts', () => {

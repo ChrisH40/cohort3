@@ -82,7 +82,7 @@ export class ContextProvider extends React.Component {
                 [states[i].state]: states[i].newState,
             })
         }
-    }
+    };
 
     render() {
         return (

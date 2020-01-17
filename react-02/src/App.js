@@ -56,7 +56,7 @@ class App extends React.Component {
     if (selected === settingsIcon) {
       return < ChangeSettingsDisplay />
     }
-    return
+    else return
   }
 
   navIconMapper = (images, image_headers) => {
