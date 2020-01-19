@@ -19,20 +19,20 @@ def xBoolean(val1, val2):
     return val1 == val2
 
 
-def xArray(num):
-    my_array = ["one", "two", ["three", "four", ["five", "six"]]]
+def xList(num):
+    my_list = ["one", "two", ["three", "four", ["five", "six"]]]
     if num == 1:
-        return my_array[0]
+        return my_list[0]
     if num == 2:
-        return my_array[1]
+        return my_list[1]
     if num == 3:
-        return my_array[2][0]
+        return my_list[2][0]
     if num == 4:
-        return my_array[2][1]
+        return my_list[2][1]
     if num == 5:
-        return my_array[2][2][0]
+        return my_list[2][2][0]
     if num == 6:
-        return my_array[2][2][1]
+        return my_list[2][2][1]
     else:
         return "Please enter a number between 1 and 6"
 
@@ -85,7 +85,7 @@ def functionReturns(person, place, thing):
 # It was right about here that I really started to experience this feeling...
 
 
-def arrayAddToFront(add):
+def listAddToFront(add):
     another_array = ["2nd item", "3rd item", "4th item"]
     another_array.insert(0, add)
     if another_array[1] == "2nd item":
@@ -94,7 +94,7 @@ def arrayAddToFront(add):
         return "This somehow didn't work..."
 
 
-def arrayAddToEnd(add):
+def listAddToEnd(add):
     yet_another_array = [1, 2, 3, 4]
     yet_another_array.append(add)
     if add == yet_another_array[4]:
@@ -103,7 +103,7 @@ def arrayAddToEnd(add):
         return "This also somehow didn't work..."
 
 
-def arrayUpdateValues(value):
+def listUpdateValues(value):
     update_value_array = [1, 2, 3, 4, 5]
     update_value_array[4] = value
     return update_value_array[4]
