@@ -26,6 +26,8 @@ test('test LinkedList insertListNode', () => {
     const testNodeFour = testLinkedList.insertListNode("Test Node Four", 4);
     expect(testNodeTwo.next).toBe(testNodeFour);
     expect(testNodeFour.prev).toBe(testNodeTwo);
+    expect(testNodeFour.next).toBe(testNodeThree);
+    expect(testNodeThree.prev).toBe(testNodeFour);
     expect(testLinkedList.current).toBe(testNodeFour);
 });
 

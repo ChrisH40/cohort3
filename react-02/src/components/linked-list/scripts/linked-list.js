@@ -40,9 +40,10 @@ export class LinkedList {
             return newListNode;
         }
         else {
-            this.current.next = newListNode;
             newListNode.prev = this.current;
             newListNode.next = this.current.next;
+            this.current.next = newListNode;
+            newListNode.next.prev = newListNode;
             this.current = newListNode;
             return newListNode;
         }
