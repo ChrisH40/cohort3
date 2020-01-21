@@ -19,10 +19,13 @@ class AccountCard extends React.Component {
 
     handleDeposit(i) {
         if (this.state.changeBalance < 0.01) {
-            alert("Please enter a number greater than zero!");
+            this.context.handleStateChange([{ state: "warningSuccess", newState: false }]);
+            this.props.handleWarning("transfail");
         }
         else {
             this.context.accounts.listArray[i].accountDeposit(Number(this.state.changeBalance));
+            this.context.handleStateChange([{ state: "warningSuccess", newState: true }]);
+            this.props.handleWarning("transsuccess");
         }
         this.setState({
             changeBalance: "",
@@ -32,10 +35,11 @@ class AccountCard extends React.Component {
 
     handleWithdraw(i) {
         if (this.state.changeBalance < 0.01) {
-            alert("Please enter a number greater than zero!");
+            this.props.handleWarning("transfail");
         }
         else {
             this.context.accounts.listArray[i].accountWithdraw(Number(this.state.changeBalance));
+            this.props.handleWarning("transsuccess");
         }
         this.setState({
             changeBalance: "",

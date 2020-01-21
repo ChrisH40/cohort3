@@ -11,6 +11,7 @@ class AccountCardsList extends React.Component {
                 <AccountCard
                     key={i}
                     handleDelete={this.props.handleDelete}
+                    handleWarning={this.props.handleWarning}
                     balanceChecker={this.props.balanceChecker}
                     index={i}
                     account={account}

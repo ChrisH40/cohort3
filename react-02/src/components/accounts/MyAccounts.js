@@ -18,10 +18,13 @@ class Accounts extends React.Component {
         let accountNames = array.map(array => array.accountName);
         let matchingName = accountNames.find(account => account === this.context.state.acctName);
         if (this.context.state.acctName === matchingName || this.context.state.acctName === "") {
-            alert("Duplicate or no account name entered!");
+            this.context.handleStateChange([{ state: "warningSuccess", newState: false }]);
+            this.handleWarning("acctfail");
         }
         else {
             this.context.accounts.addAccount(this.context.state.acctName, this.context.state.acctBalance);
+            this.context.handleStateChange([{ state: "warningSuccess", newState: true }]);
+            this.handleWarning("acctsuccess");
         }
         this.context.handleStateChange([
             { state: "acctName", newState: "" },
@@ -30,6 +33,34 @@ class Accounts extends React.Component {
         this.balanceChecker(this.context.accounts.listArray);
         event.preventDefault();
     }
+
+    handleWarning = (alert) => {
+        if (alert === "acctsuccess") {
+            this.context.handleStateChange([{ state: "warningMsg", newState: "Account Created!" }]);
+            setTimeout(() => {
+                this.context.handleStateChange([{ state: "warningMsg", newState: "" }]);
+            }, 3000);
+        }
+        else if (alert === "transsuccess") {
+            this.context.handleStateChange([{ state: "warningMsg", newState: "Transaction Successful!" }]);
+            setTimeout(() => {
+                this.context.handleStateChange([{ state: "warningMsg", newState: "" }]);
+            }, 3000);
+        }
+        else if (alert === "acctfail") {
+            this.context.handleStateChange([{ state: "warningMsg", newState: "Account Not Created. Duplicate name." }]);
+            setTimeout(() => {
+                this.context.handleStateChange([{ state: "warningMsg", newState: "" }]);
+            }, 3000);
+        }
+        else if (alert === "transfail") {
+            this.context.handleStateChange([{ state: "warningMsg", newState: "Transaction Failed. Invalid amount." }]);
+            setTimeout(() => {
+                this.context.handleStateChange([{ state: "warningMsg", newState: "" }]);
+            }, 3000);
+        }
+    }
+
 
     handleDelete = (i) => {
         this.context.accounts.deleteAccount(this.context.accounts.listArray, i);
@@ -42,7 +73,7 @@ class Accounts extends React.Component {
                 { state: "highestName", newState: this.context.accounts.highestBalance(array) },
                 { state: "highestBalance", newState: this.context.accounts.highestBalanceNumber(array) },
                 { state: "lowestName", newState: this.context.accounts.lowestBalance(array) },
-                { state: "lowestBalanceNumber", newState: this.context.accounts.lowestBalanceNumber(array) },
+                { state: "lowestBalance", newState: this.context.accounts.lowestBalanceNumber(array) },
                 { state: "totalBalance", newState: this.context.accounts.totalBalances(array) },
             ]);
         }
@@ -68,6 +99,7 @@ class Accounts extends React.Component {
                     <span className="display-header">Accounts Display</span>
                     <AccountCardsList
                         handleDelete={this.handleDelete}
+                        handleWarning={this.handleWarning}
                         balanceChecker={this.balanceChecker}
                     />
                 </div>

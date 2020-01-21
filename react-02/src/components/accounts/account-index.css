@@ -3,15 +3,15 @@
   
 .wrapper {
     display: grid;
-    grid-template-columns: 20% 30% 30% 20%;
-    grid-template-areas: 
-      'left middle middle right';
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr;
     background-color: #282c34;
-    min-height: 90vmin;
+    min-height: 89vmin;
     padding: 5px;
     color: white;
+    font-size: 20px;
 }
-  
+
 .container-left,
 .container-middle,
 .container-right {
@@ -21,11 +21,8 @@
     background-color:  rgba(0, 217, 255, 0.25);
 }
 
-.display-header {
-    font-size: 20px;
-}
-
 .create-account-display,
+.account-warning-display,
 .account-display,
 .balances-display {
     background-color: #282c34;
@@ -35,15 +32,16 @@
 }
   
 .container-left {
-    grid-area: left;
-    height: 27vh;
+    height: 29vh;
 }
 
-.create-account-display {
+.create-account-display,
+.account-warning-display {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90%;
+    height: 20vh;
+    font-size: 14px;
 }
 
 .create-account-name-input,
@@ -51,7 +49,6 @@
     margin: 10px;
     padding: 5px;
     height: 2vh;
-    width: 10vw;
 }
 
 .create-account-button,
@@ -63,14 +60,18 @@
 .account-button:hover {
     cursor: pointer;
 }
+
+.account-warning-text {
+    font-size: 18px;
+    font-weight: bold;
+}
   
 .container-middle {
-    grid-area: middle;
-    height: 70vh;
+    height: 69vh;
 }
 
 .account-display {
-    height: 90%;
+    height: 59vh;
     overflow: auto;
 }
 
@@ -81,6 +82,7 @@
     padding: 10px;
     margin: 5px 0px 5px 0px;
     background-color:  rgba(0, 217, 255, 0.05);
+    font-size: 14px;
 }
 
 .account-card:nth-child(odd) {background-color:  rgba(0, 217, 255, 0.20);}
@@ -93,27 +95,22 @@
 }
 
 .container-right {
-    grid-area: right;
-    height: 70vh;
+    height: 69vh;
 }
 
 .balances-display {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
     padding: 20px;
-    text-align: center;
     height: 16vh;    
     margin: 13px 13px 13px -30px;
 }
 
 .balances-display-balance,
 .balances-display-balance-total {
-    font-size: 25px;
-}
-
-.create-account-display-header,
-.account-display-header,
-.accounts-information-display-header {
-    font-size: 20px;
-    margin: 5px;
+    font-size: 17px;
+    color:  #09d3ac;
 }
 
 .account-button {

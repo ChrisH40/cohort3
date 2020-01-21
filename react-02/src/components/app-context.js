@@ -31,6 +31,9 @@ export class ContextProvider extends React.Component {
         humanPlayer: "X",
         computerPlayer: "O",
         stepNumber: 0,
+        // Accounts/Cities
+        warningSuccess: true,
+        warningMsg: "",
         // Accounts
         acctName: "",
         acctBalance: "",
