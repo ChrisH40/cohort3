@@ -105,12 +105,12 @@
     padding: 20px;
     height: 16vh;    
     margin: 13px 13px 13px -30px;
+    font-size: 15px;
 }
 
 .balances-display-balance,
 .balances-display-balance-total {
-    font-size: 17px;
-    color:  #09d3ac;
+    font-size: 20px;
 }
 
 .account-button {

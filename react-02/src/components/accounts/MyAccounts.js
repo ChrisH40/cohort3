@@ -81,7 +81,7 @@ class Accounts extends React.Component {
             { state: "highestName", newState: "" },
             { state: "highestBalance", newState: "" },
             { state: "lowestName", newState: "" },
-            { state: "lowestBalanceNumber", newState: "" },
+            { state: "lowestBalance", newState: "" },
             { state: "totalBalance", newState: "" },
         ]);
     };
