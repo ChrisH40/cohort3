@@ -31,10 +31,9 @@ export class ContextProvider extends React.Component {
         humanPlayer: "X",
         computerPlayer: "O",
         stepNumber: 0,
-        // Accounts/Cities
-        warningSuccess: true,
-        warningMsg: "",
         // Accounts
+        acctWarningSuccess: true,
+        acctWarningMsg: "",
         acctName: "",
         acctBalance: "",
         highestName: "",
@@ -44,6 +43,9 @@ export class ContextProvider extends React.Component {
         totalBalance: "",
         // Cities
         dataLoad: false,
+        serverStatus: true,
+        cityWarningSuccess: true,
+        cityWarningMsg: "",
         cityName: "",
         latitude: "",
         longitude: "",

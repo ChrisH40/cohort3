@@ -32,7 +32,7 @@ class AccountCreateDisplay extends React.Component {
                     </form>
                 </div>
                 <div className="account-warning-display">
-                    <span className="account-warning-text" style={this.context.state.warningSuccess === true ? { color: "#09d3ac" } : { color: "red" }}>{this.context.state.warningMsg}</span>
+                    <span className="account-warning-text" style={this.context.state.acctWarningSuccess === true ? { color: "#09d3ac" } : { color: "red" }}>{this.context.state.acctWarningMsg}</span>
                 </div>
             </div>
         )

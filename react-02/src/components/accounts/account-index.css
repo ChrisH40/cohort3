@@ -95,15 +95,15 @@
 }
 
 .container-right {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
     height: 69vh;
 }
 
 .balances-display {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
     padding: 20px;
-    height: 16vh;    
+    height: 14vh;    
     margin: 13px 13px 13px -30px;
     font-size: 15px;
 }

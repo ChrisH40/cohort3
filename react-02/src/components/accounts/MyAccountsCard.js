@@ -19,13 +19,13 @@ class AccountCard extends React.Component {
 
     handleDeposit(i) {
         if (this.state.changeBalance < 0.01) {
-            this.context.handleStateChange([{ state: "warningSuccess", newState: false }]);
-            this.props.handleWarning("transfail");
+            this.context.handleStateChange([{ state: "acctWarningSuccess", newState: false }]);
+            this.props.handleWarning("transfail", this.context.accounts.listArray[i].accountName);
         }
         else {
             this.context.accounts.listArray[i].accountDeposit(Number(this.state.changeBalance));
-            this.context.handleStateChange([{ state: "warningSuccess", newState: true }]);
-            this.props.handleWarning("transsuccess");
+            this.context.handleStateChange([{ state: "acctWarningSuccess", newState: true }]);
+            this.props.handleWarning("transsuccess", this.context.accounts.listArray[i].accountName);
         }
         this.setState({
             changeBalance: "",
@@ -35,11 +35,11 @@ class AccountCard extends React.Component {
 
     handleWithdraw(i) {
         if (this.state.changeBalance < 0.01) {
-            this.props.handleWarning("transfail");
+            this.props.handleWarning("transfail", this.context.accounts.listArray[i].accountName);
         }
         else {
             this.context.accounts.listArray[i].accountWithdraw(Number(this.state.changeBalance));
-            this.props.handleWarning("transsuccess");
+            this.props.handleWarning("transsuccess", this.context.accounts.listArray[i].accountName);
         }
         this.setState({
             changeBalance: "",
@@ -59,7 +59,7 @@ class AccountCard extends React.Component {
                 <input
                     type="number"
                     name="changeBalance"
-                    placeholder="amount"
+                    placeholder="amt."
                     value={this.state.changeBalance}
                     className="account-input"
                     onChange={this.handleOnChange} />

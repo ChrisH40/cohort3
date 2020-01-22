@@ -18,13 +18,13 @@ class Accounts extends React.Component {
         let accountNames = array.map(array => array.accountName);
         let matchingName = accountNames.find(account => account === this.context.state.acctName);
         if (this.context.state.acctName === matchingName || this.context.state.acctName === "") {
-            this.context.handleStateChange([{ state: "warningSuccess", newState: false }]);
-            this.handleWarning("acctfail");
+            this.context.handleStateChange([{ state: "acctWarningSuccess", newState: false }]);
+            this.handleWarning("acctfail", this.context.state.acctName);
         }
         else {
             this.context.accounts.addAccount(this.context.state.acctName, this.context.state.acctBalance);
-            this.context.handleStateChange([{ state: "warningSuccess", newState: true }]);
-            this.handleWarning("acctsuccess");
+            this.context.handleStateChange([{ state: "acctWarningSuccess", newState: true }]);
+            this.handleWarning("acctsuccess", this.context.state.acctName);
         }
         this.context.handleStateChange([
             { state: "acctName", newState: "" },
@@ -32,40 +32,47 @@ class Accounts extends React.Component {
         ]);
         this.balanceChecker(this.context.accounts.listArray);
         event.preventDefault();
-    }
+    };
 
-    handleWarning = (alert) => {
+    handleWarning = (alert, name) => {
         if (alert === "acctsuccess") {
-            this.context.handleStateChange([{ state: "warningMsg", newState: "Account Created!" }]);
+            this.context.handleStateChange([{ state: "acctWarningMsg", newState: `${name} created!` }]);
             setTimeout(() => {
-                this.context.handleStateChange([{ state: "warningMsg", newState: "" }]);
-            }, 3000);
+                this.context.handleStateChange([{ state: "acctWarningMsg", newState: "" }]);
+            }, 2000);
         }
         else if (alert === "transsuccess") {
-            this.context.handleStateChange([{ state: "warningMsg", newState: "Transaction Successful!" }]);
+            this.context.handleStateChange([{ state: "acctWarningMsg", newState: `${name} transaction successful!` }]);
             setTimeout(() => {
-                this.context.handleStateChange([{ state: "warningMsg", newState: "" }]);
-            }, 3000);
+                this.context.handleStateChange([{ state: "acctWarningMsg", newState: "" }]);
+            }, 2000);
         }
         else if (alert === "acctfail") {
-            this.context.handleStateChange([{ state: "warningMsg", newState: "Account Not Created. Duplicate name." }]);
+            this.context.handleStateChange([{ state: "acctWarningMsg", newState: `${name} not created:\n Duplicate name.` }]);
             setTimeout(() => {
-                this.context.handleStateChange([{ state: "warningMsg", newState: "" }]);
-            }, 3000);
+                this.context.handleStateChange([{ state: "acctWarningMsg", newState: "" }]);
+            }, 2000);
         }
         else if (alert === "transfail") {
-            this.context.handleStateChange([{ state: "warningMsg", newState: "Transaction Failed. Invalid amount." }]);
+            this.context.handleStateChange([{ state: "acctWarningMsg", newState: `${name} transaction failed:\n Invalid amount.` }]);
             setTimeout(() => {
-                this.context.handleStateChange([{ state: "warningMsg", newState: "" }]);
-            }, 3000);
+                this.context.handleStateChange([{ state: "acctWarningMsg", newState: "" }]);
+            }, 2000);
         }
-    }
-
+        else if (alert === "delsuccess") {
+            this.context.handleStateChange([{ state: "acctWarningMsg", newState: `${name} deleted!` }]);
+            setTimeout(() => {
+                this.context.handleStateChange([{ state: "acctWarningMsg", newState: "" }]);
+            }, 2000);
+        }
+    };
 
     handleDelete = (i) => {
+        this.context.handleStateChange([{ state: "acctWarningSuccess", newState: true }]);
+        this.handleWarning("delsuccess", this.context.accounts.listArray[i].accountName);
         this.context.accounts.deleteAccount(this.context.accounts.listArray, i);
         this.balanceChecker(this.context.accounts.listArray);
-    }
+    };
 
     balanceChecker = (array) => {
         if (this.context.accounts.listArray.length > 0) {
