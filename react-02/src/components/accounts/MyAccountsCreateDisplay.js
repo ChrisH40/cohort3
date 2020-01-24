@@ -9,7 +9,7 @@ class AccountCreateDisplay extends React.Component {
             <div>
                 <div className="create-account-display">
                     <form onSubmit={(event) => this.props.handleSubmit(event)}>
-                        <label className="create-account-text">Name:</label>
+                        <div>Name:</div>
                         <input
                             type="text"
                             name="acctName"
@@ -17,7 +17,7 @@ class AccountCreateDisplay extends React.Component {
                             placeholder="name"
                             className="create-account-name-input"
                             onChange={(event) => this.context.handleOnChange(event)} />
-                        <label className="create-account-text">Opening Balance:</label>
+                        <div>Opening Balance:</div>
                         <input
                             type="number"
                             name="acctBalance"
@@ -36,7 +36,7 @@ class AccountCreateDisplay extends React.Component {
                 </div>
             </div>
         )
-    }
+    };
 }
 
 export default AccountCreateDisplay;

@@ -25,14 +25,14 @@ class App extends React.Component {
     super();
     this.state = {
       selected: houseIcon,
-    }
-  }
+    };
+  };
 
   handleClick = (event) => {
     this.setState({
       selected: event.target.name,
     })
-  }
+  };
 
   handleSelected = (selected) => {
     if (selected === houseIcon) {
@@ -57,7 +57,7 @@ class App extends React.Component {
       return < ChangeSettingsDisplay />
     }
     else return
-  }
+  };
 
   navIconMapper = (images, image_headers) => {
     return images.map((image, i) =>
@@ -93,8 +93,8 @@ class App extends React.Component {
           {this.handleSelected(this.state.selected)}
         </div>
       </div>
-    );
-  }
+    )
+  };
 }
 
 export default App;

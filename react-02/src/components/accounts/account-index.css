@@ -38,6 +38,7 @@
 .create-account-display,
 .account-warning-display {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 20vh;

@@ -2,33 +2,28 @@
 
 .city-wrapper {
     display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-template-areas:  
-      'left top top top right' 
-      'left bottom bottom bottom right';
-      background-color: #282c34;
-      min-height: 90vmin;
-      padding: 5px;
-      color: white;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 2fr;
+    background-color: #282c34;
+    min-height: 89vmin;
+    padding: 5px;
+    color: white;
+    font-size: 20px;
 }
 
 .city-container-left,
 .city-container-middle-top,
 .city-container-middle-bottom,
 .city-container-right {
-    margin: 15px;
+    margin: 20px;
     padding: 10px;
     border: solid 1px #09d3ac;
     background-color:  rgba(0, 217, 255, 0.25);
 }
 
-.city-display-header {
-    font-size: 20px;
-}
-
 .create-city-display,
+.city-warning-display,
 .city-display,
-.city-facts-display,
 .city-calculations-display {
     background-color: #282c34;
     border: solid 1px #09d3ac;
@@ -36,22 +31,37 @@
     padding: 10px;
 }
 
-.city-container-left {
-    grid-area: left;
-    height: 37vh;
+.city-server-display {
+    margin: 10px;
+    padding: 10px;
 }
 
-.create-city-display {
+.city-container-left {
+    height: 35vh;
+}
+
+.create-city-display,
+.city-warning-display {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 14px;
+}
+
+.city-warning-display {
+    height: 20vh;
+}
+
+.city-warning-text {
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .create-city-input {
     margin: 10px;
     padding: 5px;
     height: 2vh;
-    width: 10vw;
 }
 
 .create-city-button {
@@ -66,13 +76,17 @@
     margin-left: 10px;
 }
 
+.city-facts-header {
+    grid-column-start: 8;
+    font-size: 10px;
+}
+
 .city-container-middle-top {
-    grid-area: top;
-    height: 45vh;
+    height: 69vh;
 }
 
 .city-display {
-    height: 37vh;
+    height: 59vh;
     overflow: auto;
 }
 
@@ -80,9 +94,10 @@
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     height: 3vh;
-    padding: 10px 0px 10px 0px;
+    padding: 10px;
     margin: 5px 0px 5px 0px;
     background-color:  rgba(0, 217, 255, 0.10);
+    font-size: 14px;
 }
 
 .city-card:hover {
@@ -114,43 +129,35 @@
 .city-population-input {
     width: 6vw;
 }
-    
-.city-container-middle-bottom {
-    grid-area: bottom;
-    height: 22vh;
-    padding: 15px;
-    margin-top: -65px ;
-}
 
 .city-facts-display {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
-    height: 22vh;
+    background-color:rgb(0, 217, 255, 0.40);
+    height: 20vh;
     text-align: left;
-    font-size: 13px;
-    margin: -35px 0px 0px 0px;
-}
-
-.city-facts-text {
-    font-size: 17px
+    font-size: 15px;
+    margin-top: -5px;
+    padding-left: 50px;
+    margin-bottom: 10px;
 }
 
 .city-container-right {
-    grid-area: right;
-    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: 69vh;
+}
+
+.container-right-info {
+    font-size: 20px;
 }
 
 .city-calculations-display {
     padding: 20px;
-    text-align: center;
-    justify-content: center;
-    height: 16vh;
-    font-size: 30px;    
+    height: 14vh;    
     margin: 13px 13px 13px -30px;
-}
-
-.city-container-right-header {
-    font-size: 15px;
+    font-size: 15px; 
 }
 
 .city-button {

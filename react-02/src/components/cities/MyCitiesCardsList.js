@@ -12,6 +12,7 @@ class CityCardsList extends React.Component {
                 city={city}
                 index={i}
                 handleDelete={this.props.handleDelete}
+                handleWarning={this.props.handleWarning}
                 cityChecker={this.props.cityChecker}
                 cityInfoSelector={this.props.cityInfoSelector}
             />
@@ -22,7 +23,7 @@ class CityCardsList extends React.Component {
                 {cityList}
             </div>
         )
-    }
+    };
 }
 
 export default CityCardsList;

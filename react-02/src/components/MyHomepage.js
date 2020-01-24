@@ -20,8 +20,8 @@ class Homepage extends React.Component {
                 </a>
             </div>
 
-        );
-    }
+        )
+    };
 }
 
 export default Homepage;

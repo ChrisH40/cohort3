@@ -18,7 +18,7 @@ const FifoLifoListDisplay = () => {
         setNextAdd(nextAdd = context.listGenerator.nextToAdd());
         setNextFifoRemove(nextFifoRemove = context.fifoQueue.nextToRemove());
         setNextLifoRemove(nextLifoRemove = context.lifoStack.nextToRemove());
-    }
+    };
 
     const handleTakeOut = () => {
         context.fifoQueue.remove(nextFifoRemove);
@@ -28,7 +28,7 @@ const FifoLifoListDisplay = () => {
         context.handleStateChange([{ state: "lastFifoRemoved", newState: nextFifoRemove }, { state: "lastLifoRemoved", newState: nextLifoRemove }]);
         setNextFifoRemove(nextFifoRemove = context.fifoQueue.nextToRemove());
         setNextLifoRemove(nextLifoRemove = context.lifoStack.nextToRemove());
-    }
+    };
 
     return (
         <div className="fifolifo-wrapper" style={{ backgroundColor: context.theme[context.state.themeValue].background, color: context.theme[context.state.themeValue].color }}>

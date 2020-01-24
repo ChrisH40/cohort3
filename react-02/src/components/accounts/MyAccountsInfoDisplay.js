@@ -24,7 +24,7 @@ class AccountBalancesDisplay extends React.Component {
                 </div>
             </div>
         )
-    }
+    };
 }
 
 export default AccountBalancesDisplay;

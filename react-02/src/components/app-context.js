@@ -43,7 +43,7 @@ export class ContextProvider extends React.Component {
         totalBalance: "",
         // Cities
         dataLoad: false,
-        serverStatus: true,
+        serverStatus: false,
         cityWarningSuccess: true,
         cityWarningMsg: "",
         cityName: "",
@@ -107,6 +107,6 @@ export class ContextProvider extends React.Component {
             >
                 <App />
             </AppContext.Provider>
-        );
-    }
+        )
+    };
 }

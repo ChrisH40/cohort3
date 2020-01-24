@@ -19,7 +19,7 @@ const LinkedListDisplay = () => {
             setAmount("");
             event.preventDefault();
         }
-    }
+    };
 
     const displayNodes = (list) => {
         if (!list.head) {
@@ -41,14 +41,14 @@ const LinkedListDisplay = () => {
             }
             return displayedNodes;
         }
-    }
+    };
 
     const ListCard = (props) => (
         <div className={`list-card ` + ((props.node === context.linkedList.current) ? "active-list-card" : null)}>
             <span className="list-card-text">Subject: {props.node.subject}</span>
             <span className="list-card-text">Amount: {props.node.amount}</span>
         </div>
-    )
+    );
 
     return (
         <div className="list-wrapper" style={{ backgroundColor: context.theme[context.state.themeValue].background, color: context.theme[context.state.themeValue].color }}>

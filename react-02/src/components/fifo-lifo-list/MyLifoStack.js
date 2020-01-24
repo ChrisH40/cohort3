@@ -17,6 +17,6 @@ const LifoStackDisplay = (props) => {
             {lifoList}
         </div>
     )
-}
+};
 
 export default LifoStackDisplay;

@@ -17,6 +17,6 @@ const FifoQueueDisplay = (props) => {
             {fifoList}
         </div>
     )
-}
+};
 
 export default FifoQueueDisplay

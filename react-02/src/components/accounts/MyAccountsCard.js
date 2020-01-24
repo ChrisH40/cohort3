@@ -80,7 +80,7 @@ class AccountCard extends React.Component {
                     onClick={() => this.props.handleDelete(this.props.index)} />
             </div>
         )
-    }
+    };
 }
 
 export default AccountCard;
