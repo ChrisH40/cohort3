@@ -11,18 +11,18 @@ const FifoLifoListDisplay = () => {
     let [nextFifoRemove, setNextFifoRemove] = useState(context.fifoQueue.nextToRemove());
     let [nextLifoRemove, setNextLifoRemove] = useState(context.lifoStack.nextToRemove());
 
-    const seperatedString = (item) => {
+    const separatedString = (item) => {
         let num = Number(item.match(/\d+/g));
         let string = (item.match(/[a-zA-Z]+/g)).join(" ");
-        let seperated = [string, num];
-        return seperated;
+        let separated = [string, num];
+        return separated;
     };
 
     const duplicateFifoCheck = (item) => {
         let duplicate = context.fifoQueue.list.find(dup => dup === item);
         if (duplicate === item) {
-            let seperated = seperatedString(item);
-            let nextFifoAdd = String(seperated[0] + (seperated[1] + 1));
+            let separated = separatedString(item);
+            let nextFifoAdd = String(separated[0] + (separated[1] + 1));
             return nextFifoAdd;
         }
         else return item;
@@ -31,8 +31,8 @@ const FifoLifoListDisplay = () => {
     const duplicateLifoCheck = (item) => {
         let duplicate = context.lifoStack.list.find(dup => dup === item);
         if (duplicate === item) {
-            let seperated = seperatedString(item);
-            let nextLifoAdd = String(seperated[0] + (seperated[1] + 1));
+            let separated = separatedString(item);
+            let nextLifoAdd = String(separated[0] + (separated[1] + 1));
             return nextLifoAdd;
         }
         else return item;
