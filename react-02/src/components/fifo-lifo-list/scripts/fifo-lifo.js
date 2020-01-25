@@ -29,25 +29,28 @@ export class ListGenerator {
                 "Haverstraw", "Chatanika", "Chaska", "Nebraska", "Alaska",
                 "Opelika", "Baraboo", "Waterloo", "Kalamazoo", "Kansas City",
                 "Sioux City", "Cedar City", "Dodge City"];
-    }
+    };
 
     addMasterList(item) {
         this.masterList.push(item);
         return item;
-    }
+    };
 
     removeMasterList() {
         const removedItem = this.masterList.shift();
         return removedItem;
-    }
+    };
 
     nextToAdd() {
-        const nextAdd = this.masterList[0];
-        return nextAdd;
-    }
+        if (this.masterList.length > 0) {
+            const nextAdd = this.masterList[0];
+            return nextAdd;
+        }
+        else return "You've been everywhere!"
+    };
 
     add(item) {
         this.list.push(item);
         return item;
-    }
-};
+    };
+}

@@ -75,6 +75,8 @@ test('test nextToAdd', () => {
                 "Opelika", "Baraboo", "Waterloo", "Kalamazoo", "Kansas City",
                 "Sioux City", "Cedar City", "Dodge City"]
         );
+    testGenerator.masterList = [];
+    expect(testGenerator.nextToAdd()).toBe("You've been everywhere!")
 });
 
 test('test add to fifo queue, lifo stack lists', () => {
