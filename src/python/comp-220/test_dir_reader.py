@@ -5,7 +5,7 @@ import dir_reader
 # TBC - Create a temporary/mock dir for testing.
 
 
-def test_FileReader():
+def test_DirReader():
     reader = dir_reader.DirReader("/code/cohort3/src/01-getting-started/")
     assert reader.name == "/code/cohort3/src/01-getting-started/"
     assert reader.files_sizes(
