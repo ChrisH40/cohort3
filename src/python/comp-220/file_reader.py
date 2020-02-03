@@ -7,6 +7,7 @@ class FileReader:
 
     def line_count(self):
         lines = len(self.xfile)
+        print(f'File {self.name} contains {lines} lines.')
         return lines
 
     # TBC - count number of instances of else statement syntax vs. "else" words.
@@ -22,8 +23,13 @@ class FileReader:
             chars += len(line)
         return chars
 
-    def file_summary(self, word):
+    def summary(self, word):
         lines = self.line_count()
         chars = self.char_count()
         words = self.word_count(word)
-        return f"File {self.name} has: \n- {lines} lines \n- {chars} characters (incl. spaces) \n- {words} instances of the word '{word}'"
+        summary = f"File {self.name} Summary: \n- {lines} lines \n- {chars} characters (incl. spaces) \n- {words} instances of the word '{word}'"
+        print(summary)
+        return summary
+
+reader = FileReader("/code/cohort3/src/javascript/syntax.js")
+reader.line_count()
