@@ -30,6 +30,3 @@ class FileReader:
         summary = f"File {self.name} Summary: \n- {lines} lines \n- {chars} characters (incl. spaces) \n- {words} instances of the word '{word}'"
         print(summary)
         return summary
-
-reader = FileReader("/code/cohort3/src/javascript/syntax.js")
-reader.line_count()
