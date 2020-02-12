@@ -13,5 +13,3 @@ def test_sheet_reader_sheet_to_dict():
         'INV_ID': 102, 'CUST_ID': 102, 'INV_DATE': datetime.datetime(2019, 2, 1, 0, 0), 'INV_DESC': 'Some test tested some stuff'}}
     assert test_workbook[2] == {101: {'PROD_ID': 101, 'PROD_NAME': 'Test Item 1', 'PROD_DESC': 'Test Item 1 description', 'SKU': 1000000001, 'UNIT_PRICE': 1.99}, 102: {
         'PROD_ID': 102, 'PROD_NAME': 'Test Item 2', 'PROD_DESC': 'Test Item 2 description', 'SKU': 1000000002, 'UNIT_PRICE': 199.99}}
-    assert test_workbook[3] == {101: {'INV_ID': 101, 'PROD_ID': 102, 'QTY': 1}, 102: {
-        'INV_ID': 102, 'PROD_ID': 102, 'QTY': 10}}
