@@ -34,19 +34,15 @@ def invoice_to_dict(inv, sheets):
     invoice = dict()
     invoice['invoice'] = invoices[inv]
     invoice['customer'] = customers[invoices[inv]['CUST_ID']]
-    item_list = []
-    product_list = []
-    for key, value in line_items.items():
+    prod_list = []
+    for value in line_items.values():
         if inv == value['INV_ID']:
-            item_list = dict_lists(item_list, value)
-            prod_ID = value['PROD_ID']
-            product = products[prod_ID]
-            product_list = dict_lists(product_list, product)
-            invoice['line_items'] = item_list
-            invoice['products'] = product_list
+            prod_dict = dict()
+            prod_id = value['PROD_ID']
+            prod_dict['product'] = products[prod_id]['PROD_NAME']
+            prod_dict['desc'] = products[prod_id]['PROD_DESC']
+            prod_dict['cost'] = products[prod_id]['UNIT_PRICE']
+            prod_dict['quantity'] = value['QTY']
+            prod_list.append(prod_dict)
+            invoice['products'] = prod_list
     return invoice
-
-
-def dict_lists(xlist, value):
-    xlist.append(value)
-    return xlist
