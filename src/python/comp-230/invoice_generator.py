@@ -4,32 +4,20 @@ from openpyxl.styles import Font
 
 
 def invoice_generator(file):
-    if file.endswith('.xlsx'):
-        sheets = invoice_sheet_functions.sheet_reader(file)
-        while True:
-            try:
-                invoice_ID = invoice_number()
-                invoice = invoice_sheet_functions.invoice_to_dict(invoice_ID, sheets)
-            except:
-                print("Invoice not found.")
-                continue
-            else:
-                print(f"Invoice successfully generated.")
-                return invoice_printer(invoice)
-    else:
-        print('File format must end with .xlsx. Please enter a different file.')
-        return
-
-
-def invoice_number():
     while True:
         try:
-            invoice_id = int(input("Please enter your invoice ID number: "))
+            sheets = invoice_sheet_functions.sheet_reader(file)
+            invoice_ID = int(input("Please enter your invoice ID number: "))
+            invoice = invoice_sheet_functions.invoice_to_dict(invoice_ID, sheets)
         except ValueError:
             print("Not a valid number. Please re-enter.")
             continue
+        except KeyError:
+            print("Invoice not found. Please re-enter.")
+            continue
         else:
-            return invoice_id
+            print(f"Invoice successfully generated.")
+            return invoice_printer(invoice)
 
 
 def invoice_printer(inv):
@@ -94,17 +82,23 @@ def invoice_printer(inv):
         row_counter = 13
         inv_total = 0
         for item in inv['products']:
-            sheet.cell(row=row_counter, column=column_start).value = item['product']
-            sheet.cell(row=row_counter, column=column_start + 3).value = item['desc']
-            sheet.cell(row=row_counter, column=column_start + 7).value = f"${item['cost']}"
-            sheet.cell(row=row_counter, column=column_start + 9).value = item['quantity']
+            sheet.cell(row=row_counter,
+                       column=column_start).value = item['product']
+            sheet.cell(row=row_counter, column=column_start +
+                       3).value = item['desc']
+            sheet.cell(row=row_counter, column=column_start +
+                       7).value = f"${item['cost']}"
+            sheet.cell(row=row_counter, column=column_start +
+                       9).value = item['quantity']
             line_total = round((item['quantity'] * item['cost']), 2)
-            sheet.cell(row=row_counter, column=column_start + 11).value = f"${line_total}"
+            sheet.cell(row=row_counter, column=column_start +
+                       11).value = f"${line_total}"
             inv_total += line_total
             row_counter += 2
         sheet.cell(row=row_counter + 2, column=12).value = "Total:"
         sheet.cell(row=row_counter + 2, column=13).font = bolded_style
-        sheet.cell(row=row_counter + 2, column=13).value = f"${round(inv_total, 2)}"
+        sheet.cell(row=row_counter + 2,
+                   column=13).value = f"${round(inv_total, 2)}"
 
     prod_printer(inv)
 
