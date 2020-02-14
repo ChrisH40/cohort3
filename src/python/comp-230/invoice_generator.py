@@ -1,7 +1,24 @@
 import invoice_sheet_functions
 import openpyxl
 from openpyxl.styles import Font
-import datetime
+
+
+def invoice_generator(file):
+    if file.endswith('.xlsx'):
+        sheets = invoice_sheet_functions.sheet_reader(file)
+        while True:
+            try:
+                invoice_ID = invoice_number()
+                invoice = invoice_sheet_functions.invoice_to_dict(invoice_ID, sheets)
+            except:
+                print("Invoice not found.")
+                continue
+            else:
+                print(f"Invoice successfully generated.")
+                return invoice_printer(invoice)
+    else:
+        print('File format must end with .xlsx. Please enter a different file.')
+        return
 
 
 def invoice_number():
@@ -15,29 +32,11 @@ def invoice_number():
             return invoice_id
 
 
-def invoice_generator(file):
-    sheets = invoice_sheet_functions.sheet_reader(file)
-    while True:
-        try:
-            invoice_ID = invoice_number()
-            invoice = invoice_sheet_functions.invoice_to_dict(invoice_ID, sheets)
-        except:
-            print("Invoice not found.")
-        else:
-            return invoice_printer(invoice)
-
-
 def invoice_printer(inv):
     invoice = openpyxl.Workbook()
     sheet = invoice.active
     sheet.title = f"Invoice{inv['invoice']['INV_ID']}"
 
-    def apt_number(inv):
-        if inv['customer']['APT_NUM'] == None:
-            return ""
-        else:
-            return f"#{inv['customer']['APT_NUM']},"
-    
     title_style = Font(sz=22.0, b=True, color="1dcc4b")
     header_style = Font(sz=16.0, b=True)
     footer_style = Font(sz=16.0, b=True, i=True)
@@ -54,6 +53,12 @@ def invoice_printer(inv):
     invoice_num = sheet['L3']
     invoice_num.value = f"#{inv['invoice']['INV_ID']}"
     invoice_num.font = info_style
+
+    def apt_number(inv):
+        if inv['customer']['APT_NUM'] == None:
+            return ""
+        else:
+            return f"#{inv['customer']['APT_NUM']},"
 
     cust_name = sheet['B5']
     cust_name.value = f"{inv['customer']['F_NAME']} {inv['customer']['L_NAME']}"
@@ -89,17 +94,17 @@ def invoice_printer(inv):
         row_counter = 13
         inv_total = 0
         for item in inv['products']:
-            sheet.cell(row = row_counter, column = column_start).value = item['product']
-            sheet.cell(row = row_counter, column = column_start + 3).value = item['desc']
-            sheet.cell(row = row_counter, column = column_start + 7).value = f"${item['cost']}"
-            sheet.cell(row = row_counter, column = column_start + 9).value = item['quantity']
+            sheet.cell(row=row_counter, column=column_start).value = item['product']
+            sheet.cell(row=row_counter, column=column_start + 3).value = item['desc']
+            sheet.cell(row=row_counter, column=column_start + 7).value = f"${item['cost']}"
+            sheet.cell(row=row_counter, column=column_start + 9).value = item['quantity']
             line_total = round((item['quantity'] * item['cost']), 2)
-            sheet.cell(row = row_counter, column = column_start + 11).value = f"${line_total}"
+            sheet.cell(row=row_counter, column=column_start + 11).value = f"${line_total}"
             inv_total += line_total
             row_counter += 2
-        sheet.cell(row = row_counter + 2, column = 12).value = "Total:"
-        sheet.cell(row = row_counter + 2, column = 13).font = bolded_style
-        sheet.cell(row = row_counter + 2, column = 13).value = f"${round(inv_total, 2)}"
+        sheet.cell(row=row_counter + 2, column=12).value = "Total:"
+        sheet.cell(row=row_counter + 2, column=13).font = bolded_style
+        sheet.cell(row=row_counter + 2, column=13).value = f"${round(inv_total, 2)}"
 
     prod_printer(inv)
 
