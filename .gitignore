@@ -8,3 +8,5 @@
 /node_modules
 src/.vscode/settings.json
 *.pyc 
+src/python/comp-240/Pipfile
+src/report.txt
