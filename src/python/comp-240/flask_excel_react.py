@@ -5,7 +5,7 @@ from invoice_sheet_functions import sheet_reader
 
 app = Flask(__name__)
 
-sht_data = sheet_reader('/code/cohort3/src/python/comp-230/invoice_data.xlsx')
+sheet_data = sheet_reader('/code/cohort3/src/python/comp-230/invoice_data.xlsx')
 
 
 @app.route('/')
