@@ -1,0 +1,98 @@
+<html>
+
+<head>
+	<script type="text/javascript">
+		function httpGetAsync(theUrl, callback) {
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.onreadystatechange = function () {
+				if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+					callback(xmlHttp.responseText);
+			}
+			xmlHttp.open("GET", theUrl, true); // true for asynchronous
+			xmlHttp.send(null);
+		}
+	</script>
+</head>
+
+<body>
+	<div style="font-size: 18; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">
+		
+		<table style="width:100%; font-size: 12">
+			<div>Customers</div>
+			{% set existing_keys = [] %}
+			{% for value in data['Customers'].values() %}
+				{% for key in value.keys() %}
+					{% if key not in existing_keys %}
+					  <th style="text-align: left">{{key}}</th>
+					  {% set existing_keys = existing_keys.append(key) %} 
+					{% endif %}
+				{% endfor %}
+				<tr>
+				{% for value in value.values() %}
+					<td>{{value}}</td>
+				{% endfor %}
+				</tr>	
+			{% endfor %}
+		</table>
+		<br>
+		<table style="width:25%; font-size: 12">
+			<div>Invoices</div>
+			{% set existing_keys = [] %}
+			{% for value in data['Invoices'].values() %}
+				{% for key in value.keys() %}
+					{% if key not in existing_keys %}
+					  <th style="text-align: left">{{key}}</th>
+					  {% set existing_keys = existing_keys.append(key) %} 
+					{% endif %}
+				{% endfor %}
+				<tr>
+				{% for value in value.values() %}
+					<td>{{value}}</td>
+				{% endfor %}
+				</tr>	
+			{% endfor %}
+			</div>
+		</table>
+		<br>
+		<table style="width:50%; font-size: 12">
+			<div>Products</div>
+			{% set existing_keys = [] %}
+			{% for value in data['Products'].values() %}
+				{% for key in value.keys() %}
+					{% if key not in existing_keys %}
+					  <th style="text-align: left">{{key}}</th>
+					  {% set existing_keys = existing_keys.append(key) %} 
+					{% endif %}
+				{% endfor %}
+				<tr>
+				{% for value in value.values() %}
+					<td>{{value}}</td>
+				{% endfor %}
+				</tr>	
+			{% endfor %}
+			</div>
+		</table>
+		<br>
+		<table style="width:15%; font-size: 12">
+			<div>Line Items</div>
+			{% set existing_keys = [] %}
+			{% for value in data['Line Items'].values() %}
+				{% for key in value.keys() %}
+					{% if key not in existing_keys %}
+					  <th style="text-align: left">{{key}}</th>
+					  {% set existing_keys = existing_keys.append(key) %} 
+					{% endif %}
+				{% endfor %}
+				<tr>
+				{% for value in value.values() %}
+					<td>{{value}}</td>
+				{% endfor %}
+				</tr>	
+			{% endfor %}
+			</div>
+		</table>
+		
+	</div>
+</body>
+
+</html>
