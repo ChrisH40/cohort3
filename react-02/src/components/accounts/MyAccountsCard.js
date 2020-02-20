@@ -35,11 +35,15 @@ class AccountCard extends React.Component {
 
     handleWithdraw(i) {
         if (this.state.changeBalance < 0.01) {
+            this.context.handleStateChange([{ state: "acctWarningSuccess", newState: false }]);
             this.props.handleWarning("transfail", this.context.accounts.listArray[i].accountName);
+   
         }
         else {
+            this.context.handleStateChange([{ state: "acctWarningSuccess", newState: true }]);
             this.context.accounts.listArray[i].accountWithdraw(Number(this.state.changeBalance));
             this.props.handleWarning("transsuccess", this.context.accounts.listArray[i].accountName);
+
         }
         this.setState({
             changeBalance: "",
