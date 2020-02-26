@@ -15,37 +15,13 @@
 </head>
 
 <body>
-	<div style="font-size: 18; font-family: Arial, Helvetica, sans-serif; font-weight: bold">	
-		{% for key, value in data.items() %}
-			{% if key == "Customers" %}
-			<table style="width:100%; font-size: 12">
-			{% elif key == "Line Items" %}
-			<table style="width:15%; font-size: 12">
-			{% else %}
-			<table style="width:50%; font-size: 12">
-			{% endif %}
-				<div>{{key}}</div>
-				{% set existing_keys = [] %}
-				{% for value in value.values() %}
-					{% for key in value.keys() %}
-						{% if key not in existing_keys %}
-					  		<th style="text-align: left">{{key}}</th>
-					  		{% set existing_keys = existing_keys.append(key) %} 
-						{% endif %}
-					{% endfor %}
-					<tr>
-					{% for value in value.values() %}
-						{% if value == None %}
-							<td>{{""}}</td>
-						{% else %}
-							<td>{{value}}</td>
-						{% endif %}
-					{% endfor %}
-					</tr>
-				{% endfor %}
-			</table>
-			<br>	
-		{% endfor %}
+	<div style="font-size: 16; font-family: Arial, Helvetica, sans-serif">	
+        <span>Welcome to my first API</span>
+        <span style="font-size: 14">Directory</span>
+        <ul>
+            <li>url extension "/raw" - to display raw data</li>
+            <li>url extension "/loop" - to display data in table form</li>
+        </ul>
 	</div>
 </body>
 

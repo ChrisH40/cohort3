@@ -12,25 +12,33 @@ sheet_data = sheet_reader('/code/cohort3/src/python/comp-230/invoice_data.xlsx')
 @app.route('/')
 def home():
     try:
-        return jsonify({'message': 'Use url extension raw or loop to display data.'})
+        return render_template('index.html'), 200
     except:
-        return jsonify({'message': 'Error. Please try again.'})
+        return jsonify({'message': 'Error - please try again.'}), 404
 
 
 @app.route('/raw')
 def data_dump():
     try:
-        return jsonify(sheet_data)
+        return jsonify(sheet_data), 200
     except:
-        return jsonify({'message': 'Error. Please try again.'})
+        return jsonify({'message': 'Error - please try again.'}), 400
 
 
 @app.route('/loop')
 def data_loop():
     try:
-        return render_template('index.html', data=sheet_data)
+        return render_template('loop.html', data=sheet_data), 200
     except:
-        return jsonify({'message': 'Error. Please try again.'})
+        return jsonify({'message': 'Error - please try again.'}), 400
+
+
+@app.route('/all', methods=['GET'])
+def get_all():
+    try:
+        return jsonify(sheet_data), 200
+    except:
+        return jsonify({'message': 'Error - data not found'}), 400
 
 
 app.run(port=5000, debug=True)

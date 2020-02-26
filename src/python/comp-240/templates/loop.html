@@ -1,0 +1,52 @@
+<html>
+
+<head>
+	<script type="text/javascript">
+		function httpGetAsync(theUrl, callback) {
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.onreadystatechange = function () {
+				if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+					callback(xmlHttp.responseText);
+			}
+			xmlHttp.open("GET", theUrl, true);
+			xmlHttp.send(null);
+		}
+	</script>
+</head>
+
+<body>
+	<div style="font-size: 18; font-family: Arial, Helvetica, sans-serif; font-weight: bold">	
+		{% for key, value in data.items() %}
+			{% if key == "Customers" %}
+			<table style="width:100%; font-size: 12">
+			{% elif key == "Line Items" %}
+			<table style="width:15%; font-size: 12">
+			{% else %}
+			<table style="width:50%; font-size: 12">
+			{% endif %}
+				<div>{{key}}</div>
+				{% set existing_keys = [] %}
+				{% for value in value.values() %}
+					{% for key in value.keys() %}
+						{% if key not in existing_keys %}
+					  		<th style="text-align: left">{{key}}</th>
+					  		{% set existing_keys = existing_keys.append(key) %} 
+						{% endif %}
+					{% endfor %}
+					<tr>
+					{% for value in value.values() %}
+						{% if value == None %}
+							<td>{{""}}</td>
+						{% else %}
+							<td>{{value}}</td>
+						{% endif %}
+					{% endfor %}
+					</tr>
+				{% endfor %}
+			</table>
+			<br>	
+		{% endfor %}
+	</div>
+</body>
+
+</html>
