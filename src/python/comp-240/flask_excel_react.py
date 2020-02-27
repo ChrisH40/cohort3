@@ -38,7 +38,7 @@ def get_all():
     try:
         return jsonify(sheet_data), 200
     except:
-        return jsonify({'message': 'Error - data not found'}), 400
+        return jsonify({'message': 'Error - data not found.'}), 400
 
 
 app.run(port=5000, debug=True)
