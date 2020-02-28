@@ -41,4 +41,14 @@ def get_all():
         return jsonify({'message': 'Error - data not found.'}), 400
 
 
+@app.route('/<string:sheet>', methods=['GET'])
+def get_sheet(sheet):
+    try:
+        for key, value in sheet_data.items():
+            if key.lower() == sheet.lower():
+                return jsonify(value)
+    except:
+        return jsonify({'message': 'Error - sheet not found.'}), 400
+
+
 app.run(port=5000, debug=True)
