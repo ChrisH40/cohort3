@@ -22,7 +22,7 @@ def data_dump():
     try:
         return jsonify(sheet_data), 200
     except:
-        return jsonify({'message': 'Error - please try again.'}), 400
+        return jsonify({'message': 'Error - please try again.'}), 404
 
 
 @app.route('/loop')
@@ -30,7 +30,7 @@ def data_loop():
     try:
         return render_template('loop.html', data=sheet_data), 200
     except:
-        return jsonify({'message': 'Error - please try again.'}), 400
+        return jsonify({'message': 'Error - please try again.'}), 404
 
 
 @app.route('/all', methods=['GET'])
@@ -38,22 +38,22 @@ def get_all():
     try:
         return jsonify(sheet_data), 200
     except:
-        return jsonify({'message': 'Error - please try again.'}), 400
+        return jsonify({'message': 'Error - please try again.'}), 404
 
 
 @app.route('/<string:sheet>', methods=['GET'])
 def get_sheet(sheet):
     try:
         for key, value in sheet_data.items():
-            if key.lower() == sheet.lower():
-                return jsonify(value)
-            else:
-                return jsonify({'message': 'Error - sheet not found.'})
+            if sheet == key or sheet.lower() == key.lower():
+                return jsonify(value), 200
+        else:
+            return jsonify({'message': 'Error - sheet not found.'}), 400
     except:
-        return jsonify({'message': 'Error - please try again.'}), 400
+        return jsonify({'message': 'Error - please try again.'}), 404
 
 
-@app.route('/<string:sheet>/<int:item>', methods=['GET'])
+@app.route('/<string:sheet>/<string:item>', methods=['GET'])
 def get_item(sheet, item):
     try:
         for key, value in sheet_data.items():
