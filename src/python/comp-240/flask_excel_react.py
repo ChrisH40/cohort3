@@ -53,20 +53,4 @@ def get_sheet(sheet):
         return jsonify({'message': 'Error - please try again.'}), 404
 
 
-@app.route('/<string:sheet>/<string:item>', methods=['GET'])
-def get_item(sheet, item):
-    try:
-        for key, value in sheet_data.items():
-            if key.lower() == sheet.lower():
-                for key, value in value.items():
-                    if str(key) == str(item):
-                        return jsonify(value)
-                    else:
-                        return jsonify({'message': 'Error - item not found.'})
-            else:
-                return jsonify({'message': 'Error - sheet not found.'})
-    except:
-        return jsonify({'message': 'Error - please try again.'}), 400
-
-
 app.run(port=5000, debug=True)
