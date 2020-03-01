@@ -48,9 +48,13 @@ def get_all():
 @app.route('/<string:sheet>', methods=['POST', 'GET'])
 def get_sheet(sheet):
     try:
+        sheet_list = list()
         for key, value in sheet_data.items():
             if sheet == key or sheet.lower() == key.lower():
-                return jsonify(value), 200
+                x_sheet = value
+                for key, value in x_sheet.items():
+                    sheet_list.append(value)
+                return jsonify(sheet_list), 200
         return jsonify({'message': 'Error - sheet not found.'}), 400
     except:
         return jsonify({'message': 'Error - please try again.'}), 404
