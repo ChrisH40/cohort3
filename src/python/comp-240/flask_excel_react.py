@@ -1,7 +1,8 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, request, render_template
 import sys
 sys.path.append('/code/cohort3/src/python/comp-230/')
 from invoice_sheet_functions import sheet_reader
+import datetime
 
 
 app = Flask(__name__)
@@ -47,8 +48,7 @@ def get_sheet(sheet):
         for key, value in sheet_data.items():
             if sheet == key or sheet.lower() == key.lower():
                 return jsonify(value), 200
-        else:
-            return jsonify({'message': 'Error - sheet not found.'}), 400
+        return jsonify({'message': 'Error - sheet not found.'}), 400
     except:
         return jsonify({'message': 'Error - please try again.'}), 404
 
@@ -64,7 +64,50 @@ def get_item(sheet, item):
                         return jsonify(value), 200
         return jsonify({'message': 'Error - sheet or item not found.'}), 400
     except:
-        return jsonify({'message': 'Error - please try again.'}), 404                   
+        return jsonify({'message': 'Error - please try again.'}), 404
+
+
+@app.route('/<string:sheet>/add', methods=['POST'])
+def add_item(sheet):
+    try:
+        request_data = request.get_json()
+
+        if sheet not in sheet_data.keys():
+            return jsonify({'message': 'Error - sheet not found.'}), 400    
+ 
+        if sheet == 'Customers':
+            if 'CUST_ID' not in request_data or 'F_NAME' not in request_data or 'L_NAME' not in request_data or 'APT_NUM' not in request_data or 'ST_NUM' not in request_data or 'ST_NAME' not in request_data or 'CITY' not in request_data or 'PROV' not in request_data or 'CTRY' not in request_data or 'P_CODE' not in request_data or 'PHONE' not in request_data or 'EMAIL' not in request_data:
+                return jsonify({'message': 'Error - missing required key.'}), 400
+            else:
+                key = request_data['CUST_ID']
+        elif sheet == 'Invoices':
+            if 'INV_ID' not in request_data or 'CUST_ID' not in request_data or 'INV_DATE' not in request_data or 'INV_DESC' not in request_data:
+                return jsonify({'message': 'Error - missing required key.'}), 400
+            elif request_data['CUST_ID'] not in sheet_data['Customers']:
+                return  jsonify({'message': 'Error - referenced customer does not exist.'}), 400
+            else:
+                key = request_data['INV_ID']
+        elif sheet == 'Products':
+            if 'PROD_ID' not in request_data or 'PROD_NAME' not in request_data or 'PROD_DESC' not in request_data or 'SKU' not in request_data or 'UNIT_PRICE' not in request_data:
+                return jsonify({'message': 'Error - missing required key.'}), 400
+            else:
+                key = request_data['PROD_ID']
+        elif sheet == 'Line Items':
+            if 'LINE_ID' not in request_data or 'INV_ID' not in request_data or 'PROD_ID' not in request_data or 'QTY'not in request_data:
+                return jsonify({'message': 'Error - missing required key.'}), 400
+            elif request_data['INV_ID'] not in sheet_data['Invoices'] or request_data['PROD_ID'] not in sheet_data['Products']:
+                return  jsonify({'message': 'Error - referenced invoice or product does not exist.'}), 400
+            else:
+                key = request_data['LINE_ID']
+
+        if key in sheet_data[sheet]:
+            return jsonify({'message': f'Error - ID {key} already exists.'}), 400
+        else:
+            sheet_data[sheet][key] = request_data
+            return jsonify({'message': f'Item {key} successfully added to {sheet}.'}), 200
+         
+    except:   
+        return jsonify({'message': 'Error - please try again.'}), 404                
 
 
 app.run(port=5000, debug=True)
