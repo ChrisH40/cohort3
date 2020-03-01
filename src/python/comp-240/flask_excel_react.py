@@ -1,11 +1,14 @@
 from flask import Flask, jsonify, request, render_template
+from flask_cors import CORS
 import sys
 sys.path.append('/code/cohort3/src/python/comp-230/')
 from invoice_sheet_functions import sheet_reader
+
 import datetime
 
 
 app = Flask(__name__)
+CORS(app, supports_credentials=True)
 
 sheet_data = sheet_reader('/code/cohort3/src/python/comp-230/invoice_data.xlsx')
 
@@ -34,7 +37,7 @@ def data_loop():
         return jsonify({'message': 'Error - please try again.'}), 404
 
 
-@app.route('/all', methods=['GET'])
+@app.route('/all', methods=['POST','GET'])
 def get_all():
     try:
         return jsonify(sheet_data), 200
@@ -42,7 +45,7 @@ def get_all():
         return jsonify({'message': 'Error - please try again.'}), 404
 
 
-@app.route('/<string:sheet>', methods=['GET'])
+@app.route('/<string:sheet>', methods=['POST', 'GET'])
 def get_sheet(sheet):
     try:
         for key, value in sheet_data.items():
@@ -53,7 +56,7 @@ def get_sheet(sheet):
         return jsonify({'message': 'Error - please try again.'}), 404
 
 
-@app.route('/<string:sheet>/<int:item>', methods=['GET'])
+@app.route('/<string:sheet>/<int:item>', methods=['POST','GET'])
 def get_item(sheet, item):
     try:
         for key, value in sheet_data.items():

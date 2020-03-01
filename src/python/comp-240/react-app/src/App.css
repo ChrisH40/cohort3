@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.sheet-text,
+.sheet-input,
+.sheet-button {
+  justify-self: top;
+  margin: 10px;
+  margin-top: 20px;
+}
+
+.sheet-display {
+  flex-direction: column;
+  height: 80vh;
+  width: 95vw;
+  border: solid 1px #09d3ac;
+  overflow-y: auto;
+  font-size: calc(4px + 1vmin);
+}
+
+.table {
+  width: 100%;
+  text-align: left;
+}
+
+.table tr:nth-child(even){background-color: #f2f2f23d;}
