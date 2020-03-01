@@ -84,7 +84,7 @@ def add_item(sheet):
             if 'INV_ID' not in request_data or 'CUST_ID' not in request_data or 'INV_DATE' not in request_data or 'INV_DESC' not in request_data:
                 return jsonify({'message': 'Error - missing required key.'}), 400
             elif request_data['CUST_ID'] not in sheet_data['Customers']:
-                return  jsonify({'message': 'Error - referenced customer does not exist.'}), 400
+                return  jsonify({'message': 'Error - referenced CUST_ID does not exist.'}), 400
             else:
                 key = request_data['INV_ID']
         elif sheet == 'Products':
@@ -96,7 +96,7 @@ def add_item(sheet):
             if 'LINE_ID' not in request_data or 'INV_ID' not in request_data or 'PROD_ID' not in request_data or 'QTY'not in request_data:
                 return jsonify({'message': 'Error - missing required key.'}), 400
             elif request_data['INV_ID'] not in sheet_data['Invoices'] or request_data['PROD_ID'] not in sheet_data['Products']:
-                return  jsonify({'message': 'Error - referenced invoice or product does not exist.'}), 400
+                return  jsonify({'message': 'Error - referenced INV_ID or PROD_ID does not exist.'}), 400
             else:
                 key = request_data['LINE_ID']
 
