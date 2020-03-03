@@ -64,7 +64,6 @@ const App = () => {
               <td>{item['P_CODE']}</td>
               <td>{item['PHONE']}</td>
               <td>{item['EMAIL']}</td>
-
             </tr>
           )
         })
@@ -109,8 +108,9 @@ const App = () => {
     }
     else return (
       <tr key={1}>
-        <td>Loading...</td>
-      </tr>);
+        <td>Please Activate Server...</td>
+      </tr>
+    )
   };
 
   return (
@@ -133,8 +133,8 @@ const App = () => {
         </form>
         <div className="sheet-display">
           <table className="table">
+            <tr className="table-header" >{displayHeader(sheetData)}</tr>
             <tbody>
-              <tr>{displayHeader(sheetData)}</tr>
               {displaySheet(sheetData)}
             </tbody>
           </table>
