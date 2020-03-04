@@ -8,6 +8,7 @@ import datetime
 
 
 app = Flask(__name__)
+app.config['JSON_SORT_KEYS'] = False
 CORS(app, supports_credentials=True)
 
 sheet_data = sheet_reader('/code/cohort3/src/python/comp-230/invoice_data.xlsx')

@@ -74,8 +74,8 @@ const App = () => {
             <tr key={i}>
               <td>{item['INV_ID']}</td>
               <td>{item['CUST_ID']}</td>
-              <td>{item['INV_DESC']}</td>
               <td>{item['INV_DATE']}</td>
+              <td>{item['INV_DESC']}</td>
             </tr>
           )
         })
@@ -132,8 +132,10 @@ const App = () => {
           />
         </form>
         <div className="sheet-display">
-          <table className="table">
-            <tr className="table-header" >{displayHeader(sheetData)}</tr>
+          <table>
+            <thead>
+              <tr className="table-header" >{displayHeader(sheetData)}</tr>
+            </thead>
             <tbody>
               {displaySheet(sheetData)}
             </tbody>
