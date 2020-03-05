@@ -29,7 +29,7 @@
   flex-direction: column;
   height: 80vh;
   width: 95vw;
-  border: solid 1px #09d3ac;
+  border: solid 1px #f2f2f23d;
   overflow-y: auto;
   font-size: calc(4px + 1vmin);
 }
@@ -47,7 +47,15 @@ thead {
 thead,
 th { position: sticky; top: 0; }
 
-th, td { padding: 8px 16px; }
-th     { background:#eee; }
+th, 
+td { 
+  padding: 8px 16px; 
+}
 
-table tr:nth-child(even){background-color: #f2f2f23d;}
+th { 
+  background:#eee; 
+}
+
+table tr:nth-child(even){
+  background-color: #f2f2f23d;
+}

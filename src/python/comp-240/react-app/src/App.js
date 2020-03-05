@@ -43,7 +43,7 @@ const App = () => {
       })
     }
     else return null;
-  }
+  };
 
   // Re-factor to eliminate if/else statements (map with in a map?)...
   const displaySheet = (data) => {
@@ -144,7 +144,7 @@ const App = () => {
       </header>
     </div>
   );
-}
+};
 
 export default App;
 
@@ -167,6 +167,6 @@ const postData = async (url = '', data = {}) => {
   json.status = response.status;
   json.statusText = response.statusText;
   return json;
-}
+};
 
 
