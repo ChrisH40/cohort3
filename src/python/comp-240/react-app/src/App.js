@@ -108,7 +108,7 @@ const App = () => {
     }
     else return (
       <tr key={1}>
-        <td>Please Activate Server...</td>
+        <td>Please Activate Server/Input Data...</td>
       </tr>
     )
   };

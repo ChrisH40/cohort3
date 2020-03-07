@@ -3,7 +3,6 @@ from flask_cors import CORS
 import sys
 sys.path.append('/code/cohort3/src/python/comp-230/')
 from invoice_sheet_functions import sheet_reader
-
 import datetime
 
 
