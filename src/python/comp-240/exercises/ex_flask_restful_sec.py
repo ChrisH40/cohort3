@@ -1,5 +1,5 @@
 from werkzeug.security import safe_str_cmp
-from exercise_flask_restful_user import User
+from ex_flask_restful_user import User
 
 users = [
     User(1, 'bob', 'asdf'),
