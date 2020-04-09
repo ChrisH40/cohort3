@@ -25,6 +25,10 @@
   margin-top: 20px;
 }
 
+.sheet-button:hover {
+  cursor: pointer;
+}
+
 .sheet-display {
   flex-direction: column;
   height: 80vh;
