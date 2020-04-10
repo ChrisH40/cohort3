@@ -116,13 +116,14 @@ def add_item(sheet):
             return jsonify({'message': f'Error - ID {key} already exists.'}), 400
         else:
             sheet_data[sheet][key] = request_data
-            return jsonify({'message': f'Item {key} successfully added to {sheet}.'}), 200
+            return jsonify({
+                'message': f'Item {key} successfully added to {sheet}.', 'item': request_data}), 200
          
     except:   
         return jsonify({'message': 'Error - please try again.'}), 404     
 
 
-@app.route('/<string:sheet>/<int:item>', methods=['DELETE'])
+@app.route('/<string:sheet>/<int:item>/delete', methods=['DELETE'])
 def delete_item(sheet, item):
     try:
         for key, value in sheet_data.items():
